@@ -14,3 +14,6 @@ estou na pagina de pesquisa de playlists e pesquiso pela playlist “gym”, qua
 
 cenário 5: cadastro de playlist existente
 estou na pagina de cadastro de playlist e insiro o nome e quais músicas a playlist deve ter, logo consigo ver uma mensagem de erro de que não pode haver playlist de nomes iguais.
+
+cenário 6: cadastro de playlist com música inexistente
+estou na pagina de cadastro de playlist e insiro o nome de quais músicas a playlist deve ter, logo consigo ver uma mensagem de erro de que não foi possível encontrar e adicionar a música digitada.

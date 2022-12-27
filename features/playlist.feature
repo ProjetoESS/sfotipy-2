@@ -11,3 +11,6 @@ estou na pagina de pesquisa de playlists e pesquiso pela playlist “gym”, qua
 
 cenário 4: mostrar dono da playlist
 estou na pagina de pesquisa de playlists e pesquiso pela playlist “gym”, quando existir uma playlist com esse nome e a seleciono, logo consigo ver as músicas presentes na playlist junto com o usuário que é o dono dela.
+
+cenário 5: cadastro de playlist existente
+estou na pagina de cadastro de playlist e insiro o nome e quais músicas a playlist deve ter, logo consigo ver uma mensagem de erro de que não pode haver playlist de nomes iguais.

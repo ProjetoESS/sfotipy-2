@@ -46,4 +46,5 @@ And estou logado com login "jsa2" e senha "123"
 And "minhas favoritas" possui a categoria "POP"
 When clico no botão de remover categoria
 And seleciono a categoria "POP"
-Then "minhas favoritas" não possui mais "POP" como uma categoria
+Then "minhas favoritas" não possui mais "POP" como uma categoria da playlist
+And ainda estou na página da playlist

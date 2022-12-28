@@ -27,4 +27,8 @@ Feature: Login
     Scenario: Mudança de página
         Given Estou na página de login
         When Quero ir para a página de cadastro
+<<<<<<< HEAD
         Then Clico no botão cadastre-se, que também se encontra na página de login
+=======
+        Then Clico no botão cadastre-se, que também se encontra na página de login
+>>>>>>> desenvolvimento

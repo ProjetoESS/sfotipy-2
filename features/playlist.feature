@@ -50,6 +50,6 @@ Feature:  playlist
         And I have a playlist registered as "rock"
         When I select the playlist "pop"
         And I update the playlist name as "rock"
-        Then I can see an error message "this playlist name already exists"
+        Then I can see an error message "this playlist name already exists".
     
     

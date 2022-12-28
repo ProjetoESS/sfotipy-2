@@ -1,9 +1,0 @@
-Feature: Login
-
-Cenario: Tabela do botão de login, contendo, os nomes “usuário” e “senha” escritos horizontalmente um abaixo do outro. Após esses nomes, há um uma parte aceitável para o visitante escrever as informações. Logo abaixo há o botão de “entrar”, seguido de “esqueci minha senha” e “esqueci meu usuário” (um embaixo do outro) um pouco mais à direita. Abaixo do botão de entrar, com letras menores, está uma mensagem contendo um link. A mensagem é “caso não tenha se cadastrado, clique aqui”, essa mensagem redireciona o visitante para a página de cadastro.
-
-Cenário: Página de Cadastro. Você pode acessar ela pelo mesmo botão de login clicando na opção-link de “caso não tenha se cadastrado, clique aqui”, ou, do lado da opção de login está um botão chamado “cadastre-se”. No cenário dessa opção, contém blocos que o visitante pode escrever para salvar suas informações, como, nome de usuário, senha, email para recuperação, sexo, etc. E, caso o usuário tenha clicado errado, contém uma mensagem com link. A mensagem é “Para logar, clique aqui”.
-
-Cenário: Voltando para a opção de login, é o de login bem sucedido. No caso, caso o usuário coloque um nome de usuário + senha válidos, isto é, que estejam no banco de dados de login da empresa. Ele estará apto para utilizar-se das funcionalidades do site. No momento do login, aparecerá uma mensagem no estilo “balão” informando que o login foi feito com sucesso.
-
-Cenário: O último cenário é o de login mal sucedido. Ele ocorre quando as informações de login + senha não batem, então, uma mensagem de erro aparecerá embaixo da caixa de senha informando que o usuário ou senha estão inválidos. A mensagem será vermelha para indicar erro e ela destaca as outras mensagens de “esqueci senha” e "esqueci o usuário".

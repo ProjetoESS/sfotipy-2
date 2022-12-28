@@ -43,3 +43,13 @@ Feature:  playlist
         And I select the playlist "gym"
         And I select the option "see followers"
         Then I can see a list with all users who follows the playlist
+
+    Scenario: update playlist name with existing name
+        Given I am at the "edit playlist" page
+        And I have a playlist registered as "pop"
+        And I have a playlist registered as "rock"
+        When I select the playlist "pop"
+        And I update the playlist name as "rock"
+        Then I can see an error message "this playlist name already exists"
+    
+    

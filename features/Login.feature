@@ -22,10 +22,10 @@ Feature: Login
         Given Estou na página de login
         When Preencho as informações de usuário e senha de forma errada e clico em “entrar”
         Then Aparece uma mensagem vermelha informando que o usuário ou senha está incorreto
-        >Then ...<
+        Then blablabla
 
     Scenario: Mudança de página
         Given Estou na página de login
         When Quero ir para a página de cadastro
         Then Clico no botão cadastre-se, que também se encontra na página de login
-        
+

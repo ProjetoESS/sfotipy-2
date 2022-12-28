@@ -26,3 +26,7 @@ And “minhas favoritas” possui as categorias “MPB” e “ROCK”
 When tento adicionar uma nova categoria “R&B”
 Then uma mensagem de erro aparece
 And a nova categoria não é registrada
+
+Scenario adicionando categoria na playlist não sendo dono dela
+Given sou um usuário com login "jsa2" e senha "123"
+When tento adicionar a categoria 

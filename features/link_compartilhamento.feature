@@ -10,6 +10,7 @@ Then um link para aquela playlist personalizada é gerado
 And posso copiar esse link e compartilhá-lo.       
 
 Scenario gerando link de playlist privada
-Given sou um dono de da playlist "favoritas" que é privada
+Given sou um usuário da playlist "minhas favoritas" que é privada
+And possuo login "jsa2" e senha "123"
 When tento clicar no botão de compartilhar playlist
-Then recebo uma mensagem de erro indicando que a playlist não pode ser compartilhada pois é privada
+Then recebo uma mensagem de erro indicando que a "minhas favoritas" não pode ser compartilhada pois é privada e não sou o dono

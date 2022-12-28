@@ -43,6 +43,7 @@ Feature:  playlist
         And I select the playlist "gym"
         And I select the option "see followers"
         Then I can see a list with all users who follows the playlist
+        And when they followed the playlist
     
    
     

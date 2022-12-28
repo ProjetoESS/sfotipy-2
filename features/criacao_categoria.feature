@@ -32,3 +32,18 @@ Given sou um usuário com login "jsa2" e senha "123"
 When tento adicionar a categoria "MPB" na playlist "clássicos"
 Then recebo uma mensagem de erro indicando que não tenho permissão para a ação
 And ainda estou na página da playlist
+
+Scenario adicionando categoria já existente na playlist
+Given sou o dono da playlist “minhas favoritas”
+And possuo o login “jsa2” e senha “123”
+And "minhas favoritas" possui a categoria "POP"
+When tento adicionar a categoria "POP"
+Then recebo uma mensagem de erro indicando que "POP" já é uma categoria de "minhas favoritas"
+
+Scenario remover uma categoria de uma playlist
+Given sou o dono da playlist "minhas favoritas"
+And estou logado com login "jsa2" e senha "123"
+And "minhas favoritas" possui a categoria "POP"
+When clico no botão de remover categoria
+And seleciono a categoria "POP"
+Then "minhas favoritas" não possui mais "POP" como uma categoria

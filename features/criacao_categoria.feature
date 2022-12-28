@@ -29,4 +29,5 @@ And a nova categoria não é registrada
 
 Scenario adicionando categoria na playlist não sendo dono dela
 Given sou um usuário com login "jsa2" e senha "123"
-When tento adicionar a categoria 
+When tento adicionar a categoria "MPB" na playlist "clássicos"
+Then recebo uma mensagem de erro indicando que não tenho permissão para a ação

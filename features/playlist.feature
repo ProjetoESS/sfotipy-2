@@ -44,10 +44,5 @@ Feature:  playlist
         And I select the option "see followers"
         Then I can see a list with all users who follows the playlist
     
-    Scenario: show playlist owner
-       Given I am at the "playlist search" page
-        And there's a playlist registered as "gym"
-        When I search for the playlist "gym"
-        And I select the playlist "gym"
-        Then I can see the name of the playlist owner
+   
     

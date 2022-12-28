@@ -17,4 +17,4 @@ Feature: Login
         Given Estou na página de login
         When Preencho as informações de usuário e senha corretamente e clico em “entrar”
         Then Eu sou logado no site e aparece uma janela de confirmação.
-        >Then ...<
+        Then blablabla

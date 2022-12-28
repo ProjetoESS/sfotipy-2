@@ -16,15 +16,29 @@ And logado com o usuário “vgc3” e a senha “abc1234”
 When eu percorro a página
 Then eu consigo ver “recomendações”, “musicas em alta” e as “minhas playlists”
 
-Scenário: Sair do serviço
+Scenario: Sair do serviço
 Given que eu esteja na página inicial
 And logado com o usuário “vgc3” e a senha “abc1234”
 When eu clico no ícone de “sair”
 Then eu sou direcionado novamente para a seção de login
 And minhas credenciais serão pedidas novamente
 
-Scenário: Usuário não logado
-Given que eu esteja na de login
+Scenario: Usuário não logado
+Given que eu esteja na seção de login
 And decida não fazer uma conta 
 When eu clico no botão de “Entrar como guest”
 Then eu consigo ver “musicas em alta” e as “playlists públicas”
+
+Scenario: Minhas Playlists de usuário não logado
+Given que eu esteja na pagina inicial
+And eu não tenha feito login (seja um guest)
+When eu clico no botão "Minhas Playlists"
+Then eu sou levado para a pagina de login
+And aparece a mensagem "Você precisa estar logado para acessar playlists próprias"
+
+Scenario: Criar playlists como usuário não logado
+Given que eu esteja na pagina inicial
+And eu não tenha feito login (seja um guest)
+When eu clico no simbolo de "Criar Playlist"
+Then eu sou levado para a pagina de login
+And aparece a mensagem "Você precisa ter uma conta para criar playlists próprias" 

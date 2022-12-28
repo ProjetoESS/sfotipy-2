@@ -31,3 +31,10 @@ Scenario adicionando categoria na playlist não sendo dono dela
 Given sou um usuário com login "jsa2" e senha "123"
 When tento adicionar a categoria "MPB" na playlist "clássicos"
 Then recebo uma mensagem de erro indicando que não tenho permissão para a ação
+
+Scenario adicionando categoria já existente na playlist
+Given sou o dono da playlist “minhas favoritas”
+And possuo o login “jsa2” e senha “123”
+And "minhas favoritas" possui a categoria "POP"
+When tento adicionar a categoria "POP"
+Then recebo uma mensagem de erro indicando que "POP" já é uma categoria de "minhas favoritas"

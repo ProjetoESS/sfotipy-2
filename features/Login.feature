@@ -18,4 +18,3 @@ Feature: Login
         When Preencho as informações de usuário e senha corretamente e clico em “entrar”
         Then Eu sou logado no site e aparece uma janela de confirmação.
         >Then ...<
-

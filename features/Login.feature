@@ -22,3 +22,5 @@ Feature: Login
         Given Estou na página de login
         When Preencho as informações de usuário e senha de forma errada e clico em “entrar”
         Then Aparece uma mensagem vermelha informando que o usuário ou senha está incorreto
+
+"IGNORE ISSO"

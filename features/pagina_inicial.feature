@@ -48,7 +48,7 @@ Scenario: Perfil do usuário
 Given que eu esteja na página inicial
 And logado com o usuário “vgc3” e a senha “abc1234”
 When eu clico no ícone "Perfil" 
-Then eu posso ver meu dados (nome completo, foto do perfil, email, lista de playlists criadas)
+Then eu posso ver meu dados ("Victor", foto do perfil, "vgc3@cin.ufpe.br", ["Pop Mix", "Electric Vibe" e "Study lofi"])
 
 Scenario: Minhas Playlists de usuário logado
 Given que eu esteja na pagina inicial

@@ -57,7 +57,7 @@ Feature: Recomendações
         And the system shows a liked playlist confirmation message
 
     Scenario: Get link to recommended playlist
-        Given that I am logged with the user "asd" and password "123" 
+        Given that I am logged with the user "bachira" and password "02468" 
         And I'm on the page "Playlists Recomendadas"
         And a playlist “Brasil” appears as recommended
         When I try to share the playlist “Brasil”

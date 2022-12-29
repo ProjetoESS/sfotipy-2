@@ -46,3 +46,4 @@ Feature: Recomendações
         Given that I am not logged
         When I try to enter the page "Playlist Recomendadas"
         Then the system shows an error message
+        And I'm on the "Home" page

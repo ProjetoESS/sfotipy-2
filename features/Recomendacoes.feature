@@ -47,7 +47,7 @@ Feature: Recomendações
         When I try to enter the page "Playlist Recomendadas"
         Then the system shows an error message
 
-    Scenario: Add a recommended playlist to the user's playlist  
+    Scenario: Add a recommended playlist to the user's liked playlists
         Given that I am logged with the user "asd" and password "123" 
         And I'm on the page "Playlists Recomendadas"
         And a playlist “Brasil” appears as recommended

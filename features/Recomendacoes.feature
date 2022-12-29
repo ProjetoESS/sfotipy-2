@@ -46,3 +46,11 @@ Feature: Recomendações
         Given that I am not logged
         When I try to enter the page "Playlist Recomendadas"
         Then the system shows an error message
+
+    Scenario: Add a recommended playlist to the user's playlist  
+        Given that I am logged with the user "asd" and password "123" 
+        And I'm on the page "Playlists Recomendadas"
+        And a playlist “Brasil” appears as recommended
+        When I try to like the playlist “Brasil”
+        Then the system has the playlist "Brasil" saved in my liked playlists
+        And the system shows a liked playlist confirmation message

@@ -54,3 +54,10 @@ Feature: Recomendações
         When I try to like the playlist “Brasil”
         Then the system has the playlist "Brasil" saved in my liked playlists
         And the system shows a liked playlist confirmation message
+
+    Scenario: Get link to recommended playlist
+        Given that I am logged with the user "asd" and password "123" 
+        And I'm on the page "Playlists Recomendadas"
+        And a playlist “Brasil” appears as recommended
+        When I try to share the playlist “Brasil”
+        Then the system shows a link to the playlist "Brasil"

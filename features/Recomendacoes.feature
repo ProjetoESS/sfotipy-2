@@ -30,6 +30,19 @@ Feature: Recomendações
         And I'm on the page "Playlists Recomendadas"
         And a playlist “Pop Music” appears as recommended
         And I leave the mouse on top of the playlist "Pop Music"
-        When i give play on the playlist “Pop Music”
+        When I give play on the playlist “Pop Music”
         Then the playlist "Pop Music" starts playing
         And I'm still on the page "Playlists Recomendadas"
+
+    Scenario: Save playlist that has already been saved
+        Given that I am logged with the user "abc" and password "54321" 
+        And I'm on the page "Playlists Recomendadas"
+        And a playlist "2000" appears as recommended
+        And I already have the playlist "2000" saved
+        When I try to save the playlist "2000"
+        Then the system shows an error message
+
+    Scenario: Acess whitout login
+        Given that I am not logged
+        When I try to enter the page "Playlist Recomendadas"
+        Then the system shows an error message

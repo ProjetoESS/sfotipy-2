@@ -42,3 +42,4 @@ And eu não tenha feito login (seja um guest)
 When eu clico no simbolo de "Criar Playlist"
 Then eu sou levado para a pagina de login
 And aparece a mensagem "Você precisa ter uma conta para criar playlists próprias" 
+And aparece o botão de "Registrar"

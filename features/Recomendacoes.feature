@@ -1,5 +1,5 @@
 Feature: Recomendações
-    As a user of the stotipy
+    As a user of the sfotipy
     I want to get playlist recommendations based on what i have been listening to
     so that I can listen to new songs close to what i like
     
@@ -42,8 +42,23 @@ Feature: Recomendações
         When I try to save the playlist "2000"
         Then the system shows an error message
 
-    Scenario: Acess whitout login
+    Scenario: Access whitout login
         Given that I am not logged
         When I try to enter the page "Playlist Recomendadas"
         Then the system shows an error message
         And I'm on the "Home" page
+
+    Scenario: Add a recommended playlist to the user's liked playlists
+        Given that I am logged with the user "asd" and password "123" 
+        And I'm on the page "Playlists Recomendadas"
+        And a playlist “Brasil” appears as recommended
+        When I try to like the playlist “Brasil”
+        Then the system has the playlist "Brasil" saved in my liked playlists
+        And the system shows a liked playlist confirmation message
+
+    Scenario: Get link to recommended playlist
+        Given that I am logged with the user "asd" and password "123" 
+        And I'm on the page "Playlists Recomendadas"
+        And a playlist “Brasil” appears as recommended
+        When I try to share the playlist “Brasil”
+        Then the system shows a link to the playlist "Brasil"

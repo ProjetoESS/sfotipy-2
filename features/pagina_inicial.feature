@@ -26,7 +26,7 @@ And minhas credenciais serão pedidas novamente
 Scenario: Usuário não logado
 Given que eu esteja na seção de login
 And decida não fazer uma conta 
-When eu clico no botão de “Entrar como guest”
+When eu clico no botão de “Entrar como convidado”
 Then eu consigo ver “musicas em alta” e as “playlists públicas”
 
 Scenario: Minhas Playlists de usuário não logado

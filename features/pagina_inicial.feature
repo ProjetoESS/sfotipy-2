@@ -4,7 +4,7 @@ I want to acessar a página Inicial
 So that eu possa ter informaçoes e conteúdos relevantes organizados e expostos para mim
 
 Scenario: Voltar à página inicial
-Given que eu esteja logado como um usuário comum no serviço 
+Given que eu esteja logado como um usuário comum no serviço (usuário “vgc3” e a senha “abc1234”)
 And eu esteja em qualquer sub-página do serviço
 When eu clico no botão “Home” uma vez
 Then qualquer definição não salva feita em outra página será perdida

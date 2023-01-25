@@ -43,6 +43,7 @@ When eu clico no simbolo de "Criar Playlist"
 Then eu sou levado para a pagina de login
 And aparece a mensagem "Você precisa ter uma conta para criar playlists próprias" 
 And aparece o botão de "Registrar"
+And aparece o botão de "Continuar como convidado"
 
 Scenario: Perfil do usuário
 Given que eu esteja na página inicial

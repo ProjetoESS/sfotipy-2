@@ -34,3 +34,8 @@ E eu não tenho acesso à playlist de nome "Playlist secreta"
 Quando eu seleciono "apenas playlists" no conteúdo a ser mostrado
 E eu escrever "Playlist secreta" na busca por texto
 Então será mostrado uma mensagem de erro informando que não foram encontradas correspondências
+
+Scenario: Busca sem filtro
+Dado que eu estou na "página de busca"
+Quando eu seleciono a opção de iniciar busca
+Então serão listadas na página músicas, playlists e artistas populares

@@ -15,6 +15,12 @@ Dado que eu estou na "página de busca"
 Quando eu selecionar "apenas músicas" no conteúdo a ser mostrado
 Então serão listadas na busca "músicas"
 
+Scenario: Busca com Filtro por tipo de conteúdo e trecho do nome
+Dado que eu estou na "página de busca"
+Quando eu seleciono "apenas músicas" no conteúdo a ser mostrado
+E eu escrevo um "Paradise" na busca por texto
+Então serão listadas na busca "músicas" cujo "nome" contenha "Paradise"
+
 Scenario: Busca com Filtro por trecho do nome sem correspondências
 Dado que eu estou na "página de busca"
 E não há nenhuma música ou playlist cujo nome contenha "Batata"

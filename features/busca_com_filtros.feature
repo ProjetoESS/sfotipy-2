@@ -28,3 +28,4 @@ E eu não tenho acesso à playlist de nome "Playlist secreta"
 Quando eu seleciono "apenas playlists" no conteúdo a ser mostrado
 E eu escrever "Playlist secreta" na busca por texto
 Então será mostrado uma mensagem de erro informando que não foram encontradas correspondências
+E eu serei redirecionado para a "página de busca"

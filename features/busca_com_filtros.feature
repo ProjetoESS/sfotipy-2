@@ -1,4 +1,7 @@
-Feature: Busca por conteúdo
+Feature: Busca com filtros
+    As a user of the sfotipy
+    I want to be able to search for songs, playlists and authors with filters
+    so that I can find exactly what I am looking for
 
 Scenario: Busca com Filtro por categoria
 Dado que estou na “página de busca”, 

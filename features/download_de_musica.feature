@@ -16,7 +16,7 @@ Dado que eu baixei uma música
 Quando eu selecionar para baixar a mesma música novamente
 Então será mostrado uma mensagem perguntando se deseja baixar o mesmo arquivo novamente.
 
-Scenario: Sem capacidade para o download da música
+Scenario: Sem capacidade no armazenamento para o download da música
 Dado que eu estou na "página de busca"
 Quando eu seleciono a música para baixar
 E dado que não tenho memória suficiente

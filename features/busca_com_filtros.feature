@@ -40,4 +40,4 @@ Scenario: Busca sem filtro
 Dado que eu estou na "página de busca"
 E não há filtros selecionados
 Quando eu dou início a uma busca
-Então serão listadas na página músicas, playlists e artistas populares
+Então serão listadas na página músicas, playlists e artistas sem filtro

@@ -1,7 +1,8 @@
 Feature: Recomendações
-    As a user of the sfotipy
-    I want to get playlist recommendations based on what i have been listening to
-    so that I can listen to new songs close to what i like
+
+    As a user of the stotipy
+    I want to get playlist recommendations based on what I have been listening to
+    so that I can listen to new songs close to what I like
     
     Scenario: Access the recommended playlist
         Given that I am logged with the user "mlv" and password "12345" 

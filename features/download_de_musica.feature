@@ -20,5 +20,5 @@ Scenario: Sem capacidade para o download da música
 Dado que eu estou na "página de busca"
 Quando eu seleciono a música para baixar
 E dado que não tenho memória suficiente
-Então será mostrado uma mensagem de erro informando que não o dispositivo não suporta o arquivo.
+Então será mostrado uma mensagem de erro informando que não o dispositivo não suporta  o arquivo.
 

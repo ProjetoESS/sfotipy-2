@@ -21,11 +21,11 @@ Feature: Recomendações
         Given that I am logged with the user "mlv" and password "12345" 
         And I'm on the page "Playlists Recomendadas"
         And a playlist “Pop Music” appears as recommended
-        When I try to save the palylist “Pop Music”
+        When I try to save the playlist “Pop Music”
         Then the system has the playlist "Pop Music" saved in my playlists
         And the system shows a saved playlist confirmation message
 
-    Scenario: Play playlist whitout going to her page  
+    Scenario: Play playlist without going to her page  
         Given that I am logged with the user "mlv" and password "12345" 
         And I'm on the page "Playlists Recomendadas"
         And a playlist “Pop Music” appears as recommended
@@ -42,7 +42,7 @@ Feature: Recomendações
         When I try to save the playlist "2000"
         Then the system shows an error message
 
-    Scenario: Access whitout login
+    Scenario: Access without being logged
         Given that I am not logged
         When I try to enter the page "Playlist Recomendadas"
         Then the system shows an error message

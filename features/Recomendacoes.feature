@@ -5,7 +5,7 @@ Feature: Recomendações
     so that I can listen to new songs close to what I like
     
     Scenario: Access the recommended playlist
-        Given that I am logged with the user "mlv" and password "12345" 
+        Given that I'm logged with the user "mlv" and password "12345" 
         And I'm on the page "Playlists Recomendadas"
         And a playlist “Pop Music” appears as recommended
         When I try to enter the playlist page “Pop Music”.

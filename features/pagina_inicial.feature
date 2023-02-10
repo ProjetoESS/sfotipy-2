@@ -10,7 +10,7 @@ When eu clico no botão “Home” uma vez
 Then qualquer definição não salva feita em outra página será perdida
 And eu vou diretamente para a página principal do serviço
 
-Scenario: Pagina inicial
+Scenario: Visualizar informações públicas e do usuário
 Given que eu esteja na página inicial
 And logado com o usuário “vgc3” e a senha “abc1234”
 When eu percorro a página
@@ -45,7 +45,7 @@ And aparece a mensagem "Você precisa ter uma conta para criar playlists própri
 And aparece o botão de "Registrar"
 And aparece o botão de "Continuar como convidado"
 
-Scenario: Perfil do usuário
+Scenario: Acessar perfil do usuário
 Given que eu esteja na página inicial
 And logado com o usuário “vgc3” e a senha “abc1234”
 When eu clico no ícone "Perfil" 

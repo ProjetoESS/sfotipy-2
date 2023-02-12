@@ -6,17 +6,16 @@ Feature: Criação de Categorias
 Scenario adicionando nova categoria a uma playlist
 Given sou o “dono” da playlist “minhas favoritas”
 And possuo login “jsa2” e senha “123”
-When clico no botão adicionar categoria
-And seleciono “MPB” como uma nova categoria e clico em adicionar
+When clico no botão gerenciar categorias
+And seleciono “MPB” como uma nova categoria
 Then “MPB” é uma nova categoria da playlist “minhas favoritas”
 
 Scenario mudança de categoria de playlist
 Given sou o dono da playlist “músicas antigas”
 And possuo o login “jsa2” e senha “123”
-When clico em mudar categoria 
+When clico em gerenciar categorias
 And seleciono “MPB” como a categoria que vai ser mudada
 And seleciono “R&B” como a categoria que vai substituir “MPB”
-And clico em confirmar
 Then “R&B” é uma categoria de “músicas antigas” e “MPB” não.
 
 Scenario mais de duas categorias para playlist
@@ -44,7 +43,7 @@ Scenario remover uma categoria de uma playlist
 Given sou o dono da playlist "minhas favoritas"
 And estou logado com login "jsa2" e senha "123"
 And "minhas favoritas" possui a categoria "POP"
-When clico no botão de remover categoria
+When clico no botão de gerenciar categorias
 And seleciono a categoria "POP"
 Then "minhas favoritas" não possui mais "POP" como uma categoria da playlist
 And ainda estou na página da playlist

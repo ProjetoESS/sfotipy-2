@@ -1,4 +1,7 @@
 Feature:  playlist
+As a user
+I want to acess the playlist section
+So that I can create and manage my playlists
 
     Scenario: create playlist
         Given I am at the "create playlist" page

@@ -23,11 +23,11 @@ Feature: Pagina Inicial
         Then eu sou direcionado novamente para a seção de login
         And minhas credenciais serão pedidas novamente
 
-    Scenario: Usuário não logado
-        Given que eu esteja na seção de login
-        And decida não fazer uma conta 
-        When eu clico no botão de “Entrar como convidado”
-        Then eu consigo ver “musicas em alta” e as “playlists públicas”
+    Scenario: Visualizar informações para usuário não logado
+        Given que eu esteja na página inicial
+        And tenha optado por não fazer login (entrado como guest) 
+        When eu percorro a página
+        Then eu consigo ver apenas as “musicas em alta” e as “playlists públicas”
 
     Scenario: Minhas Playlists de usuário não logado
         Given que eu esteja na pagina inicial

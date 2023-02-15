@@ -1,21 +1,21 @@
 Feature: Em alta do spotipy
 
-Scenario: Entrando na tela de em alta
-Dado que estou na “página inicial”,
-Quando eu selecionar a “página explorar” do spotipy ,
-Então serão mostradas as músicas, artistas e playlist em alta.
+Scenario: Ir para página em alta
+Given que estou na página inicial
+And logado com o usuário "Duda123" e a senha "duda09!"
+And eu clico na página em alta
+Then será mostrado a página com as músicas e playlist em alta
 
-Scenario: Busca pelas músicas em alta
-Dado que eu estou na "página inicial”
-Quando eu entro na "página explorar"
-Então são mostrados as músicas em alta no Brasil.
 
-Scenario: Buscando pelos artistas em alta
-Dado que eu estou na "página inicial"
-Quando eu entro na "página explorar”
-Então são mostrados os artistas em alta no Brasil.
+Scenario: Listar as playlists em alta
+I want listar as playlists em alta
+So that eu posso mostrar em ordem decrescentes as playlists mais escutadas
 
-Scenario: Buscando pelas playlists em alta
-Dado que eu estou na "página inicial"
-Quando eu entro na "página explorar”
-Então são mostrados as playlists em alta no Brasil.
+Scenario: Listar as músicas em alta
+I want listar as músicas em alta
+So that eu posso mostrar em ordem decrescentes as músicas mais escutadas
+
+Scenario: Implementar as listas em alta
+Given eu tenha as músicas e playlist em alta
+And eu quero exibir na tela
+Then eu implemento as listas armazenadas

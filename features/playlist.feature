@@ -12,7 +12,7 @@ So that I can create and manage my playlists
 
     Scenario: create existent playlist 
         Given I am at the "create playlist" page
-        And I don't have a playlist registered as "pop"
+        And I have a playlist registered as "pop"
         When I insert the playlist "pop" 
         And I insert the music "shape of you" 
         Then I can see an error message "it's not possible to create an existent playlist"
@@ -21,7 +21,7 @@ So that I can create and manage my playlists
         Given I am at the "create playlist" page
         And I don't have any playlist registered as "pop"
         When I insert the playlist name "pop"
-        And I don't insert any music
+        And I create the playlist
         Then I can see a confirmation message "playlist created with success"
     
     Scenario: create playlist with bigger name than allowed

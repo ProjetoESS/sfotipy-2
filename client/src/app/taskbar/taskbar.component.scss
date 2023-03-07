@@ -54,3 +54,14 @@
 .tb-btn:hover{
     color: #164f7a;
 }
+
+app-profilepage{
+    //display: none;
+
+    position: fixed;
+    top: 130px;
+    left: 50px;
+
+    height: 630px;
+    width: 600px;
+}

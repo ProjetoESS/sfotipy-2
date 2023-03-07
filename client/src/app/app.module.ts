@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { TaskbarComponent } from './taskbar/taskbar.component';
+import { ProfilepageComponent } from './taskbar/profilepage/profilepage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
-    TaskbarComponent
+    TaskbarComponent,
+    ProfilepageComponent
   ],
   imports: [
     BrowserModule,

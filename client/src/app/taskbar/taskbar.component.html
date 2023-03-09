@@ -1,13 +1,12 @@
 <div class="taskbar">
-    <div class="profile">
+    <button class="profile" (click)="showProfile()"></button>
 
-    </div>
     <div class="tb-options">
         <button class="tb-btn">Explorar</button>
         <button class="tb-btn">Busca</button>
-        <img class="logo" src="/assets/logo.png">
+        <button class="logo-btn" (click)="toHome()"></button>
         <button class="tb-btn">Em Alta</button>
         <button class="tb-btn">Playlists</button>
     </div>
 </div>
-<app-profilepage></app-profilepage>
+<app-profilepage id="pp"></app-profilepage>

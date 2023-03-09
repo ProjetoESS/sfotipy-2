@@ -4,16 +4,16 @@
 
         </div>
         <div class="saudation">
-            Olá, [Nome]
+            Olá, <br> {{username}}
         </div>
     </div>
         
     <div class="profile-info">
-        <p>Seguidores: 10</p>
+        <p>Seguidores: {{followers}}</p>
         <div class="profile-options">
             <button class="prf-btn">Mudar senha</button>
             <button class="prf-btnv">Excluir conta</button>
-            <button class="prf-btns">Sair</button>
+            <button class="prf-btns" (click)="logOut()">Sair</button>
         </div>
     </div>
 </div>

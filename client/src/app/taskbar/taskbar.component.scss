@@ -24,16 +24,22 @@
 
     height: 50px;
     width: 50px;
-
     border-radius: 50%;
 
     background-color: #0D2538;
+    cursor: pointer;
 }
 
 ///////////////////////////////////////////////////////////////
 
-.logo{
+.logo-btn{
+    background-image: url("/assets/logo.png");
+    background-size: cover;
     height: 100px;
+    width: 250px;
+
+    border: none;
+    cursor: pointer;
 }
 
 

@@ -1,4 +1,4 @@
-<div class="taskbar">
+<div class="taskbar" *ngIf="isLogged">
     <button class="profile" (click)="showProfile()"></button>
 
     <div class="tb-options">
@@ -9,4 +9,15 @@
         <button class="tb-btn">Playlists</button>
     </div>
 </div>
-<app-profilepage id="pp"></app-profilepage>
+<div class="taskbar" *ngIf="!isLogged">
+    <button class="register">Registrar</button>
+
+    <div class="tb-options">
+        <button class="tb-btn">Explorar</button>
+        <button class="tb-btn">Busca</button>
+        <button class="logo-btn" (click)="toHome()"></button>
+        <button class="tb-btn">Em Alta</button>
+        <button class="tb-btn">Playlists</button>
+    </div>
+</div>
+<app-profilepage id="pp" [isLogged]="isLogged" (logOutEvent)="getLogOut($event)"></app-profilepage>

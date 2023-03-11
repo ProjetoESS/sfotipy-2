@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-profilepage',
@@ -9,6 +9,10 @@ export class ProfilepageComponent {
 	username : string;
 	followers : Number;
 
+	@Input() isLogged : boolean = true;
+
+	@Output() logOutEvent = new EventEmitter<boolean>();
+
 	constructor(){
 		// Change to default values
 		this.username = "Victor"; 
@@ -16,6 +20,7 @@ export class ProfilepageComponent {
 	}
 
 	logOut(){
-		//To do
+		this.isLogged = false;
+		this.logOutEvent.emit(this.isLogged);
 	}
 }

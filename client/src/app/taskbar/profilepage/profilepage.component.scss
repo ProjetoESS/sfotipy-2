@@ -3,7 +3,7 @@
     height: 100%;
     width: 100%;
 
-    background-color: #ffffff85;
+    background-color: #8b97a0;
     color: #ffffff;
     border-radius: 12px;
 }
@@ -44,7 +44,7 @@
     font-weight: bold;
 }
 
-.prf-btn, .prf-btnv, .prf-btns{
+.prf-btn, .prf-btnv, .prf-btng, .prf-btns{
     display: block;
 
     background: none;
@@ -62,10 +62,14 @@
     color: #ff2e2e;
 }
 
+.prf-btng{
+    color: #21d30a;
+}
+
 .prf-btns{
     margin-top: 50px;
 }
 
-.prf-btn:hover, .prf-btnv:hover, .prf-btns:hover{
+.prf-btn:hover, .prf-btnv:hover, .prf-btng:hover, .prf-btns:hover{
     filter: brightness(85%)
 }

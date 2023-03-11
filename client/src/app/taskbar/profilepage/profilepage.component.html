@@ -1,4 +1,4 @@
-<div class="profilepage">
+<div class="profilepage" *ngIf="isLogged">
     <div class="profile-header">
         <div class="profile-pic">
 
@@ -15,5 +15,20 @@
             <button class="prf-btnv">Excluir conta</button>
             <button class="prf-btns" (click)="logOut()">Sair</button>
         </div>
+    </div>
+</div>
+<div class="profilepage" *ngIf="!isLogged">
+    <div class="profile-header">
+        <div class="profile-pic">
+
+        </div>
+        <div class="saudation">
+            Olá, <br> guest
+        </div>
+    </div>
+        
+    <div class="profile-info">
+        <p>Para acessar segidores, criar playlists e receber recomendações, faça login</p>
+        <button class="prf-btng">Criar conta</button>
     </div>
 </div>

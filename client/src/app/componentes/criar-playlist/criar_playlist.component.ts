@@ -8,5 +8,10 @@ import { OnInit } from '@angular/core';
 })
 export class PlaylistComponent implements OnInit {
     constructor() {}
+
+    criarPlaylist() {
+        console.log('bom')
+    }
+
     ngOnInit(): void {}
 }

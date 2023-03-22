@@ -11,6 +11,10 @@ export class PlaylistComponent implements OnInit {
 
     
     criarPlaylist() {
+      const nome_playlist = document.querySelector('.input_name') as HTMLInputElement
+      const imagem_playlist = document.querySelector('.picture_image') as HTMLInputElement
+      console.log(nome_playlist.value)
+      console.log(imagem_playlist.value)
         console.log('bom')
     }
 

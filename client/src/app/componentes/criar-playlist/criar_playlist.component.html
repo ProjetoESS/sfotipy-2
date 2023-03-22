@@ -1,12 +1,19 @@
 <div class="body">
   <form class="form">
+    <div class="novaPlaylist">Nova Playlist
+      <label class="imageInput">
+        <input type="file" accept="image" class="picture_input" (change)="ngOnInit()">
+        <span class="picture_image">+</span>
+    </label>
+    </div>
+    <div class="nomeDaPlaylist">
+      <p class="labelWrapper">
+        <span class="label">Nome da Playlist</span>
+        <span class="label2"></span>
+      </p>
+      <input type="text" class="input_name">
+    </div>
     
-      <div class="novaPlaylist">Nova Playlist
-        <label class="imageInput">
-          <input type="file" accept="image" class="picture_input" (change)="ngOnInit()">
-          <span class="picture_image">+</span>
-      </label>
-      </div>
     
   </form>
   <div class="publicar">Publicar</div>
@@ -14,18 +21,13 @@
   <div class="rectangle57"></div>
  
   <div class="emailField">
-    <div class="nomeDaPlaylist">
-      <p class="labelWrapper">
-        <span class="label">Nome da Playlist</span>
-        <span class="label2"></span>
-      </p>
-    </div>
+    
   </div>
   <button type="submit" class="logInButton" (click)="criarPlaylist()"><div class="cRIAR">CRIAR</div></button>
   
   <div class="rectangle231"></div>
   <div class="rectangle232"></div>
-  <input type="text" class="input_name">
+ 
 
   <div class="rectangle214"></div>
   <div class="rock">rock</div>

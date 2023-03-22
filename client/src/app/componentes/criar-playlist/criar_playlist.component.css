@@ -155,6 +155,10 @@ svg {
   flex-direction: column;
 }
 .nomeDaPlaylist {
+  
+  position: absolute;
+  right: 35%;
+  bottom: 72%;
   width: min-content;
   height: min-content;
   white-space: nowrap;
@@ -223,14 +227,15 @@ svg {
 
 .input_name {
   position: absolute;
-  left: 41.9444%;
-  right: 22.8472%;
-  top: 40.2578%;
-  bottom: 53.9063%;
+  left: 1%;
+  right: 12%;
+  top: 105%;
+  bottom: -110%;
   outline: solid 4px #5c6c78;
   outline-offset: 2px;
-  border-radius: 15px;
+  border-radius: 5px;
   font-size: large;
+  width: 200%;
 }
 
 

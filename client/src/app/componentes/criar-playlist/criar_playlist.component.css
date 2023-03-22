@@ -188,6 +188,7 @@ svg {
   padding: 15px 193px;
   border-radius: 15px;
   background-color: #1a7fc1;
+  cursor: pointer;
 }
 .cRIAR {
   color: #e1e1e1;
@@ -213,22 +214,25 @@ svg {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
 
 }
 
 
-.rectangle233 {
+.input_name {
   position: absolute;
   left: 41.9444%;
   right: 22.8472%;
-  top: 39.2578%;
+  top: 40.2578%;
   bottom: 53.9063%;
   outline: solid 4px #5c6c78;
-  outline-offset: -4px;
+  outline-offset: 2px;
   border-radius: 15px;
 }
+
+
+
 .rectangle214 {
   position: absolute;
   left: 46.0417%;

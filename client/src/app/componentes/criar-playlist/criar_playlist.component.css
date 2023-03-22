@@ -49,7 +49,7 @@ svg {
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: #0d253880;
+  background-color: #0D2538;
   backdrop-filter: blur(2px);
 }
 .rectangle46 {
@@ -58,8 +58,38 @@ svg {
   right: 18.75%;
   top: 28.0273%;
   bottom: 27.9297%;
-  overflow: visible;
+  overflow: hidden;
+  background-color: #86929B;
+  padding: 15px 193px;
+  border-radius: 15px;
+  
 }
+
+.picture_input {
+  
+    display: none !important;
+    
+}
+
+.picture_image {
+    font-size:170px;
+    display: flex;
+    align-items: center;
+    color: #5c6c78;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    
+}
+
 .icon {
   width: 100%;
   height: 100%;
@@ -149,8 +179,8 @@ svg {
 }
 .logInButton {
   position: absolute;
-  left: 58.75%;
-  right: 22.2222%;
+  left: 50.75%;
+  right: 60.2222%;
   top: 61.8164%;
   bottom: 32.0313%;
   place-content: center;
@@ -171,7 +201,7 @@ svg {
   flex-direction: column;
 }
 .rectangle229 {
-  position: absolute;
+  position: relative;
   left: 21.9444%;
   right: 60.9722%;
   top: 37.4023%;
@@ -179,29 +209,16 @@ svg {
   outline: solid 4px #5c6c78;
   outline-offset: -4px;
   border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 200px;
+  height: 200px;
+
 }
-.rectangle231 {
-  transform-origin: top left;
-  position: absolute;
-  left: 30.3153%;
-  right: 62.8514%;
-  top: 54.2187%;
-  bottom: 45.3008%;
-  border-radius: 4px;
-  background-color: #5c6c78;
-  transform: matrix(0, -1, 1, 0, 0, 0);
-}
-.rectangle232 {
-  transform-origin: top left;
-  position: absolute;
-  left: 27.0694%;
-  right: 66.0972%;
-  top: 49.1738%;
-  bottom: 50.3457%;
-  border-radius: 4px;
-  background-color: #5c6c78;
-  transform: matrix(1, 0, 0, 1, 0, 0);
-}
+
+
 .rectangle233 {
   position: absolute;
   left: 41.9444%;

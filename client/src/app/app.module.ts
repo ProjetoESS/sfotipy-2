@@ -9,6 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PlaylistCardComponent } from './playlist-card/playlist-card.component';
 import { MusicCardComponent } from './music-card/music-card.component';
 import { PageBuscaComponent } from './pages/page-busca/page-busca.component';
+import { PlayerComponent } from './player/player.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { PageBuscaComponent } from './pages/page-busca/page-busca.component';
     NavbarComponent,
     PlaylistCardComponent,
     MusicCardComponent,
-    PageBuscaComponent
+    PageBuscaComponent,
+    PlayerComponent
   ],
   imports: [
     BrowserModule,

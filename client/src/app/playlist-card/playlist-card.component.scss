@@ -8,13 +8,23 @@
 }
 
 .card-container:hover .card-details {
-    display: inherit;
+    display: flex;
 }
 
 .card-details {
     display: none;
+
+    align-items: center;
+    justify-content: start;
     background: rgba(255, 255, 255, 0.8);
     width: 100%;
     border-radius: 0px 0px 12px 12px;
     height: 80px;
+    padding: 0 10px;
+}
+
+.player-outer {
+    height: 50px !important;
+    width: 50px !important;
+    padding: 8px !important;
 }

@@ -1,6 +1,11 @@
 .row {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
 }
 
 nav {
@@ -10,5 +15,16 @@ nav {
     background-color: #FFE5B4;
     width: 100%;
     position: fixed;
+    top: 0;
     height: 120px;
+}
+
+a {
+    font-family: 'Iceland';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 35px;
+    color: #000000;
+    text-decoration: none;
 }

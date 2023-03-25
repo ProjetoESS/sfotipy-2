@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'client';
+  link = "/assets/playlists/1/cover.png";
+  id = "2";
 }

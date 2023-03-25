@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PlaylistCardComponent } from './playlist-card/playlist-card.component';
+import { MusicCardComponent } from './music-card/music-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    PlaylistCardComponent
+    PlaylistCardComponent,
+    MusicCardComponent
   ],
   imports: [
     BrowserModule,

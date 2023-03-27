@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
+
 import { MusicasService } from 'src/app/musicas.service';
 import { Music } from '../../../../../server/src/music';
 
@@ -10,6 +12,8 @@ import { Music } from '../../../../../server/src/music';
 export class PageBuscaComponent {
   link = "/assets/playlists/1/cover.png";
   id = "2";
+  filterText: string = '';
+
 
   musics: Music[] = [];
 

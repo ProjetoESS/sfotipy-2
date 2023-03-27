@@ -1,23 +1,13 @@
-<div class="taskbar" *ngIf="isLogged">
-    <button class="profile" (click)="showProfile()"></button>
+<nav class="taskbar">
+    <button class="profile" (click)="showProfile()" *ngIf="isLogged"></button>
+    <button class="register" *ngIf="!isLogged">Registrar</button>
 
     <div class="tb-options">
-        <button class="tb-btn">Explorar</button>
-        <button class="tb-btn">Busca</button>
-        <button class="logo-btn" (click)="toHome()"></button>
-        <button class="tb-btn">Em Alta</button>
-        <button class="tb-btn">Playlists</button>
+        <a class="tb-btn" routerLink="/explorar">Explorar</a>
+        <a class="tb-btn" routerLink="/busca">Busca</a>
+        <button class="logo-btn"></button>
+        <a class="tb-btn" routerLink="/emalta">Em Alta</a>
+        <a class="tb-btn" routerLink="/playlists">Playlists</a>
     </div>
-</div>
-<div class="taskbar" *ngIf="!isLogged">
-    <button class="register">Registrar</button>
-
-    <div class="tb-options">
-        <button class="tb-btn">Explorar</button>
-        <button class="tb-btn">Busca</button>
-        <button class="logo-btn" (click)="toHome()"></button>
-        <button class="tb-btn">Em Alta</button>
-        <button class="tb-btn">Playlists</button>
-    </div>
-</div>
-<app-profilepage id="pp" [isLogged]="isLogged" (logOutEvent)="getLogOut($event)"></app-profilepage>
+</nav>
+<app-profilepage id="pp" [isLogged]="isLogged" (logOutEvent)="getLogOut($event)" *ngIf="show"></app-profilepage>

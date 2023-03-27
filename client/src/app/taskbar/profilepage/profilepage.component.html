@@ -1,4 +1,4 @@
-<div class="profilepage" *ngIf="isLogged">
+<div class="profilepage">
     <div class="profile-header">
         <div class="profile-pic">
 
@@ -8,7 +8,7 @@
         </div>
     </div>
         
-    <div class="profile-info">
+    <div class="profile-info" *ngIf="isLogged">
         <p>Seguidores: {{followers}}</p>
         <div class="profile-options">
             <button class="prf-btn">Mudar senha</button>
@@ -16,18 +16,8 @@
             <button class="prf-btns" (click)="logOut()">Sair</button>
         </div>
     </div>
-</div>
-<div class="profilepage" *ngIf="!isLogged">
-    <div class="profile-header">
-        <div class="profile-pic">
-
-        </div>
-        <div class="saudation">
-            Olá, <br> guest
-        </div>
-    </div>
-        
-    <div class="profile-info">
+    
+    <div class="profile-info" *ngIf="!isLogged">
         <p>Para acessar segidores, criar playlists e receber recomendações, faça login</p>
         <button class="prf-btng">Criar conta</button>
     </div>

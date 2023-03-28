@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './playlist-recomendadas.component.html',
   styleUrls: ['./playlist-recomendadas.component.scss']
 })
-
 export class PlaylistRecomendadasComponent {
   playlists = [  
     { name: "Playlist 1", image: "https://upload.wikimedia.org/wikipedia/en/1/1b/NF_-_The_Search.png", link: "https://www.youtube.com/watch?v=0YKOxtOb44c"},
@@ -14,19 +13,21 @@ export class PlaylistRecomendadasComponent {
     { name: "Playlist 4", image: "https://cdns-images.dzcdn.net/images/cover/e94c38ba711b8f36ac1b541d0a14aa73/350x350.jpg", link: "https://www.crunchyroll.com/series/GR751KNZY/attack-on-titan"},  
     { name: "Playlist 5", image: "https://images.booksense.com/images/090/360/9781632360090.jpg", link: "https://www.netflix.com/title/81249833"}
   ];
+  
+  selectedPlaylist: any;
 
-  isPlaying:boolean = false;
-
-  openPlaylistOnClick(url: string) {
-    window.open(url, "_blank");
-  }
-
-  startPlayingOnClick(event: Event){
-    event.stopPropagation();
-    this.isPlaying = !this.isPlaying;
-  }
-
-  executeAction(event: Event) {
-    event.stopPropagation();
+  onPlay(playlist: any) {
+    // Stop playing any previously selected playlist
+    if (this.selectedPlaylist) {
+      this.selectedPlaylist.isPlaying = false;
+    }
+    if(this.selectedPlaylist == playlist){
+      this.selectedPlaylist.isPlaying = false;
+    }
+    else{
+      // Set the new selected playlist and start playing
+      this.selectedPlaylist = playlist;
+      this.selectedPlaylist.isPlaying = true;
+    }
   }
 }

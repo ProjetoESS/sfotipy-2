@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-playlist-card',
@@ -7,7 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class PlaylistCardComponent {
   @Input() playlist: any;
-  @Input() isPlaying: boolean = false;
+
+  @Output() play = new EventEmitter<any>();
 
   openPlaylistOnClick(url: string) {
     window.open(url, "_blank");
@@ -15,7 +16,7 @@ export class PlaylistCardComponent {
 
   startPlayingOnClick(event: Event){
     event.stopPropagation();
-    this.isPlaying = !this.isPlaying;
+    this.play.emit(this.playlist);
   }
 
   executeAction(event: Event) {

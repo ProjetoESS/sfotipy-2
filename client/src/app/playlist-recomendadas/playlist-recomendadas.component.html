@@ -1,7 +1,10 @@
 <div class="playlists-recomendadas">
   <div class="row">
     <div class="cards" *ngFor="let playlist of playlists">
-      <app-playlist-card [playlist]="playlist" [isPlaying]="isPlaying"></app-playlist-card>
+      <app-playlist-card 
+        [playlist]="playlist" 
+        (play)="onPlay($event)">
+      </app-playlist-card>
     </div>
   </div>
 </div>

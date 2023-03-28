@@ -1,13 +1,8 @@
-/* Set the height of the header to 50px and make it sticky */
 .header {
-    position: sticky;
-    top: 0;
-    height: 50px;
-    background-color: black;
-    color: white;
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
+  background-color: #1a1717;
+  color: #fff;
+  padding: 10px;
+  margin-bottom: 0px;
 }
 
 .header h1 {

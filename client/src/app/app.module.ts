@@ -4,11 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PlaylistRecomendadasComponent } from './playlist-recomendadas/playlist-recomendadas.component';
+import { PlaylistCardComponent } from './playlist-card/playlist-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlaylistRecomendadasComponent
+    PlaylistRecomendadasComponent,
+    PlaylistCardComponent
   ],
   imports: [
     BrowserModule,

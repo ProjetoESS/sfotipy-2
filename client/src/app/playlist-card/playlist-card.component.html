@@ -1,0 +1,13 @@
+<head>
+	<title>Playlists Recomendadas</title>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css"/>
+</head>
+<div class="playlist-card" (click)="openPlaylistOnClick(playlist.link)">
+  <img class = "playlist-image" [src]="playlist.image" alt="Playlist cover">
+  <div class="play-button" [ngClass] = "{'playing' : isPlaying}" (click)="startPlayingOnClick($event)">
+    <i class="fa" [ngClass] = "{'fa-play': !isPlaying, 'fa-pause': isPlaying}"></i>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ playlist.name }}</h5>
+  </div>
+</div>

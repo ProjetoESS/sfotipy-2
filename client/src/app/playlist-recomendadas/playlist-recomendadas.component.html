@@ -1,36 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Playlists Recomendadas</title>
-	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css"/>
-</head>
-<body>
-	<div class = "playlist-recomendadas">
-
-        <div class="header">
-            <h1>Playlists Recomendadas</h1>
-        </div>
-
-        <div class="card-deck">
-            <div class="card" *ngFor="let playlist of playlists" (click)="openPlaylistOnClick(playlist.link)">
-
-                <img class="card-img-top" src="{{playlist.image}}" alt="{{playlist.name}}">
-
-                <div class="card-play-button" [ngClass] = "{'playing' : isPlaying}" (click)="startPlayingOnClick($event)">
-                  <i class="fa" [ngClass] = "{'fa-play': !isPlaying, 'fa-pause': isPlaying}"></i>
-                </div>
-
-                <div class="card-options" (click)="executeAction($event)">
-                    <i class="fa fa-ellipsis-v"></i>
-                </div>
-
-                <div class="card-body">
-                    <h5 class="card-title">{{playlist.name}}</h5>
-                </div>
-                
-            </div>
-        </div>
+<div class="playlists-recomendadas">
+  <div class="row">
+    <div class="cards" *ngFor="let playlist of playlists">
+      <app-playlist-card [playlist]="playlist" [isPlaying]="isPlaying"></app-playlist-card>
     </div>
-</body>
-</html>
-  
+  </div>
+</div>

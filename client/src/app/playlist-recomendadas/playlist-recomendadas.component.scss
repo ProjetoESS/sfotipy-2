@@ -1,4 +1,4 @@
-.playlist-recomendadas {
+.playlists-recomendadas {
     background-color: #062d2a;
     color: #fff; /* Set the font color to white */
 }
@@ -11,14 +11,14 @@
     font-size: 24px;
 }
 
-.card-deck {
+.row{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 30px;
 }
   
-.card {
+.cards {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -52,21 +52,7 @@
     text-align: center;
 }
 
-.card .card-play-button {
-    position: absolute;
-    bottom: 3px;
-    left: 10px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: rgb(13, 76, 13);
-    color: white;
-    font-size: 20px;
-    line-height: 50px;
-    text-align: center;
-    opacity: 0;
-    transition: opacity 0.2s;
-}
+
 
 .card:hover .card-play-button {
     opacity: 1;
@@ -92,11 +78,6 @@
     align-items: center;
     opacity: 0;
     transition: opacity 0.2s;
-}
-
-.card-options i {
-    font-size: 20px;
-    transform: rotate(90deg); /* Adiciona a rotação para ficar na vertical */
 }
 
 .card:hover .card-options {

@@ -4,7 +4,7 @@ import bodyParser = require("body-parser");
 import { CarService } from './src/cars-service';
 import { Car } from './src/car';
 import { MusicService } from './src/music-service';
-import { Music } from './src/music';
+import { Music } from '../common/music';
 
 var app = express();
 

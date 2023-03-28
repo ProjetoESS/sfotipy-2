@@ -1,4 +1,4 @@
-import { Music } from "./music";
+import { Music } from "../../common/music";
 
 export class MusicService {
     musics: Music[] = [];

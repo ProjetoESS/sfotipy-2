@@ -100,6 +100,17 @@ app.put('/musics', function (req: express.Request, res: express.Response) {
   } else {
     res.status(404).send({ message: `Music ${music.id} could not be found.` });
   }
+});
+
+app.get('/playlist/category/:id', function (req: express.Request, res: express.Response) {
+  const playlistId : number = req.params.id;
+  const music = musicService.getById(playlistId);
+  const categories = music.categories;
+  if(categories) {
+    res.send(categories);
+  } else {
+    res.status(404).send({message : 'Playlist could not be found'});
+  }
 })
 
 var server = app.listen(3000, function () {

@@ -1,4 +1,4 @@
-import { Music } from "./Music";
+import { Music } from './Music';
 
 export class Playlist {
     id : number;

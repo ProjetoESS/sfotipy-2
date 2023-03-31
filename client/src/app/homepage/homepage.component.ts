@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { tap } from 'rxjs/operators';
 
 import { PlaylistService } from '../playlist.service';
-import { Playlist } from '../Playlist';
+import { Playlist } from '../../../../common/Playlist';
 
 @Component({
   selector: 'app-homepage',

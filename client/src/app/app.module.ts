@@ -20,7 +20,7 @@ import { PlaylistCardRecomendComponent } from './playlist-card-recomend/playlist
     PlaylistCardComponent,
     MusicCardComponent,
     PageBuscaComponent,
-    PlayerComponent
+    PlayerComponent,
     AppComponent,
     PlaylistRecomendadasComponent,
     PlaylistCardRecomendComponent

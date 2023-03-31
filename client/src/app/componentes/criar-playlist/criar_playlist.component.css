@@ -11,11 +11,6 @@
   overflow-wrap: anywhere;
 }
 
-:host,
-:not(span, a, ul, ol, li, p) {
-  display: flex;
-}
-
 ul,
 ol {
   text-indent: 0;
@@ -58,11 +53,12 @@ svg {
     bottom: 20%;
     overflow: hidden;
     background-color: #86929B;
-    padding: 3% 12%;
+    display: flex;
+    justify-content: space-between;
     border-radius: 15px;
 
   }
-  .input_image_div {
+  .campo1 {
     position:absolute;
     top: 5%;
     left: 5%;
@@ -73,7 +69,6 @@ svg {
   }
 
   .novaPlaylist {
-    color: #1a1c2c;
     font-size: 3vw;
     text-align: center;
     font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
@@ -118,22 +113,41 @@ svg {
 
   }
 
-  .nomeDaPlaylist {
+  .campo2 {
+    position:absolute;
+    top: 5%;
+    left: 40%;
+    display: flex;
+    width: 55%;
+    flex-direction: column;
+    height: 95%;
 
+  }
+  .nomeDaPlaylist_div {
     position: absolute;
-    right: 35%;
-    bottom: 72%;
-    width: min-content;
-    height: min-content;
+    width: 100%;
     white-space: nowrap;
     flex-direction: column;
+
   }
 
-  .label {
-    color: #000;
-    font-size: 32px;
+  .playlist_name {
+    font-size: 3vw;
     font-family: Iceland, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
       'Liberation Sans', sans-serif;
+    min-height: 20%;
+    max-height: 20%;
+  }
+
+  .playlist_input_name {
+    position: relative;
+    outline: solid 4px #5c6c78;
+    outline-offset: -4px;
+    border-radius: 15px;
+    height: 4vw;
+    font-size: 2vw;
+    width: 100%;
+    padding: 10px;
   }
 
   .icon {
@@ -163,7 +177,7 @@ svg {
     right: 24.6545%;
     top: 31.0103%;
     bottom: 65.173%;
-    border-radius: 4px;
+    border-radius: 15px;
     background-color: #0d2538;
     transform: matrix(0.7071, -0.7071, 0.7071, 0.7071, 0, 0);
   }
@@ -213,23 +227,6 @@ svg {
     white-space: nowrap;
     flex-direction: column;
   }
-
-
-
-  .input_name {
-    position: absolute;
-    left: 1%;
-    right: 12%;
-    top: 105%;
-    bottom: -110%;
-    outline: solid 4px #5c6c78;
-    outline-offset: 2px;
-    border-radius: 5px;
-    font-size: large;
-    width: 200%;
-  }
-
-
 
   .rectangle214 {
     position: absolute;

@@ -19,6 +19,18 @@ export class PlaylistCardComponent {
     this.play.emit(this.playlist);
   }
 
+  likePlaylist(event: Event) {
+    event.stopPropagation();
+  }
+
+  travelPlaylist(event: Event) {
+    event.stopPropagation();
+  }
+
+  confirm(event: Event) {
+    event.stopPropagation();
+  }
+
   executeAction(event: Event) {
     event.stopPropagation();
   }

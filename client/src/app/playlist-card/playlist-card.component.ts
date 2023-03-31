@@ -23,11 +23,11 @@ export class PlaylistCardComponent {
     event.stopPropagation();
   }
 
-  travelPlaylist(event: Event) {
+  sharePlaylist(event: Event) {
     event.stopPropagation();
   }
 
-  confirm(event: Event) {
+  savePlaylist(event: Event) {
     event.stopPropagation();
   }
 

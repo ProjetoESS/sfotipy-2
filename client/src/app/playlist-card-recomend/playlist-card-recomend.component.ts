@@ -1,11 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-playlist-card',
-  templateUrl: './playlist-card.component.html',
-  styleUrls: ['./playlist-card.component.scss']
+  selector: 'app-playlist-card-recomend',
+  templateUrl: './playlist-card-recomend.component.html',
+  styleUrls: ['./playlist-card-recomend.component.scss']
 })
-export class PlaylistCardComponent {
+export class PlaylistCardRecomendComponent {
   @Input() playlist: any;
 
   @Output() play = new EventEmitter<any>();

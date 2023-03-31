@@ -1,4 +1,4 @@
-import { Playlist } from '../../client/src/app/Playlist';
+import { Playlist } from '../../common/Playlist'
 
 export class PlaylistService {
     playlistEA: Playlist[] = [];

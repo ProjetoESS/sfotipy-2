@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Iceland&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Iceland&display=swap');
+
 :host,
 * {
   box-sizing: border-box;
@@ -70,7 +73,7 @@ svg {
 
   .novaPlaylist {
     font-size: 3vw;
-    text-align: center;
+
     font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
     min-height: 20%;
     max-height: 20%;
@@ -85,7 +88,7 @@ svg {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    width: 100%;
+    width: 90%;
     height: 40%;
   }
 
@@ -115,24 +118,24 @@ svg {
 
   .campo2 {
     position:absolute;
-    top: 5%;
-    left: 40%;
+    top: 20%;
+    left: 35%;
     display: flex;
     width: 55%;
     flex-direction: column;
-    height: 95%;
+    height: 80%;
+    max-height: 80%;
 
   }
   .nomeDaPlaylist_div {
     position: absolute;
     width: 100%;
-    white-space: nowrap;
     flex-direction: column;
-
   }
 
   .playlist_name {
-    font-size: 3vw;
+    font-size: 2vw;
+    -webkit-text-stroke-width: 0.5px;
     font-family: Iceland, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
       'Liberation Sans', sans-serif;
     min-height: 20%;
@@ -144,191 +147,40 @@ svg {
     outline: solid 4px #5c6c78;
     outline-offset: -4px;
     border-radius: 15px;
-    height: 4vw;
-    font-size: 2vw;
+    height: 2.5vw;
+    font-size: 1vw;
     width: 100%;
     padding: 10px;
   }
 
-  .icon {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .publicar {
-    color: #17232c;
-    font-size: 32px;
-    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-      'Liberation Sans', sans-serif;
-    position: absolute;
-    left: 47.2917%;
-    right: 44.2361%;
-    top: 55.6641%;
-    bottom: 40.5273%;
-    width: min-content;
-    height: min-content;
-    white-space: nowrap;
-    flex-direction: column;
-  }
-  .rectangle56 {
-    transform-origin: top left;
-    position: absolute;
-    left: 75.0063%;
-    right: 24.6545%;
-    top: 31.0103%;
-    bottom: 65.173%;
-    border-radius: 15px;
-    background-color: #0d2538;
-    transform: matrix(0.7071, -0.7071, 0.7071, 0.7071, 0, 0);
-  }
-  .rectangle57 {
-    transform-origin: top left;
-    position: absolute;
-    left: 75.2462%;
-    right: 24.4145%;
-    top: 33.7092%;
-    bottom: 62.4741%;
-    border-radius: 4px;
-    background-color: #0d2538;
-    transform: matrix(-0.7071, -0.7071, 0.7071, -0.7071, 0, 0);
-  }
-
-  .emailField {
-    position: absolute;
-    left: 41.9444%;
-    right: 43.3333%;
-    top: 35.8398%;
-    bottom: 54.2544%;
-    width: min-content;
-    flex-direction: column;
-  }
-
-  .logInButton {
-    position: absolute;
-    left: 50.75%;
-    right: 60.2222%;
-    top: 61.8164%;
-    bottom: 32.0313%;
-    place-content: center;
-    align-items: center;
-    padding: 15px 193px;
-    border-radius: 15px;
-    background-color: #1a7fc1;
-    cursor: pointer;
-  }
-  .cRIAR {
-    color: #e1e1e1;
-    font-size: 28px;
-    font-weight: 600;
-    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-      'Liberation Sans', sans-serif;
-    width: min-content;
-    height: min-content;
-    white-space: nowrap;
-    flex-direction: column;
-  }
-
-  .rectangle214 {
-    position: absolute;
-    left: 46.0417%;
-    right: 49.375%;
-    top: 51.0742%;
-    bottom: 46.582%;
-    border-radius: 8px;
-    background-color: #ffe5b4, #ffe5b4, #ffe5b4, #ffe5b4;
-  }
-  .rock {
-    color: #000;
-    font-size: 22px;
-    font-family: Iceland, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-      'Liberation Sans', sans-serif;
-    text-transform: uppercase;
-    position: absolute;
-    left: 46.5972%;
-    right: 49.8611%;
-    top: 51.2695%;
-    bottom: 46.6797%;
-    width: min-content;
-    height: min-content;
-    white-space: nowrap;
-    flex-direction: column;
-  }
-  .rectangle213 {
-    position: absolute;
-    left: 41.9444%;
-    right: 54.5139%;
-    top: 51.0742%;
-    bottom: 46.582%;
-    border-radius: 8px;
-    background-color: #ffe5b4, #ffe5b4, #ffe5b4, #ffe5b4;
-  }
-  .pop {
-    color: #000;
-    font-size: 22px;
-    font-family: Iceland, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-      'Liberation Sans', sans-serif;
-    text-transform: uppercase;
-    position: absolute;
-    left: 42.3611%;
-    right: 54.9306%;
-    top: 51.2695%;
-    bottom: 46.6797%;
-    width: min-content;
-    height: min-content;
-    white-space: nowrap;
-    flex-direction: column;
-  }
-  .rectangle215 {
-    position: absolute;
-    left: 51.1806%;
-    right: 47.1528%;
-    top: 51.0742%;
-    bottom: 46.582%;
-    border-radius: 8px;
-    background-color: #ffe5b4, #ffe5b4, #ffe5b4, #ffe5b4;
-  }
-  .rectangle562 {
-    position: absolute;
-    left: 51.9358%;
-    right: 47.908%;
-    top: 51.3672%;
-    bottom: 46.875%;
-    border-radius: 4px;
-    background-color: #0d2538;
-  }
-  .rectangle572 {
-    transform-origin: top left;
-    position: absolute;
-    left: 51.3889%;
-    right: 48.4549%;
-    top: 52.356%;
-    bottom: 45.8862%;
-    border-radius: 4px;
-    background-color: #0d2538;
-    transform: matrix(0, -1, 1, 0, 0, 0);
-  }
-  .categorias {
-    color: #000;
-    font-size: 32px;
-    font-family: Iceland, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-      'Liberation Sans', sans-serif;
-    position: absolute;
-    left: 41.9444%;
-    right: 48.4722%;
-    top: 46.7773%;
-    bottom: 50.1953%;
-    width: min-content;
-    height: min-content;
-    white-space: nowrap;
-    flex-direction: column;
-  }
-  .button_toggle {
+  .publicavel {
     position: relative;
-    left: 50%;
-    top: 90%;
-    width: 12%;
+    font-family: Iceland, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+      'Liberation Sans', sans-serif;
+    top: 25vh;
+    width: 100%;
     height: 10%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .publicar {
+    font-size: 2vw;
+    -webkit-text-stroke-width: 0.5px;
+    margin-left: 10%;
+  }
+
+  .button_toggle {
+    position: absolute;
+    width: 10%;
+    height: 100%;
     overflow: visible;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+
   }
 
   .switch input {
@@ -354,9 +206,9 @@ svg {
     position: absolute;
     content: "";
     height: 70%;
-    width: 30%;
+    width: 35%;
     left: 10%;
-    bottom: 10%;
+    bottom: 15%;
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
@@ -371,9 +223,9 @@ svg {
   }
 
   input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
+    -webkit-transform: translateX(20px);
     -ms-transform: translateX(100%);
-    transform: translateX(100%);
+    transform: translateX(130%);
   }
 
   /* Rounded sliders */
@@ -385,10 +237,18 @@ svg {
     border-radius: 50%;
   }
 
-  .icon2 {
-    width: 100%;
+  .submit {
+    font-size: 1.5vw;
+    font-family: Inter;
+    color: #e1e1e1;
+    position: relative;
+    left: 0;
     height: 100%;
-    object-fit: cover;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    background-color: #1a7fc1;
+    cursor: pointer;
   }
 
 }

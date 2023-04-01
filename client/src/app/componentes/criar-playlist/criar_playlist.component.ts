@@ -9,12 +9,13 @@ import { OnInit } from '@angular/core';
 export class PlaylistComponent implements OnInit {
     constructor() {}
 
-    
+
+
     criarPlaylist() {
-      const nome_playlist = document.querySelector('.input_name') as HTMLInputElement
-      const imagem_playlist = document.querySelector('.picture_image') as HTMLInputElement
-      console.log(nome_playlist.value)
-      console.log(imagem_playlist.value)
+      const nome_playlist = document.querySelector('.playlist_name') as HTMLInputElement
+      const imagem_playlist = document.querySelector('.picture_input_name') as HTMLInputElement
+      console.log(nome_playlist)
+      console.log(imagem_playlist)
         console.log('bom')
     }
 

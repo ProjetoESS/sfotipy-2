@@ -1,12 +1,14 @@
 <section class="bound">
     <div class="container">
-        <div class="row">
-            <app-playlist-card [id]='id' [image]="link"></app-playlist-card>
-            <app-playlist-card [id]='id' [image]="link"></app-playlist-card>
-            <app-playlist-card [id]='id' [image]="link"></app-playlist-card>
-            <app-playlist-card [id]='id' [image]="link"></app-playlist-card>
+        <div class="filter">
+            <div class="background">
+                <input type="search" [(ngModel)]="filterText" name="search" id="" role="search"
+                    placeholder="O que você quer ouvir?">
+            </div>
         </div>
-
-        <app-music-card></app-music-card>
+        <div class="musicaslista">
+            <app-music-card *ngFor="let m of musics | musicsFilter: filterText" [id]="m.id" [name]="m.name"
+                [author]="m.author"></app-music-card>
+        </div>
     </div>
 </section>

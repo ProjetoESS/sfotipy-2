@@ -21,19 +21,20 @@ import { MusicsFilterPipe } from './musics-filter.pipe';
   declarations: [
     AppComponent,
     CompartilhamentoComponent,
-    CriacaoCategoriasComponent
+    CriacaoCategoriasComponent,
+    NavbarComponent,
+    PlayerComponent,
+    PlaylistCardComponent,
+    MusicCardComponent,
+    PageBuscaComponent,
+    MusicsFilterPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NavbarComponent,
-    PlaylistCardComponent,
-    MusicCardComponent,
-    PageBuscaComponent,
-    PlayerComponent,
-    MusicsFilterPipe,
+
     RouterModule.forRoot([
       {
         path: 'busca',

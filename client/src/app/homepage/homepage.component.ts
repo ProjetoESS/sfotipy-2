@@ -77,7 +77,8 @@ export class HomepageComponent {
             })
           )
           .subscribe();
-          
+    
+    //Depreciado
     /*
     this.playlistService.getPlaylistEA()
           .subscribe(

@@ -22,6 +22,21 @@ app.get('/playlist-em-alta', function(req, res){
   res.send(JSON.stringify(plstEa));
 })
 
+app.get('/playlist-publica', function(req, res){
+  const plstEa = playlistService.getPB();
+  res.send(JSON.stringify(plstEa));
+})
+
+app.get('/playlist-recomendada', function(req, res){
+  const plstEa = playlistService.getRC();
+  res.send(JSON.stringify(plstEa));
+})
+
+app.get('/playlist-minha', function(req, res){
+  const plstEa = playlistService.getMN();
+  res.send(JSON.stringify(plstEa));
+})
+
 var server = app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })

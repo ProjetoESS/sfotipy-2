@@ -1,0 +1,6 @@
+<div class="player-outer">
+    <div class="player-inner">
+        <button *ngIf="isPlaying" (click)="stopPlaying()"><img src="/assets/pause.svg" alt=""></button>
+        <button *ngIf="!isPlaying" (click)="startPlaying()"><img src="/assets/play.svg" alt=""></button>
+    </div>
+</div>

@@ -3,6 +3,10 @@ import bodyParser = require("body-parser");
 
 import { MusicService } from './src/music-service';
 import { Music } from '../common/music';
+import { CarService } from './src/cars-service';
+import { Car } from './src/car';
+import { MusicService } from './src/music-service';
+import { Music } from './src/music';
 
 var app = express();
 
@@ -17,6 +21,7 @@ app.use(allowCrossDomain);
 app.use(bodyParser.json());
 
 var musicService: MusicService = new MusicService();
+
 
 app.get('/musics', function (req, res) {
   const musics = musicService.get();

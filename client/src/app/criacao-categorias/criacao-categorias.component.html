@@ -9,7 +9,7 @@
     </div>
 
     <div id="categories">
-        <div *ngFor="let category in allCategories" class="category" (click)="addNewCategory(categories)">
+        <div *ngFor="let category in allCategories" class="category" (click)="addNewCategory(category)">
             {{ category }}
         </div>
     </div>

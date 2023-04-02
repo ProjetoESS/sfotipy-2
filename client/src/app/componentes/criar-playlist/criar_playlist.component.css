@@ -153,6 +153,41 @@ svg {
     padding: 10px;
   }
 
+  .addMusica {
+    position: relative;
+
+    font-family: Iceland, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+      'Liberation Sans', sans-serif;
+    top: 12vh;
+    width: 20%;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .input_musica {
+    padding-left: 20%;
+    border-radius: 15px;
+    font-size: 1vw;
+    background-color: #ffe5b4;
+    width: 100%;
+
+  }
+
+  .input_musica::placeholder {
+    text-indent: 10px;
+  }
+
+  .fa-search {
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 0.2rem; /* Posicionamento do ícone */
+    transform: translateY(-50%);
+    color: #999; /* Cor do ícone */
+  }
+
   .publicavel {
     position: relative;
     font-family: Iceland, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',

@@ -32,8 +32,8 @@ import { MusicsFilterPipe } from './musics-filter.pipe';
     PlayerComponent,
     AppComponent,
     PlaylistRecomendadasComponent,
-    PlaylistCardRecomendComponent
-    MusicsFilterPipe,
+    PlaylistCardRecomendComponent,
+    MusicsFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -45,6 +45,10 @@ import { MusicsFilterPipe } from './musics-filter.pipe';
       {
         path: 'busca',
         component: PageBuscaComponent
+      },
+      {
+        path: 'explorar',
+        component: PlaylistRecomendadasComponent
       }
     ])
   ],

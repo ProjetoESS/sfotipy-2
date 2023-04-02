@@ -14,6 +14,8 @@ import { PlaylistCardComponent } from './playlist-card/playlist-card.component';
 import { MusicCardComponent } from './music-card/music-card.component';
 import { PageBuscaComponent } from './pages/page-busca/page-busca.component';
 import { PlayerComponent } from './player/player.component';
+import { PlaylistRecomendadasComponent } from './playlist-recomendadas/playlist-recomendadas.component';
+import { PlaylistCardRecomendComponent } from './playlist-card-recomend/playlist-card-recomend.component';
 import { MusicsFilterPipe } from './musics-filter.pipe';
 
 
@@ -27,6 +29,10 @@ import { MusicsFilterPipe } from './musics-filter.pipe';
     PlaylistCardComponent,
     MusicCardComponent,
     PageBuscaComponent,
+    PlayerComponent,
+    AppComponent,
+    PlaylistRecomendadasComponent,
+    PlaylistCardRecomendComponent
     MusicsFilterPipe,
   ],
   imports: [

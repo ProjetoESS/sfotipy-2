@@ -1,8 +1,44 @@
 import express = require('express');
 import bodyParser = require("body-parser");
+import { PlaylistService } from './src/playlist-service';
 
 import { MusicService } from './src/music-service';
 import { Music } from '../common/music';
+
+var app = express();
+
+var playlistService = new PlaylistService();
+
+var allowCrossDomain = function (req: any, res: any, next: any) {
+  res.header('Access-Control-Allow-Origin', "*");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+}
+
+app.use(allowCrossDomain);
+
+app.use(bodyParser.json());
+
+app.get('/playlist-em-alta', function (req, res) {
+  const plstEa = playlistService.getEA();
+  res.send(JSON.stringify(plstEa));
+})
+
+var server = app.listen(3000, function () {
+  console.log('Example app listening on port 3000!')
+})
+
+function closeServer(): void {
+  server.close();
+}
+
+export { app, server, closeServer }
+
+/*
+import { CarService } from './src/cars-service';
+import { Car } from './src/car';
+>>>>>>> victor/master
 
 var app = express();
 
@@ -68,3 +104,4 @@ function closeServer(): void {
 }
 
 export { app, server, closeServer }
+*/

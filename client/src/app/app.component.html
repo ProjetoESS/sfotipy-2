@@ -1,3 +1,5 @@
 <app-navbar></app-navbar>
 
+<app-taskbar [isLogged]="isLogged" (logOutEvent)="getLogOut($event)"></app-taskbar>
+<app-homepage [isLogged]="isLogged"></app-homepage>
 <router-outlet></router-outlet>

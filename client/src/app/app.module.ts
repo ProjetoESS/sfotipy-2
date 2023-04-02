@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { CompartilhamentoComponent } from './compartilhamento/compartilhamento.component';
 import { CriacaoCategoriasComponent } from './criacao-categorias/criacao-categorias.component';
 
@@ -18,10 +19,15 @@ import { PlaylistRecomendadasComponent } from './playlist-recomendadas/playlist-
 import { PlaylistCardRecomendComponent } from './playlist-card-recomend/playlist-card-recomend.component';
 import { MusicsFilterPipe } from './musics-filter.pipe';
 
+import { HomepageComponent } from './homepage/homepage.component';
+import { TaskbarComponent } from './taskbar/taskbar.component';
+import { ProfilepageComponent } from './taskbar/profilepage/profilepage.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+<<<<<<< HEAD
     CompartilhamentoComponent,
     CriacaoCategoriasComponent,
     NavbarComponent,
@@ -33,7 +39,10 @@ import { MusicsFilterPipe } from './musics-filter.pipe';
     AppComponent,
     PlaylistRecomendadasComponent,
     PlaylistCardRecomendComponent,
-    MusicsFilterPipe
+    MusicsFilterPipe,
+    HomepageComponent,
+    TaskbarComponent,
+    ProfilepageComponent
   ],
   imports: [
     BrowserModule,

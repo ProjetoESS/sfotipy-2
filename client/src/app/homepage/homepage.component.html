@@ -1,26 +1,27 @@
+<app-taskbar [isLogged]="isLogged" (logOutEvent)="getLogOut($event)"></app-taskbar>
 <div class="homepage">
     <div class="plsts-em-alta">
         <h1>Playlists em alta</h1>
 
         <div class="plsts-ea-lst">
             <div class="plst-ea-4">
-                <img class="plst-ea-img" [src]="plEma[3][1]">
+                <img class="plst-ea-img" [src]="plEma[3].image">
                 <div class="podium">4º</div>
             </div>
             <div class="plst-ea-2">
-                <img class="plst-ea-img" [src]="plEma[1][1]">
+                <img class="plst-ea-img" [src]="plEma[1].image">
                 <div class="podium">2º</div>
             </div>
             <div class="plst-ea-1">
-                <img class="plst-ea-img" [src]="plEma[0][1]">
+                <img class="plst-ea-img" [src]="plEma[0].image">
                 <div class="podium">1º</div>
             </div>
             <div class="plst-ea-3">
-                <img class="plst-ea-img" [src]="plEma[2][1]">
+                <img class="plst-ea-img" [src]="plEma[2].image">
                 <div class="podium">3º</div>
             </div>
             <div class="plst-ea-5">
-                <img class="plst-ea-img" [src]="plEma[4][1]">
+                <img class="plst-ea-img" [src]="plEma[4].image">
                 <div class="podium">5º</div>
             </div>
         </div>
@@ -33,8 +34,8 @@
 
         <div class="plsts-pb-lst">
             <div class="plst-pb" *ngFor="let plst of plPub">
-                <img class="plst-img" [src]="plst[1]">
-                <p class="plst-ttl">{{ plst[0] }}</p>
+                <img class="plst-img" [src]="plst.image">
+                <p class="plst-ttl">{{ plst.name }}</p>
             </div>
         </div>
 
@@ -46,8 +47,8 @@
 
         <div class="plsts-rc-lst">
             <div class="plst-rc" *ngFor="let plst of plRec">
-                <img class="plst-img" [src]="plst[1]">
-                <p class="plst-ttl">{{ plst[0] }}</p>
+                <img class="plst-img" [src]="plst.image">
+                <p class="plst-ttl">{{ plst.name }}</p>
             </div>
         </div>
 
@@ -59,8 +60,8 @@
 
         <div class="plsts-mp-lst">
             <div class="plst-mp" *ngFor="let plst of plMin">
-                <img class="plst-img" [src]="plst[1]">
-                <p class="plst-ttl">{{ plst[0] }}</p>
+                <img class="plst-img" [src]="plst.image">
+                <p class="plst-ttl">{{ plst.name }}</p>
             </div>
         </div>
 

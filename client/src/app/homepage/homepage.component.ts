@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { tap } from 'rxjs/operators';
 
 import { PlaylistService } from '../playlist.service';
-import { Playlist } from '../../../../common/Playlist';
+import { Playlist } from '../../../../common/playlist';
 
 @Component({
   selector: 'app-homepage',
@@ -10,10 +10,14 @@ import { Playlist } from '../../../../common/Playlist';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent {
-  plEma : Playlist[] = [];
-  plPub : Playlist[] = [];
-  plRec : Playlist[] = [];
-  plMin : Playlist[] = [];
+  plEma: Playlist[] = [];
+  plPub: Playlist[] = [];
+  plRec: Playlist[] = [];
+  plMin: Playlist[] = [];
+
+  getLogOut($event: boolean): void {
+    this.isLogged = $event;
+  }
 
   /*
   plEma : Array<[string, string]>;
@@ -22,9 +26,9 @@ export class HomepageComponent {
   plMin : Array<[string, string]>;
   */
 
-  @Input() isLogged : boolean = true;
+  @Input() isLogged: boolean = true;
 
-  constructor(private playlistService : PlaylistService){
+  constructor(private playlistService: PlaylistService) {
     //Temporário
     /*
     this.plEma = [["plst1", "/assets/cover9.jpg"], ["plst2", "/assets/cover3.webp"], ["plst3", "/assets/cover5.webp"], 
@@ -43,41 +47,43 @@ export class HomepageComponent {
 
   ngOnInit(): void {
     this.playlistService.getPlaylistEA()
-          .pipe(
-            tap({
-              next: as => { this.plEma = as; },
-              error: msg => { alert(msg.message); }
-            })
-          )
-          .subscribe();
+      .pipe(
+        tap({
+          next: as => { this.plEma = as; },
+          error: msg => { alert(msg.message); }
+        })
+      )
+      .subscribe();
 
     this.playlistService.getPlaylistPB()
-          .pipe(
-            tap({
-              next: as => { this.plPub = as; },
-              error: msg => { alert(msg.message); }
-            })
-          )
-          .subscribe();
+      .pipe(
+        tap({
+          next: as => { this.plPub = as; },
+          error: msg => { alert(msg.message); }
+        })
+      )
+      .subscribe();
 
     this.playlistService.getPlaylistRC()
-          .pipe(
-            tap({
-              next: as => { this.plRec = as; },
-              error: msg => { alert(msg.message); }
-            })
-          )
-          .subscribe();
+      .pipe(
+        tap({
+          next: as => { this.plRec = as; },
+          error: msg => { alert(msg.message); }
+        })
+      )
+      .subscribe();
 
     this.playlistService.getPlaylistMP()
-          .pipe(
-            tap({
-              next: as => { this.plMin = as; },
-              error: msg => { alert(msg.message); }
-            })
-          )
-          .subscribe();
-          
+      .pipe(
+        tap({
+          next: as => { this.plMin = as; },
+          error: msg => { alert(msg.message); }
+        })
+      )
+      .subscribe();
+
+
+
     /*
     this.playlistService.getPlaylistEA()
           .subscribe(

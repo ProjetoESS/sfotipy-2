@@ -27,7 +27,6 @@ import { ProfilepageComponent } from './taskbar/profilepage/profilepage.componen
 @NgModule({
   declarations: [
     AppComponent,
-<<<<<<< HEAD
     CompartilhamentoComponent,
     CriacaoCategoriasComponent,
     NavbarComponent,
@@ -51,6 +50,10 @@ import { ProfilepageComponent } from './taskbar/profilepage/profilepage.componen
     FormsModule,
 
     RouterModule.forRoot([
+      {
+        path: '',
+        component: HomepageComponent
+      },
       {
         path: 'busca',
         component: PageBuscaComponent

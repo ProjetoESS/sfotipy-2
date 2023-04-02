@@ -2,6 +2,7 @@ import { Music } from "./music";
 
 export class Playlist {
     id: number;
+    name: string;
     categories: string[];
     musics: Music[];
     image: string;
@@ -9,6 +10,7 @@ export class Playlist {
 
     constructor(playlist: Playlist) {
         this.id = playlist.id;
+        this.name = playlist.name;
         this.categories = playlist.categories;
         this.musics = playlist.musics;
         this.image = "";

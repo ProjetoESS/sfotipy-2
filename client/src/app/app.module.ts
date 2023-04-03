@@ -22,6 +22,7 @@ import { MusicsFilterPipe } from './musics-filter.pipe';
 import { HomepageComponent } from './homepage/homepage.component';
 import { TaskbarComponent } from './taskbar/taskbar.component';
 import { ProfilepageComponent } from './taskbar/profilepage/profilepage.component';
+import { PlaylistEmAltaComponent } from './playlist-em-alta/playlist-em-alta.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { ProfilepageComponent } from './taskbar/profilepage/profilepage.componen
     MusicsFilterPipe,
     HomepageComponent,
     TaskbarComponent,
-    ProfilepageComponent
+    ProfilepageComponent,
+    PlaylistEmAltaComponent
   ],
   imports: [
     BrowserModule,

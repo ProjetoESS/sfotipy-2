@@ -1,4 +1,6 @@
+
 :host {
+
   position: absolute;
   display: block;
   margin: 0;
@@ -8,13 +10,68 @@
   height: 100%;
   background-color: #0d2538;
   align-items: flex-start;
+  overflow-y: hidden
+}
+
+.campo1 {
+  position: relative;
+  top: 7%;
+  left: 7%;
+  width: 100%;
+}
+
+.minhas_playlists {
+  font-size: 1.4vw;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+  color: #ffffff;
+}
+
+.addPlaylist {
+
+  width: 13vw;
+  height: 25vh;
+  background-color: #0d2538;
+  outline: solid 2px #86929B;
+  outline-offset: -2px;
+  font-size: 10vh;
+  color: #86929B;
+  border-radius: 15px;
+  cursor: pointer;
+
+}
+
+.campo2 {
+  position: relative;
+  top: 15%;
+  left: 7%;
+  width: 100%;
+}
+
+.followed_playlist {
+  font-size: 1.4vw;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+  color: #ffffff;
+}
+
+.following_playlistsButton {
+
+  width: 13vw;
+  height: 25vh;
+  background-color: #86929B;
+  outline: solid 2px #86929B;
+  outline-offset: -2px;
+  font-size: 10vh;
+  color: #86929B;
+  border-radius: 15px;
+  cursor: pointer;
+
 }
 
 .line-1 {
-  position: fixed;
+  position: relative;
   height: 1px;
   left: 2.5%;
-  bottom: 50%;
+  bottom: 22%;
   width: 95%;
   background-color:  #ffffff;
 }
@@ -24,7 +81,7 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  height: 10vh;
+  height: 8vh;
   width: 100%;
 }
 

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { tap } from 'rxjs/operators';
 
 import { PlaylistService } from '../playlist.service';
-import { Playlist } from '../../../../common/Playlist';
+import { Playlist } from '../../../../common/playlist';
 
 @Component({
   selector: 'app-homepage',
@@ -15,7 +15,7 @@ export class HomepageComponent {
   plRec : Playlist[] = [];
   plMin : Playlist[] = [];
 
-  @Input() isLogged : boolean = true;
+  @Input() isLogged: boolean = true;
 
   constructor(private playlistService : PlaylistService){
     
@@ -23,31 +23,31 @@ export class HomepageComponent {
 
   ngOnInit(): void {
     this.playlistService.getPlaylistEA()
-          .pipe(
-            tap({
-              next: as => { this.plEma = as; },
-              error: msg => { alert(msg.message); }
-            })
-          )
-          .subscribe();
+      .pipe(
+        tap({
+          next: as => { this.plEma = as; },
+          error: msg => { alert(msg.message); }
+        })
+      )
+      .subscribe();
 
     this.playlistService.getPlaylistPB()
-          .pipe(
-            tap({
-              next: as => { this.plPub = as; },
-              error: msg => { alert(msg.message); }
-            })
-          )
-          .subscribe();
+      .pipe(
+        tap({
+          next: as => { this.plPub = as; },
+          error: msg => { alert(msg.message); }
+        })
+      )
+      .subscribe();
 
     this.playlistService.getPlaylistRC()
-          .pipe(
-            tap({
-              next: as => { this.plRec = as; },
-              error: msg => { alert(msg.message); }
-            })
-          )
-          .subscribe();
+      .pipe(
+        tap({
+          next: as => { this.plRec = as; },
+          error: msg => { alert(msg.message); }
+        })
+      )
+      .subscribe();
 
     this.playlistService.getPlaylistMP()
           .pipe(

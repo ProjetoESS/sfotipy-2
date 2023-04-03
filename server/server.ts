@@ -4,7 +4,6 @@ import { PlaylistService } from './src/playlist-service';
 
 import { MusicService } from './src/music-service';
 import { Music } from '../common/music';
-import { PlaylistService } from './src/playlist-service';
 import { Playlist } from '../common/playlist';
 
 var app = express();

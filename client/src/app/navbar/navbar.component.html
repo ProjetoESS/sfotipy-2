@@ -1,11 +1,14 @@
 <nav>
+    <button class="profile" (click)="showProfile()" *ngIf="isLogged"></button>
+    <button class="register" *ngIf="!isLogged">Registrar</button>
     <div class="container">
         <div class="row">
             <a routerLink="/explorar">Explorar</a>
             <a routerLink="/busca">Busca</a>
             <a routerLink="/"><img src="../../assets/logo.png" alt="" srcset=""></a>
-            <a>Em alta</a>
-            <a>Playlists</a>
+            <a routerLink="/em-alta">Em alta</a>
+            <a routerLink="/playlists">Playlists</a>
         </div>
     </div>
+    <app-profilepage id="pp" [isLogged]="isLogged" (logOutEvent)="getLogOut($event)" *ngIf="show"></app-profilepage>
 </nav>

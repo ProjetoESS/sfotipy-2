@@ -20,8 +20,7 @@ import { PlaylistCardRecomendComponent } from './playlist-card-recomend/playlist
 import { MusicsFilterPipe } from './musics-filter.pipe';
 
 import { HomepageComponent } from './homepage/homepage.component';
-import { TaskbarComponent } from './taskbar/taskbar.component';
-import { ProfilepageComponent } from './taskbar/profilepage/profilepage.component';
+import { ProfilepageComponent } from './navbar/profilepage/profilepage.component';
 
 
 @NgModule({
@@ -40,7 +39,6 @@ import { ProfilepageComponent } from './taskbar/profilepage/profilepage.componen
     PlaylistCardRecomendComponent,
     MusicsFilterPipe,
     HomepageComponent,
-    TaskbarComponent,
     ProfilepageComponent
   ],
   imports: [

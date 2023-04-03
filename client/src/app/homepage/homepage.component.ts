@@ -22,6 +22,7 @@ export class HomepageComponent {
   }
 
   ngOnInit(): void {
+    /*
     this.playlistService.getPlaylistEA()
       .pipe(
         tap({

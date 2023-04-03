@@ -24,6 +24,7 @@ import { TaskbarComponent } from './taskbar/taskbar.component';
 import { ProfilepageComponent } from './taskbar/profilepage/profilepage.component';
 import { PlaylistEmAltaComponent } from './playlist-em-alta/playlist-em-alta.component';
 import { MusicasEmAltaComponent } from './musicas-em-alta/musicas-em-alta.component';
+import { ArtistasEmAltaComponent } from './artistas-em-alta/artistas-em-alta.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { MusicasEmAltaComponent } from './musicas-em-alta/musicas-em-alta.compon
     TaskbarComponent,
     ProfilepageComponent,
     PlaylistEmAltaComponent,
-    MusicasEmAltaComponent
+    MusicasEmAltaComponent,
+    ArtistasEmAltaComponent
   ],
   imports: [
     BrowserModule,

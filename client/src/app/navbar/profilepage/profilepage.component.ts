@@ -1,4 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { tap } from 'rxjs/operators';
+
+import { UserService } from 'src/app/user.service';
+import { User } from '../../../../../common/user';
 
 @Component({
   selector: 'app-profilepage',
@@ -6,22 +10,31 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./profilepage.component.scss']
 })
 export class ProfilepageComponent {
-	username : string;
-	followers : Number;
+	userId : number = 0;
+	user : User = new User;
 
 	@Input() isLogged : boolean = true;
 
 	@Output() logOutEvent = new EventEmitter<boolean>();
 
-	constructor(){
-		// Change to default values
-		this.username = "Victor"; 
-		this.followers = 5471;
+	constructor(private userService : UserService){
+	
 	}
 
 	logOut(){
 		this.isLogged = false;
 		this.logOutEvent.emit(this.isLogged);
+	}
+
+	ngOnInit() : void{
+		this.userService.getUserById(this.userId)
+			.pipe(
+				tap({
+				next: as => { this.user = as; },
+				error: msg => { alert(msg.message); }
+				})
+			)
+			.subscribe();
 	}
 }
 

@@ -7,11 +7,11 @@ export class User{
     password : string;
     playlists : Playlist[];
 
-    constructor(user : User){
-        this.id = user.id;
-        this.name = user.name;
-        this.email = user.email;
-        this.password = user.password;
-        this.playlists = user.playlists;
+    constructor(){
+        this.id = 0;
+        this.name = '';
+        this.email = '';
+        this.password = '';
+        this.playlists = [];
     }
 }

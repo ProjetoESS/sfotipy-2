@@ -4,15 +4,15 @@ export class Music {
     author: string;
     image : string;
     link : string;
-    duration : string;
+    duration : number;
 
     constructor(music: Music) {
         this.id = music.id;
         this.name = music.name;
         this.author = music.author;
-        this.image = "";
-        this.link = "";
-        this.duration = "";
+        this.image = music.image;
+        this.link = music.link;
+        this.duration = music.duration;
     }
 
     update(music: Music): void {

@@ -1,8 +1,9 @@
 import { Music } from "./music";
+import { Category } from "./Category";
 
 export class Playlist {
     id: number;
-    categories : string[];
+    categories : Category[];
     musics: Music[];
 
     constructor(playlist: Playlist) {

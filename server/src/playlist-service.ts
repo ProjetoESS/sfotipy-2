@@ -15,7 +15,7 @@ export class PlaylistService {
     addNewCategory(playlistId: number, category: string) : Playlist {
         const playlist = this.getById(playlistId);
         if(playlist.categories.length > 2) {
-            throw new Error("Maximum number of categories is 2");
+            return null;
         }
         playlist.categories.push(category);
         return playlist;
@@ -26,7 +26,7 @@ export class PlaylistService {
         if(playlist.categories.includes(category)) {
             playlist.categories.splice(playlistId, 1);
         }else{
-            throw new Error("Invalid category");
+            return null;
         }
         return playlist;
     }

@@ -27,7 +27,7 @@ app.get('/musics', function (req, res) {
 });
 
 app.get('/musics/:id', function (req, res) {
-  const id = req.params.id;
+  const id : number = Number(req.params.id);
   const music = musicService.getById(id);
   if (music) {
     res.send(music);
@@ -62,7 +62,7 @@ app.put('/musics', function (req: express.Request, res: express.Response) {
 });
 
 app.get('/playlist/category/:id', function (req: express.Request, res: express.Response) {
-  const playlistId : number = req.params.id;
+  const playlistId : number = Number(req.params.id);
   const playlist = playlistService.getById(playlistId);
   const playlistCategories = playlist.categories;
   if(playlistCategories) {
@@ -82,7 +82,7 @@ app.get('/playlist/category', function (req: express.Request, res:express.Respon
 });
 
 app.post('/playlist/category/:id', function (req: express.Request, res:express.Response){
-  const id: number = req.params.id;
+  const id: number = Number(req.params.id);
   const newCategory: string = req.body.category;
   try {
     const result = playlistService.addNewCategory(id, newCategory);
@@ -97,7 +97,7 @@ app.post('/playlist/category/:id', function (req: express.Request, res:express.R
 });
 
 app.delete('/playlist/category/:id', function (req: express.Request, res: express.Response) {
-  const id: number = req.params.id;
+  const id: number = Number(req.params.id);
   const category: string = req.body.category;
   try{
     const result = playlistService.deleteCategory(id, category);

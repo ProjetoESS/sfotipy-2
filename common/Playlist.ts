@@ -6,7 +6,6 @@ export class Playlist {
     categories: string[];
     musics: Music[];
     image: string;
-    songs: Music[];
 
     constructor(playlist: Playlist) {
         this.id = playlist.id;
@@ -14,7 +13,6 @@ export class Playlist {
         this.categories = playlist.categories;
         this.musics = playlist.musics;
         this.image = "";
-        this.songs = [];
     }
 
     update(playlist: Playlist): void {

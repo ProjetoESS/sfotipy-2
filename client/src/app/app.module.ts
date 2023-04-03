@@ -23,6 +23,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { TaskbarComponent } from './taskbar/taskbar.component';
 import { ProfilepageComponent } from './taskbar/profilepage/profilepage.component';
 import { PlaylistEmAltaComponent } from './playlist-em-alta/playlist-em-alta.component';
+import { MusicasEmAltaComponent } from './musicas-em-alta/musicas-em-alta.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { PlaylistEmAltaComponent } from './playlist-em-alta/playlist-em-alta.com
     HomepageComponent,
     TaskbarComponent,
     ProfilepageComponent,
-    PlaylistEmAltaComponent
+    PlaylistEmAltaComponent,
+    MusicasEmAltaComponent
   ],
   imports: [
     BrowserModule,

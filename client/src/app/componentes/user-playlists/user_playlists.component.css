@@ -10,6 +10,15 @@
   align-items: flex-start;
 }
 
+.line-1 {
+  position: fixed;
+  height: 1px;
+  left: 2.5%;
+  bottom: 50%;
+  width: 95%;
+  background-color:  #ffffff;
+}
+
 .playbar {
   background-color: #6E7C88;
   position: fixed;

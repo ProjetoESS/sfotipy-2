@@ -5,6 +5,7 @@ export class User{
     name : string;
     email : string;
     password : string;
+    followers : number;
     playlists : Playlist[];
 
     constructor(){

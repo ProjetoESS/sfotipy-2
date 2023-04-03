@@ -40,9 +40,31 @@
 
 }
 
+.playlistsDIV {
+  display: flex;
+  flex-direction: row;
+}
+
+.playlist_name {
+  color: #ffffff;
+}
+
+.playlistButton {
+  width: 13vw;
+  height: 25vh;
+  background-color: #86929B;
+  outline: solid 2px #86929B;
+  outline-offset: -2px;
+  font-size: 10vh;
+  color: #ffffff;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
 .campo2 {
   position: relative;
-  top: 15%;
+  top: 10%;
   left: 7%;
   width: 100%;
 }
@@ -71,7 +93,7 @@
   position: relative;
   height: 1px;
   left: 2.5%;
-  bottom: 22%;
+  bottom: 25%;
   width: 95%;
   background-color:  #ffffff;
 }

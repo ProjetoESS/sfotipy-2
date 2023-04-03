@@ -13,6 +13,7 @@ export class User{
         this.name = '';
         this.email = '';
         this.password = '';
+        this.followers = 0;
         this.playlists = [];
     }
 }

@@ -6,7 +6,7 @@ import { OnInit } from '@angular/core';
   templateUrl: './criar_playlist.component.html',
   styleUrls: ['./criar_playlist.component.css']
 })
-export class PlaylistComponent implements OnInit {
+export class CriarPlaylistComponent implements OnInit {
     constructor() {}
 
 

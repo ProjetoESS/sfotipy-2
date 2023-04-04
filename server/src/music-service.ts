@@ -3,7 +3,6 @@ import { Music } from "../../common/music";
 export class MusicService {
     musics: Music[] = [];
     idCount: number = 0;
-
     add(music: Music): Music {
         if (this.musics.length >= 10) return null;
         const newMusic = new Music(<Music>{ id: this.idCount, ...music });

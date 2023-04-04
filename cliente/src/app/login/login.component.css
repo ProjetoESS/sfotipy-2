@@ -22,8 +22,7 @@
 
 .input-box {
     width: 500px;
-    display: flex;
-    flex-direction: column;
+    display: block;
 }
 
 .input-box input {
@@ -45,14 +44,27 @@
     padding-left: 15%;
 }
 
+/*
+TENTANDO FAZER O ICONE MUDAR
+.input-box:hover #senha-i {
+    background: url(../../assets/senha_branco.svg) no-repeat center center;
+    background-size: 3rem;
+    transition: 0.5;
+}
+
+.input-box:hover #email-i,
+.input-box:focus #email-i {
+    background: url(../../assets/email_branco.svg) no-repeat center center;
+    background-size: 3rem;
+}
+*/
+
 .input-box input:focus,
 .input-box input:hover {
     outline: none;
     border: solid;
     border-color: rgba(255, 255, 255, 1);
-
 }
-
 
 input::placeholder {
     font-family: 'Itim', sans-serif;
@@ -60,23 +72,24 @@ input::placeholder {
     font-weight: 400;
     font-size: 24px;
     color: rgba(255, 255, 255, 0.6);
-    vertical-align: center;
+
 }
 
-.input-box label {
+.input-box .nomes-input {
     font-family: 'Iceland', sans-serif;
     font-weight: 400;
     font-size: 32px;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: rgba(0, 0, 0, 0.25);
+    flex-wrap: wrap;
 }
 
 .icones {
     width: 3rem;
     height: 3rem;
     position: absolute;
-    padding-top: 3rem;
-    padding-left: 1rem;
+    margin-top: 3rem;
+    left: 6.5rem;
 
     color: rgba(255, 255, 255, 0.6)
 }

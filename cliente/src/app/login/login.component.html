@@ -17,22 +17,28 @@
     </div>
     <div class="input-group">
       <div class="input-box">
-        <label for="email">E-mail</label>
-        <img src="../../assets/email.svg" class="icones" id="email-i" alt="icone de email">
+        <label for="email" class="nomes-input">E-mail</label>
+        <label for="email">
+          <img src="../../assets/email_branco.svg" class="icones" id="email-i" alt="icone de email">
+        </label>
         <input id="email" type="email" name="email" placeholder="exemplo@gmail.com" required>
       </div>
+
       <div class="input-box">
-        <label for="password">Senha</label>
-        <img src="../../assets/senha.svg" class="icones" id="senha-i" alt="icone de senha">
-        <input id="password" type="password" name="password" placeholder="********" required>
+        <label for="password" class="nomes-input">Senha</label>
+        <label for="password">
+          <img src="../../assets/senha_branco.svg" class="icones" id="senha-i" alt="icone de senha">
+        </label>
+        <input id="password" type="password" name="password" placeholder="••••••••" required>
       </div>
-      <a href="esqueci.html" class="esqueceu-senha">Esqueceu sua senha?</a>
+
+      <a routerLink="/esqueceu-senha" class="esqueceu-senha">Esqueceu sua senha?</a>
       <div class="entrar-botao"><button><a href="#" class="input-box">Entrar</a></button>
       </div>
     </div>
     <div class="container-cadastro">
       <p class="p-cadastro">Ainda não possui uma conta?</p>
-      <a href="cadastro/cadastro.component.html" class="cadastro">Cadastre-se</a>
+      <a routerLink="/cadastro" class="cadastro">Cadastre-se</a>
     </div>
   </div>
 </body>

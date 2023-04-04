@@ -12,11 +12,14 @@ export class CriarPlaylistComponent implements OnInit {
 
 
     criarPlaylist() {
-      const nome_playlist = document.querySelector('.playlist_name') as HTMLInputElement
-      const imagem_playlist = document.querySelector('.picture_input_name') as HTMLInputElement
-      console.log(nome_playlist)
-      console.log(imagem_playlist)
-        console.log('bom')
+
+      const nome_playlist = document.querySelector('.playlist_input_name') as HTMLInputElement
+      const imagem_playlist = document.querySelector('.picture_input') as HTMLInputElement
+      const publicavel = document.querySelector('.publicar_input') as HTMLInputElement
+      console.log(nome_playlist.value)
+      console.log(imagem_playlist.value)
+      console.log(publicavel.checked)
+      console.log('bom')
     }
 
     ngOnInit(): void {

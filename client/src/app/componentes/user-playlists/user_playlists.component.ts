@@ -12,7 +12,7 @@ import { UserPlaylistsModule } from './user_playlists.module';
 export class UserPlaylistsComponent implements OnInit {
     constructor(private router: Router) {}
 
-    numPlaylists: number = 0; // Número de playlists cadastradas
+    numPlaylists: number = 1; // Número de playlists cadastradas
     playlists: any[] = [ // Array com informações das playlists
     {
       name: "Minha playlist",

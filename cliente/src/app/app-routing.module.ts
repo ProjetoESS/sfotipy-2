@@ -8,7 +8,7 @@ import { EsqueciComponent } from './esqueci/esqueci.component';
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'cadastro', component: RegisterComponent },
-    { path: 'esqueceu-senha', component: EsqueciComponent }
+    { path: 'esqueci_senha', component: EsqueciComponent }
 ];
 
 @NgModule({

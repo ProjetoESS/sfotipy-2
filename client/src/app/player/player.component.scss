@@ -1,0 +1,28 @@
+.player-outer {
+    background-color: #0D2538;
+    padding: 12px;
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+}
+
+.player-inner {
+    background-color: #FFE5B4;
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    background: none;
+    border: none;
+    height: 100%;
+    cursor: pointer;
+}
+
+button img {
+    height: 50%;
+}

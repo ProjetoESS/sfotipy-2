@@ -1,0 +1,30 @@
+.bound {
+    margin-top: 150px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.background {
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(2px);
+    border-radius: 12px;
+    left: max(calc((100vw - 1200px))/2, 1em);
+    right: max(calc((100vw - 1200px))/2, 1em);
+}
+
+.filter {}
+
+input[name="search"] {
+    background: #D9D9D9;
+    border-radius: 25px;
+    border: none !important;
+    height: 40px;
+    padding: 8px;
+
+    width: 80%;
+}

@@ -3,7 +3,7 @@
   <button *ngIf="numPlaylists === 0" type="button" class="addPlaylist" (click)="redirecionarParaCriarPlaylist()">+</button>
   <div *ngIf="numPlaylists > 0" class="playlistsDIV">
     <div *ngFor="let playlist of playlists">
-      <button type="button" class="playlistButton"></button>
+      <button type="button" class="playlistButton" (click)="redirectplaylist(playlist.id)"></button>
       <p class="playlist_name">{{ playlist.name }}</p>
     </div>
     <button type="button" class="addPlaylist" (click)="redirecionarParaCriarPlaylist()">+</button>

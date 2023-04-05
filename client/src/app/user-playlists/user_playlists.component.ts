@@ -15,15 +15,21 @@ export class UserPlaylistsComponent implements OnInit {
     numPlaylists: number = 1; // Número de playlists cadastradas
     playlists: any[] = [ // Array com informações das playlists
     {
+      id: 1,
       name: "Minha playlist",
       songs: ["Música 1", "Música 2", "Música 3"]
     },
     {
+      id: 2,
       name: "Outra playlist",
       songs: ["Música 4", "Música 5", "Música 6"]
     }
+
   ];
 
+    redirectplaylist(id: number) {
+      this.router.navigate(['/playlist/', id])
+    }
 
     redirecionarParaCriarPlaylist() {
       this.router.navigate(['/criar_playlist']);

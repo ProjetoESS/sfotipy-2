@@ -36,7 +36,8 @@ svg {
 
 :host {
   position: absolute;
-  display: block;
+  display: flex;
+  flex-direction: column;
   margin: 0;
   left: 0;
   top: 0;
@@ -54,6 +55,8 @@ svg {
   height: 30vh;
   background-color:#6E7C88;
   width: 90%;
+  display: flex;
+  flex-direction: row;
 }
 
 .img {
@@ -64,8 +67,25 @@ svg {
 }
 
 .textsdiv {
+  margin-top: 2%;
+  margin-left: 2%;
   font-family: Inter;
+  color: #C5C5C5;
 }
+
+.playlist_name {
+  font-size: 5vh;
+  color: white;
+}
+
+.playlist_owner {
+  margin-top: 1vh;
+}
+
+.playlist_followers {
+  margin-top: 1vh;
+}
+
 
 .playbar {
   background-color: #6E7C88;

@@ -25,8 +25,13 @@ export class PlaylistComponent implements OnInit {
       owner: 'dollyntt',
       followers: ['angel','luiz','matheus']
     }
-
     ];
+
+    show_followers(id: number) {
+      const playlist = this.playlists.find(p => p.id === id); // Procura a playlist correspondente ao id na lista de playlists
+      window.alert(playlist.followers)
+    }
+
     selectedPlaylist: any; // Propriedade que receberá a playlist selecionada
 
     ngOnInit(): void {
@@ -34,9 +39,7 @@ export class PlaylistComponent implements OnInit {
         if(params && params.get('id')) {
           const id = params?.get('id');// Obtém o valor do parâmetro id da rota e converte para número
           this.selectedPlaylist = this.playlists.find(playlist => playlist.id == id); // Procura a playlist correspondente ao id na lista de playlists
-
         }
-
       });
     }
 }

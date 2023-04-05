@@ -3,7 +3,7 @@
   <div class="textsdiv">
     <p class="playlist_name">{{selectedPlaylist.name}}</p>
     <p class="playlist_owner">{{selectedPlaylist.owner}}</p>
-    <p class="playlist_followers">{{selectedPlaylist.followers.length}} seguidores</p>
+    <p (click)="show_followers(selectedPlaylist.id)" class="playlist_followers">{{selectedPlaylist.followers.length}} seguidores</p>
   </div>
 
 </div>

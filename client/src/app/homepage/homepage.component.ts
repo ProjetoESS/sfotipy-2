@@ -29,7 +29,7 @@ export class HomepageComponent {
           { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
           { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
         ], 
-        image: 'playlist1.jpg'
+        image: '/assets/cover1.jpg'
       },
       { 
         id: 2, 
@@ -39,7 +39,7 @@ export class HomepageComponent {
           { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
           { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
         ], 
-        image: 'playlist2.jpg'
+        image: '/assets/cover2.jpg'
       },
       { 
         id: 3, 
@@ -49,7 +49,7 @@ export class HomepageComponent {
           { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
           { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
         ], 
-        image: 'playlist3.jpg'
+        image: '/assets/cover6.jpg'
       },
       { 
         id: 4, 
@@ -59,7 +59,7 @@ export class HomepageComponent {
           { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
           { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
         ], 
-        image: 'playlist4.jpg'
+        image: '/assets/cover7.jpg'
       },
       { 
         id: 5, 
@@ -69,7 +69,7 @@ export class HomepageComponent {
           { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
           { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
         ], 
-        image: 'playlist5.jpg'
+        image: '/assets/cover8.jpg'
       }
     ];
     this.plPub = this.plEma;

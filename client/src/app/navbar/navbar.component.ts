@@ -1,4 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,19 +9,32 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class NavbarComponent {
   show : boolean = false;
-  @Input() isLogged : boolean = true;
-  @Output() logOutEvent = new EventEmitter<boolean>();	
+  isLogged : boolean = false;
   
-  showProfile() : void{
-    console.log(this.show);
-    
+  constructor(private loginService : LoginService){ }
+  
+  showProfile(event? : boolean) : void{
     this.show = !this.show;
+    if((typeof event !== 'undefined')) this.show = event;
   }
-  
-	getLogOut($event : boolean) : void{
-		this.isLogged = $event
-		document.getElementById("pp")!.style.display="none";
 
-    this.logOutEvent.emit(this.isLogged);
+  toLogin() : void{
+    //To do
+  }
+
+  ngOnInit() : void{
+		this.loginService.getLoginStatus().subscribe(newStatus => {
+			this.isLogged = newStatus;
+		});
+		/*
+		this.userService.getUserById(this.userId)
+			.pipe(
+				tap({
+				next: as => { this.user = as; },
+				error: msg => { alert(msg.message); }
+				})
+			)
+			.subscribe();
+		*/
 	}
 }

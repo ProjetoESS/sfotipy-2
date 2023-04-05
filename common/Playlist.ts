@@ -15,10 +15,10 @@ export class Playlist {
         this.image = playlist.image;
     }
 
-    update(playlist: Playlist): void {
-        this.id = playlist.id;
-        this.categories = playlist.categories;
-        this.musics = playlist.musics;
-    }
+    //update(playlist: Playlist): void {
+    //    this.id = playlist.id;
+    //    this.categories = playlist.categories;
+    //    this.musics = playlist.musics;
+    //}
 
 }

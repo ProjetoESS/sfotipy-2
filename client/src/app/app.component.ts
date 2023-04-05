@@ -7,10 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 	title = 'Sfotipy';
-
-	isLogged : boolean = true;
-
-	getLogOut($event : boolean) : void{
-		this.isLogged = $event;
-	}
 }

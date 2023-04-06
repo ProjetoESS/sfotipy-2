@@ -92,6 +92,10 @@ i {
   margin-top: 1vh;
 }
 
+.playlist_owner {
+  margin-top: 1vh;
+}
+
 .campo2 {
   left: 5%;
   position: fixed;
@@ -147,7 +151,7 @@ i {
 .categories {
   list-style: none;
   padding: 0;
-  margin-top: 11%;
+  margin-top: 12%;
   margin-left: -19%;
 }
 

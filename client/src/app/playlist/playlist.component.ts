@@ -84,6 +84,7 @@ export class PlaylistComponent implements OnInit {
       id: 1,
       name: "Minha playlist",
       categories : ["pop", "jazz"],
+      availability : "public",
       songs: ["Música 1", "Música 2", "Música 3","Música 4", "Música 5", "Música 6", "Música 7", "Música 8", "Música 9", "Música 10"],
       owner: 'dollynt',
       followers: ['angel','luiz','victor']
@@ -91,6 +92,7 @@ export class PlaylistComponent implements OnInit {
     {
       id: 2,
       name: "Outra playlist",
+      availability : "private",
       categories : ["indie", "rock"],
       songs: ["Música 4", "Música 5", "Música 6", "Música 2"],
       owner: 'dollyntt',

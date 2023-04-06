@@ -2,6 +2,7 @@
   <div class="img"></div>
   <div class="textsdiv">
     <p class="playlist_name">{{selectedPlaylist.name}}</p> <a href="compartilhar/{{selectedPlaylist.id}}"> <i class="fas fa-share"></i> </a>
+    <p class="playlist_avalibility">{{selectedPlaylist.availability}}</p>
     <p class="playlist_owner">{{selectedPlaylist.owner}}</p>
     <p (click)="show_followers(selectedPlaylist.id)" class="playlist_followers">{{selectedPlaylist.followers.length}} seguidores</p>
   </div>

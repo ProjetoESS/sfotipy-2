@@ -1,10 +1,10 @@
 import express = require('express');
+import cors = require('cors')
 import bodyParser = require("body-parser");
 import { PlaylistService } from './src/playlist-service';
 
 import { MusicService } from './src/music-service';
 import { Music } from '../common/music';
-import { PlaylistService } from './src/playlist-service';
 import { Playlist } from '../common/playlist';
 
 var app = express();
@@ -27,9 +27,38 @@ app.get('/playlist-em-alta', function (req, res) {
   res.send(JSON.stringify(plstEa));
 })
 
+app.get('/playlist/category', function (req: express.Request, res:express.Response) {
+  const allCategories = playlistService.getAllCategories();
+  if(allCategories) {
+    res.send(allCategories);
+  }else{
+    res.status(404).send({message : "Error getting categories"});
+  }
+});
+
+app.post('/criar_playlist', (req: express.Request, res: express.Response) => {
+  const newPlaylist = <Playlist>req.body;
+  
+  try {
+    const result = playlistService.addPlaylist(newPlaylist);
+    if (result) {
+      res.status(201).send(result);
+    } else {
+      res.status(403).send({ message: "Music list is full" });
+    }
+  } catch (err) {
+    const { message } = err;
+    res.status(400).send({ message })
+  }
+
+  res.status(200).json({ message: 'Playlist criada com sucesso!' });
+});
+
 var server = app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })
+
+
 
 function closeServer(): void {
   server.close();

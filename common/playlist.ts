@@ -2,25 +2,23 @@ import { Music } from "./music";
 
 export class Playlist {
     id: number;
+    ownerId: number;
     name: string;
-    categories: string[];
-    musics: Music[];
     image: string;
     songs: Music[];
+    categories: string[];
+    isPublic: boolean; 
 
     constructor(playlist: Playlist) {
         this.id = playlist.id;
+        this.ownerId = playlist.ownerId;
         this.name = playlist.name;
-        this.categories = playlist.categories;
-        this.musics = playlist.musics;
         this.image = "";
         this.songs = [];
+        this.categories = playlist.categories;
+        this.isPublic = playlist.isPublic;
     }
 
-    update(playlist: Playlist): void {
-        this.id = playlist.id;
-        this.categories = playlist.categories;
-        this.musics = playlist.musics;
-    }
+    
 
 }

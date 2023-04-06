@@ -52,6 +52,12 @@ export class PlaylistService {
       .pipe(retry(2));
   }
 
+  addPlaylist(playlist: Playlist) {
+    return this.http.post(`${this.appURL}/criar_playlist`, playlist, this.httpOptions)
+      .pipe(retry(2));
+  }
+
+
   deleteCategory(id: number, category: string) {
 
     const data = {

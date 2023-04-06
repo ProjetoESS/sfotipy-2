@@ -1,9 +1,11 @@
 import { Playlist } from '../../common/playlist'
+import { Observable } from 'rxjs';
+
 
 export class PlaylistService {
   playlists: Playlist[] = [];
   categories: string[] = [];
-
+  idCount: number = 0
   playlistEA: Playlist[] = [];
 
   getEA(): Playlist[] {
@@ -38,6 +40,14 @@ export class PlaylistService {
 
   getAllCategories(): string[] {
     return this.categories;
+  }
+
+
+  addPlaylist(playlist: Playlist): Observable<Playlist> {
+    const newPlaylist = new Playlist(playlist)
+    this.playlists.push(newPlaylist);
+    return newPlaylist;
+  
   }
 
 }

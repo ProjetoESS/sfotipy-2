@@ -8,7 +8,12 @@
         </div>
         <div class="musicaslista">
             <app-music-card *ngFor="let m of musics | musicsFilter: filterText" [id]="m.id" [name]="m.name"
-                [author]="m.author"></app-music-card>
+                [author]="m.author" [music]="m"></app-music-card>
+        </div>
+        <hr>
+        <h1>Playlists</h1>
+        <div class="playlistslista">
+            <app-playlist-card *ngFor="let p of playlists" [playlist]="p"></app-playlist-card>
         </div>
     </div>
 </section>

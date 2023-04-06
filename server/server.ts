@@ -5,6 +5,7 @@ import { PlaylistService } from './src/playlist-service';
 import { MusicService } from './src/music-service';
 import { Music } from '../common/music';
 import { Playlist } from '../common/playlist';
+import { Category } from '../common/category';
 
 var app = express();
 
@@ -84,7 +85,7 @@ app.get('/playlist/category', function (req: express.Request, res: express.Respo
 
 app.post('/playlist/category/:id', function (req: express.Request, res: express.Response) {
   const id: number = Number(req.params.id);
-  const newCategory: string = req.body.category;
+  const newCategory: Category = req.body.category;
   try {
     const result = playlistService.addNewCategory(id, newCategory);
     if (result) {
@@ -99,7 +100,7 @@ app.post('/playlist/category/:id', function (req: express.Request, res: express.
 
 app.delete('/playlist/category/:id', function (req: express.Request, res: express.Response) {
   const id: number = Number(req.params.id);
-  const category: string = req.body.category;
+  const category: Category = req.body.category;
   try {
     const result = playlistService.deleteCategory(id, category);
     if (result) {

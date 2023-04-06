@@ -20,6 +20,6 @@ export class Playlist {
         this.id = playlist.id;
         this.categories = playlist.categories;
         this.musics = playlist.musics;
-    }*/
+    }*/ 
 
 }

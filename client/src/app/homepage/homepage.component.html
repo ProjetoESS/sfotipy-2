@@ -32,10 +32,15 @@
         <h1>Playlists Públicas</h1>
 
         <div class="plsts-pb-lst">
-            <a class="plst-pb" *ngFor="let plst of plPub | slice:0:5" [routerLink]="'/users/' + plst.id.toString()">
+            <!--
+            <a class="plst-pb" *ngFor="let plst of plPub | slice:0:5" [routerLink]="'/playlists/' + plst.id.toString()">
                 <img class="plst-img" [src]="plst.image">
                 <p class="plst-ttl">{{ plst.name }}</p>
             </a>
+            -->
+            <div class="" *ngFor="let plst of plPub | slice:0:5">
+                <app-playlist-card-recomend [playlist]="plst"></app-playlist-card-recomend>
+            </div>
         </div>
 
         <a class="ver-mais" href="www.google.com">ver mais</a>
@@ -43,12 +48,17 @@
 
     <div class="recomendacoes" *ngIf="isLogged">
         <h1>Recomendações para você</h1>
-
+        
         <div class="plsts-rc-lst">
-            <a class="plst-rc" *ngFor="let plst of plRec | slice:0:5" [routerLink]="'/users/' + plst.id.toString()">
+            <!--
+            <a class="plst-rc" *ngFor="let plst of plRec | slice:0:5" [routerLink]="'/playlists/' + plst.id.toString()">
                 <img class="plst-img" [src]="plst.image">
                 <p class="plst-ttl">{{ plst.name }}</p>
             </a>
+            -->
+            <div class="" *ngFor="let plst of plPub | slice:0:5">
+                <app-playlist-card-recomend [playlist]="plst"></app-playlist-card-recomend>
+            </div>
         </div>
 
         <a class="ver-mais" href="www.google.com">ver mais</a>
@@ -58,10 +68,15 @@
         <h1>Minhas Playlists</h1>
 
         <div class="plsts-mp-lst">
-            <a class="plst-mp" *ngFor="let plst of plMin | slice:0:5" [routerLink]="'/users/' + plst.id.toString()">
+            <!--
+            <a class="plst-mp" *ngFor="let plst of plMin | slice:0:5">
                 <img class="plst-img" [src]="plst.image">
                 <p class="plst-ttl">{{ plst.name }}</p>
             </a>
+            -->
+            <div class="" *ngFor="let plst of plPub | slice:0:5">
+                <app-playlist-card-recomend [playlist]="plst"></app-playlist-card-recomend>
+            </div>
         </div>
 
         <a class="ver-mais" href="www.google.com">ver mais</a>

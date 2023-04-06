@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PlaylistService } from '../playlist.service';
+import { Category } from '../../../../common/category';
 
 @Component({
   selector: 'app-criacao-categorias',
@@ -10,8 +11,8 @@ import { PlaylistService } from '../playlist.service';
 export class CriacaoCategoriasComponent {
 
   playlistId : number = 0;
-  playlistCategories : string[] = [];
-  allCategories : string[] = [];
+  playlistCategories : Category[] = [];
+  allCategories : Category[] = [];
 
   constructor(private playlistService : PlaylistService) {};
 
@@ -23,11 +24,11 @@ export class CriacaoCategoriasComponent {
     this.allCategories = this.playlistService.getAllCategories()
   }
 
-  addNewCategory(category: string) {
+  addNewCategory(category: Category) {
     this.playlistService.addNewCategory(this.playlistId, category);
   }
 
-  deleteCategory(category: string) {
+  deleteCategory(category: Category) {
     this.playlistService.deleteCategory(this.playlistId, category);
   }
   

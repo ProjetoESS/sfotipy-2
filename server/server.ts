@@ -4,7 +4,6 @@ import { PlaylistService } from './src/playlist-service';
 
 import { MusicService } from './src/music-service';
 import { Music } from '../common/music';
-import { PlaylistService } from './src/playlist-service';
 import { Playlist } from '../common/playlist';
 
 var app = express();
@@ -24,6 +23,21 @@ app.use(bodyParser.json());
 
 app.get('/playlist-em-alta', function (req, res) {
   const plstEa = playlistService.getEA();
+  res.send(JSON.stringify(plstEa));
+})
+
+app.get('/playlist-publica', function(req, res){
+  const plstEa = playlistService.getPB();
+  res.send(JSON.stringify(plstEa));
+})
+
+app.get('/playlist-recomendada', function(req, res){
+  const plstEa = playlistService.getRC();
+  res.send(JSON.stringify(plstEa));
+})
+
+app.get('/playlist-minha', function(req, res){
+  const plstEa = playlistService.getMN();
   res.send(JSON.stringify(plstEa));
 })
 

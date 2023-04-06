@@ -4,14 +4,25 @@ export class PlaylistService {
   playlists: Playlist[] = [];
   categories: string[] = [];
 
-  playlistEA: Playlist[] = [];
+  playlistEA : Playlist[] = [];
+  playlistPB : Playlist[] = [];
+  playlistRC : Playlist[] = [];
+  playlistMN : Playlist[] = [];
 
-  getEA(): Playlist[] {
+  getEA() : Playlist[] {
     return this.playlistEA;
   }
+  
+  getPB() : Playlist[] {
+    return this.playlistPB;
+  }
 
-  get(): Playlist[] {
-    return this.playlists;
+  getRC() : Playlist[] {
+    return this.playlistRC;
+  }
+
+  getMN() : Playlist[] {
+    return this.playlistMN;
   }
 
   getById(playlistId: number): Playlist {
@@ -39,5 +50,6 @@ export class PlaylistService {
   getAllCategories(): string[] {
     return this.categories;
   }
-
 }
+
+

@@ -22,11 +22,6 @@ app.use(allowCrossDomain);
 
 app.use(bodyParser.json());
 
-app.get('/playlist-em-alta', function (req, res) {
-  const plstEa = playlistService.getEA();
-  res.send(JSON.stringify(plstEa));
-});
-
 app.get('/musics', function (req, res) {
   const musics = musicService.get();
   res.send(JSON.stringify(musics));
@@ -117,6 +112,25 @@ app.delete('/playlist/category/:id', function (req: express.Request, res: expres
   }
 })
 
+app.get('/playlist-em-alta', function (req, res) {
+  const plstEa = playlistService.getEA();
+  res.send(JSON.stringify(plstEa));
+})
+
+app.get('/playlist-publica', function (req, res) {
+  const plstEa = playlistService.getPB();
+  res.send(JSON.stringify(plstEa));
+})
+
+app.get('/playlist-recomendada', function (req, res) {
+  const plstEa = playlistService.getRC();
+  res.send(JSON.stringify(plstEa));
+})
+
+app.get('/playlist-minha', function (req, res) {
+  const plstEa = playlistService.getMN();
+  res.send(JSON.stringify(plstEa));
+})
 
 var server = app.listen(3000, function () {
   console.log('Example app listening on port 3000!')

@@ -4,12 +4,12 @@
 
         </div>
         <div class="saudation">
-            Olá, <br> {{username}}
+            Olá, <br> {{user.name}}
         </div>
     </div>
         
     <div class="profile-info" *ngIf="isLogged">
-        <p>Seguidores: {{followers}}</p>
+        <p>Seguidores: {{user.followers}}</p>
         <div class="profile-options">
             <button class="prf-btn">Mudar senha</button>
             <button class="prf-btnv">Excluir conta</button>

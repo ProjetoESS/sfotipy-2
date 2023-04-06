@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Music } from '../../../server/src/music';
+import { Music } from '../../../common/music';
 
 @Pipe({ name: 'musicsFilter' })
 export class MusicsFilterPipe implements PipeTransform {

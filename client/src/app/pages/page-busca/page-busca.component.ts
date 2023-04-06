@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Pipe, PipeTransform } from '@angular/core';
 
 import { MusicasService } from 'src/app/musicas.service';
-import { Music } from '../../../../../server/src/music';
+import { Music } from '../../../../../common/music';
 
 @Component({
   selector: 'app-page-busca',

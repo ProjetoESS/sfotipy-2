@@ -1,4 +1,4 @@
-import { Category } from '../../common/Category';
+import { Category } from '../../common/category';
 import { Playlist } from '../../common/playlist'
 
 export class PlaylistService {

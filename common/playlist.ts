@@ -1,9 +1,10 @@
 import { Music } from "./music";
+import { Category } from "./Category";
 
 export class Playlist {
     id: number;
     name: string;
-    categories: string[];
+    categories: Category[];
     musics: Music[];
     image: string;
     songs: Music[];

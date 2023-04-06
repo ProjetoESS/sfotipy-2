@@ -59,6 +59,14 @@ import { ProfilepageComponent } from './navbar/profilepage/profilepage.component
       {
         path: 'explorar',
         component: PlaylistRecomendadasComponent
+      },
+      {
+        path: 'categorias/:id',
+        component : CriacaoCategoriasComponent
+      },
+      {
+        path: 'compartilhar/:id',
+        component : CompartilhamentoComponent
       }
     ])
   ],

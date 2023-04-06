@@ -1,4 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Playlist } from '../../../../common/playlist';
+import { Clipboard } from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'app-playlist-card-recomend',
@@ -6,11 +8,15 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./playlist-card-recomend.component.scss']
 })
 export class PlaylistCardRecomendComponent {
+
+  constructor(private clipboard: Clipboard) {};
+
   @Input() playlist: any;
 
   @Output() play = new EventEmitter<any>();
 
-  openPlaylistOnClick(url: string) {
+  openPlaylistOnClick(event: Event, playlist: Playlist) {
+    const url:string = `http://localhost:4200/playlist/${playlist.id}`;
     window.open(url, "_blank");
   }
 
@@ -23,8 +29,10 @@ export class PlaylistCardRecomendComponent {
     event.stopPropagation();
   }
 
-  sharePlaylist(event: Event) {
+  sharePlaylist(event: Event, playlist: Playlist) {
     event.stopPropagation();
+    var str: string = "localhost:4200/playlist/" + playlist.id;
+    this.clipboard.copy(str);
   }
 
   savePlaylist(event: Event) {

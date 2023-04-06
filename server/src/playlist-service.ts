@@ -2,13 +2,12 @@ import { Category } from '../../common/Category';
 import { Playlist } from '../../common/playlist'
 
 export class PlaylistService {
+  idCount: number = 0;
   playlists: Playlist[] = [];
   categories: string[] = [];
-  idCount: number = 0;
   playlistEA : Playlist[] = [];
   playlistPB : Playlist[] = [];
   playlistRC : Playlist[] = [];
-
   playlistMN : Playlist[] = [];
 
   get() : Playlist[]{

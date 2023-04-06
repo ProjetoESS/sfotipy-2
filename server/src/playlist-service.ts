@@ -4,13 +4,18 @@ import { Playlist } from '../../common/playlist'
 export class PlaylistService {
   playlists: Playlist[] = [];
   categories: string[] = [];
+  idCount: number = 0;
+  playlistEA : Playlist[] = [];
+  playlistPB : Playlist[] = [];
+  playlistRC : Playlist[] = [];
 
-  playlistEA: Playlist[] = [];
-  playlistPB: Playlist[] = [];
-  playlistRC: Playlist[] = [];
-  playlistMN: Playlist[] = [];
+  playlistMN : Playlist[] = [];
 
-  getEA(): Playlist[] {
+  get() : Playlist[]{
+    return this.playlists;
+  }
+
+  getEA() : Playlist[] {
     return this.playlistEA;
   }
 
@@ -26,12 +31,24 @@ export class PlaylistService {
     return this.playlistMN;
   }
 
-  getById(playlistId: number): Playlist {
+  getById(playlistId: number): Playlist | undefined {
     return this.playlists.find(({ id }) => id == playlistId);
   }
 
-  addNewCategory(playlistId: number, category: string): Playlist {
+  add(playlist: Playlist): Playlist {
+    const newPlaylist = new Playlist(<Playlist>{ ...playlist, id: this.idCount });
+    // if (newMusic.price <= 0) {
+    //     throw Error("Price can't equal or less than zero")
+    // }
+    this.playlists.push(newPlaylist);
+    this.idCount++;
+    return newPlaylist;
+}
+
+  addNewCategory(playlistId: number, category: string): Playlist | null {
     const playlist = this.getById(playlistId);
+    if(!playlist)
+      return null;
     if (playlist.categories.length > 2) {
       return null;
     }
@@ -39,15 +56,15 @@ export class PlaylistService {
     return playlist;
   }
 
-  deleteCategory(playlistId: number, category: string): Playlist {
-    const playlist = this.getById(playlistId);
-    /*if (playlist.categories.includes(category)) {
-      playlist.categories.splice(playlistId, 1);
-    } else {
-      return null;
-    }*/
-    return playlist;
-  }
+  // deleteCategory(playlistId: number, category: string): Playlist | null {
+  //   const playlist = this.getById(playlistId);
+  //   /*if (playlist.categories.includes(category)) {
+  //     playlist.categories.splice(playlistId, 1);
+  //   } else {
+  //     return null;
+  //   }*/
+  //   return playlist;
+  // }
 
   getAllCategories(): string[] {
     return this.categories;

@@ -7,13 +7,15 @@ export class Playlist {
     categories: Category[] | string[];
     musics: Music[];
     image: string;
+    link: string;
 
     constructor(playlist: Playlist) {
         this.id = playlist.id;
         this.name = playlist.name;
         this.categories = playlist.categories;
         this.musics = playlist.musics;
-        this.image = "";
+        this.image = playlist.image;
+        this.link = playlist.link;
     }
 
     /*update(playlist: Playlist): void {

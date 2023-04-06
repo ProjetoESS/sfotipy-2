@@ -100,6 +100,8 @@ export class PlaylistComponent implements OnInit {
     }
     ];
 
+    showLink : boolean = false;
+
     show_followers(id: number) {
       const playlist = this.playlists.find(p => p.id === id); // Procura a playlist correspondente ao id na lista de playlists
       window.alert(playlist.followers)
@@ -107,6 +109,10 @@ export class PlaylistComponent implements OnInit {
 
     redirectaddmusic() {
       console.log('musica')
+    }
+
+    showShareLink() {
+      this.showLink = !this.showLink;
     }
 
     selectedPlaylist: any; // Propriedade que receberá a playlist selecionada

@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { CompartilhamentoComponent } from './compartilhamento/compartilhamento.component';
 import { CriacaoCategoriasComponent } from './criacao-categorias/criacao-categorias.component';
 
 import { RouterModule } from '@angular/router';
@@ -26,7 +25,6 @@ import { ProfilepageComponent } from './navbar/profilepage/profilepage.component
 @NgModule({
   declarations: [
     AppComponent,
-    CompartilhamentoComponent,
     CriacaoCategoriasComponent,
     NavbarComponent,
     PlayerComponent,
@@ -63,10 +61,6 @@ import { ProfilepageComponent } from './navbar/profilepage/profilepage.component
       {
         path: 'categorias/:id',
         component : CriacaoCategoriasComponent
-      },
-      {
-        path: 'compartilhar/:id',
-        component : CompartilhamentoComponent
       }
     ])
   ],

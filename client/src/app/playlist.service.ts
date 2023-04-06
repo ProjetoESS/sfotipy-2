@@ -57,6 +57,10 @@ export class PlaylistService {
       .pipe(retry(2));
   }
 
+  getUserPlaylists(ownerId: number): Observable<Playlist[]>  {
+    return this.http.get<Playlist[]>(this.appURL + "/minhas_playlists").pipe(
+      map((res: any[]) => res.map((item: any) => new Playlist(item))))
+  }
 
   deleteCategory(id: number, category: string) {
 

@@ -1,5 +1,5 @@
 import { Playlist } from '../../common/playlist'
-import { Observable } from 'rxjs';
+
 
 
 export class PlaylistService {
@@ -43,11 +43,15 @@ export class PlaylistService {
   }
 
 
-  addPlaylist(playlist: Playlist): Observable<Playlist> {
+  addPlaylist(playlist: Playlist): Playlist{
     const newPlaylist = new Playlist(playlist)
     this.playlists.push(newPlaylist);
     return newPlaylist;
   
+  }
+
+  getUserPlaylists(ownerId: number): Playlist[] {
+    return this.playlists.filter(playlist => playlist.ownerId == ownerId);
   }
 
 }

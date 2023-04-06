@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { PlaylistService } from '../playlist.service';
+import { Playlist } from '../../../../common/playlist';
 import { UserPlaylistsModule } from './user_playlists.module';
 
 @Component({
@@ -11,26 +13,12 @@ import { UserPlaylistsModule } from './user_playlists.module';
 })
 
 export class UserPlaylistsComponent implements OnInit {
-  successMessage: string = '';
+  user_id: number = 1
 
-    constructor(private router: Router, private route: ActivatedRoute) {}
+    constructor(private router: Router, private playlistService : PlaylistService) {}
 
     numPlaylists: number = 2; // Número de playlists cadastradas
-    playlists: any[] = [ // Array com informações das playlists
-    {
-      id: 1,
-      ownerId: 1,
-      name: "Minha playlist",
-      songs: ["Música 1", "Música 2", "Música 3"]
-    },
-    {
-      id: 2,
-      ownerId: 2,
-      name: "Outra playlist",
-      songs: ["Música 4", "Música 5", "Música 6"]
-    }
-
-  ];
+    playlists: Playlist[] = []
 
     redirectplaylist(id: number) {
       this.router.navigate(['/playlist/', id])
@@ -41,6 +29,11 @@ export class UserPlaylistsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-      this.successMessage = this.route.snapshot.data['successMessage'];
+      this.playlistService.getUserPlaylists(this.user_id)
+      .subscribe((playlists: Playlist[]) => {
+        this.playlists = playlists;
+        this.numPlaylists = playlists.length;
+      });
+      console.log(this.playlists)
     }
-}
+  }

@@ -11,12 +11,12 @@ import { Router, NavigationExtras } from '@angular/router';
 export class CriarPlaylistComponent implements OnInit {
     user_id: number = 1
     id: number = 1
-
+    successMessage: string = '';
 
     constructor(private playlistService : PlaylistService, private router: Router) {}
 
     criarPlaylist(event: Event) {
-      event.preventDefault()
+      event.preventDefault();
       const nome_playlist = document.querySelector('.playlist_input_name') as HTMLInputElement
       const imagem_playlist = document.querySelector('.picture_input') as HTMLInputElement
       const publicavel = document.querySelector('.publicar_input') as HTMLInputElement
@@ -37,12 +37,9 @@ export class CriarPlaylistComponent implements OnInit {
       };
       this.id++;
       this.playlistService.addPlaylist(playlist).subscribe((response: any) => {
-        const navigationExtras: NavigationExtras = {
-          state: {
-            successMessage: 'Playlist criada com sucesso!'
-          }
-        };
-        this.router.navigateByUrl('/minhas_playlists', navigationExtras);
+        console.log(playlist)
+        alert('Playlist criada com sucesso')
+        this.router.navigate(['/minhas_playlists']);
       });
 
     }

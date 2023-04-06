@@ -16,6 +16,9 @@ export class PageBuscaComponent {
   id = "2";
   filterText: string = '';
 
+  musicIsActive: boolean = true;
+  playlistIsActive: boolean = true;
+
   playlists: Playlist[] = [];
   musics: Music[] = [];
 
@@ -28,6 +31,14 @@ export class PageBuscaComponent {
         msg => { alert(msg.message); }
       );
     this.playlists = this.playlistService.getPlaylists();
+  }
+
+  activateMusicas() {
+    this.musicIsActive = !this.musicIsActive;
+  }
+
+  activatePlaylists() {
+    this.playlistIsActive = !this.playlistIsActive;
   }
 
 }

@@ -109,21 +109,21 @@ export class PlaylistService {
     },
     {
       'id': 0,
-      'name': "Playlist",
+      'name': "Abadada",
       'categories': ['POP', 'Rock'],
       'musics': [],
       'image': "https://m.media-amazon.com/images/I/51GI8F4lyhL._AC_SL1000_.jpg"
     },
     {
       'id': 0,
-      'name': "Playlist",
+      'name': "Playlist Certa",
       'categories': ['POP', 'Rock'],
       'musics': [],
       'image': "https://m.media-amazon.com/images/I/51GI8F4lyhL._AC_SL1000_.jpg"
     },
     {
       'id': 0,
-      'name': "Playlist",
+      'name': "Playlist Outra",
       'categories': ['POP', 'Rock'],
       'musics': [],
       'image': "https://m.media-amazon.com/images/I/51GI8F4lyhL._AC_SL1000_.jpg"

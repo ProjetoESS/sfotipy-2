@@ -13,7 +13,8 @@
         <hr>
         <h1>Playlists</h1>
         <div class="playlistslista">
-            <app-playlist-card *ngFor="let p of playlists" [playlist]="p"></app-playlist-card>
+            <app-playlist-card *ngFor="let p of playlists | playlistsFilter: filterText"
+                [playlist]="p"></app-playlist-card>
         </div>
     </div>
 </section>

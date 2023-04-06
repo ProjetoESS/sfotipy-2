@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Music } from '../../../common/music';
+import { Playlist } from '../../../common/playlist';
 
 @Pipe({ name: 'musicsFilter' })
 export class MusicsFilterPipe implements PipeTransform {
@@ -31,8 +32,7 @@ export class MusicsFilterPipe implements PipeTransform {
   }
 
   private musicContainsFilterTerm(music: Music, filterTerm: string) {
-    return music.name.toLocaleLowerCase().includes(filterTerm)
-      || music.author.toLocaleLowerCase().includes(filterTerm);
+    return music.name.toLocaleLowerCase().includes(filterTerm);
   }
 
 }

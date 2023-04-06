@@ -21,6 +21,7 @@ import { MusicsFilterPipe } from './musics-filter.pipe';
 
 import { HomepageComponent } from './homepage/homepage.component';
 import { ProfilepageComponent } from './navbar/profilepage/profilepage.component';
+import { PlaylistsFilterPipe } from './playlists-filter.pipe';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ProfilepageComponent } from './navbar/profilepage/profilepage.component
     PlaylistCardRecomendComponent,
     MusicsFilterPipe,
     HomepageComponent,
-    ProfilepageComponent
+    ProfilepageComponent,
+    PlaylistsFilterPipe
   ],
   imports: [
     BrowserModule,

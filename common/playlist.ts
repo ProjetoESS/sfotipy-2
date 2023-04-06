@@ -8,6 +8,8 @@ export class Playlist {
     musics: Music[];
     image: string;
     link: string;
+    owner: string;
+    followers: string[];
 
     constructor(playlist: Playlist) {
         this.id = playlist.id;
@@ -16,6 +18,8 @@ export class Playlist {
         this.musics = playlist.musics;
         this.image = playlist.image;
         this.link = playlist.link;
+        this.owner = playlist.owner;
+        this.followers = playlist.followers;
     }
 
     /*update(playlist: Playlist): void {

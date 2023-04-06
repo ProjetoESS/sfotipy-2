@@ -13,7 +13,7 @@ export class Playlist {
         this.name = playlist.name;
         this.categories = playlist.categories;
         this.musics = playlist.musics;
-        this.image = "";
+        this.image = playlist.image;
     }
 
     /*update(playlist: Playlist): void {

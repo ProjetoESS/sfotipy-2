@@ -33,4 +33,16 @@ defineSupportCode(function ({ Given, When, Then }) {
             expect((await element.all(by.id(`music-${music1}`))).length).to.equal(1);
             expect((await element.all(by.id(`music-${music2}`))).length).to.equal(1);
         })
+
+    Then(/^todas as músicas da lista de músicas contém "([^\"]*)" em seu nome$/,
+        async (name) => {
+            await element.all(by.css('.name')).then(items => {
+                for (let index = 0; index < items.length; index++) {
+                    const element = items[index];
+                    expect(Promise.resolve(items[index].getText())).to.eventually.includes(name)
+                }
+            });
+        })
+
+
 })

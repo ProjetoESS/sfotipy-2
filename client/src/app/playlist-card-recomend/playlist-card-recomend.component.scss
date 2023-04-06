@@ -30,9 +30,10 @@
 }
 
 .card-title {
+  font-family: 'Montserrat', sans-serif;
   position: absolute;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1rem;
   bottom: 1px;
   margin-bottom: 0.5rem;
 }
@@ -58,10 +59,10 @@
   left: 0.4rem;
   width: 4rem;
   height: 4rem;
-  border: 0.4rem solid rgb(1, 4, 58);;
+  border: 0.4rem solid #0D2538;
   border-radius: 50%;
-  background-color: rgb(162, 171, 128);
-  color: rgb(1, 4, 58);
+  background-color: #FFE5B4;
+  color: #0D2538;
   font-size: 20px;
   line-height: 50px;
   text-align: center;
@@ -89,7 +90,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: rgb(1, 4, 58);
+  color: rgb(255, 255, 255);
   font-size: 2rem;
   cursor: pointer;
 }
@@ -122,5 +123,5 @@
 }
 
 .option:hover {
-  background-color: rgb(1, 4, 58);
+  background-color: #0D2538;
 }

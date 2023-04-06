@@ -22,7 +22,7 @@ export class CompartilhamentoComponent {
   ngOnInit() {
     const id = this.route.snapshot.params["id"];
     this.playlistId = id;
-    this.pageLink = "https:://localhost:3000/playlist/" + this.playlistId;
+    this.pageLink = "localhost:4200/playlist/" + this.playlistId;
   }
 
 }

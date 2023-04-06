@@ -2,7 +2,7 @@
   <div class="img"></div>
   <div class="textsdiv">
     <p class="playlist_name">{{selectedPlaylist.name}}</p> 
-    <i (click)="showShareLink()" class="fas fa-share">
+    <i *ngIf="selectedPlaylist.availability === 'public'" (click)="showShareLink()" class="fas fa-share">
       <app-compartilhamento *ngIf="showLink"> </app-compartilhamento>
     </i>
     <p class="playlist_avalibility">{{selectedPlaylist.availability}}</p>

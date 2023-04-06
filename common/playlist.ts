@@ -3,19 +3,23 @@ import { Category } from "./Category";
 
 export class Playlist {
     id: number;
-    categories : Category[];
+    name: string;
+    categories: Category[] | string[];
     musics: Music[];
+    image: string;
 
     constructor(playlist: Playlist) {
         this.id = playlist.id;
+        this.name = playlist.name;
         this.categories = playlist.categories;
-        this.musics  = playlist.musics;
+        this.musics = playlist.musics;
+        this.image = "";
     }
 
-    update(playlist: Playlist): void {
+    /*update(playlist: Playlist): void {
         this.id = playlist.id;
         this.categories = playlist.categories;
-        this.musics  = playlist.musics;
-    }
+        this.musics = playlist.musics;
+    }*/
 
 }

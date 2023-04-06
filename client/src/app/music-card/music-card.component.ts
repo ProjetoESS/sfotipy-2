@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-music-card',
@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./music-card.component.scss']
 })
 export class MusicCardComponent {
+  @Input() name!: string;
+  @Input() author!: string;
+
+  @Input() id!: number;
 
 }

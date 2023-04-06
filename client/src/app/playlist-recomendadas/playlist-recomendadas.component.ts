@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { Playlist } from '../../../../common/playlist';
+import { Music } from '../../../../common/music';
+import { ActivatedRoute } from '@angular/router';
 import { PlaylistService } from "../../../../server/src/playlist-service"
 
 @Component({
@@ -7,70 +10,179 @@ import { PlaylistService } from "../../../../server/src/playlist-service"
   templateUrl: './playlist-recomendadas.component.html',
   styleUrls: ['./playlist-recomendadas.component.scss']
 })
-export class PlaylistRecomendadasComponent {
+export class PlaylistRecomendadasComponent implements OnInit {
 
-  playlists:Playlist[] = []
-  teste:Playlist[] = []
+  constructor(private route: ActivatedRoute) {}
+
+  musics:Music[] = [{
+    id: 1,
+    name: "Música 1",
+    author: 'musico1',
+    image: "",
+    link: "",
+    duration: 0
+  },
+  {
+    id: 2,
+    name: "Música 2",
+    author: 'musico2',
+    image: "",
+    link: "",
+    duration: 0
+  },
+  {
+    id: 3,
+    name: "Música 3",
+    author: 'musico3',
+    image: "",
+    link: "",
+    duration: 0
+  },
+  {
+    id: 4,
+    name: "Música 4",
+    author: 'musico4',
+    image: "",
+    link: "",
+    duration: 0
+  },
+  {
+    id: 5,
+    name: "Música 5",
+    author: 'musico5',
+    image: "",
+    link: "",
+    duration: 0
+  },
+  {
+    id: 6,
+    name: "Música 6",
+    author: 'musico6',
+    image: "",
+    link: "",
+    duration: 0
+  },
+  {
+    id: 7,
+    name: "Música 7",
+    author: 'musico7',
+    image: "",
+    link: "",
+    duration: 0
+  },
+  {
+    id: 8,
+    name: "Música 8",
+    author: 'musico8',
+    image: "",
+    link: "",
+    duration: 0
+  },
+  {
+    id: 9,
+    name: "Música 9",
+    author: 'musico9',
+    image: "",
+    link: "",
+    duration: 0
+  },
+  {
+    id: 10,
+    name: "Música 10",
+    author: 'musico10',
+    image: "",
+    link: "",
+    duration: 0
+  }];
+
+  playlists:Playlist[] = [{ 
+    id: 30, 
+    name: 'Mix', 
+    categories: ['pop', 'rock'], 
+    musics: [
+      this.musics[0], this.musics[1]
+    ], 
+    image: 'https://upload.wikimedia.org/wikipedia/en/1/1b/NF_-_The_Search.png',
+    link: "",
+    owner: "",
+    followers: []
+  },
+  { 
+    id: 31, 
+    name: 'Melhores Pop', 
+    categories: ['jazz', 'blues'], 
+    musics: [
+      this.musics[1], this.musics[2]
+    ],  
+    image: 'https://i1.sndcdn.com/artworks-000066040951-b04o57-t500x500.jpg',
+    link: "",
+    owner: "",
+    followers: []
+  },
+  { 
+    id: 32, 
+    name: 'Melhores Rock', 
+    categories: ['pop', 'hip hop'], 
+    musics: [
+      this.musics[2], this.musics[3], this.musics[5]
+    ],
+    image: 'https://i.scdn.co/image/ab67616d0000b273b47d8a9e844189f69d5e58a7',
+    link: "",
+    owner: "",
+    followers: []
+  },
+  { 
+    id: 33, 
+    name: 'Indie', 
+    categories: ['rock', 'metal'], 
+    musics: [
+      this.musics[2], this.musics[3], this.musics[5]
+    ],
+    image: 'https://cdns-images.dzcdn.net/images/cover/e94c38ba711b8f36ac1b541d0a14aa73/350x350.jpg',
+    link: "",
+    owner: "",
+    followers: []
+  },
+  { 
+    id: 34, 
+    name: 'Eletrônica', 
+    categories: ['pop', 'indie'], 
+    musics: [
+      this.musics[2], this.musics[3], this.musics[5]
+    ],
+    image: 'https://images.booksense.com/images/090/360/9781632360090.jpg',
+    link: "",
+    owner: "",
+    followers: []
+  },
+  { 
+    id: 35, 
+    name: 'Para você', 
+    categories: ['pop', 'indie'], 
+    musics: [
+      this.musics[2], this.musics[3], this.musics[5]
+    ],
+    image: 'https://images.booksense.com/images/090/360/9781632360090.jpg',
+    link: "",
+    owner: "",
+    followers: []
+  },
+  { 
+    id: 36, 
+    name: 'Para dormir', 
+    categories: ['pop', 'indie'], 
+    musics: [
+      this.musics[2], this.musics[3], this.musics[5]
+    ],
+    image: 'https://images.booksense.com/images/090/360/9781632360090.jpg',
+    link: "",
+    owner: "",
+    followers: []
+  }]
 
   playlistService: PlaylistService = new PlaylistService;
 
   ngOnInit(): void {
-
-    this.playlists = [{ 
-      id: 1, 
-      name: 'Playlist 1', 
-      categories: ['pop', 'rock'], 
-      musics: [
-        { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
-        { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
-      ], 
-      image: 'https://upload.wikimedia.org/wikipedia/en/1/1b/NF_-_The_Search.png',
-      link: ""
-    },
-    { 
-      id: 2, 
-      name: 'Playlist 2', 
-      categories: ['jazz', 'blues'], 
-      musics: [
-        { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
-        { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
-      ], 
-      image: 'https://i1.sndcdn.com/artworks-000066040951-b04o57-t500x500.jpg',
-      link: ""
-    },
-    { 
-      id: 3, 
-      name: 'Playlist 3', 
-      categories: ['pop', 'hip hop'], 
-      musics: [
-        { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
-        { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
-      ], 
-      image: 'https://i.scdn.co/image/ab67616d0000b273b47d8a9e844189f69d5e58a7',
-      link: ""
-    },
-    { 
-      id: 4, 
-      name: 'Playlist 4', 
-      categories: ['rock', 'metal'], 
-      musics: [
-        { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
-        { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
-      ], 
-      image: 'https://cdns-images.dzcdn.net/images/cover/e94c38ba711b8f36ac1b541d0a14aa73/350x350.jpg',
-      link: ""
-    },
-    { 
-      id: 5, 
-      name: 'Playlist 5', 
-      categories: ['pop', 'indie'], 
-      musics: [
-        { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
-        { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
-      ], 
-      image: 'https://images.booksense.com/images/090/360/9781632360090.jpg',
-      link: ""
-    }];
   };
   
   selectedPlaylist: any;

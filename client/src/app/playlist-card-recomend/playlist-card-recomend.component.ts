@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Playlist } from '../../../../common/playlist';
+import { Router } from '@angular/router';
 import { Clipboard } from '@angular/cdk/clipboard';
 
 @Component({
@@ -8,16 +9,15 @@ import { Clipboard } from '@angular/cdk/clipboard';
   styleUrls: ['./playlist-card-recomend.component.scss']
 })
 export class PlaylistCardRecomendComponent {
-
-  constructor(private clipboard: Clipboard) {};
+  //constructor(private router: Router) {};
+  constructor(private clipboard: Clipboard, private router: Router) {};
 
   @Input() playlist: any;
 
   @Output() play = new EventEmitter<any>();
 
   openPlaylistOnClick(event: Event, playlist: Playlist) {
-    const url:string = `http://localhost:4200/playlist/${playlist.id}`;
-    window.open(url, "_blank");
+    this.router.navigate(['/playlist/', playlist.id])
   }
 
   startPlayingOnClick(event: Event){

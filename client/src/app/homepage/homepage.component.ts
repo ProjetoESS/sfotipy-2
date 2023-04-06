@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { tap } from 'rxjs/operators';
 
+import { LoginService } from '../login.service';
 import { PlaylistService } from '../playlist.service';
 import { Playlist } from '../../../../common/playlist';
 
@@ -10,42 +11,77 @@ import { Playlist } from '../../../../common/playlist';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent {
-  plEma: Playlist[] = [];
-  plPub: Playlist[] = [];
-  plRec: Playlist[] = [];
-  plMin: Playlist[] = [];
+  plEma : Playlist[] = [];
+  plPub : Playlist[] = [];
+  plRec : Playlist[] = [];
+  plMin : Playlist[] = [];
 
-  getLogOut($event: boolean): void {
-    this.isLogged = $event;
-  }
+  isLogged : boolean = false;
 
-  /*
-  plEma : Array<[string, string]>;
-  plPub : Array<[string, string]>;
-  plRec : Array<[string, string]>;
-  plMin : Array<[string, string]>;
-  */
-
-  @Input() isLogged: boolean = true;
-
-  constructor(private playlistService: PlaylistService) {
+  constructor(private playlistService : PlaylistService, private loginService : LoginService){ 
     //Temporário
-    /*
-    this.plEma = [["plst1", "/assets/cover9.jpg"], ["plst2", "/assets/cover3.webp"], ["plst3", "/assets/cover5.webp"], 
-                  ["plst4", "/assets/cover1.jpg"], ["plst5", "/assets/cover2.jpg"]]
-
-    this.plPub = [["plst1", "/assets/cover1.jpg"], ["plst2", "/assets/cover2.jpg"], ["plst3", "/assets/cover3.webp"], 
-                  ["plst4", "/assets/cover4.webp"], ["plst5", "/assets/cover5.webp"]];
-
-    this.plRec = [["plst1", "/assets/cover6.jpg"], ["plst2", "/assets/cover7.jpg"], ["plst3", "/assets/cover8.jpg"], 
-                  ["plst4", "/assets/cover9.jpg"], ["plst5", "/assets/cover1.jpg"]];
-
-    this.plMin = [["plst1", "/assets/cover2.jpg"], ["plst2", "/assets/cover3.webp"], ["plst3", "/assets/cover4.webp"], 
-                  ["plst4", "/assets/cover5.webp"], ["plst5", "/assets/cover6.jpg"]];
-    */
+    this.plEma = [
+      { 
+        id: 1, 
+        name: 'Playlist 1', 
+        categories: ['pop', 'rock'], 
+        musics: [
+          { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
+          { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
+        ], 
+        image: 'playlist1.jpg'
+      },
+      { 
+        id: 2, 
+        name: 'Playlist 2', 
+        categories: ['jazz', 'blues'], 
+        musics: [
+          { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
+          { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
+        ], 
+        image: 'playlist2.jpg'
+      },
+      { 
+        id: 3, 
+        name: 'Playlist 3', 
+        categories: ['pop', 'hip hop'], 
+        musics: [
+          { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
+          { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
+        ], 
+        image: 'playlist3.jpg'
+      },
+      { 
+        id: 4, 
+        name: 'Playlist 4', 
+        categories: ['rock', 'metal'], 
+        musics: [
+          { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
+          { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
+        ], 
+        image: 'playlist4.jpg'
+      },
+      { 
+        id: 5, 
+        name: 'Playlist 5', 
+        categories: ['pop', 'indie'], 
+        musics: [
+          { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
+          { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
+        ], 
+        image: 'playlist5.jpg'
+      }
+    ];
+    this.plPub = this.plEma;
+    this.plMin = this.plEma;
+    this.plRec = this.plEma;
   }
 
   ngOnInit(): void {
+    this.loginService.getLoginStatus().subscribe(newStatus => {
+			this.isLogged = newStatus;
+		});
+    /*
     this.playlistService.getPlaylistEA()
       .pipe(
         tap({
@@ -74,16 +110,15 @@ export class HomepageComponent {
       .subscribe();
 
     this.playlistService.getPlaylistMP()
-      .pipe(
-        tap({
-          next: as => { this.plMin = as; },
-          error: msg => { alert(msg.message); }
-        })
-      )
-      .subscribe();
-
-
-
+          .pipe(
+            tap({
+              next: as => { this.plMin = as; },
+              error: msg => { alert(msg.message); }
+            })
+          )
+          .subscribe();
+    
+    //Depreciado
     /*
     this.playlistService.getPlaylistEA()
           .subscribe(

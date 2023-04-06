@@ -1,5 +1,4 @@
 import express = require('express');
-import cors = require('cors')
 import bodyParser = require("body-parser");
 import { PlaylistService } from './src/playlist-service';
 

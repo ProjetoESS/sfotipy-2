@@ -8,6 +8,7 @@ import { Playlist } from '../common/playlist';
 
 var app = express();
 
+var musicService: MusicService = new MusicService();
 var playlistService = new PlaylistService();
 
 var allowCrossDomain = function (req: any, res: any, next: any) {
@@ -20,6 +21,7 @@ var allowCrossDomain = function (req: any, res: any, next: any) {
 app.use(allowCrossDomain);
 
 app.use(bodyParser.json());
+
 
 app.get('/playlist-em-alta', function (req, res) {
   const plstEa = playlistService.getEA();
@@ -86,13 +88,15 @@ var musicService: MusicService = new MusicService();
 var playlistService: PlaylistService = new PlaylistService();
 
 
+=======
+>>>>>>> upstream/master
 app.get('/musics', function (req, res) {
   const musics = musicService.get();
   res.send(JSON.stringify(musics));
 });
 
 app.get('/musics/:id', function (req, res) {
-  const id : number = Number(req.params.id);
+  const id: number = Number(req.params.id);
   const music = musicService.getById(id);
   if (music) {
     res.send(music);
@@ -127,55 +131,74 @@ app.put('/musics', function (req: express.Request, res: express.Response) {
 });
 
 app.get('/playlist/category/:id', function (req: express.Request, res: express.Response) {
-  const playlistId : number = Number(req.params.id);
+  const playlistId: number = Number(req.params.id);
   const playlist = playlistService.getById(playlistId);
   const playlistCategories = playlist.categories;
-  if(playlistCategories) {
+  if (playlistCategories) {
     res.send(playlistCategories);
   } else {
-    res.status(404).send({message : 'Playlist could not be found'});
+    res.status(404).send({ message: 'Playlist could not be found' });
   }
 });
 
-app.get('/playlist/category', function (req: express.Request, res:express.Response) {
+app.get('/playlist/category', function (req: express.Request, res: express.Response) {
   const allCategories = playlistService.getAllCategories();
-  if(allCategories) {
+  if (allCategories) {
     res.send(allCategories);
-  }else{
-    res.status(404).send({message : "Error getting categories"});
+  } else {
+    res.status(404).send({ message: "Error getting categories" });
   }
 });
 
-app.post('/playlist/category/:id', function (req: express.Request, res:express.Response){
+app.post('/playlist/category/:id', function (req: express.Request, res: express.Response) {
   const id: number = Number(req.params.id);
   const newCategory: string = req.body.category;
   try {
     const result = playlistService.addNewCategory(id, newCategory);
-    if(result) {
+    if (result) {
       res.send(result);
-    }else{
+    } else {
       res.status(404).send(result);
     }
   } catch {
-    res.status(403).send({message: "Could not add new category, reached max size"});
+    res.status(403).send({ message: "Could not add new category, reached max size" });
   }
 });
 
 app.delete('/playlist/category/:id', function (req: express.Request, res: express.Response) {
   const id: number = Number(req.params.id);
   const category: string = req.body.category;
-  try{
+  try {
     const result = playlistService.deleteCategory(id, category);
-    if(result) {
+    if (result) {
       res.send(result);
-    }else{
-      res.send({message: "Invalid playlist"});
+    } else {
+      res.send({ message: "Invalid playlist" });
     }
-  }catch{
-    res.send({message: "Category does not exist in playlist"})
+  } catch {
+    res.send({ message: "Category does not exist in playlist" })
   }
 })
 
+app.get('/playlist-em-alta', function (req, res) {
+  const plstEa = playlistService.getEA();
+  res.send(JSON.stringify(plstEa));
+})
+
+app.get('/playlist-publica', function (req, res) {
+  const plstEa = playlistService.getPB();
+  res.send(JSON.stringify(plstEa));
+})
+
+app.get('/playlist-recomendada', function (req, res) {
+  const plstEa = playlistService.getRC();
+  res.send(JSON.stringify(plstEa));
+})
+
+app.get('/playlist-minha', function (req, res) {
+  const plstEa = playlistService.getMN();
+  res.send(JSON.stringify(plstEa));
+})
 
 var server = app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
@@ -185,5 +208,4 @@ function closeServer(): void {
   server.close();
 }
 
-export { app, server, closeServer }
-*/
+export { app, server, closeServer }*/

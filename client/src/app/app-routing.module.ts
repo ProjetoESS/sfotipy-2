@@ -7,8 +7,8 @@ import { UserPlaylistsComponent } from './user-playlists/user_playlists.componen
 import { PlaylistComponent } from './playlist/playlist.component';
 
 const routes: Routes = [
-  { path: 'criar_playlist', component: CriarPlaylistComponent},
-  { path: 'minhas_playlists', component: UserPlaylistsComponent},
+  { path: 'criar_playlist', component: CriarPlaylistComponent },
+  { path: 'minhas_playlists', component: UserPlaylistsComponent },
   { path: 'playlist/:id', component: PlaylistComponent },
   { path: 'playlistsrecomendadas', component: PlaylistRecomendadasComponent }
 ];

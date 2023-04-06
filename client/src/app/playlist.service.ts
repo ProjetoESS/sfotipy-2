@@ -91,4 +91,44 @@ export class PlaylistService {
         retry(2)
       );
   }
+
+  getPlaylists(): Playlist[] {
+    let playlistList: Playlist[] = [{
+      'id': 0,
+      'name': "Playlist",
+      'categories': ['POP', 'Rock'],
+      'musics': [],
+      'image': "https://m.media-amazon.com/images/I/51GI8F4lyhL._AC_SL1000_.jpg"
+    },
+    {
+      'id': 0,
+      'name': "Playlist",
+      'categories': ['POP', 'Rock'],
+      'musics': [],
+      'image': "https://m.media-amazon.com/images/I/51GI8F4lyhL._AC_SL1000_.jpg"
+    },
+    {
+      'id': 0,
+      'name': "Playlist",
+      'categories': ['POP', 'Rock'],
+      'musics': [],
+      'image': "https://m.media-amazon.com/images/I/51GI8F4lyhL._AC_SL1000_.jpg"
+    },
+    {
+      'id': 0,
+      'name': "Playlist",
+      'categories': ['POP', 'Rock'],
+      'musics': [],
+      'image': "https://m.media-amazon.com/images/I/51GI8F4lyhL._AC_SL1000_.jpg"
+    },
+    {
+      'id': 0,
+      'name': "Playlist",
+      'categories': ['POP', 'Rock'],
+      'musics': [],
+      'image': "https://m.media-amazon.com/images/I/51GI8F4lyhL._AC_SL1000_.jpg"
+    }
+    ];
+    return playlistList;
+  }
 }

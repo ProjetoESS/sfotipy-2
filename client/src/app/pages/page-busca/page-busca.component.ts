@@ -3,6 +3,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 import { MusicasService } from 'src/app/musicas.service';
 import { Music } from '../../../../../common/music';
+import { Playlist } from '../../../../../common/playlist';
+import { PlaylistService } from 'src/app/playlist.service';
 
 @Component({
   selector: 'app-page-busca',
@@ -14,10 +16,10 @@ export class PageBuscaComponent {
   id = "2";
   filterText: string = '';
 
-
+  playlists: Playlist[] = [];
   musics: Music[] = [];
 
-  constructor(private musicasService: MusicasService) { }
+  constructor(private musicasService: MusicasService, private playlistService: PlaylistService) { }
 
   ngOnInit(): void {
     this.musicasService.getMusics()
@@ -25,6 +27,7 @@ export class PageBuscaComponent {
         as => { this.musics = as; },
         msg => { alert(msg.message); }
       );
+    this.playlists = this.playlistService.getPlaylists();
   }
 
 }

@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { CompartilhamentoComponent } from './compartilhamento/compartilhamento.component';
 import { CriacaoCategoriasComponent } from './criacao-categorias/criacao-categorias.component';
 
 import { RouterModule } from '@angular/router';
@@ -27,7 +26,6 @@ import { PlaylistsFilterPipe } from './playlists-filter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
-    CompartilhamentoComponent,
     CriacaoCategoriasComponent,
     NavbarComponent,
     PlayerComponent,
@@ -61,6 +59,10 @@ import { PlaylistsFilterPipe } from './playlists-filter.pipe';
       {
         path: 'explorar',
         component: PlaylistRecomendadasComponent
+      },
+      {
+        path: 'categorias/:id',
+        component : CriacaoCategoriasComponent
       }
     ])
   ],

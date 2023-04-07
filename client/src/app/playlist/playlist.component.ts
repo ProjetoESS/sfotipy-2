@@ -64,10 +64,27 @@ export class PlaylistComponent implements OnInit {
       }
     ]
 
+    categories : any[] = [
+      {
+        id : 1, name : "pop"
+      },
+      {
+        id : 2, name: "jazz"
+      },
+      {
+        id : 3, name : "indie"
+      },
+      {
+        id : 4, name : "rock"
+      }
+    ]
+
     playlists: any[] = [ // Array com informações das playlists
     {
       id: 1,
       name: "Minha playlist",
+      categories : ["pop", "jazz"],
+      availability : "public",
       songs: ["Música 1", "Música 2", "Música 3","Música 4", "Música 5", "Música 6", "Música 7", "Música 8", "Música 9", "Música 10"],
       owner: 'dollynt',
       followers: ['angel','luiz','victor']
@@ -75,11 +92,15 @@ export class PlaylistComponent implements OnInit {
     {
       id: 2,
       name: "Outra playlist",
+      availability : "private",
+      categories : ["indie", "rock"],
       songs: ["Música 4", "Música 5", "Música 6", "Música 2"],
       owner: 'dollyntt',
       followers: ['angel','luiz','matheus']
     }
     ];
+
+    showLink : boolean = false;
 
     show_followers(id: number) {
       const playlist = this.playlists.find(p => p.id === id); // Procura a playlist correspondente ao id na lista de playlists
@@ -90,8 +111,13 @@ export class PlaylistComponent implements OnInit {
       console.log('musica')
     }
 
+    showShareLink() {
+      this.showLink = !this.showLink;
+    }
+
     selectedPlaylist: any; // Propriedade que receberá a playlist selecionada
     playlistSongs: any[] = [];
+    playlistCategories : any[] = [];
 
     ngOnInit(): void {
       this.route.paramMap.subscribe(params => {
@@ -99,6 +125,7 @@ export class PlaylistComponent implements OnInit {
           const id = params?.get('id');// Obtém o valor do parâmetro id da rota e converte para número
           this.selectedPlaylist = this.playlists.find(playlist => playlist.id == id); // Procura a playlist correspondente ao id na lista de playlists
           this.playlistSongs = this.songs.filter(song => this.selectedPlaylist.songs.includes(song.name));
+          this.playlistCategories = this.categories.filter(cat => this.selectedPlaylist.categories.includes(cat.name));
         }
       });
     }

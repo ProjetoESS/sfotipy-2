@@ -3,6 +3,7 @@ import bodyParser = require("body-parser");
 import { PlaylistService } from './src/playlist-service';
 
 import { MusicService } from './src/music-service';
+import { CategoryService } from './src/category-service';
 import fs = require('fs');
 import { Music } from '../common/music';
 import { Playlist } from '../common/playlist';
@@ -14,6 +15,7 @@ const multipart = require('connect-multiparty')
 
 var musicService: MusicService = new MusicService();
 var playlistService = new PlaylistService();
+var categoryService = new CategoryService();
 
 var allowCrossDomain = function (req: any, res: any, next: any) {
   res.header('Access-Control-Allow-Origin', "*");
@@ -26,6 +28,9 @@ app.use(allowCrossDomain);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
+//ROTAS DE MUSICAS
 
 app.get('/musics', function (req, res) {
   const musics = musicService.get();
@@ -132,7 +137,7 @@ app.put('/playlist', function (req: express.Request, res: express.Response) {
 
 // ROTAS DE CATEGORIAS
 
-app.get('/playlist/category/:id', function (req: express.Request, res: express.Response) {
+app.get('/category/:id', function (req: express.Request, res: express.Response) {
   const playlistId: number = Number(req.params.id);
   const playlist = playlistService.getById(playlistId);
   const playlistCategories = playlist.categories;
@@ -143,8 +148,8 @@ app.get('/playlist/category/:id', function (req: express.Request, res: express.R
   }
 });
 
-app.get('/playlist/category', function (req: express.Request, res: express.Response) {
-  const allCategories = playlistService.getAllCategories();
+app.get('/category', function (req: express.Request, res: express.Response) {
+  const allCategories = categoryService.get();
   if (allCategories) {
     res.send(allCategories);
   } else {
@@ -152,9 +157,9 @@ app.get('/playlist/category', function (req: express.Request, res: express.Respo
   }
 });
 
-app.post('/playlist/category/:id', function (req: express.Request, res: express.Response) {
+app.post('/category/:id', function (req: express.Request, res: express.Response) {
   const id: number = Number(req.params.id);
-  const newCategory: Category = req.body.category;
+  const newCategory: number = req.body.category.id;
   try {
     const result = playlistService.addNewCategory(id, newCategory);
     if (result) {
@@ -167,9 +172,9 @@ app.post('/playlist/category/:id', function (req: express.Request, res: express.
   }
 });
 
-app.delete('/playlist/category/:id', function (req: express.Request, res: express.Response) {
+app.delete('/category/:id', function (req: express.Request, res: express.Response) {
   const id: number = Number(req.params.id);
-  const category: Category = req.body.category;
+  const category: number = req.body.category.id;
   try {
     const result = playlistService.deleteCategory(id, category);
     if (result) {

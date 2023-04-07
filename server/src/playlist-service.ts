@@ -41,7 +41,7 @@ export class PlaylistService {
     }
   }
 
-  addNewCategory(playlistId: number, category: Category): Playlist|null {
+  addNewCategory(playlistId: number, category: number): Playlist|null {
     const playlist = this.getById(playlistId);
     if (!playlist) return null;
     if (playlist.categories.length > 2) {
@@ -51,7 +51,7 @@ export class PlaylistService {
     return playlist;
   }
 
-  deleteCategory(playlistId: number, category: Category): Playlist|null {
+  deleteCategory(playlistId: number, category: number): Playlist|null {
     const playlist = this.getById(playlistId);
     if (playlist?.categories.includes(category)) {
       playlist?.categories.splice(playlistId, 1);
@@ -59,9 +59,5 @@ export class PlaylistService {
       return null;
     }
     return playlist;
-  }
-
-  getAllCategories(): Category[] {
-    return this.categories;
   }
 }

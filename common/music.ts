@@ -5,7 +5,7 @@ export class Music {
     image: string;
     link: string;
     duration: number;
-    category: string;
+    category: number;
 
     constructor(music: Music) {
         this.id = music.id;

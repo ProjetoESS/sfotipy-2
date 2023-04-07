@@ -4,7 +4,7 @@ import { Category } from "./category";
 export class Playlist {
     id: number;
     name: string;
-    categories: Category[];
+    categories: number[];
     musics: number[];
     image: string;
     link: string;

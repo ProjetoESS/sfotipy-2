@@ -113,4 +113,16 @@ defineSupportCode(function ({ Given, When, Then }) {
         async (section) => {
             expect((await element.all(by.css(`#section-${section} .empty-search-message`))).length).to.equal(1);
         });
+
+    Then(/^eu posso ver (\d+) mensagem de erro informando que não foram encontradas correspondências$/,
+        async (amount) => {
+            expect((await element.all(by.css(`.empty-search-message`))).length).to.equal(amount);
+        });
+
+    Given(/^há (\d+) playlists que contém "([^\"]*)" em seu nome na lista de playlists$/,
+        async (amount, music) => {
+            var allmusics: ElementArrayFinder = element.all(by.css(".playlist-card"));
+            var hasName = allmusics.filter(elem => hasInName(elem, music));
+            await assertTamanhoEqual(hasName, amount);
+        });
 })

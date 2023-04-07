@@ -3,6 +3,22 @@ Feature: Busca com filtros
     I want to be able to search for songs, playlists and authors with filters
     so that I can find exactly what I am looking for
 
+Scenario: Busca com Filtro por trecho do nome sem correspondências em playlists e com correspondências em músicas
+Given eu estou na página "busca"
+And há 1 músicas que contém "Yellow" em seu nome na lista de músicas 
+And há 0 playlists que contém "Yellow" em seu nome na lista de playlists
+When eu preencher o campo de busca por texto com "Yellow"
+Then eu posso ver 1 mensagem de erro informando que não foram encontradas correspondências
+And eu posso ver uma mensagem de erro informando que não foram encontradas correspondências na sessão de conteúdo "playlists"
+
+Scenario: Busca com Filtro por trecho do nome sem correspondências em músicas e com correspondências em playlists
+Given eu estou na página "busca"
+And há 0 músicas que contém "Coldplay" em seu nome na lista de músicas 
+And há 1 playlists que contém "Coldplay" em seu nome na lista de playlists
+When eu preencher o campo de busca por texto com "Coldplay"
+Then eu posso ver 1 mensagem de erro informando que não foram encontradas correspondências
+And eu posso ver uma mensagem de erro informando que não foram encontradas correspondências na sessão de conteúdo "musicas"
+
 Scenario: Busca com Filtro por trecho do nome sem correspondências
 Given eu estou na página "busca"
 And todas as opções de conteúdo a ser mostrado estão selecionadas

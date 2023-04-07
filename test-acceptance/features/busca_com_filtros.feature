@@ -5,9 +5,11 @@ Feature: Busca com filtros
 
 Scenario: Busca com Filtro por trecho do nome sem correspondências
 Given eu estou na página "busca"
+And todas as opções de conteúdo a ser mostrado estão selecionadas
 And há 0 músicas que contém "Batata" em seu nome na lista de músicas
 When eu preencher o campo de busca por texto com "Batata"
 Then eu posso ver uma mensagem de erro informando que não foram encontradas correspondências na sessão de conteúdo "musicas"
+And eu posso ver uma mensagem de erro informando que não foram encontradas correspondências na sessão de conteúdo "playlists"
 
 Scenario: Busca com Filtro por tipo de conteúdo e trecho do nome
 Given eu estou na página "busca"

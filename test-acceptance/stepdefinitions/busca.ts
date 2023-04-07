@@ -111,6 +111,6 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     Then(/^eu posso ver uma mensagem de erro informando que não foram encontradas correspondências na sessão de conteúdo "([^\"]*)"$/,
         async (section) => {
-            expect((await element.all(by.css(`#section-${section} > .empty-search-message`))).length).to.equal(1);
+            expect((await element.all(by.css(`#section-${section} .empty-search-message`))).length).to.equal(1);
         });
 })

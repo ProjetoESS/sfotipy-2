@@ -28,7 +28,7 @@
         <div id="section-playlists" name="content-section" *ngIf="playlistIsActive">
             <h1>Playlists</h1>
             <div class="playlistslista">
-                <div name="empty-search-message" *ngIf="!(musics | musicsFilter: filterText)?.length">
+                <div class="empty-search-message" *ngIf="!(playlists | playlistsFilter: filterText)?.length">
                     <p>Nenhum resultado encontrado.</p>
                 </div>
                 <app-playlist-card-recomend *ngFor="let p of playlists | playlistsFilter: filterText"

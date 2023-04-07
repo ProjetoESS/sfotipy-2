@@ -5,18 +5,18 @@
                 <input id="text-search-input" type="search" [(ngModel)]="filterText" name="search" role="search"
                     placeholder="O que você quer ouvir?">
                 <br>
-                <button id="option-musicas" class="tag" [ngClass]="{active: musicIsActive}" for="musicas"
-                    (click)="activateMusicas()">Músicas</button>
-                <button id="option-playlists" class="tag" [ngClass]="{active: playlistIsActive}" for="playlists"
-                    (click)="activatePlaylists()">Playlists</button>
+                <button id="option-musicas" name="type-option" class="tag" [ngClass]="{active: musicIsActive}"
+                    for="musicas" (click)="activateMusicas()">Músicas</button>
+                <button id="option-playlists" name="type-option" class="tag" [ngClass]="{active: playlistIsActive}"
+                    for="playlists" (click)="activatePlaylists()">Playlists</button>
             </div>
         </div>
-        <div class="musicaslista" *ngIf="musicIsActive">
+        <div id="section-musicas" name="content-section" class="musicaslista" *ngIf="musicIsActive">
             <app-music-card *ngFor="let m of musics | musicsFilter: filterText" [id]="m.id" [name]="m.name"
                 [author]="m.author" [music]="m"></app-music-card>
         </div>
         <hr>
-        <div *ngIf="playlistIsActive">
+        <div id="section-playlists" name="content-section" *ngIf="playlistIsActive">
             <h1>Playlists</h1>
             <div class="playlistslista">
                 <app-playlist-card *ngFor="let p of playlists | playlistsFilter: filterText"

@@ -9,9 +9,6 @@ export class MusicService {
     add(music: Music): Music {
         if (this.musics.length >= 10) return null;
         const newMusic = new Music(<Music>{ id: this.idCount, ...music });
-        // if (newMusic.price <= 0) {
-        //     throw Error("Price can't equal or less than zero")
-        // }
         this.musics.push(newMusic);
         this.idCount++;
         return newMusic;

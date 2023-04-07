@@ -14,8 +14,6 @@ import { Category } from '../../../common/category';
 export class PlaylistService {
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
   private appURL = 'http://localhost:3000';
-  private playlistCategories: Category[] = [];
-  private allCategories: Category[] = [];
 
   private httpOptions = {
     headers: new HttpHeaders({

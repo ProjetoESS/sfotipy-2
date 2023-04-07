@@ -3,7 +3,6 @@ import { OnInit } from '@angular/core';
 import { Playlist } from '../../../../common/playlist';
 import { Music } from '../../../../common/music';
 import { PlaylistService } from "../../../../server/src/playlist-service"
-import { PlaylistComponent } from "./../playlist/playlist.component"
 import { Category } from '../../../../common/category';
 @Component({
   selector: 'app-playlist-recomendadas',

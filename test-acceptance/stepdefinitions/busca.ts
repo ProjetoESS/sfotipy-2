@@ -11,7 +11,13 @@ async function assertTamanhoEqual(set, n) {
     await set.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(n));
 }
 
+async function assertIncludesInName(set, name) {
+    expect(Promise.resolve(set.getText())).to.eventually.includes(name);
+}
+
 let sameName = ((elem, name) => elem.element(by.name('nome')).getText().then(text => text.toLowerCase() === name.toLowerCase()));
+
+let hasInName = (elem, name) => elem.element(by.name('nome')).getText().then(text => text.toLowerCase().includes(name.toLowerCase()));
 
 async function assertMusicsWithSameName(n, name) {
     var allmusics: ElementArrayFinder = element.all(by.name("music-container"));
@@ -33,6 +39,13 @@ defineSupportCode(function ({ Given, When, Then }) {
             await assertMusicsWithSameName(1, music4);
         });
 
+    Given(/^há pelo menos (\d+) música que contém "([^\"]*)" em seu nome na lista de músicas$/,
+        async (amount, music) => {
+            var allmusics: ElementArrayFinder = element.all(by.name("music-container"));
+            var hasName = allmusics.filter(elem => hasInName(elem, music));
+            await assertTamanhoEqual(hasName, amount);
+        });
+
     When(/^eu preencher o campo de busca por texto com "([^\"]*)"$/,
         async (name) => {
             await element(by.id("text-search-input")).clear();
@@ -47,10 +60,10 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     Then(/^todas as músicas da lista de músicas contém "([^\"]*)" em seu nome$/,
         async (name) => {
-            await element.all(by.css('.name')).then(items => {
+            await element.all(by.css('.name')).then(async items => {
                 for (let index = 0; index < items.length; index++) {
                     const element = items[index];
-                    expect(Promise.resolve(items[index].getText())).to.eventually.includes(name)
+                    await assertIncludesInName(items[index], name);
                 }
             });
         })

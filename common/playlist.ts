@@ -21,11 +21,4 @@ export class Playlist {
         this.owner = playlist.owner;
         this.followers = playlist.followers;
     }
-
-    /*update(playlist: Playlist): void {
-        this.id = playlist.id;
-        this.categories = playlist.categories;
-        this.musics = playlist.musics;
-    }*/ 
-
 }

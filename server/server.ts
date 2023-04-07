@@ -136,6 +136,7 @@ app.get('/playlist-minha', function (req, res) {
   const plstEa = playlistService.getMN();
   res.send(JSON.stringify(plstEa));
 })
+
 const corsOptions = {
   origin: '*',
   optionsSuccessStatus: 200,

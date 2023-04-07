@@ -4,17 +4,18 @@ import { Playlist } from '../../common/playlist'
 export class PlaylistService {
   idCount: number = 0;
   playlists: Playlist[] = [];
-  categories: string[] = [];
-  playlistEA : Playlist[] = [];
-  playlistPB : Playlist[] = [];
-  playlistRC : Playlist[] = [];
-  playlistMN : Playlist[] = [];
+  categories: Category[] = [];
 
-  get() : Playlist[]{
+  playlistEA: Playlist[] = [];
+  playlistPB: Playlist[] = [];
+  playlistRC: Playlist[] = [];
+  playlistMN: Playlist[] = [];
+
+  get(): Playlist[] {
     return this.playlists;
   }
 
-  getEA() : Playlist[] {
+  getEA(): Playlist[] {
     return this.playlistEA;
   }
 
@@ -36,17 +37,14 @@ export class PlaylistService {
 
   add(playlist: Playlist): Playlist {
     const newPlaylist = new Playlist(<Playlist>{ ...playlist, id: this.idCount });
-    // if (newMusic.price <= 0) {
-    //     throw Error("Price can't equal or less than zero")
-    // }
     this.playlists.push(newPlaylist);
     this.idCount++;
     return newPlaylist;
-}
+  }
 
-  addNewCategory(playlistId: number, category: string): Playlist | null {
+  addNewCategory(playlistId: number, category: Category): Playlist | null {
     const playlist = this.getById(playlistId);
-    if(!playlist)
+    if (!playlist)
       return null;
     if (playlist.categories.length > 2) {
       return null;
@@ -55,17 +53,17 @@ export class PlaylistService {
     return playlist;
   }
 
-  deleteCategory(playlistId: number, category: Category): Playlist {
+  deleteCategory(playlistId: number, category: Category): Playlist | null {
     const playlist = this.getById(playlistId);
-    if (playlist.categories.includes(category)) {
-      playlist.categories.splice(playlistId, 1);
+    if (playlist?.categories.includes(category)) {
+      playlist?.categories.splice(playlistId, 1);
     } else {
       return null;
     }
     return playlist;
   }
 
-  getAllCategories(): string[] {
+  getAllCategories(): Category[] {
     return this.categories;
   }
 }

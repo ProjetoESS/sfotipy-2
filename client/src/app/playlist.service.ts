@@ -55,7 +55,7 @@ export class PlaylistService {
 
   deleteCategory(id: number, category: Category) {
     const data = JSON.stringify(category);
-    return this.http.delete(this.appURL + "playlist/category" + id, {body : data})
+    return this.http.delete(this.appURL + "playlist/category" + id, { body: data })
       .pipe(retry(2));
   }
 
@@ -88,42 +88,7 @@ export class PlaylistService {
   }
 
   getPlaylists(): Playlist[] {
-    let playlistList: Playlist[] = [{
-      'id': 0,
-      'name': "Playlist",
-      'categories': ['POP', 'Rock'],
-      'musics': [],
-      'image': "https://m.media-amazon.com/images/I/51GI8F4lyhL._AC_SL1000_.jpg"
-    },
-    {
-      'id': 0,
-      'name': "Playlist",
-      'categories': ['POP', 'Rock'],
-      'musics': [],
-      'image': "https://m.media-amazon.com/images/I/51GI8F4lyhL._AC_SL1000_.jpg"
-    },
-    {
-      'id': 0,
-      'name': "Abadada",
-      'categories': ['POP', 'Rock'],
-      'musics': [],
-      'image': "https://m.media-amazon.com/images/I/51GI8F4lyhL._AC_SL1000_.jpg"
-    },
-    {
-      'id': 0,
-      'name': "Playlist Certa",
-      'categories': ['POP', 'Rock'],
-      'musics': [],
-      'image': "https://m.media-amazon.com/images/I/51GI8F4lyhL._AC_SL1000_.jpg"
-    },
-    {
-      'id': 0,
-      'name': "Playlist Outra",
-      'categories': ['POP', 'Rock'],
-      'musics': [],
-      'image': "https://m.media-amazon.com/images/I/51GI8F4lyhL._AC_SL1000_.jpg"
-    }
-    ];
+    let playlistList: Playlist[] = [];
     return playlistList;
   }
 }

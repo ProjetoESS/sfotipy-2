@@ -2,7 +2,20 @@ import {Category} from '../../common/category';
 import {Playlist} from '../../common/playlist'
 
 export class PlaylistService {
-  playlists: Playlist[] = [];
+  
+  playlists: Playlist[] = [
+    <Playlist>{
+      "id" : 0,
+      "name": "jeffferson",
+      "categories": [1],
+      "musics": [],
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/1b/NF_-_The_Search.png",
+      "link": "",
+      "owner": "",
+      "followers": [],
+      "availability": "public"
+    }
+  ];
   idCount: number = 0;
   categories: Category[] = [];
 
@@ -44,7 +57,7 @@ export class PlaylistService {
   addNewCategory(playlistId: number, category: number): Playlist|null {
     const playlist = this.getById(playlistId);
     if (!playlist) return null;
-    if (playlist.categories.length > 2) {
+    if (playlist.categories.length >= 2) {
       return null;
     }
     playlist.categories.push(category);
@@ -60,4 +73,5 @@ export class PlaylistService {
     }
     return playlist;
   }
+
 }

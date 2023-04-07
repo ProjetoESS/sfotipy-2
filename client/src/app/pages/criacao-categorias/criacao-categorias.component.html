@@ -3,13 +3,13 @@
     <h3> Adicionar Categorias </h3>
 
     <div id="selected-categories">
-        <div *ngFor="let categories in playlistCategories" class="category" (click)="deleteCategory(categories)">
-            {{categories.name}}
+        <div *ngFor="let category of playlistCategories" class="category" (click)="deleteCategory(category)">
+            {{ category.name }}
         </div>
     </div>
 
     <div id="categories">
-        <div *ngFor="let category in allCategories" class="category" (click)="addNewCategory(category)">
+        <div *ngFor="let category of allCategories" class="category" (click)="addNewCategory(category)">
             {{ category.name }}
         </div>
     </div>

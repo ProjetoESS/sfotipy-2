@@ -141,8 +141,14 @@ app.get('/category/:id', function (req: express.Request, res: express.Response) 
   const playlistId: number = Number(req.params.id);
   const playlist = playlistService.getById(playlistId);
   const playlistCategories = playlist.categories;
-  if (playlistCategories) {
-    res.send(playlistCategories);
+
+  var categories : Category[] = [];
+  playlistCategories.forEach(categoryId => {
+    categories.push(categoryService.getById(categoryId));
+  });
+
+  if (categories) {
+    res.send(categories);
   } else {
     res.status(404).send({ message: 'Playlist could not be found' });
   }
@@ -159,33 +165,26 @@ app.get('/category', function (req: express.Request, res: express.Response) {
 
 app.post('/category/:id', function (req: express.Request, res: express.Response) {
   const id: number = Number(req.params.id);
-  const newCategory: number = req.body.category.id;
-  try {
-    const result = playlistService.addNewCategory(id, newCategory);
-    if (result) {
-      res.send(result);
-    } else {
-      res.status(404).send(result);
-    }
-  } catch {
-    res.status(403).send({ message: "Could not add new category, reached max size" });
+  const newCategory: Category = req.body.category;
+  const result = playlistService.addNewCategory(id, newCategory.id);
+  if(result) {
+    res.send({"success" : "The new category was registered"});
+  }else{
+    res.send({"failure" : "The category was not registered"});
   }
 });
 
 app.delete('/category/:id', function (req: express.Request, res: express.Response) {
   const id: number = Number(req.params.id);
+  console.log(req.body);
   const category: number = req.body.category.id;
-  try {
-    const result = playlistService.deleteCategory(id, category);
-    if (result) {
-      res.send(result);
-    } else {
-      res.send({ message: "Invalid playlist" });
-    }
-  } catch {
-    res.send({ message: "Category does not exist in playlist" })
+  const result = playlistService.deleteCategory(id, category);
+  if(result) {
+    res.send({"success": "The category was deleted"});
+  }else{
+    res.send({"failure": "The category was not deleted"});
   }
-})
+});
 
 const corsOptions = {
   origin: '*',

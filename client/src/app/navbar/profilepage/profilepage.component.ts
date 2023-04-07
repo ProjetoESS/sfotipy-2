@@ -30,6 +30,10 @@ export class ProfilepageComponent {
 			this.isLogged = newStatus;
 		});
 
+		this.userService.getUserId().subscribe(id => {
+			this.userId = id;
+		});
+
 		this.userService.getUserById(this.userId).subscribe(
 			as => { this.user = as; },
       		msg => { alert(msg.message); }

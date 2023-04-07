@@ -3,6 +3,7 @@ import bodyParser = require("body-parser");
 import { PlaylistService } from './src/playlist-service';
 
 import { MusicService } from './src/music-service';
+import { CategoryService } from './src/category-service';
 import fs = require('fs');
 import { Music } from '../common/music';
 import { Playlist } from '../common/playlist';
@@ -14,6 +15,7 @@ const multipart = require('connect-multiparty')
 
 var musicService: MusicService = new MusicService();
 var playlistService = new PlaylistService();
+var categoryService = new CategoryService();
 
 var allowCrossDomain = function (req: any, res: any, next: any) {
   res.header('Access-Control-Allow-Origin', "*");
@@ -27,6 +29,9 @@ app.use(allowCrossDomain);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+//ROTAS DE MUSICAS
+
 app.get('/musics', function (req, res) {
   const musics = musicService.get();
   res.send(JSON.stringify(musics));
@@ -39,6 +44,16 @@ app.get('/musics/:id', function (req, res) {
     res.send(music);
   } else {
     res.status(404).send({ message: `Music ${id} could not be found` });
+  }
+});
+
+app.delete('/musics/:id', function (req, res) {
+  const id: number = Number(req.params.id);
+  const music = musicService.delete(id);
+  if (music) {
+    res.status(200).send({ message: `Music ${id} deleted` });
+  } else {
+    res.status(404).send({ message: `Music ${id} could not be deleted` });
   }
 });
 
@@ -67,7 +82,62 @@ app.put('/musics', function (req: express.Request, res: express.Response) {
   }
 });
 
-app.get('/playlist/category/:id', function (req: express.Request, res: express.Response) {
+//ROTAS DE PLAYLIST
+
+app.get('/playlists', function (req, res) {
+  const playlists = playlistService.get();
+  res.send(JSON.stringify(playlists));
+});
+
+app.get('/playlist/:id', function (req, res) {
+  const id: number = Number(req.params.id);
+  const playlist = playlistService.getById(id);
+  if (playlist) {
+    res.send(playlist);
+  } else {
+    res.status(404).send({ message: `Playlist ${id} could not be found` });
+  }
+});
+
+app.delete('/playlist/:id', function (req, res) {
+  const id: number = Number(req.params.id);
+  const playlist = playlistService.delete(id);
+  if (playlist) {
+    res.status(200).send({ message: `Playlist ${id} deleted` });
+  } else {
+    res.status(404).send({ message: `Playlist ${id} could not be deleted` });
+  }
+});
+
+app.post('/playlist', function (req: express.Request, res: express.Response) {
+  const playlist: Playlist = <Playlist>req.body;
+  try {
+    const result = playlistService.add(playlist);
+    if (result) {
+      res.status(201).send(result);
+    } else {
+      res.status(403).send({ message: "Playlist list is full" });
+    }
+  } catch (err) {
+    const { message } = err;
+    res.status(400).send({ message })
+  }
+});
+
+app.put('/playlist', function (req: express.Request, res: express.Response) {
+  const playlist: Playlist = <Playlist>req.body;
+  const result = playlistService.update(playlist);
+  if (result) {
+    res.send(result);
+  } else {
+    res.status(404).send({ message: `Playlist ${playlist.id} could not be found.` });
+  }
+});
+
+
+// ROTAS DE CATEGORIAS
+
+app.get('/category/:id', function (req: express.Request, res: express.Response) {
   const playlistId: number = Number(req.params.id);
   const playlist = playlistService.getById(playlistId);
   const playlistCategories = playlist.categories;
@@ -78,8 +148,8 @@ app.get('/playlist/category/:id', function (req: express.Request, res: express.R
   }
 });
 
-app.get('/playlist/category', function (req: express.Request, res: express.Response) {
-  const allCategories = playlistService.getAllCategories();
+app.get('/category', function (req: express.Request, res: express.Response) {
+  const allCategories = categoryService.get();
   if (allCategories) {
     res.send(allCategories);
   } else {
@@ -87,9 +157,9 @@ app.get('/playlist/category', function (req: express.Request, res: express.Respo
   }
 });
 
-app.post('/playlist/category/:id', function (req: express.Request, res: express.Response) {
+app.post('/category/:id', function (req: express.Request, res: express.Response) {
   const id: number = Number(req.params.id);
-  const newCategory: Category = req.body.category;
+  const newCategory: number = req.body.category.id;
   try {
     const result = playlistService.addNewCategory(id, newCategory);
     if (result) {
@@ -102,9 +172,9 @@ app.post('/playlist/category/:id', function (req: express.Request, res: express.
   }
 });
 
-app.delete('/playlist/category/:id', function (req: express.Request, res: express.Response) {
+app.delete('/category/:id', function (req: express.Request, res: express.Response) {
   const id: number = Number(req.params.id);
-  const category: Category = req.body.category;
+  const category: number = req.body.category.id;
   try {
     const result = playlistService.deleteCategory(id, category);
     if (result) {
@@ -115,26 +185,6 @@ app.delete('/playlist/category/:id', function (req: express.Request, res: expres
   } catch {
     res.send({ message: "Category does not exist in playlist" })
   }
-})
-
-app.get('/playlist-em-alta', function (req, res) {
-  const plstEa = playlistService.getEA();
-  res.send(JSON.stringify(plstEa));
-})
-
-app.get('/playlist-publica', function (req, res) {
-  const plstEa = playlistService.getPB();
-  res.send(JSON.stringify(plstEa));
-})
-
-app.get('/playlist-recomendada', function (req, res) {
-  const plstEa = playlistService.getRC();
-  res.send(JSON.stringify(plstEa));
-})
-
-app.get('/playlist-minha', function (req, res) {
-  const plstEa = playlistService.getMN();
-  res.send(JSON.stringify(plstEa));
 })
 
 const corsOptions = {

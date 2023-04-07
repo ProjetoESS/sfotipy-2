@@ -1,4 +1,4 @@
-import { Category } from '../../common/Category';
+import { Category } from '../../common/category';
 import { Playlist } from '../../common/playlist'
 
 export class PlaylistService {
@@ -30,22 +30,22 @@ export class PlaylistService {
     return this.playlists.find(({ id }) => id == playlistId);
   }
 
-  addNewCategory(playlistId: number, category: string): Playlist {
+  addNewCategory(playlistId: number, category: Category): Playlist {
     const playlist = this.getById(playlistId);
     if (playlist.categories.length > 2) {
       return null;
     }
-    /*playlist.categories.push(category);*/
+    playlist.categories.push(category);
     return playlist;
   }
 
-  deleteCategory(playlistId: number, category: string): Playlist {
+  deleteCategory(playlistId: number, category: Category): Playlist {
     const playlist = this.getById(playlistId);
-    /*if (playlist.categories.includes(category)) {
+    if (playlist.categories.includes(category)) {
       playlist.categories.splice(playlistId, 1);
     } else {
       return null;
-    }*/
+    }
     return playlist;
   }
 

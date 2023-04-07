@@ -55,5 +55,37 @@ defineSupportCode(function ({ Given, When, Then }) {
             });
         })
 
+    Given(/^todas as opções de conteúdo a ser mostrado estão selecionadas$/,
+        async () => {
+            var alloptions: ElementArrayFinder = element.all(by.name("type-option"));
+            await alloptions.each(async option => {
+                expect(await option.getAttribute('class')).to.includes('active');
+            })
+            //expect(await element(by.id('option-' + option1)).getAttribute('class')).to.includes('active');
+            //expect(await element(by.id('option-' + option2)).getAttribute('class')).to.includes('active');
+        });
 
+    When(/^eu selecionar apenas "([^\"]*)" no tipo de conteúdo a ser mostrado$/,
+        async (option1) => {
+            var alloptions: ElementArrayFinder = element.all(by.name("type-option"));
+            await alloptions.each(async option => {
+                await option.click();
+            })
+            await alloptions.each(async option => {
+                expect(await option.getAttribute('class')).not.to.includes('active');
+            })
+            await element(by.id('option-' + option1)).click();
+            expect(await element(by.id('option-' + option1)).getAttribute('class')).to.includes('active');
+        });
+
+    Then(/^eu só posso ver (\d+) sessões de conteúdo$/,
+        async (amount) => {
+            var alloptions: ElementArrayFinder = element.all(by.name("content-section"));
+            await assertTamanhoEqual(alloptions, amount)
+        });
+
+    Then(/^eu posso ver a sessão de conteúdo "([^\"]*)"$/,
+        async (section) => {
+            expect((await element.all(by.id(`section-${section}`))).length).to.equal(1);
+        });
 })

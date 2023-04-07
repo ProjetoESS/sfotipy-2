@@ -22,7 +22,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUserById(userId : number) : Observable<User> {
-    return this.http.get<User>(this.appURL + "/users/${userId}")
+    return this.http.get<User>(this.appURL + "/users/" + userId.toString())
       .pipe(
         retry(2)
       );

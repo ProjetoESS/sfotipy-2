@@ -29,15 +29,10 @@ export class ProfilepageComponent {
 		this.loginService.getLoginStatus().subscribe(newStatus => {
 			this.isLogged = newStatus;
 		});
-		/*
-		this.userService.getUserById(this.userId)
-			.pipe(
-				tap({
-				next: as => { this.user = as; },
-				error: msg => { alert(msg.message); }
-				})
-			)
-			.subscribe();
-		*/
+
+		this.userService.getUserById(this.userId).subscribe(
+			as => { this.user = as; },
+      		msg => { alert(msg.message); }
+		)
 	}
 }

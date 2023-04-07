@@ -14,22 +14,25 @@ import { Music } from '../../../../../common/music';
 })
 export class HomepageComponent {
   playlists: Playlist[] = [];
+  playlistsPublic: Playlist[] = [];
+  playlistsTrending: Playlist[] = [];
   isLogged: boolean = false;
 
-  constructor(private playlistService: PlaylistService, private loginService: LoginService) {
-    
-  }
+  constructor(private playlistService: PlaylistService, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.loginService.getLoginStatus().subscribe(newStatus => {
       this.isLogged = newStatus;
     });
 
-    this.playlistService.getPlaylists()
-      .subscribe(
-        as => { this.playlists = as; },
-        msg => { alert(msg.message); }
-      );    
+    this.playlistService.getPlaylists().subscribe(
+      as => { this.playlists = as; },
+      msg => { alert(msg.message); }
+    );
+
+    this.playlistsPublic = this.playlists.filter(playlist => playlist.availability === 'public');
+
+    this.playlistsTrending = this.playlists.sort((a, b) => b.followers.length - a.followers.length);
 
     // this.playlistService.getPlaylistRC()
     //   .pipe(
@@ -39,16 +42,5 @@ export class HomepageComponent {
     //     })
     //   )
     //   .subscribe();
-    /*
-    
-
-    //Depreciado
-    /*
-    this.playlistService.getPlaylistEA()
-          .subscribe(
-            as => { this.plEma = as; },
-            msg => { alert(msg.message); }
-           );
-    */
   }
 }

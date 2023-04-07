@@ -53,8 +53,8 @@ export class PlaylistService {
 
   deleteCategory(playlistId: number, category: number): Playlist|null {
     const playlist = this.getById(playlistId);
-    if (playlist?.categories.includes(category)) {
-      playlist?.categories.splice(playlistId, 1);
+    if (playlist.categories.includes(category)) {
+      playlist.categories.splice(playlistId, 1);
     } else {
       return null;
     }

@@ -31,7 +31,7 @@ export class PlaylistCardRecomendComponent {
 
   sharePlaylist(event: Event, playlist: Playlist) {
     event.stopPropagation();
-    var str: string = "localhost:4200/playlist/" + playlist.id;
+    const str: string = "localhost:4200/playlist/" + playlist.id;
     this.clipboard.copy(str);
   }
 

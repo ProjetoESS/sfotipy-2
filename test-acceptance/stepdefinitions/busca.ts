@@ -39,7 +39,7 @@ defineSupportCode(function ({ Given, When, Then }) {
             await assertMusicsWithSameName(1, music4);
         });
 
-    Given(/^há pelo menos (\d+) música que contém "([^\"]*)" em seu nome na lista de músicas$/,
+    Given(/^há (\d+) músicas que contém "([^\"]*)" em seu nome na lista de músicas$/,
         async (amount, music) => {
             var allmusics: ElementArrayFinder = element.all(by.name("music-container"));
             var hasName = allmusics.filter(elem => hasInName(elem, music));
@@ -100,5 +100,17 @@ defineSupportCode(function ({ Given, When, Then }) {
     Then(/^eu posso ver a sessão de conteúdo "([^\"]*)"$/,
         async (section) => {
             expect((await element.all(by.id(`section-${section}`))).length).to.equal(1);
+        });
+
+    Given(/^não há nenhuma música cujo nome contenha "([^\"]*)"$/,
+        async (music) => {
+            var allmusics: ElementArrayFinder = element.all(by.name("music-container"));
+            var hasName = allmusics.filter(elem => hasInName(elem, music));
+            await assertTamanhoEqual(hasName, 0);
+        });
+
+    Then(/^eu posso ver uma mensagem de erro informando que não foram encontradas correspondências na sessão de conteúdo "([^\"]*)"$/,
+        async (section) => {
+            expect((await element.all(by.css(`#section-${section} > .empty-search-message`))).length).to.equal(1);
         });
 })

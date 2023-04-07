@@ -37,7 +37,10 @@ export class HomepageComponent {
           { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
           { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
         ], 
-        image: '/assets/cover1.jpg'
+        image: 'playlist1.jpg',
+        link: "",
+        owner: "",
+        followers: []
       },
       { 
         id: 2, 
@@ -47,7 +50,10 @@ export class HomepageComponent {
           { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
           { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
         ], 
-        image: '/assets/cover2.jpg'
+        image: 'playlist2.jpg',
+        link: "",
+        owner: "",
+        followers: []
       },
       { 
         id: 3, 
@@ -57,7 +63,10 @@ export class HomepageComponent {
           { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
           { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
         ], 
-        image: '/assets/cover6.jpg'
+        image: 'playlist3.jpg',
+        link: "",
+        owner: "",
+        followers: []
       },
       { 
         id: 4, 
@@ -67,7 +76,10 @@ export class HomepageComponent {
           { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
           { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
         ], 
-        image: '/assets/cover7.jpg'
+        image: 'playlist4.jpg',
+        link: "",
+        owner: "",
+        followers: []
       },
       { 
         id: 5, 
@@ -77,7 +89,10 @@ export class HomepageComponent {
           { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
           { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
         ], 
-        image: '/assets/cover8.jpg'
+        image: 'playlist5.jpg',
+        link: "",
+        owner: "",
+        followers: []
       }
     ];
     this.plPub = this.plEma;

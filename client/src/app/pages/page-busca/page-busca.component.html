@@ -1,6 +1,6 @@
 <section class="bound">
     <div class="container">
-        <div class="filter">
+        <div class="filter" (click)="showMusics()">
             <div class="background">
                 <input id="text-search-input" type="search" [(ngModel)]="filterText" name="search" role="search"
                     placeholder="O que você quer ouvir?">
@@ -12,6 +12,9 @@
             </div>
         </div>
         <div id="section-musicas" name="content-section" class="musicaslista" *ngIf="musicIsActive">
+            <div class="empty-search-message" *ngIf="!(musics | musicsFilter: filterText)?.length">
+                <p>Nenhum resultado encontrado.</p>
+            </div>
             <app-music-card *ngFor="let m of musics | musicsFilter: filterText" [id]="m.id" [name]="m.name"
                 [author]="m.author" [music]="m"></app-music-card>
         </div>
@@ -19,6 +22,9 @@
         <div id="section-playlists" name="content-section" *ngIf="playlistIsActive">
             <h1>Playlists</h1>
             <div class="playlistslista">
+                <div name="empty-search-message" *ngIf="!(musics | musicsFilter: filterText)?.length">
+                    <p>Nenhum resultado encontrado.</p>
+                </div>
                 <app-playlist-card *ngFor="let p of playlists | playlistsFilter: filterText"
                     [playlist]="p"></app-playlist-card>
             </div>

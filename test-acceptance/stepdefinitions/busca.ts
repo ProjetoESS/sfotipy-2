@@ -7,6 +7,18 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+async function assertTamanhoEqual(set, n) {
+    await set.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(n));
+}
+
+let sameName = ((elem, name) => elem.element(by.name('nome')).getText().then(text => text.toLowerCase() === name.toLowerCase()));
+
+async function assertMusicsWithSameName(n, name) {
+    var allmusics: ElementArrayFinder = element.all(by.name("music-container"));
+    var samenames = allmusics.filter(elem => sameName(elem, name));
+    await assertTamanhoEqual(samenames, n);
+}
+
 defineSupportCode(function ({ Given, When, Then }) {
     Given(/^eu estou na página "([^\"]*)"$/, async (name) => {
         await browser.get("http://localhost:4200/busca");
@@ -15,16 +27,15 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     Given(/^as músicas "([^\"]*)", "([^\"]*)", "([^\"]*)" e "([^\"]*)" aparecem na lista de músicas$/,
         async (music1, music2, music3, music4) => {
-            expect((await element.all(by.id(`music-${music1}`))).length).to.equal(1);
-            expect((await element.all(by.id(`music-${music2}`))).length).to.equal(1);
-            expect((await element.all(by.id(`music-${music3}`))).length).to.equal(1);
-            expect((await element.all(by.id(`music-${music4}`))).length).to.equal(1);
+            await assertMusicsWithSameName(1, music1);
+            await assertMusicsWithSameName(1, music2);
+            await assertMusicsWithSameName(1, music3);
+            await assertMusicsWithSameName(1, music4);
         });
 
     When(/^eu preencher o campo de busca por texto com "([^\"]*)"$/,
         async (name) => {
             await element(by.id("text-search-input")).clear();
-
             await element(by.id("text-search-input")).sendKeys(<string>name);
         })
 

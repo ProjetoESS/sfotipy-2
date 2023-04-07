@@ -45,3 +45,9 @@ input[name="search"] {
     align-items: center;
     flex-wrap: wrap;
 }
+
+.musicaslista {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+    grid-gap: 10px;
+}

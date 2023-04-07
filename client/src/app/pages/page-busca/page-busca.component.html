@@ -25,8 +25,8 @@
                 <div name="empty-search-message" *ngIf="!(musics | musicsFilter: filterText)?.length">
                     <p>Nenhum resultado encontrado.</p>
                 </div>
-                <app-playlist-card *ngFor="let p of playlists | playlistsFilter: filterText"
-                    [playlist]="p"></app-playlist-card>
+                <app-playlist-card-recomend *ngFor="let p of playlists | playlistsFilter: filterText"
+                    [playlist]="p"></app-playlist-card-recomend>
             </div>
         </div>
     </div>

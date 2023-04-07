@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard'
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-compartilhamento',
@@ -9,13 +10,19 @@ import { Clipboard } from '@angular/cdk/clipboard'
 
 export class CompartilhamentoComponent {
 
-  @Input() playlistId: string = "";
-  pageLink = "https:://localhost:3000/playlist/" + this.playlistId;
+  playlistId: number = 0;
+  pageLink: string = "";
 
-  constructor(private clipboard: Clipboard) {};
+  constructor(private clipboard: Clipboard, private route: ActivatedRoute, private router: Router) {};
 
   copyLink() {
     this.clipboard.copy(this.pageLink);
+  }
+
+  ngOnInit() {
+    const id = this.route.snapshot.params["id"];
+    this.playlistId = id;
+    this.pageLink = "localhost:4200/playlist/" + this.playlistId;
   }
 
 }

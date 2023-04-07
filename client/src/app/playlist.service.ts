@@ -6,6 +6,7 @@ import { retry, map } from 'rxjs/operators';
 
 import { Playlist } from '../../../common/playlist';
 import { Observable } from 'rxjs';
+import { Category } from '../../../common/category';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,8 @@ import { Observable } from 'rxjs';
 export class PlaylistService {
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
   private appURL = 'http://localhost:3000';
-  private playlistCategories: string[] = [];
-  private allCategories: string[] = [];
+  private playlistCategories: Category[] = [];
+  private allCategories: Category[] = [];
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -29,7 +30,7 @@ export class PlaylistService {
       .pipe(
         map((res: any) => res)
       ).subscribe(
-        (res: string[]) => {
+        (res: Category[]) => {
           this.playlistCategories = res;
         }
       );
@@ -41,26 +42,20 @@ export class PlaylistService {
       .pipe(
         map((res: any) => res.categories)
       ).subscribe(
-        (categories: string[]) => {
+        (categories: Category[]) => {
           this.allCategories = categories;
         })
     return this.allCategories;
   }
 
-  addNewCategory(id: number, category: string) {
+  addNewCategory(id: number, category: Category) {
     return this.http.post(this.appURL + "playlist/category/" + id, category, this.httpOptions)
       .pipe(retry(2));
   }
 
-  deleteCategory(id: number, category: string) {
-
-    const data = {
-      params: {
-        category: category
-      }
-    };
-
-    return this.http.delete(this.appURL + "playlist/category" + id, data)
+  deleteCategory(id: number, category: Category) {
+    const data = JSON.stringify(category);
+    return this.http.delete(this.appURL + "playlist/category" + id, {body : data})
       .pipe(retry(2));
   }
 
@@ -90,5 +85,45 @@ export class PlaylistService {
       .pipe(
         retry(2)
       );
+  }
+
+  getPlaylists(): Playlist[] {
+    let playlistList: Playlist[] = [{
+      'id': 0,
+      'name': "Playlist",
+      'categories': ['POP', 'Rock'],
+      'musics': [],
+      'image': "https://m.media-amazon.com/images/I/51GI8F4lyhL._AC_SL1000_.jpg"
+    },
+    {
+      'id': 0,
+      'name': "Playlist",
+      'categories': ['POP', 'Rock'],
+      'musics': [],
+      'image': "https://m.media-amazon.com/images/I/51GI8F4lyhL._AC_SL1000_.jpg"
+    },
+    {
+      'id': 0,
+      'name': "Abadada",
+      'categories': ['POP', 'Rock'],
+      'musics': [],
+      'image': "https://m.media-amazon.com/images/I/51GI8F4lyhL._AC_SL1000_.jpg"
+    },
+    {
+      'id': 0,
+      'name': "Playlist Certa",
+      'categories': ['POP', 'Rock'],
+      'musics': [],
+      'image': "https://m.media-amazon.com/images/I/51GI8F4lyhL._AC_SL1000_.jpg"
+    },
+    {
+      'id': 0,
+      'name': "Playlist Outra",
+      'categories': ['POP', 'Rock'],
+      'musics': [],
+      'image': "https://m.media-amazon.com/images/I/51GI8F4lyhL._AC_SL1000_.jpg"
+    }
+    ];
+    return playlistList;
   }
 }

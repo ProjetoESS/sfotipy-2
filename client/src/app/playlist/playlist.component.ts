@@ -104,6 +104,30 @@ export class PlaylistComponent implements OnInit {
       this.musics[3], this.musics[4], this.musics[5], 
       this.musics[6], this.musics[7], this.musics[8], 
       this.musics[9], this.musics[10]],
+    ]
+
+    categories : any[] = [
+      {
+        id : 1, name : "pop"
+      },
+      {
+        id : 2, name: "jazz"
+      },
+      {
+        id : 3, name : "indie"
+      },
+      {
+        id : 4, name : "rock"
+      }
+    ]
+
+    playlists: any[] = [ // Array com informações das playlists
+    {
+      id: 1,
+      name: "Minha playlist",
+      categories : ["pop", "jazz"],
+      availability : "public",
+      songs: ["Música 1", "Música 2", "Música 3","Música 4", "Música 5", "Música 6", "Música 7", "Música 8", "Música 9", "Música 10"],
       owner: 'dollynt',
       categories: ["Pop"],
       image: "",
@@ -114,6 +138,9 @@ export class PlaylistComponent implements OnInit {
       id: 2,
       name: "Outra playlist",
       musics: [this.musics[4], this.musics[5], this.musics[6], this.musics[2]],
+      availability : "private",
+      categories : ["indie", "rock"],
+      songs: ["Música 4", "Música 5", "Música 6", "Música 2"],
       owner: 'dollyntt',
       followers: ['angel','luiz','matheus'],
       categories: ["Pop"],
@@ -206,6 +233,8 @@ export class PlaylistComponent implements OnInit {
     }
     ];
 
+    showLink : boolean = false;
+
     show_followers(id: number) {
       const playlist = this.playlists.find(p => p.id === id); // Procura a playlist correspondente ao id na lista de playlists
       if(playlist)
@@ -228,6 +257,13 @@ export class PlaylistComponent implements OnInit {
   });
 
     playlistSongs: Music[] = [];
+    showShareLink() {
+      this.showLink = !this.showLink;
+    }
+
+    selectedPlaylist: any; // Propriedade que receberá a playlist selecionada
+    playlistSongs: any[] = [];
+    playlistCategories : any[] = [];
 
     ngOnInit(): void {
       this.route.paramMap.subscribe(params => {
@@ -239,6 +275,9 @@ export class PlaylistComponent implements OnInit {
               this.selectedPlaylist = foundPlaylist; // Procura a playlist correspondente ao id na lista de playlists
             this.playlistSongs = this.musics.filter(music => this.selectedPlaylist.musics.includes(music));
           }
+          this.selectedPlaylist = this.playlists.find(playlist => playlist.id == id); // Procura a playlist correspondente ao id na lista de playlists
+          this.playlistSongs = this.songs.filter(song => this.selectedPlaylist.songs.includes(song.name));
+          this.playlistCategories = this.categories.filter(cat => this.selectedPlaylist.categories.includes(cat.name));
         }
       });
     }

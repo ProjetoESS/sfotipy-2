@@ -1,10 +1,10 @@
 import { Music } from "./music";
-import { Category } from "./Category";
+import { Category } from "./category";
 
 export class Playlist {
     id: number;
     name: string;
-    categories: Category[] | string[];
+    categories: Category[];
     musics: Music[];
     image: string;
     link: string;
@@ -26,6 +26,6 @@ export class Playlist {
         this.id = playlist.id;
         this.categories = playlist.categories;
         this.musics = playlist.musics;
-    }*/
+    }*/ 
 
 }

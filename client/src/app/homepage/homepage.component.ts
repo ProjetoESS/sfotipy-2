@@ -4,6 +4,7 @@ import { tap } from 'rxjs/operators';
 import { LoginService } from '../login.service';
 import { PlaylistService } from '../playlist.service';
 import { Playlist } from '../../../../common/playlist';
+import { Category } from '../../../../common/category';
 
 @Component({
   selector: 'app-homepage',
@@ -15,6 +16,13 @@ export class HomepageComponent {
   plPub : Playlist[] = [];
   plRec : Playlist[] = [];
   plMin : Playlist[] = [];
+  pop : Category = new Category({id: 1, name : "pop"});
+  rock : Category = new Category({id: 2, name : "rock"});
+  jazz : Category = new Category({id : 3, name : "jazz"});
+  blues : Category = new Category({id: 4, name : "blues"});
+  hip_hop : Category = new Category({id : 5, name : "hip hop"});
+  metal : Category = new Category({id : 6, name : "metal"});
+  indie : Category = new Category({id : 7, name : "indie"});
 
   isLogged : boolean = false;
 
@@ -24,7 +32,7 @@ export class HomepageComponent {
       { 
         id: 1, 
         name: 'Playlist 1', 
-        categories: ['pop', 'rock'], 
+        categories: [this.pop, this.rock], 
         musics: [
           { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
           { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
@@ -37,7 +45,7 @@ export class HomepageComponent {
       { 
         id: 2, 
         name: 'Playlist 2', 
-        categories: ['jazz', 'blues'], 
+        categories: [this.jazz, this.blues], 
         musics: [
           { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
           { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
@@ -50,7 +58,7 @@ export class HomepageComponent {
       { 
         id: 3, 
         name: 'Playlist 3', 
-        categories: ['pop', 'hip hop'], 
+        categories: [this.pop, this.hip_hop], 
         musics: [
           { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
           { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
@@ -63,7 +71,7 @@ export class HomepageComponent {
       { 
         id: 4, 
         name: 'Playlist 4', 
-        categories: ['rock', 'metal'], 
+        categories: [this.rock, this.metal], 
         musics: [
           { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
           { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }
@@ -76,7 +84,7 @@ export class HomepageComponent {
       { 
         id: 5, 
         name: 'Playlist 5', 
-        categories: ['pop', 'indie'], 
+        categories: [this.pop, this.indie], 
         musics: [
           { id: 1, name: "Song 1", author: "Author 1", image: "image1.jpg", link: "link1.mp3", duration: 180 },
           { id: 2, name: "Song 2", author: "Author 2", image: "image2.jpg", link: "link2.mp3", duration: 240 }

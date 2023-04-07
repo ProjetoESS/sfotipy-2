@@ -36,8 +36,11 @@ app.post('/criar_playlist', (req: express.Request, res: express.Response) => {
   }
 });
 
+
 app.get('/minhas_playlists', (req, res) => {
-  const ownerId = parseInt(req.query.ownerId as string); // busca o ownerId a partir dos parâmetros da requisição
+  //const ownerId = parseInt(req.query.ownerId as string);
+  const ownerId = 1
+  console.log(ownerId) // busca o ownerId a partir dos parâmetros da requisição
   const userPlaylists = playlistService.getUserPlaylists(ownerId); // busca as playlists do usuário a partir do PlaylistService
   res.json(userPlaylists); // retorna as playlists como uma resposta JSON
 });

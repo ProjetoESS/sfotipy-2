@@ -34,15 +34,31 @@ export class PlaylistService {
     return this.http.get<boolean>(url);
   }
 
-  getUserPlaylists(ownerId: number): Observable<Playlist[]>  {
+  getUserPlaylists(ownerId: any): Observable<Playlist[]>  {
+    console.log('ownerId:', ownerId); // adicione esta linha
     const url = `${this.appURL}/minhas_playlists`;
     return this.http.get<any[]>(url).pipe(
       map(response => {
+        console.log('response:', response); // adicione esta linha
         return response.map(item => new Playlist(item.id, item.name, item.ownerId, item.musics, item.isPublic, item.categories, item.image));
+      }),
+      map(playlists => {
+        console.log('playlists:', playlists.filter(playlist => playlist.ownerId === ownerId)); // adicione esta linha
+        return playlists.filter(playlist => playlist.ownerId === ownerId);
       })
     );
-
   }
+
+  /*getUserPlaylists(ownerId: number): Observable<Playlist> {
+    const url = `${this.appURL}/minhas_playlists`;
+    return this.http.get<any[]>(url).pipe(
+      map(response => {
+        console.log(response)
+        const firstItem = response[0]; // assumindo que a resposta sempre retorna um único item
+        return new Playlist(firstItem.id, firstItem.name, firstItem.ownerId, firstItem.musics, firstItem.isPublic, firstItem.categories, firstItem.image);
+      })
+    );
+  } */
 
   getCategories(id: number) {
     this.http.get<string[]>(this.appURL + "playlist/category/" + id)

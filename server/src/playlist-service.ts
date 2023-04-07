@@ -20,6 +20,17 @@ export class PlaylistService {
     return this.playlists;
   }
 
+  getUserPlaylists(ownerId: any): Playlist[] {
+    const playlistsReturn: Playlist[] = []
+    for (const playlist of this.playlists) {
+      console.log(ownerId, playlist.ownerId)
+     if (playlist.ownerId == ownerId) {
+      playlistsReturn.push(playlist)
+     }
+    }
+    return playlistsReturn;
+  }
+
   verificarNomePlaylistExistente(nomePlaylist: string): boolean {
     if (this.playlists.length === 0) {
       return false
@@ -79,10 +90,6 @@ export class PlaylistService {
 
   getAllCategories(): string[] {
     return this.categories;
-  }
-
-  getUserPlaylists(ownerId: number): Playlist[] {
-    return this.playlists.filter(playlist => playlist.ownerId == ownerId);
   }
 
 }

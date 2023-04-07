@@ -29,12 +29,12 @@ export class UserPlaylistsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-      this.playlistService.getUserPlaylists(this.user_id)
-      .subscribe((playlists: Playlist[]) => {
-        console.log(playlists)
 
-        this.numPlaylists = playlists.length;
-      });
-      console.log(this.numPlaylists)
-    }
+        console.log(this.playlistService.getUserPlaylists(this.user_id).subscribe(playlists => {
+        this.playlists = playlists;
+        this.numPlaylists = this.playlists.length;
+
+
+    }))
   }
+}

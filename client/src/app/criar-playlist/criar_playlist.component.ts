@@ -43,10 +43,11 @@ export class CriarPlaylistComponent implements OnInit {
        );
 
         const novaPlaylist = this.playlistService.addPlaylist(playlist).subscribe(newPlaylists => {
-          console.log(newPlaylists)
+            console.log(newPlaylists)
             alert('Playlist criada com sucesso')
             this.router.navigate(['/minhas_playlists']);
           });
+
       }
 
 

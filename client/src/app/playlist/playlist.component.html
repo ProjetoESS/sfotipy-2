@@ -7,8 +7,8 @@
     </i>
     <p class="playlist_avalibility">{{selectedPlaylist.availability}}</p>
     <p class="playlist_owner">{{selectedPlaylist.owner}}</p>
-    <p (click)="show_followers(selectedPlaylist.id)" class="playlist_followers">{{selectedPlaylist.followers.length}}
-      seguidores</p>
+    <!-- <p (click)="show_followers(selectedPlaylist.id)" class="playlist_followers">{{selectedPlaylist.followers.length}}
+      seguidores</p> -->
   </div>
   <ul class="categories">
     <li class="category" *ngFor="let category of playlistCategories">{{ category.name }}</li>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { PlaylistService } from '../playlist.service';
-import { Category } from '../../../../common/category';
+import { PlaylistService } from '../../playlist.service';
+import { Category } from '../../../../../common/category';
 import { ActivatedRoute, Router } from '@angular/router';
 
 

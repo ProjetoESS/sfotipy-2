@@ -20,6 +20,10 @@ import { MusicsFilterPipe } from './musics-filter.pipe';
 
 import { HomepageComponent } from './homepage/homepage.component';
 import { ProfilepageComponent } from './navbar/profilepage/profilepage.component';
+import { PlaylistsFilterPipe } from './playlists-filter.pipe';
+import { PlaylistEmAltaComponent } from './playlist-em-alta/playlist-em-alta.component';
+import { MusicasEmAltaComponent } from './musicas-em-alta/musicas-em-alta.component';
+import { ArtistasEmAltaComponent } from './artistas-em-alta/artistas-em-alta.component';
 
 
 @NgModule({
@@ -37,7 +41,12 @@ import { ProfilepageComponent } from './navbar/profilepage/profilepage.component
     PlaylistCardRecomendComponent,
     MusicsFilterPipe,
     HomepageComponent,
-    ProfilepageComponent
+    ProfilepageComponent,
+    PlaylistsFilterPipe,
+    ProfilepageComponent,
+    PlaylistEmAltaComponent,
+    MusicasEmAltaComponent,
+    ArtistasEmAltaComponent
   ],
   imports: [
     BrowserModule,

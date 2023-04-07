@@ -55,7 +55,7 @@ export class PlaylistService {
 
   deleteCategory(id: number, category: Category) {
     const data = JSON.stringify(category);
-    return this.http.delete(this.appURL + "playlist/category" + id, {body : data})
+    return this.http.delete(this.appURL + "playlist/category" + id, { body: data })
       .pipe(retry(2));
   }
 
@@ -85,5 +85,10 @@ export class PlaylistService {
       .pipe(
         retry(2)
       );
+  }
+
+  getPlaylists(): Playlist[] {
+    let playlistList: Playlist[] = [];
+    return playlistList;
   }
 }

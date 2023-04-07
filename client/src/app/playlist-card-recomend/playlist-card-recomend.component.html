@@ -2,7 +2,7 @@
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css"/>
 </head>
 
-<div class="playlist-card" (click)="openPlaylistOnClick(playlist.link)">
+<div class="playlist-card" (click)="openPlaylistOnClick($event, playlist)">
   <img class="playlist-image" [src]="playlist.image" alt="Playlist cover">
   <div class="card-body">
     <h5 class="card-title">{{ playlist.name }}</h5>
@@ -17,7 +17,7 @@
         <div class="option" (click)="likePlaylist($event)">
           <i class="fas fa-heart"></i>
         </div>
-        <div class="option" (click)="sharePlaylist($event)">
+        <div class="option" (click)="sharePlaylist($event, playlist)">
           <i class="fas fa-share"></i>
         </div>
         <div class="option" (click)="savePlaylist($event)">

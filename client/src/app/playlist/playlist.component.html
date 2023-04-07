@@ -1,13 +1,14 @@
 <div class="campo1">
   <div class="img"></div>
   <div class="textsdiv">
-    <p class="playlist_name">{{selectedPlaylist.name}}</p> 
+    <p class="playlist_name">{{selectedPlaylist.name}}</p>
     <i *ngIf="selectedPlaylist.availability === 'public'" (click)="showShareLink()" class="fas fa-share">
       <app-compartilhamento *ngIf="showLink"> </app-compartilhamento>
     </i>
     <p class="playlist_avalibility">{{selectedPlaylist.availability}}</p>
     <p class="playlist_owner">{{selectedPlaylist.owner}}</p>
-    <p (click)="show_followers(selectedPlaylist.id)" class="playlist_followers">{{selectedPlaylist.followers.length}} seguidores</p>
+    <p (click)="show_followers(selectedPlaylist.id)" class="playlist_followers">{{selectedPlaylist.followers.length}}
+      seguidores</p>
   </div>
   <ul class="categories">
     <li class="category" *ngFor="let category of playlistCategories">{{ category.name }}</li>
@@ -22,9 +23,9 @@
     <button type="button" class="music_button"></button>
     <div class="song_info">
       <p class="song_name">{{song.name}}</p>
-      <p class="song_artist">{{song.artist}}</p>
+      <p class="song_artist">{{song.author}}</p>
+    </div>
+    <button type="button" class="addmusic" (click)="redirectaddmusic()"></button>
   </div>
-  <button type="button" class="addmusic" (click)="redirectaddmusic()"></button>
-</div>
 
-<div class="playbar"></div>
+  <div class="playbar"></div>

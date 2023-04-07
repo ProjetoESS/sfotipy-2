@@ -20,6 +20,8 @@ export class PageBuscaComponent {
   musicIsActive: boolean = true;
   playlistIsActive: boolean = true;
 
+  showAllMusic: boolean = false;
+
   playlists: Playlist[] = [];
   musics: Music[] = [];
   categories: Category[] = [

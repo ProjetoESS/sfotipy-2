@@ -11,12 +11,18 @@
                     for="playlists" (click)="activatePlaylists()">Playlists</button>
             </div>
         </div>
-        <div id="section-musicas" name="content-section" class="musicaslista" *ngIf="musicIsActive">
+        <div id="section-musicas" name="content-section" *ngIf="musicIsActive">
             <div class="empty-search-message" *ngIf="!(musics | musicsFilter: filterText)?.length">
                 <p>Nenhum resultado encontrado.</p>
             </div>
-            <app-music-card *ngFor="let m of musics | musicsFilter: filterText" [id]="m.id" [name]="m.name"
-                [author]="m.author" [music]="m"></app-music-card>
+            <div class="musicaslista">
+                <app-music-card
+                    *ngFor="let m of musics | musicsFilter: filterText | slice:0:(showAllMusic ? undefined : 6)"
+                    [id]="m.id" [name]="m.name" [author]="m.author" [music]="m"></app-music-card>
+            </div>
+            <div class="see-more-message" (click)="showAllMusic = !showAllMusic">
+                {{ showAllMusic ? 'Ver menos músicas' : 'Ver mais músicas' }}
+            </div>
         </div>
         <hr>
         <div id="section-playlists" name="content-section" *ngIf="playlistIsActive">

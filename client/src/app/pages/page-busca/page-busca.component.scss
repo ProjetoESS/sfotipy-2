@@ -49,5 +49,12 @@ input[name="search"] {
 .musicaslista {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
-    grid-gap: 10px;
+    grid-gap: 35px;
+    margin: 15px 0;
+}
+
+.see-more-message {
+    text-align: end;
+    width: 100%;
+    cursor: pointer;
 }

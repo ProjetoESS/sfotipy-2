@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { Playlist } from '../../../../common/playlist';
 import { PlaylistService } from '../playlist.service';
 import { Router, NavigationExtras } from '@angular/router';
 
@@ -10,7 +11,7 @@ import { Router, NavigationExtras } from '@angular/router';
 })
 export class CriarPlaylistComponent implements OnInit {
     user_id: number = 1
-    id: number = 1
+    id: number = 6
     successMessage: string = '';
 
     constructor(private playlistService : PlaylistService, private router: Router) {}
@@ -26,23 +27,31 @@ export class CriarPlaylistComponent implements OnInit {
         return;
       }
 
-      const playlist = {
-        id: this.id,
-        name: nome_playlist.value,
-        ownerId: this.user_id,
-        image: imagem_playlist.value,
-        isPublic: publicavel.checked,
-        categories: [],
-        songs: []
-      };
-      this.id++;
-      this.playlistService.addPlaylist(playlist).subscribe((response: any) => {
-        console.log(playlist)
-        alert('Playlist criada com sucesso')
-        this.router.navigate(['/minhas_playlists']);
-      });
 
-    }
+     /* if (this.playlistService.verificarNomePlaylistExistente(nome_playlist.value)) {
+        console.log('Já existe uma playlist com esse nome');
+        exibe mensagem de erro ou faz outra ação apropriada
+      } else {*/
+        const playlist = new Playlist(
+          0,
+         nome_playlist.value,
+         this.user_id,
+         imagem_playlist.value,
+         publicavel.checked,
+         [],
+         []
+       );
+
+        const novaPlaylist = this.playlistService.addPlaylist(playlist).subscribe(newPlaylists => {
+          console.log(newPlaylists)
+            alert('Playlist criada com sucesso')
+            this.router.navigate(['/minhas_playlists']);
+          });
+      }
+
+
+
+
 
     ngOnInit(): void {
       const input_pic: HTMLElement | null = document.querySelector('.picture_input');

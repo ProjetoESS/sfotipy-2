@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Clipboard } from '@angular/cdk/clipboard'
+import { Clipboard } from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'app-compartilhamento',

@@ -16,7 +16,8 @@
     "body-parser": "^1.18.2",
     "express": "^4.15.4",
     "nodemailer": "^6.1.1",
-    "request": "^2.34"
+    "request": "^2.34",
+    "rxjs": "^7.8.0"
   },
   "devDependencies": {
     "@types/jasmine": "^2.8.9",

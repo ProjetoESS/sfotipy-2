@@ -6,21 +6,21 @@ export class Playlist {
     ownerId: number;
     name: string;
     image: string;
-    songs: Music[];
+    musics: Music[];
     isPublic: boolean; 
     categories: Category[] | string[];
     
     
 
-    constructor(playlist: Playlist) {
-        this.id = playlist.id;
-        this.ownerId = playlist.ownerId;
-        this.name = playlist.name;
-        this.image = "";
-        this.songs = [];
-        this.categories = playlist.categories;
-        this.isPublic = playlist.isPublic;
-    }
+    constructor(id: number, name: string, ownerId: number, image: string, isPublic: boolean, categories: Category[] | string[], musics: Music[]) {
+        this.id = id;
+        this.name = name;
+        this.ownerId = ownerId;
+        this.image = image;
+        this.isPublic = isPublic;
+        this.categories = categories;
+        this.musics = musics;
+      }
 
     
 

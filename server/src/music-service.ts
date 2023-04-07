@@ -18,7 +18,7 @@ export class MusicService {
     update(music: Music): Music {
         console.log(this.musics)
         var result: Music = this.musics.find(c => c.id == c.id);
-        if (result) result.update(music);
+        //if (result) result.update(music);
         return result;
     }
 

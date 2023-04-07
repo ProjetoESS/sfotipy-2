@@ -22,6 +22,26 @@ app.use(allowCrossDomain);
 
 app.use(bodyParser.json());
 
+app.post('/criar_playlist', (req: express.Request, res: express.Response) => {
+  const newPlaylist = <Playlist>req.body;
+  
+  try {
+    const result = playlistService.addPlaylist(newPlaylist);
+    if (result) {
+      return res.status(201).send(result);
+    }
+    return res.status(400).send({ message: 'Não foi possível criar a playlist.' });
+  } catch (error) {
+    return res.status(500).send({ message: 'Erro interno do servidor.' });
+  }
+});
+
+app.get('/minhas_playlists', (req, res) => {
+  const ownerId = parseInt(req.query.ownerId as string); // busca o ownerId a partir dos parâmetros da requisição
+  const userPlaylists = playlistService.getUserPlaylists(ownerId); // busca as playlists do usuário a partir do PlaylistService
+  res.json(userPlaylists); // retorna as playlists como uma resposta JSON
+});
+
 app.get('/musics', function (req, res) {
   const musics = musicService.get();
   res.send(JSON.stringify(musics));
@@ -62,23 +82,6 @@ app.put('/musics', function (req: express.Request, res: express.Response) {
   }
 });
 
-app.post('/criar_playlist', (req: express.Request, res: express.Response) => {
-  const newPlaylist = <Playlist>req.body;
-  
-  try {
-    const result = playlistService.addPlaylist(newPlaylist);
-    if (result) {
-      res.status(201).send(result);
-    } else {
-      res.status(403).send({ message: "Music list is full" });
-    }
-  } catch (err) {
-    const { message } = err;
-    res.status(400).send({ message })
-  }
-
-  res.status(200).json({ message: 'Playlist criada com sucesso!' });
-});
 
 app.get('/playlist/category/:id', function (req: express.Request, res: express.Response) {
   const playlistId: number = Number(req.params.id);

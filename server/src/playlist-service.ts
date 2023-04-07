@@ -1,16 +1,42 @@
 import { Category } from '../../common/Category';
 import { Playlist } from '../../common/playlist'
+import { of, Observable } from 'rxjs';
 
 
 
 export class PlaylistService {
   playlists: Playlist[] = [];
   categories: string[] = [];
-  idCount: number = 0
+  idCount: number = 6
   playlistEA: Playlist[] = [];
   playlistPB: Playlist[] = [];
   playlistRC: Playlist[] = [];
   playlistMN: Playlist[] = [];
+
+  addPlaylist(playlist: Playlist): Playlist[] {
+    playlist.id = this.idCount;
+    this.playlists.push(playlist);
+    this.idCount++
+    return this.playlists;
+  }
+
+  verificarNomePlaylistExistente(nomePlaylist: string): boolean {
+    if (this.playlists.length === 0) {
+      return false
+    } else {
+      for (let playlist of this.playlists) {
+        if (playlist.name === nomePlaylist) {
+          return true;
+        }
+      }
+    }
+    
+    return false;
+  }
+
+  get(): Playlist[] {
+    return this.playlists;
+  }
 
   getEA(): Playlist[] {
     return this.playlistEA;
@@ -19,7 +45,7 @@ export class PlaylistService {
   getPB(): Playlist[] {
     return this.playlistPB;
   }
-
+  
   getRC(): Playlist[] {
     return this.playlistRC;
   }
@@ -53,14 +79,6 @@ export class PlaylistService {
 
   getAllCategories(): string[] {
     return this.categories;
-  }
-
-
-  addPlaylist(playlist: Playlist): Playlist{
-    const newPlaylist = new Playlist(playlist)
-    this.playlists.push(newPlaylist);
-    return newPlaylist;
-  
   }
 
   getUserPlaylists(ownerId: number): Playlist[] {

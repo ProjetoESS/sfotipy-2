@@ -24,6 +24,26 @@ export class PlaylistService {
 
   constructor(private http: HttpClient) { }
 
+  addPlaylist(playlist: Playlist) {
+    return this.http.post(`${this.appURL}/criar_playlist`, playlist, this.httpOptions)
+      .pipe(retry(2));
+  }
+
+  verificarNomePlaylistExistente(name: string): Observable<boolean> {
+    const url = `${this.appURL}/?name=${name}`;
+    return this.http.get<boolean>(url);
+  }
+
+  getUserPlaylists(ownerId: number): Observable<Playlist[]>  {
+    const url = `${this.appURL}/minhas_playlists`;
+    return this.http.get<any[]>(url).pipe(
+      map(response => {
+        return response.map(item => new Playlist(item.id, item.name, item.ownerId, item.musics, item.isPublic, item.categories, item.image));
+      })
+    );
+
+  }
+
   getCategories(id: number) {
     this.http.get<string[]>(this.appURL + "playlist/category/" + id)
       .pipe(
@@ -50,16 +70,6 @@ export class PlaylistService {
   addNewCategory(id: number, category: string) {
     return this.http.post(this.appURL + "playlist/category/" + id, category, this.httpOptions)
       .pipe(retry(2));
-  }
-
-  addPlaylist(playlist: Playlist) {
-    return this.http.post(`${this.appURL}/criar_playlist`, playlist, this.httpOptions)
-      .pipe(retry(2));
-  }
-
-  getUserPlaylists(ownerId: number): Observable<Playlist[]>  {
-    return this.http.get<Playlist[]>(this.appURL + "/minhas_playlists").pipe(
-      map((res: any[]) => res.map((item: any) => new Playlist(item))))
   }
 
   deleteCategory(id: number, category: string) {

@@ -42,6 +42,16 @@ app.get('/musics/:id', function (req, res) {
   }
 });
 
+app.delete('/musics/:id', function (req, res) {
+  const id: number = Number(req.params.id);
+  const music = musicService.delete(id);
+  if (music) {
+    res.status(200).send({ message: `Music ${id} deleted` });
+  } else {
+    res.status(404).send({ message: `Music ${id} could not be deleted` });
+  }
+});
+
 app.post('/musics', function (req: express.Request, res: express.Response) {
   const music: Music = <Music>req.body;
   try {
@@ -66,6 +76,61 @@ app.put('/musics', function (req: express.Request, res: express.Response) {
     res.status(404).send({ message: `Music ${music.id} could not be found.` });
   }
 });
+
+//ROTAS DE PLAYLIST
+
+app.get('/playlists', function (req, res) {
+  const playlists = playlistService.get();
+  res.send(JSON.stringify(playlists));
+});
+
+app.get('/playlist/:id', function (req, res) {
+  const id: number = Number(req.params.id);
+  const playlist = playlistService.getById(id);
+  if (playlist) {
+    res.send(playlist);
+  } else {
+    res.status(404).send({ message: `Playlist ${id} could not be found` });
+  }
+});
+
+app.delete('/playlist/:id', function (req, res) {
+  const id: number = Number(req.params.id);
+  const playlist = playlistService.delete(id);
+  if (playlist) {
+    res.status(200).send({ message: `Playlist ${id} deleted` });
+  } else {
+    res.status(404).send({ message: `Playlist ${id} could not be deleted` });
+  }
+});
+
+app.post('/playlist', function (req: express.Request, res: express.Response) {
+  const playlist: Playlist = <Playlist>req.body;
+  try {
+    const result = playlistService.add(playlist);
+    if (result) {
+      res.status(201).send(result);
+    } else {
+      res.status(403).send({ message: "Playlist list is full" });
+    }
+  } catch (err) {
+    const { message } = err;
+    res.status(400).send({ message })
+  }
+});
+
+app.put('/playlist', function (req: express.Request, res: express.Response) {
+  const playlist: Playlist = <Playlist>req.body;
+  const result = playlistService.update(playlist);
+  if (result) {
+    res.send(result);
+  } else {
+    res.status(404).send({ message: `Playlist ${playlist.id} could not be found.` });
+  }
+});
+
+
+// ROTAS DE CATEGORIAS
 
 app.get('/playlist/category/:id', function (req: express.Request, res: express.Response) {
   const playlistId: number = Number(req.params.id);
@@ -115,26 +180,6 @@ app.delete('/playlist/category/:id', function (req: express.Request, res: expres
   } catch {
     res.send({ message: "Category does not exist in playlist" })
   }
-})
-
-app.get('/playlist-em-alta', function (req, res) {
-  const plstEa = playlistService.getEA();
-  res.send(JSON.stringify(plstEa));
-})
-
-app.get('/playlist-publica', function (req, res) {
-  const plstEa = playlistService.getPB();
-  res.send(JSON.stringify(plstEa));
-})
-
-app.get('/playlist-recomendada', function (req, res) {
-  const plstEa = playlistService.getRC();
-  res.send(JSON.stringify(plstEa));
-})
-
-app.get('/playlist-minha', function (req, res) {
-  const plstEa = playlistService.getMN();
-  res.send(JSON.stringify(plstEa));
 })
 
 const corsOptions = {

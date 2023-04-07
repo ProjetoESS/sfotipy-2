@@ -5,9 +5,9 @@
                 <input id="text-search-input" type="search" [(ngModel)]="filterText" name="search" role="search"
                     placeholder="O que você quer ouvir?">
                 <br>
-                <button class="tag" [ngClass]="{active: musicIsActive}" for="musicas"
+                <button id="option-musicas" class="tag" [ngClass]="{active: musicIsActive}" for="musicas"
                     (click)="activateMusicas()">Músicas</button>
-                <button class="tag" [ngClass]="{active: playlistIsActive}" for="playlists"
+                <button id="option-playlists" class="tag" [ngClass]="{active: playlistIsActive}" for="playlists"
                     (click)="activatePlaylists()">Playlists</button>
             </div>
         </div>

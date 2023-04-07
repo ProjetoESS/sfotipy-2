@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { CriacaoCategoriasComponent } from './criacao-categorias/criacao-categorias.component';
+import { CriacaoCategoriasComponent } from './pages/criacao-categorias/criacao-categorias.component';
 
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,11 +14,11 @@ import { PlaylistCardComponent } from './playlist-card/playlist-card.component';
 import { MusicCardComponent } from './music-card/music-card.component';
 import { PageBuscaComponent } from './pages/page-busca/page-busca.component';
 import { PlayerComponent } from './player/player.component';
-import { PlaylistRecomendadasComponent } from './playlist-recomendadas/playlist-recomendadas.component';
+import { PlaylistRecomendadasComponent } from './pages/playlist-recomendadas/playlist-recomendadas.component';
 import { PlaylistCardRecomendComponent } from './playlist-card-recomend/playlist-card-recomend.component';
 import { MusicsFilterPipe } from './musics-filter.pipe';
 
-import { HomepageComponent } from './homepage/homepage.component';
+import { HomepageComponent } from './pages/homepage/homepage.component';
 import { ProfilepageComponent } from './navbar/profilepage/profilepage.component';
 import { PlaylistsFilterPipe } from './playlists-filter.pipe';
 import { PlaylistEmAltaComponent } from './playlist-em-alta/playlist-em-alta.component';

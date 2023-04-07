@@ -21,8 +21,8 @@ export class PlaylistService {
     return newPlaylist;
   }
 
-  update(playlist: Playlist): Playlist {
-    const result: Playlist = this.playlists.find(c => c.id == playlist.id);
+  update(playlist: Playlist): Playlist | null {
+    const result = this.playlists.find(c => c.id == playlist.id);
     if (result instanceof Playlist) {
       result.update(<Playlist>playlist);
       return result;

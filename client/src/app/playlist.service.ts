@@ -59,36 +59,17 @@ export class PlaylistService {
       .pipe(retry(2));
   }
 
-  getPlaylistEA(): Observable<Playlist[]> {
-    return this.http.get<Playlist[]>(this.appURL + "/playlist-em-alta")
+  getPlaylists(): Observable<Playlist[]> {
+    return this.http.get<Playlist[]>(this.appURL + "/playlists")
       .pipe(
         retry(2)
       );
   }
 
-  getPlaylistPB(): Observable<Playlist[]> {
-    return this.http.get<Playlist[]>(this.appURL + "/playlist-publica")
+  getPlaylistById(id: number): Observable<Playlist> {
+    return this.http.get<Playlist>(this.appURL + "/playlist/" + id)
       .pipe(
         retry(2)
       );
-  }
-
-  getPlaylistRC(): Observable<Playlist[]> {
-    return this.http.get<Playlist[]>(this.appURL + "/playlist-recomendada")
-      .pipe(
-        retry(2)
-      );
-  }
-
-  getPlaylistMP(): Observable<Playlist[]> {
-    return this.http.get<Playlist[]>(this.appURL + "/playlist-minha")
-      .pipe(
-        retry(2)
-      );
-  }
-
-  getPlaylists(): Playlist[] {
-    let playlistList: Playlist[] = [];
-    return playlistList;
   }
 }

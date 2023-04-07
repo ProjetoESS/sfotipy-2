@@ -37,4 +37,11 @@ export class MusicasService {
         retry(2)
       );
   }
+
+  getMusicsById(id: number): Observable<Music> {
+    return this.http.get<Music>(this.taURL + "/musics/" + id)
+      .pipe(
+        retry(2)
+      );
+  }
 }

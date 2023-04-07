@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { retry, map } from 'rxjs/operators';
+import { Music } from '../../../common/music';
 
-import { Music } from '../../../server/src/music';
+
 
 @Injectable({
   providedIn: 'root'

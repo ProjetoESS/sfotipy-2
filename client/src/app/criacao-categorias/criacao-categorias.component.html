@@ -4,13 +4,13 @@
 
     <div id="selected-categories">
         <div *ngFor="let categories in playlistCategories" class="category" (click)="deleteCategory(categories)">
-            {{categories}}
+            {{categories.name}}
         </div>
     </div>
 
     <div id="categories">
         <div *ngFor="let category in allCategories" class="category" (click)="addNewCategory(category)">
-            {{ category }}
+            {{ category.name }}
         </div>
     </div>
 

@@ -17,7 +17,17 @@
     right: max(calc((100vw - 1200px))/2, 1em);
 }
 
-.filter {}
+.tag {
+    border: 3px solid #0D2538;
+    border-radius: 25px;
+    padding: 0.25em 0.5em;
+    margin: 10px;
+}
+
+.tag.active {
+    background-color: #0D2538;
+    color: #FFF;
+}
 
 input[name="search"] {
     background: #D9D9D9;
@@ -27,4 +37,11 @@ input[name="search"] {
     padding: 8px;
 
     width: 80%;
+}
+
+.playlistslista {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }

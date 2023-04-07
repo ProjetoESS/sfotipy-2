@@ -1,12 +1,16 @@
 import { Music } from "./music";
-import { Category } from "./Category";
+import { Category } from "./category";
 
 export class Playlist {
     id: number;
     name: string;
-    categories: Category[] | string[];
+    categories: Category[];
     musics: Music[];
     image: string;
+    link: string;
+    owner: string;
+    followers: string[];
+    availability: string;
 
     constructor(playlist: Playlist) {
         this.id = playlist.id;
@@ -14,12 +18,9 @@ export class Playlist {
         this.categories = playlist.categories;
         this.musics = playlist.musics;
         this.image = playlist.image;
+        this.link = playlist.link;
+        this.owner = playlist.owner;
+        this.followers = playlist.followers;
+        this.availability = playlist.availability;
     }
-
-    /*update(playlist: Playlist): void {
-        this.id = playlist.id;
-        this.categories = playlist.categories;
-        this.musics = playlist.musics;
-    }*/ 
-
 }

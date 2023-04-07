@@ -4,8 +4,8 @@ import { Category } from "./category";
 export class Playlist {
     id: number;
     name: string;
-    categories: Category[];
-    musics: Music[];
+    categories: number[];
+    musics: number[];
     image: string;
     link: string;
     owner: string;
@@ -22,5 +22,32 @@ export class Playlist {
         this.owner = playlist.owner;
         this.followers = playlist.followers;
         this.availability = playlist.availability;
+    }
+
+    update(playlist: Playlist): void {
+        if (playlist.name) {
+            this.name = playlist.name;
+        }
+        if (playlist.categories) {
+            this.categories = playlist.categories;
+        }
+        if (playlist.musics) {
+            this.musics = playlist.musics;
+        }
+        if (playlist.image) {
+            this.image = playlist.image;
+        }
+        if (playlist.link) {
+            this.link = playlist.link;
+        }
+        if (playlist.owner) {
+            this.owner = playlist.owner;
+        }
+        if (playlist.followers) {
+            this.followers = playlist.followers;
+        }
+        if (playlist.availability) {
+            this.availability = playlist.availability;
+        }
     }
 }

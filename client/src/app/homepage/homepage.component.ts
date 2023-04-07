@@ -41,7 +41,8 @@ export class HomepageComponent {
         image: 'playlist1.jpg',
         link: "",
         owner: "",
-        followers: []
+        followers: [],
+        availability: "public"
       },
       {
         id: 2,
@@ -54,7 +55,8 @@ export class HomepageComponent {
         image: 'playlist2.jpg',
         link: "",
         owner: "",
-        followers: []
+        followers: [],
+        availability: "public"
       },
       {
         id: 3,
@@ -67,7 +69,8 @@ export class HomepageComponent {
         image: 'playlist3.jpg',
         link: "",
         owner: "",
-        followers: []
+        followers: [],
+        availability: "public"
       },
       {
         id: 4,
@@ -80,7 +83,8 @@ export class HomepageComponent {
         image: 'playlist4.jpg',
         link: "",
         owner: "",
-        followers: []
+        followers: [],
+        availability: "public"
       },
       {
         id: 5,
@@ -93,7 +97,8 @@ export class HomepageComponent {
         image: 'playlist5.jpg',
         link: "",
         owner: "",
-        followers: []
+        followers: [],
+        availability: "public"
       }
     ];
     this.plPub = this.plEma;

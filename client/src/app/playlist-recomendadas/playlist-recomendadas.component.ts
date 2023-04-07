@@ -4,6 +4,7 @@ import { Playlist } from '../../../../common/playlist';
 import { Music } from '../../../../common/music';
 import { PlaylistService } from "../../../../server/src/playlist-service"
 import { PlaylistComponent } from "./../playlist/playlist.component"
+import { Category } from '../../../../common/category';
 @Component({
   selector: 'app-playlist-recomendadas',
   templateUrl: './playlist-recomendadas.component.html',
@@ -98,86 +99,93 @@ export class PlaylistRecomendadasComponent implements OnInit {
   playlists:Playlist[] = [{ 
     id: 30, 
     name: 'Mix', 
-    categories: ['pop', 'rock'], 
+    categories: [<Category>{'name': 'pop'}, <Category>{'name': 'rock'}], 
     musics: [
       this.musics[0], this.musics[1]
     ], 
     image: 'https://upload.wikimedia.org/wikipedia/en/1/1b/NF_-_The_Search.png',
     link: "",
     owner: "",
-    followers: []
+    followers: [],
+    availability: "public"
   },
   { 
     id: 31, 
     name: 'Melhores Pop', 
-    categories: ['jazz', 'blues'], 
+    categories: [<Category>{'name': 'pop'}, <Category>{'name': 'rock'}], 
     musics: [
       this.musics[1], this.musics[2]
     ],  
     image: 'https://i1.sndcdn.com/artworks-000066040951-b04o57-t500x500.jpg',
     link: "",
     owner: "",
-    followers: []
+    followers: [],
+    availability: "public"
   },
   { 
     id: 32, 
     name: 'Melhores Rock', 
-    categories: ['pop', 'hip hop'], 
+    categories: [<Category>{'name': 'pop'}, <Category>{'name': 'rock'}], 
     musics: [
       this.musics[2], this.musics[3], this.musics[5]
     ],
     image: 'https://i.scdn.co/image/ab67616d0000b273b47d8a9e844189f69d5e58a7',
     link: "",
     owner: "",
-    followers: []
+    followers: [],
+    availability: "public"
   },
   { 
     id: 33, 
     name: 'Indie', 
-    categories: ['rock', 'metal'], 
+    categories: [<Category>{'name': 'pop'}, <Category>{'name': 'rock'}], 
     musics: [
       this.musics[2], this.musics[3], this.musics[5]
     ],
     image: 'https://cdns-images.dzcdn.net/images/cover/e94c38ba711b8f36ac1b541d0a14aa73/350x350.jpg',
     link: "",
     owner: "",
-    followers: []
+    followers: [],
+    availability: "public"
   },
   { 
     id: 34, 
     name: 'Eletrônica', 
-    categories: ['pop', 'indie'], 
+    categories: [<Category>{'name': 'pop'}, <Category>{'name': 'rock'}], 
     musics: [
       this.musics[2], this.musics[3], this.musics[5]
     ],
     image: 'https://images.booksense.com/images/090/360/9781632360090.jpg',
     link: "",
     owner: "",
-    followers: []
+    followers: [],
+    availability: "public"
   },
   { 
     id: 35, 
     name: 'Para você', 
-    categories: ['pop', 'indie'], 
+    categories: [<Category>{'name': 'pop'}, <Category>{'name': 'rock'}], 
     musics: [
       this.musics[2], this.musics[3], this.musics[5]
     ],
     image: 'https://images.booksense.com/images/090/360/9781632360090.jpg',
     link: "",
     owner: "",
-    followers: []
+    followers: [],
+    availability: "public"
   },
   { 
     id: 36, 
     name: 'Para dormir', 
-    categories: ['pop', 'indie'], 
+    categories: [<Category>{'name': 'pop'}, <Category>{'name': 'rock'}], 
     musics: [
       this.musics[2], this.musics[3], this.musics[5]
     ],
     image: 'https://images.booksense.com/images/090/360/9781632360090.jpg',
     link: "",
     owner: "",
-    followers: []
+    followers: [],
+    availability: "public"
   }]
 
   playlistService: PlaylistService = new PlaylistService;

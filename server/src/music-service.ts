@@ -40,21 +40,7 @@ export class MusicService {
     } else {
       return false;
     }
-
-    delete(id: number): boolean {
-        const index = this.musics.findIndex(c => c.id === id);
-        if (index >= 0) {
-            this.musics.splice(index, 1);
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    get(): Music[] {
-        return this.musics;
-    }
+  }
 
   get(): Music[] {
     return this.musics;

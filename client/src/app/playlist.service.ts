@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { retry, map } from 'rxjs/operators';
-
 import { Playlist } from '../../../common/playlist';
 import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Category } from '../../../common/category';
 
 @Injectable({
@@ -109,5 +107,25 @@ export class PlaylistService {
       .pipe(
         retry(2)
       );
+  }
+
+  recommendPlaylists(userPlaylists: Playlist[], allPlaylists: Playlist[]): Observable<Playlist[]> {
+    const categoriesMine = new Set(userPlaylists.flatMap(p => p.categories));
+    let sortPlaylist = (allPlaylists.sort((p1, p2) => {
+      const categoriesP1 = new Set(p1.categories);
+      const categoriesP2 = new Set(p2.categories);
+      const similarityP1 = this.getSimilarityScore(categoriesMine, categoriesP1);
+      const similarityP2 = this.getSimilarityScore(categoriesMine, categoriesP2);
+      return similarityP2 - similarityP1;
+    }));
+
+    const recommendedPlaylist = new BehaviorSubject<Playlist[]>(sortPlaylist);
+    return recommendedPlaylist.asObservable();
+  }
+
+  getSimilarityScore(setA: Set<number>, setB: Set<number>): number {
+    const intersection = new Set([...setA].filter(x => setB.has(x)));
+    const union = new Set([...setA, ...setB]);
+    return intersection.size / union.size;
   }
 }

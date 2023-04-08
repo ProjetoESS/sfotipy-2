@@ -11,7 +11,7 @@ import { BehaviorSubject } from 'rxjs';
 export class UserService {
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
   private appURL = 'http://localhost:3000';
-  private userId = new BehaviorSubject<number>(0);;
+  private userId = new BehaviorSubject<number>(0);
 
   private httpOptions = {
     headers: new HttpHeaders({

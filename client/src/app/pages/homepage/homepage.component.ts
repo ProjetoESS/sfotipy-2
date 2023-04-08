@@ -34,9 +34,15 @@ export class HomepageComponent {
     this.playlistService.getPlaylists().subscribe(
       as => { this.playlists = as;
               this.playlistsPublic = this.playlists.filter((playlist) => playlist.availability === "public"); 
-              this.playlistsRecommended = this.playlistsPublic.sort((a, b) => b.followers.length - a.followers.length).slice(0, 3);
+              this.playlistsUser = this.playlists.filter(playlist => playlist.ownerId == this.userId);
               this.playlistsTrending = this.playlists.sort((a, b) => b.followers.length - a.followers.length);
-              this.playlistsUser = this.playlists.filter(playlist => playlist.ownerId == this.userId) },
+
+              //this.playlistsRecommended = this.playlistsPublic.sort((a, b) => b.followers.length - a.followers.length).slice(0, 3);
+              this.playlistService.recommendPlaylists(this.playlistsUser, this.playlists).subscribe(
+                as => { this.playlistsRecommended = as; },
+                msg => { alert(msg.message); }
+              );
+            },
       msg => { alert(msg.message); }
     );
 

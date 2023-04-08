@@ -1,5 +1,6 @@
 import { Category } from '../../common/category';
 import { Playlist } from '../../common/playlist'
+import { CategoryService } from './category-service';
 
 export class PlaylistService {
 
@@ -12,7 +13,7 @@ export class PlaylistService {
       "image": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2f679c136425765.61f96b4f03c85.jpg",
       "link": "",
       "owner": "",
-      "followers": ['a','b'],
+      "followers": ['a', 'b'],
       "availability": "public"
     }),
     new Playlist(<Playlist>{
@@ -21,7 +22,7 @@ export class PlaylistService {
       'categories': [1],
       'musics': [0, 1],
       'image':
-          'https://cdn.ibispaint.com/movie/190/771/190771621/image190771621l.png',
+        'https://cdn.ibispaint.com/movie/190/771/190771621/image190771621l.png',
       'link': '',
       'owner': 'sfotipy',
       'followers': [],
@@ -33,7 +34,7 @@ export class PlaylistService {
       'categories': [6],
       'musics': [1, 2],
       'image':
-          'https://i.pinimg.com/originals/5c/0b/34/5c0b34be1d361293b0bd2eb124967cd9.png',
+        'https://i.pinimg.com/originals/5c/0b/34/5c0b34be1d361293b0bd2eb124967cd9.png',
       'link': '',
       'owner': 'sfotipy',
       'followers': [],
@@ -45,7 +46,7 @@ export class PlaylistService {
       'categories': [1, 2],
       'musics': [0, 1, 2],
       'image':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVzSe2QANTVbnbNBQX3qMXejQHPLRBtAMDgA&usqp=CAU',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVzSe2QANTVbnbNBQX3qMXejQHPLRBtAMDgA&usqp=CAU',
       'link': '',
       'owner': 'sfotipy',
       'followers': [],
@@ -57,7 +58,7 @@ export class PlaylistService {
       'categories': [2],
       'musics': [1, 2],
       'image':
-          'https://thumbs.dreamstime.com/b/listen-to-sleep-music-color-line-icon-autonomous-sensory-meridian-response-sound-waves-as-symbol-enjoying-sounds-editable-211152511.jpg',
+        'https://thumbs.dreamstime.com/b/listen-to-sleep-music-color-line-icon-autonomous-sensory-meridian-response-sound-waves-as-symbol-enjoying-sounds-editable-211152511.jpg',
       'link': '',
       'owner': 'sfotipy',
       'followers': ['a', 'b', 'c'],
@@ -69,7 +70,7 @@ export class PlaylistService {
       'categories': [2],
       'musics': [1],
       'image':
-          'https://assets.dragoart.com/images/140589_502/how-to-draw-strange-music-logo-strange-music-step-5_5e4cb46a6013c9.70891777_74088_5_3.gif',
+        'https://assets.dragoart.com/images/140589_502/how-to-draw-strange-music-logo-strange-music-step-5_5e4cb46a6013c9.70891777_74088_5_3.gif',
       'link': '',
       'owner': 'sfotipy',
       'followers': [],
@@ -105,7 +106,7 @@ export class PlaylistService {
       "image": "https://cdns-images.dzcdn.net/images/artist/21e53b8e8285f84f60601d895c39c900/500x500.jpg",
       "link": "",
       "owner": "",
-      "followers": ['a','b'],
+      "followers": ['a', 'b'],
       "availability": "public"
     }),
     new Playlist(<Playlist>{
@@ -122,15 +123,10 @@ export class PlaylistService {
   ];
 
   idCount: number = 10;
-  
+
   categories: Category[] = [];
 
-  add(playlist: Playlist): Playlist {
-    const newPlaylist = new Playlist(<Playlist>{ ...playlist, id: this.idCount });
-    this.playlists.push(newPlaylist);
-    this.idCount++;
-    return newPlaylist;
-  }
+  categoryService: CategoryService = new CategoryService;
 
   addPlaylist(playlist: Playlist): Playlist[] {
     playlist.id = this.idCount;
@@ -143,9 +139,9 @@ export class PlaylistService {
     const playlistsReturn: Playlist[] = []
     for (const playlist of this.playlists) {
       console.log(ownerId, playlist.ownerId)
-     if (playlist.ownerId == ownerId) {
-      playlistsReturn.push(playlist)
-     }
+      if (playlist.ownerId == ownerId) {
+        playlistsReturn.push(playlist)
+      }
     }
     return playlistsReturn;
   }
@@ -160,7 +156,7 @@ export class PlaylistService {
         }
       }
     }
-    
+
     return false;
   }
 
@@ -172,7 +168,14 @@ export class PlaylistService {
     return this.playlists.find(({ id }) => id == playlistId);
   }
 
-  update(playlist: Playlist): Playlist|null {
+  add(playlist: Playlist): Playlist {
+    const newPlaylist = new Playlist(<Playlist>{ ...playlist, id: this.idCount });
+    this.playlists.push(newPlaylist);
+    this.idCount++;
+    return newPlaylist;
+  }
+
+  update(playlist: Playlist): Playlist | null {
     const result = this.playlists.find(c => c.id == playlist.id);
     if (result instanceof Playlist) {
       result.update(<Playlist>playlist);
@@ -200,7 +203,7 @@ export class PlaylistService {
     }
     // playlist.categories.push(category);
     var idx = playlist.categories.findIndex(ar => ar == category);
-    if(idx == -1) {
+    if (idx == -1) {
       playlist.categories.push(category);
     }
     return playlist;
@@ -210,13 +213,25 @@ export class PlaylistService {
     const playlist = this.getById(playlistId);
     if (playlist?.categories.includes(category)) {
       var idx = playlist.categories.findIndex(ar => ar == category);
-      if(idx != -1) {
+      if (idx != -1) {
         playlist.categories.splice(idx, 1);
       }
     } else {
       return null;
     }
     return playlist;
+  }
+
+  getPlaylistCategory(playlistId: number): Category[] {
+    const playlist = this.getById(playlistId);
+    const playlistCategories = playlist.categories;
+
+    var categories: Category[] = [];
+    playlistCategories.forEach(categoryId => {
+      categories.push(this.categoryService.getById(categoryId));
+    });
+
+    return categories;
   }
 
 }

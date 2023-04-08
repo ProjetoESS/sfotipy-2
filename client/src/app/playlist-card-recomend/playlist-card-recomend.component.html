@@ -7,8 +7,8 @@
   <div class="card-body">
     <h5 name="nome" class="card-title">{{ playlist.name }}</h5>
   </div>
-  <div class="overlay">
-    <div class="play-button" [ngClass]="{'playing': playlist.isPlaying}" (click)="startPlayingOnClick($event)">
+  <div class="overlay" name = "overlay">
+    <div class="play-button" name = "play-button" [ngClass]="{'playing': playlist.isPlaying}" (click)="startPlayingOnClick($event)">
       <i class="fa" [ngClass]="{'fa-play': !playlist.isPlaying, 'fa-pause': playlist.isPlaying}"></i>
     </div>
     <div class="options">

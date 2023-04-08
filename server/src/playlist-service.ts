@@ -45,7 +45,18 @@ export class PlaylistService {
       "owner": "",
       "followers": [],
       "availability": "public"
-  })
+    }),
+    new Playlist(<Playlist>{
+      "id": 4,
+      "name": "The NBHD",
+      "categories": [],
+      "musics": [21, 22, 23, 24],
+      "image": "https://i.pinimg.com/564x/78/35/fb/7835fb0bef03a3332c89c681f020da87--music-bands-.jpg",
+      "link": "",
+      "owner": "",
+      "followers": [],
+      "availability": "public"
+    })
   ];
   idCount: number = 0;
   categories: Category[] = [];

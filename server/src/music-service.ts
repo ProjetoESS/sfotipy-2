@@ -23,6 +23,10 @@ export class MusicService {
         new Music(<Music>{ 'id': 18, 'name': 'Legends Never Die', 'author': 'Against the Current', 'image': 'https://i.ytimg.com/vi/r6zIGXun57U/maxresdefault.jpg', 'link': 'https://www.youtube.com/watch?v=r6zIGXun57U', 'duration': 227, 'category': 1 }),
         new Music(<Music>{ 'id': 19, 'name': 'Phoenix', 'author': 'Cailin Russo, Chrissy Costanza', 'image': '', 'link': 'https://www.youtube.com/watch?v=eE9tSJA-7hc', 'duration': 222, 'category': 1 }),
         new Music(<Music>{ 'id': 20, 'name': 'Rise', 'author': 'The Glitch Mob, Mako, and The Word Alive', 'image': 'https://static.wikia.nocookie.net/leagueoflegends/images/2/2b/Rise_Single_Cover.jpg/revision/latest/scale-to-width-down/1000?cb=20180913021319', 'link': 'https://www.youtube.com/watch?v=fB8TyLTD7EE', 'duration': 257, 'category': 1 }),
+        new Music(<Music>{ 'id': 21, 'name': 'Sweater Weather', 'author': 'The Neighbourhood', 'image': 'https://i.scdn.co/image/ab67616d0000b2738265a736a1eb838ad5a0b921', 'link': '', 'duration': 213, 'category': 1 }),
+        new Music(<Music>{ 'id': 22, 'name': 'Daddy Issues', 'author': 'The Neighbourhood', 'image': 'https://i.scdn.co/image/ab67616d0000b2733066581d697fbdee4303d685', 'link': '', 'duration': 238, 'category': 1 }),
+        new Music(<Music>{ 'id': 23, 'name': 'Afraid', 'author': 'The Neighbourhood', 'image': 'https://upload.wikimedia.org/wikipedia/en/1/1f/Afraid_The_Neighbourhood.png', 'link': '', 'duration': 251, 'category': 1 }),
+        new Music(<Music>{ 'id': 24, 'name': 'Cry Baby', 'author': 'The Neighbourhood', 'image': 'https://ih1.redbubble.net/image.540389728.5898/st,small,507x507-pad,600x600,f8f8f8.u2.jpg', 'link': '', 'duration': 221, 'category': 1 })
     ];
     idCount: number = 6;
 

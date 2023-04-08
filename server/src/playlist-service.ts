@@ -81,6 +81,45 @@ export class PlaylistService {
   
   categories: Category[] = [];
 
+  add(playlist: Playlist): Playlist {
+    const newPlaylist = new Playlist(<Playlist>{ ...playlist, id: this.idCount });
+    this.playlists.push(newPlaylist);
+    this.idCount++;
+    return newPlaylist;
+  }
+
+  addPlaylist(playlist: Playlist): Playlist[] {
+    playlist.id = this.idCount;
+    this.playlists.push(playlist);
+    this.idCount++
+    return this.playlists;
+  }
+
+  getUserPlaylists(ownerId: any): Playlist[] {
+    const playlistsReturn: Playlist[] = []
+    for (const playlist of this.playlists) {
+      console.log(ownerId, playlist.ownerId)
+     if (playlist.ownerId == ownerId) {
+      playlistsReturn.push(playlist)
+     }
+    }
+    return playlistsReturn;
+  }
+
+  verificarNomePlaylistExistente(nomePlaylist: string): boolean {
+    if (this.playlists.length === 0) {
+      return false
+    } else {
+      for (let playlist of this.playlists) {
+        if (playlist.name === nomePlaylist) {
+          return true;
+        }
+      }
+    }
+    
+    return false;
+  }
+
   get(): Playlist[] {
     return this.playlists;
   }

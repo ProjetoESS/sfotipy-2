@@ -32,6 +32,29 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //ROTAS DE MUSICAS
 
+app.post('/criar_playlist', (req: express.Request, res: express.Response) => {
+  const newPlaylist = <Playlist>req.body;
+  
+  try {
+    const result = playlistService.addPlaylist(newPlaylist);
+    if (result) {
+      return res.status(201).send(result);
+    }
+    return res.status(400).send({ message: 'Não foi possível criar a playlist.' });
+  } catch (error) {
+    return res.status(500).send({ message: 'Erro interno do servidor.' });
+  }
+});
+
+
+app.get('/minhas_playlists', (req, res) => {
+  //const ownerId = parseInt(req.query.ownerId as string);
+  const ownerId = 1
+  console.log(ownerId) // busca o ownerId a partir dos parâmetros da requisição
+  const userPlaylists = playlistService.getUserPlaylists(ownerId); // busca as playlists do usuário a partir do PlaylistService
+  res.json(userPlaylists); // retorna as playlists como uma resposta JSON
+});
+
 app.get('/musics', function (req, res) {
   const musics = musicService.get();
   res.send(JSON.stringify(musics));
@@ -134,6 +157,28 @@ app.put('/playlist', function (req: express.Request, res: express.Response) {
   }
 });
 
+app.post('/criar_playlist', (req: express.Request, res: express.Response) => {
+  const newPlaylist = <Playlist>req.body;
+  
+  try {
+    const result = playlistService.addPlaylist(newPlaylist);
+    if (result) {
+      return res.status(201).send(result);
+    }
+    return res.status(400).send({ message: 'Não foi possível criar a playlist.' });
+  } catch (error) {
+    return res.status(500).send({ message: 'Erro interno do servidor.' });
+  }
+});
+
+
+app.get('/minhas_playlists', (req, res) => {
+  //const ownerId = parseInt(req.query.ownerId as string);
+  const ownerId = 1
+  console.log(ownerId) // busca o ownerId a partir dos parâmetros da requisição
+  const userPlaylists = playlistService.getUserPlaylists(ownerId); // busca as playlists do usuário a partir do PlaylistService
+  res.json(userPlaylists); // retorna as playlists como uma resposta JSON
+});
 
 // ROTAS DE CATEGORIAS
 
@@ -163,7 +208,7 @@ app.get('/category', function (req: express.Request, res: express.Response) {
   }
 });
 
-app.post('/category/:id', function (req: express.Request, res: express.Response) {
+/*app.post('/category/:id', function (req: express.Request, res: express.Response) {
   const id: number = Number(req.params.id);
   const newCategory: Category = req.body.category;
   const result = playlistService.addNewCategory(id, newCategory.id);
@@ -173,7 +218,7 @@ app.post('/category/:id', function (req: express.Request, res: express.Response)
     res.send({"failure" : "The category was not registered"});
   }
 });
-
+*/
 app.delete('/category/:id', function (req: express.Request, res: express.Response) {
   const id: number = Number(req.params.id);
   const category: number = req.body.category.id;

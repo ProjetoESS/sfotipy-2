@@ -6,6 +6,7 @@ import { PlaylistService } from 'src/app/playlist.service';
 import { Music } from '../../../../../common/music';
 import { Playlist } from '../../../../../common/playlist';
 import { Category } from '../../../../../common/category';
+import { CategoryService } from 'src/app/category.service';
 
 @Component({
   selector: 'app-page-busca',
@@ -24,14 +25,7 @@ export class PageBuscaComponent {
 
   playlists: Playlist[] = [];
   musics: Music[] = [];
-  categories: Category[] = [
-    new Category(<Category>{ 'id': 1, 'name': 'Pop' }),
-    new Category(<Category>{ 'id': 2, 'name': 'Rock' }),
-    new Category(<Category>{ 'id': 3, 'name': 'Electronic' }),
-    new Category(<Category>{ 'id': 4, 'name': 'Hip-Hop' }),
-    new Category(<Category>{ 'id': 5, 'name': 'KPop' }),
-    new Category(<Category>{ 'id': 6, 'name': 'Indie' })
-  ];
+  categories: Category[] = [];
 
   selectedCategories: Category[] = [];
 
@@ -39,7 +33,8 @@ export class PageBuscaComponent {
 
   constructor(
     private musicasService: MusicasService,
-    private playlistService: PlaylistService) { }
+    private playlistService: PlaylistService,
+    private categoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.musicasService.getMusics()
@@ -52,6 +47,7 @@ export class PageBuscaComponent {
         as => { this.playlists = as; },
         msg => { alert(msg.message); }
       );
+    this.categories = this.categoryService.getCategories();
   }
 
   activateMusicas() {

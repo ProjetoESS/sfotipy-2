@@ -5,7 +5,6 @@ export class Playlist {
     id: number;
     ownerId: number;
     name: string;
-    ownerId : number;
     categories: number[];
     musics: number[];
     image: string;
@@ -18,7 +17,6 @@ export class Playlist {
         this.id = playlist.id;
         this.ownerId = playlist.ownerId;
         this.name = playlist.name;
-        this.ownerId = playlist.ownerId;
         this.categories = playlist.categories;
         this.musics = playlist.musics;
         this.image = playlist.image;
@@ -46,6 +44,9 @@ export class Playlist {
         }
         if (playlist.owner) {
             this.owner = playlist.owner;
+        }
+        if (playlist.ownerId) {
+            this.ownerId = playlist.ownerId;
         }
         if (playlist.followers) {
             this.followers = playlist.followers;

@@ -1,7 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Playlist } from '../../../../common/playlist';
-import { Router } from '@angular/router';
-import { Clipboard } from '@angular/cdk/clipboard';
+import {Clipboard} from '@angular/cdk/clipboard';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Router} from '@angular/router';
+
+import {Playlist} from '../../../../common/playlist';
 
 @Component({
   selector: 'app-playlist-card-recomend',
@@ -9,10 +10,10 @@ import { Clipboard } from '@angular/cdk/clipboard';
   styleUrls: ['./playlist-card-recomend.component.scss']
 })
 export class PlaylistCardRecomendComponent {
-  //constructor(private router: Router) {};
   constructor(private clipboard: Clipboard, private router: Router) {};
 
   @Input() playlist: any;
+  showCopyMessage = false;
 
   @Output() play = new EventEmitter<any>();
 
@@ -20,7 +21,7 @@ export class PlaylistCardRecomendComponent {
     this.router.navigate(['/playlist/', playlist.id])
   }
 
-  startPlayingOnClick(event: Event){
+  startPlayingOnClick(event: Event) {
     event.stopPropagation();
     this.play.emit(this.playlist);
   }
@@ -31,8 +32,12 @@ export class PlaylistCardRecomendComponent {
 
   sharePlaylist(event: Event, playlist: Playlist) {
     event.stopPropagation();
-    const str: string = "localhost:4200/playlist/" + playlist.id;
+    const str: string = 'localhost:4200/playlist/' + playlist.id;
     this.clipboard.copy(str);
+    this.showCopyMessage = true;
+    setTimeout(() => {
+      this.showCopyMessage = false;
+    }, 1500);
   }
 
   savePlaylist(event: Event) {

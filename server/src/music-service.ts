@@ -1,4 +1,4 @@
-import { Music } from "../../common/music";
+import {Music} from '../../common/music';
 
 export class MusicService {
     musics: Music[] = [
@@ -26,39 +26,38 @@ export class MusicService {
     ];
     idCount: number = 6;
 
-    add(music: Music): Music {
-        const newMusic = new Music(<Music>{ id: this.idCount, ...music });
-        this.musics.push(newMusic);
-        this.idCount++;
-        return newMusic;
-    }
+  add(music: Music): Music {
+    const newMusic = new Music(<Music>{id: this.idCount, ...music});
+    this.musics.push(newMusic);
+    this.idCount++;
+    return newMusic;
+  }
 
-    update(music: Music): Music {
-        const result: Music = this.musics.find(c => c.id == music.id);
-        if (result instanceof Music) {
-            result.update(<Music>music);
-            return result;
-        } else {
-            return null;
-        }
+  update(music: Music): Music {
+    const result: Music = this.musics.find(c => c.id == music.id);
+    if (result instanceof Music) {
+      result.update(<Music>music);
+      return result;
+    } else {
+      return null;
     }
+  }
 
-    delete(id: number): boolean {
-        const index = this.musics.findIndex(c => c.id === id);
-        if (index >= 0) {
-            this.musics.splice(index, 1);
-            return true;
-        }
-        else {
-            return false;
-        }
+  delete(id: number): boolean {
+    const index = this.musics.findIndex(c => c.id === id);
+    if (index >= 0) {
+      this.musics.splice(index, 1);
+      return true;
+    } else {
+      return false;
     }
+  }
 
-    get(): Music[] {
-        return this.musics;
-    }
+  get(): Music[] {
+    return this.musics;
+  }
 
-    getById(musicId: number): Music {
-        return this.musics.find(({ id }) => id == musicId);
-    }
+  getById(musicId: number): Music {
+    return this.musics.find(({id}) => id == musicId);
+  }
 }

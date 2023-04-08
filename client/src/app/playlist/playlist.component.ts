@@ -49,19 +49,17 @@ export class PlaylistComponent implements OnInit {
         const id = params?.get('id');
         if (id) {
           this.playlistService.getPlaylistById(parseInt(id))
-            .subscribe(
-              as => {
-                this.selectedPlaylist = as;
-                for (var i in this.selectedPlaylist.musics) {
-                  this.musicService.getMusicsById(parseInt(i))
-                    .subscribe(
-                      as => { this.playlistSongs.push(as), console.log(this.playlistSongs) },
-                      msg => { alert(msg.message); }
-                    );
-                }
-              },
-              msg => { alert(msg.message); }
-            );
+          .subscribe(
+            as => { this.selectedPlaylist = as;
+              for (var idMusic in this.selectedPlaylist.musics) {
+                this.musicService.getMusicsById(parseInt(idMusic))
+              .subscribe(
+                as => { this.playlistSongs.push(as), console.log(this.playlistSongs)},
+                msg => { alert(msg.message); }
+              );
+              } },
+            msg => { alert(msg.message); }
+          );
         }
         // this.playlistCategories = this.categories.filter(
         //     cat => this.selectedPlaylist.categories.includes(cat));

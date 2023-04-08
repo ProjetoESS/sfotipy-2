@@ -12,42 +12,71 @@ export class PlaylistService {
       "link": "",
       "owner": "",
       "followers": [],
-      "availability": "public"}),
-    new Playlist(<Playlist>{
-      "id": 1,
-      "name": "Rocking with Imagine Dragons",
-      "categories": [],
-      "musics": [10, 11, 12, 13, 14],
-      "image": "https://i.pinimg.com/736x/98/e6/d8/98e6d8ab4d4414eef0e90bb1382bfb86.jpg",
-      "link": "",
-      "owner": "",
-      "followers": [],
       "availability": "public"
     }),
     new Playlist(<Playlist>{
-      "id": 2,
-      "name": "Eminem's Greatest Hits",
-      "categories": [],
-      "musics": [15, 16, 17],
-      "image": "https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/eminem-miracle-studio.jpg",
-      "link": "",
-      "owner": "",
-      "followers": [],
-      "availability": "public"
+      'id': 1,
+      'name': 'Melhores Pop',
+      'categories': [1],
+      'musics': [0, 1],
+      'image':
+          'https://cdn.ibispaint.com/movie/190/771/190771621/image190771621l.png',
+      'link': '',
+      'owner': 'sfotipy',
+      'followers': [],
+      'availability': 'public'
     }),
     new Playlist(<Playlist>{
-      "id": 3,
-      "name": "League of Legends Mix",
-      "categories": [],
-      "musics": [18, 19, 20],
-      "image": "https://cdns-images.dzcdn.net/images/artist/21e53b8e8285f84f60601d895c39c900/500x500.jpg",
-      "link": "",
-      "owner": "",
-      "followers": [],
-      "availability": "public"
-  })
+      'id': 2,
+      'name': 'Melhores Indie',
+      'categories': [6],
+      'musics': [1, 2],
+      'image':
+          'https://i.pinimg.com/originals/5c/0b/34/5c0b34be1d361293b0bd2eb124967cd9.png',
+      'link': '',
+      'owner': 'sfotipy',
+      'followers': [],
+      'availability': 'public'
+    }),
+    new Playlist(<Playlist>{
+      'id': 3,
+      'name': 'Para Você',
+      'categories': [1, 2],
+      'musics': [0, 1, 2],
+      'image':
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVzSe2QANTVbnbNBQX3qMXejQHPLRBtAMDgA&usqp=CAU',
+      'link': '',
+      'owner': 'sfotipy',
+      'followers': [],
+      'availability': 'public'
+    }),
+    new Playlist(<Playlist>{
+      'id': 4,
+      'name': 'Para Dormir',
+      'categories': [2],
+      'musics': [1, 2],
+      'image':
+          'https://thumbs.dreamstime.com/b/listen-to-sleep-music-color-line-icon-autonomous-sensory-meridian-response-sound-waves-as-symbol-enjoying-sounds-editable-211152511.jpg',
+      'link': '',
+      'owner': 'sfotipy',
+      'followers': [],
+      'availability': 'public'
+    }),
+    new Playlist(<Playlist>{
+      'id': 5,
+      'name': 'Melhores Rock',
+      'categories': [2],
+      'musics': [1],
+      'image':
+          'https://assets.dragoart.com/images/140589_502/how-to-draw-strange-music-logo-strange-music-step-5_5e4cb46a6013c9.70891777_74088_5_3.gif',
+      'link': '',
+      'owner': 'sfotipy',
+      'followers': [],
+      'availability': 'public'
+    }),
   ];
-  idCount: number = 0;
+
+  idCount: number = 6;
   categories: Category[] = [];
 
   get(): Playlist[] {
@@ -65,7 +94,7 @@ export class PlaylistService {
     return newPlaylist;
   }
 
-  update(playlist: Playlist): Playlist | null {
+  update(playlist: Playlist): Playlist|null {
     const result = this.playlists.find(c => c.id == playlist.id);
     if (result instanceof Playlist) {
       result.update(<Playlist>playlist);

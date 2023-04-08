@@ -26,24 +26,56 @@ async function assertMusicsWithSameName(n, name) {
 }
 
 defineSupportCode(function ({ Given, When, Then }) {
+    //Given que eu esteja logado como um usuário comum no serviço (usuário “vgc3” e a senha “abc1234”)
+    
     Given(/^eu estou na página "([^\"]*)"$/, async (name) => {
         await browser.get("http://localhost:4200/busca");
-        await expect(browser.getTitle()).to.eventually.equal('Sfotipy');
-    })
-
-    Given('tenha optado por não fazer login (entrado como guest)', function () {
-        // Log in as a guest user
+        await expect(browser.getTitle()).to.eventually.equal(name);
     });
+
+    When(/^eu cliclo no botão "([^\"]*)"$/, async (home) => {
+        await element(by.name(home.toString())).click();
+    });
+
+    //Then qualquer definição não salva feita em outra página será perdida
+
+    Then(/^eu estou vou para a página "([^\"]*)"$/, async (name) => {
+        await browser.get("http://localhost:4200/");
+        await expect(browser.getTitle()).to.eventually.equal(name);
+    });
+
+    //////////////////////////////////////////////////////////////////////////
+
+    Given(/^eu estou na página "([^\"]*)"$/, async (name) => {
+        await browser.get("http://localhost:4200/busca");
+        await expect(browser.getTitle()).to.eventually.equal(name);
+    });
+
+    //And logado com o usuário “vgc3” e a senha “abc1234”
 
     When('eu percorro a página', function () {
         // Navigate through the page
     });
 
-    Then('eu consigo ver apenas as “musicas em alta” e as “playlists públicas”', function () {
-        const musicasEmAlta = element(by.css('.musicas-em-alta'));
-        const playlistsPublicas = element(by.css('.playlists-publicas'));
-      
-        expect(musicasEmAlta.isPresent()).to.be.true;
-        expect(playlistsPublicas.isPresent()).to.be.true;
+    //Then eu consigo ver “recomendações”, “musicas em alta” e as “minhas playlists”
+
+    //////////////////////////////////////////////////////////////////////////
+
+    Given(/^eu estou na página "([^\"]*)"$/, async (name) => {
+        await browser.get("http://localhost:4200/busca");
+        await expect(browser.getTitle()).to.eventually.equal(name);
     });
+
+    //And logado com o usuário “vgc3” e a senha “abc1234”
+
+    When(/^eu cliclo no botão "([^\"]*)"$/, async (sair) => {
+        await element(by.name(sair.toString())).click();
+    });
+
+    Then(/^eu sou direcionado novamente para a seção "([^\"]*)"$/, async (login) => {
+        await browser.get("http://localhost:4200/login");
+        await expect(browser.getTitle()).to.eventually.equal(login);
+    });
+
+    //And minhas credenciais serão pedidas novamente
 });

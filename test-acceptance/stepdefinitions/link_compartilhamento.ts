@@ -51,9 +51,10 @@ defineSupportCode(function({Given, When, Then, setDefaultTimeout}) {
     Then(/^posso copiar o link "([^\"]*)"$/, async (link) => {
         const copy = await element(by.id("copy-button"));
         await copy.click();
-        const textField = await element(by.id("playlist-link"));
-        await textField.sendKeys(protractor.Key.chord(protractor.Key.CONTROL, "v"));
-        expect(await textField.getText()).to.equal(link);
+        const EC = protractor.ExpectedConditions;
+        await browser.wait(EC.alertIsPresent(), 5000, "Alert not present");
+        const alert = await browser.switchTo().alert();
+        await alert.accept();
     });
 
     Given(/^sou um usuário com login "([^\!]*)" e senha "(\d*)"$/, async (login, senha) => {

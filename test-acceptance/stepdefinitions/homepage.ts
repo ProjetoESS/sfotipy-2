@@ -78,4 +78,24 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     //And minhas credenciais serão pedidas novamente
+
+    //////////////////////////////////////////////////////////////////////////
+
+    Given(/^eu estou na página "([^\"]*)"$/, async (name) => {
+        await browser.get("http://localhost:4200/busca");
+        await expect(browser.getTitle()).to.eventually.equal(name);
+    });
+
+    //And tenha optado por não fazer login (entrado como guest)
+
+    When(/^eu cliclo no botão "([^\"]*)"$/, async (sair) => {
+        await element(by.name(sair.toString())).click();
+    });
+
+    Then(/^eu sou levado para a seção "([^\"]*)"$/, async (login) => { 
+        await browser.get("http://localhost:4200/login");
+        await expect(browser.getTitle()).to.eventually.equal(login);
+    });
+
+    //And aparece a mensagem "Você precisa estar logado para acessar playlists próprias"
 });

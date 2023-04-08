@@ -16,6 +16,7 @@ import { UserService } from 'src/app/user.service';
 export class HomepageComponent {
   playlists: Playlist[] = [];
   playlistsTrending: Playlist[] = [];
+  playlistsRecommended: Playlist[] = [];
   playlistsPublic: Playlist[] = [];
   playlistsUser: Playlist[] = [];
   isLogged: boolean = false;
@@ -31,6 +32,7 @@ export class HomepageComponent {
     this.playlistService.getPlaylists().subscribe(
       as => { this.playlists = as;
               this.playlistsPublic = this.playlists.filter((playlist) => playlist.availability === "public"); 
+              this.playlistsRecommended = this.playlistsPublic.sort((a, b) => b.followers.length - a.followers.length).slice(0, 3);
               this.playlistsTrending = this.playlists.sort((a, b) => b.followers.length - a.followers.length);
               this.playlistsUser = this.playlists.filter(playlist => playlist.ownerId == this.userId) },
       msg => { alert(msg.message); }

@@ -4,8 +4,27 @@ import { CategoryService } from '../src/category-service';
 
 describe("O servico de categorias", () => {
     var categoryService : CategoryService;
+    var timeout : number;
 
     beforeEach(() => categoryService = new CategoryService())
+
+    beforeAll(() => {
+        process.stdout.write("category-service: ");
+    });
+
+    beforeEach(() => {
+        categoryService = new CategoryService()
+        timeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+    });
+
+    afterEach(() => {
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = timeout;
+    });
+
+    afterAll(() => {
+        console.log("\n");
+    });
 
     it("Espera que existam 6 categorias", () => {
         expect(categoryService.get().length).toBe(6);

@@ -95,11 +95,10 @@ export class PlaylistService {
     return this.playlists;
   }
 
-  getUserPlaylists(ownerId: any): Playlist[] {
+  getUserPlaylists(ownerName: any): Playlist[] {
     const playlistsReturn: Playlist[] = []
     for (const playlist of this.playlists) {
-      console.log(ownerId, playlist.ownerId)
-     if (playlist.ownerId == ownerId) {
+     if (playlist.owner == ownerName) {
       playlistsReturn.push(playlist)
      }
     }
@@ -128,12 +127,6 @@ export class PlaylistService {
     return this.playlists.find(({ id }) => id == playlistId);
   }
 
-  add(playlist: Playlist): Playlist {
-    const newPlaylist = new Playlist(<Playlist>{ ...playlist, id: this.idCount });
-    this.playlists.push(newPlaylist);
-    this.idCount++;
-    return newPlaylist;
-  }
 
   update(playlist: Playlist): Playlist|null {
     const result = this.playlists.find(c => c.id == playlist.id);

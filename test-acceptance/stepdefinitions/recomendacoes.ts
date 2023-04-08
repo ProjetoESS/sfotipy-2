@@ -3,6 +3,7 @@ import {$, browser, by, element, ElementArrayFinder} from 'protractor';
 
 let chai = require('chai').use(require('chai-as-promised'));
 let expect = chai.expect;
+import clipboard from 'clipboardy';
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -73,6 +74,16 @@ defineSupportCode(function({Given, When, Then}) {
         await browser.actions().mouseMove(optionsIcon).perform();
       })
 
+  When(/^I try to share the playlist "([^\"]*)"$/, async (name) => {
+    const playlistCard = await getPlaylistCardByName(name);
+    const optionsIcon = playlistCard.element(by.name('options-button'));
+    const shareIcon = playlistCard.element(by.name('Share'));
+    await browser.actions().mouseMove(optionsIcon).perform();
+    await browser.actions().mouseMove(shareIcon).perform();
+    await browser.executeScript(
+      'arguments[0].click()', shareIcon.getWebElement());
+  })
+
   Then(/^I'm on the playlist page "([^\"]*)"$/, async (name) => {
     const playlistname = element.all(by.name('playlist-name'));
     const names = await playlistname.getText();
@@ -91,5 +102,13 @@ defineSupportCode(function({Given, When, Then}) {
         for (const option of expectedOptions) {
           expect(optionsmapped).to.include(option);
         }
+      });
+
+  Then(
+      /^the system shows a confirmation message that the link to the playlist "([^\"]*)" has been copied$/,
+      async (name) => {
+        const playlistCard = await getPlaylistCardByName(name);
+        const confirmationMessage = await playlistCard.element(by.name('share-message'));
+        expect(await confirmationMessage.isDisplayed()).to.be.true;
       });
 })

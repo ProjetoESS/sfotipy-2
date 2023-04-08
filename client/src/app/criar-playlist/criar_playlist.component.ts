@@ -44,7 +44,7 @@ export class CriarPlaylistComponent implements OnInit {
       "ownerId": this.user_id,
       "name": this.nome_playlist,
       "categories": [],
-      "musics": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+      "musics": [],
       "image": this.imagem_playlist,
       "link": "",
       "owner": "",

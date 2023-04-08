@@ -1,11 +1,11 @@
 <head>
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css"/>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css" />
 </head>
 
 <div class="playlist-card" (click)="openPlaylistOnClick($event, playlist)">
   <img class="playlist-image" [src]="playlist.image" alt="Playlist cover">
   <div class="card-body">
-    <h5 class="card-title">{{ playlist.name }}</h5>
+    <h5 name="nome" class="card-title">{{ playlist.name }}</h5>
   </div>
   <div class="overlay">
     <div class="play-button" [ngClass]="{'playing': playlist.isPlaying}" (click)="startPlayingOnClick($event)">

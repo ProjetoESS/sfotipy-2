@@ -5,22 +5,34 @@
                 <input id="text-search-input" type="search" [(ngModel)]="filterText" name="search" role="search"
                     placeholder="O que você quer ouvir?">
                 <br>
-                <button class="tag" [ngClass]="{active: musicIsActive}" for="musicas"
-                    (click)="activateMusicas()">Músicas</button>
-                <button class="tag" [ngClass]="{active: playlistIsActive}" for="playlists"
-                    (click)="activatePlaylists()">Playlists</button>
+                <button id="option-musicas" name="type-option" class="tag" [ngClass]="{active: musicIsActive}"
+                    for="musicas" (click)="activateMusicas()">Músicas</button>
+                <button id="option-playlists" name="type-option" class="tag" [ngClass]="{active: playlistIsActive}"
+                    for="playlists" (click)="activatePlaylists()">Playlists</button>
             </div>
         </div>
-        <div class="musicaslista" *ngIf="musicIsActive">
-            <app-music-card *ngFor="let m of musics | musicsFilter: filterText" [id]="m.id" [name]="m.name"
-                [author]="m.author" [music]="m"></app-music-card>
+        <div id="section-musicas" name="content-section" *ngIf="musicIsActive">
+            <div class="empty-search-message" *ngIf="!(musics | musicsFilter: filterText)?.length">
+                <p>Nenhum resultado encontrado.</p>
+            </div>
+            <div class="musicaslista">
+                <app-music-card
+                    *ngFor="let m of musics | musicsFilter: filterText | slice:0:(showAllMusic ? undefined : 6)"
+                    [id]="m.id" [name]="m.name" [author]="m.author" [music]="m"></app-music-card>
+            </div>
+            <div class="see-more-message" (click)="showAllMusic = !showAllMusic">
+                {{ showAllMusic ? 'Ver menos músicas' : 'Ver mais músicas' }}
+            </div>
         </div>
         <hr>
-        <div *ngIf="playlistIsActive">
+        <div id="section-playlists" name="content-section" *ngIf="playlistIsActive">
             <h1>Playlists</h1>
             <div class="playlistslista">
-                <app-playlist-card *ngFor="let p of playlists | playlistsFilter: filterText"
-                    [playlist]="p"></app-playlist-card>
+                <div class="empty-search-message" *ngIf="!(playlists | playlistsFilter: filterText)?.length">
+                    <p>Nenhum resultado encontrado.</p>
+                </div>
+                <app-playlist-card-recomend *ngFor="let p of playlists | playlistsFilter: filterText"
+                    [playlist]="p"></app-playlist-card-recomend>
             </div>
         </div>
     </div>

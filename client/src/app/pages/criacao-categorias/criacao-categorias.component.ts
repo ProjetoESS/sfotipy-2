@@ -34,7 +34,8 @@ export class CriacaoCategoriasComponent {
     .subscribe(
       ar => {
         if (ar) {
-          var idx = this.playlistCategories.findIndex(ar => ar.id == category.id);
+          console.log(ar.name);
+          var idx = this.playlistCategories.findIndex(ar => ar.name == category.name);
           if(idx != -1) {
             this.playlistCategories.splice(idx, 1);
           }

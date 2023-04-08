@@ -176,7 +176,6 @@ app.post('/category/:id', function (req: express.Request, res: express.Response)
 
 app.delete('/category/:id', function (req: express.Request, res: express.Response) {
   const id: number = Number(req.params.id);
-  console.log(req.body);
   const category: number = req.body.category.id;
   const result = playlistService.deleteCategory(id, category);
   if(result) {

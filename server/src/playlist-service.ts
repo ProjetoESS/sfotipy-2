@@ -6,7 +6,7 @@ export class PlaylistService {
   playlists: Playlist[] = [
     <Playlist>{
       "id" : 0,
-      "name": "jeffferson",
+      "name": "Minha playlist",
       "categories": [1],
       "musics": [],
       "image": "https://upload.wikimedia.org/wikipedia/en/1/1b/NF_-_The_Search.png",
@@ -14,6 +14,17 @@ export class PlaylistService {
       "owner": "",
       "followers": [],
       "availability": "public"
+    },
+    <Playlist>{
+      "id" : 1,
+      "name" : "Outra playlist",
+      "categories" : [0],
+      "musics" : [1, 2],
+      "image" : "https://upload.wikimedia.org/wikipedia/en/1/1b/NF_-_The_Search.png",
+      "link" : "",
+      "owner" : "",
+      "followers" : [],
+      "availability" : "private"
     }
   ];
   idCount: number = 0;
@@ -67,7 +78,12 @@ export class PlaylistService {
   deleteCategory(playlistId: number, category: number): Playlist|null {
     const playlist = this.getById(playlistId);
     if (playlist?.categories.includes(category)) {
-      playlist?.categories.splice(playlistId, 1);
+      // playlist.categories.splice
+      var idx = playlist.categories.findIndex(ar => ar == category);
+      if(idx != -1) {
+        playlist.categories.splice(idx, 1);
+      }
+      // playlist?.categories.splice(playlistId, 1);
     } else {
       return null;
     }

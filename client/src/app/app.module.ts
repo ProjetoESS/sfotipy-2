@@ -26,6 +26,7 @@ import { MusicasEmAltaComponent } from './musicas-em-alta/musicas-em-alta.compon
 import { ArtistasEmAltaComponent } from './artistas-em-alta/artistas-em-alta.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { CompartilhamentoComponent } from './compartilhamento/compartilhamento.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { CompartilhamentoComponent } from './compartilhamento/compartilhamento.c
     MusicasEmAltaComponent,
     ArtistasEmAltaComponent,
     PlaylistComponent,
-    CompartilhamentoComponent
+    CompartilhamentoComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

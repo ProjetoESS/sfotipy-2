@@ -4,6 +4,7 @@ import { Category } from "./category";
 export class Playlist {
     id: number;
     name: string;
+    ownerId : number;
     categories: number[];
     musics: number[];
     image: string;
@@ -15,6 +16,7 @@ export class Playlist {
     constructor(playlist: Playlist) {
         this.id = playlist.id;
         this.name = playlist.name;
+        this.ownerId = playlist.ownerId;
         this.categories = playlist.categories;
         this.musics = playlist.musics;
         this.image = playlist.image;

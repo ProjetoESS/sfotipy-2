@@ -10,13 +10,14 @@
                 <button id="option-playlists" name="type-option" class="tag" [ngClass]="{active: playlistIsActive}"
                     for="playlists" (click)="activatePlaylists()">Playlists</button>
                 <br>
-                <span *ngFor="let cat of selectedCategories" class="badge">{{cat.name}} <button class="close-button"
-                        (click)="removeCategory(cat)">x</button></span>
+                <span *ngFor="let cat of selectedCategories" class="badge"
+                    id="selected-cat-{{cat.name.toUpperCase()}}">{{cat.name}}
+                    <button class="close-button" (click)="removeCategory(cat)">x</button></span>
                 <details>
-                    <summary></summary>
+                    <summary id="selector-cat"></summary>
                     <div class="content">
-                        <span class="badge" *ngFor="let cat of getCategories()"
-                            (click)="selectCategory(cat)">{{cat.name}}
+                        <span *ngFor="let cat of getCategories()" id="select-cat-{{cat.name.toUpperCase()}}"
+                            class="badge" (click)="selectCategory(cat)">{{cat.name}}
                         </span>
                     </div>
                 </details>

@@ -3,6 +3,7 @@ import { Playlist } from '../../common/playlist'
 
 export class PlaylistService {
   playlists: Playlist[] = [new Playlist(<Playlist>{
+    "id": 0,
     "name": "Mix de Coldplay",
     "categories": [],
     "musics": [0, 1, 2, 3, 4, 5, 6, 7, 8],

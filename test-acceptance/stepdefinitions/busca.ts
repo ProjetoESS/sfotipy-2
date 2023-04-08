@@ -39,6 +39,13 @@ defineSupportCode(function ({ Given, When, Then }) {
             await assertMusicsWithSameName(1, music4);
         });
 
+    Given(/^todas as músicas estão visíveis$/, async () => {
+        await browser.refresh();
+        var isCollapsed = element(by.css('.see-more-music'));
+        await isCollapsed.click();
+        await assertIncludesInName(isCollapsed, "menos");
+    })
+
     Given(/^há (\d+) músicas que contém "([^\"]*)" em seu nome na lista de músicas$/,
         async (amount, music) => {
             var allmusics: ElementArrayFinder = element.all(by.name("music-container"));

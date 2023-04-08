@@ -35,28 +35,33 @@ export class CriarPlaylistComponent implements OnInit {
     }
 
 
-    /* if (this.playlistService.verificarNomePlaylistExistente(nome_playlist.value)) {
-       console.log('Já existe uma playlist com esse nome');
-       exibe mensagem de erro ou faz outra ação apropriada
-     } else {*/
-    const playlist = new Playlist(<Playlist><unknown>{
-      "id": 0,
-      "ownerId": this.user_id,
-      "name": this.nome_playlist,
-      "categories": [],
-      "musics": [0, 1, 2, 3, 4, 5, 6, 7, 8],
-      "image": this.imagem_playlist,
-      "link": "",
-      "owner": "",
-      "followers": [],
-      "availability": this.publicavel
+    this.playlistService.verificarNomePlaylistExistente(this.nome_playlist).subscribe(result => {
+      if (result) {
+        alert('Já existe uma playlist com esse nome');
+       return
+      } else {
+        const playlist = new Playlist(<Playlist><unknown>{
+          "id": 0,
+          "ownerId": this.user_id,
+          "name": this.nome_playlist,
+          "categories": [],
+          "musics": [],
+          "image": this.imagem_playlist,
+          "link": "",
+          "owner": "",
+          "followers": [],
+          "availability": this.publicavel
+        })
+
+        const novaPlaylist = this.playlistService.addPlaylist(playlist).subscribe(newPlaylists => {
+          //console.log(newPlaylists)
+          alert('Playlist criada com sucesso')
+          this.router.navigate(['/minhas_playlists']);
+        });
+      }
     })
 
-    const novaPlaylist = this.playlistService.addPlaylist(playlist).subscribe(newPlaylists => {
-      console.log(newPlaylists)
-      alert('Playlist criada com sucesso')
-      this.router.navigate(['/minhas_playlists']);
-    });
+
 
 
   }

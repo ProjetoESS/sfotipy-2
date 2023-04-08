@@ -32,29 +32,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //ROTAS DE MUSICAS
 
-app.post('/criar_playlist', (req: express.Request, res: express.Response) => {
-  const newPlaylist = <Playlist>req.body;
-  
-  try {
-    const result = playlistService.addPlaylist(newPlaylist);
-    if (result) {
-      return res.status(201).send(result);
-    }
-    return res.status(400).send({ message: 'Não foi possível criar a playlist.' });
-  } catch (error) {
-    return res.status(500).send({ message: 'Erro interno do servidor.' });
-  }
-});
-
-
-app.get('/minhas_playlists', (req, res) => {
-  //const ownerId = parseInt(req.query.ownerId as string);
-  const ownerId = 1
-  console.log(ownerId) // busca o ownerId a partir dos parâmetros da requisição
-  const userPlaylists = playlistService.getUserPlaylists(ownerId); // busca as playlists do usuário a partir do PlaylistService
-  res.json(userPlaylists); // retorna as playlists como uma resposta JSON
-});
-
 app.get('/musics', function (req, res) {
   const musics = musicService.get();
   res.send(JSON.stringify(musics));
@@ -171,13 +148,17 @@ app.post('/criar_playlist', (req: express.Request, res: express.Response) => {
   }
 });
 
-
 app.get('/minhas_playlists', (req, res) => {
   //const ownerId = parseInt(req.query.ownerId as string);
   const ownerId = 1
-  console.log(ownerId) // busca o ownerId a partir dos parâmetros da requisição
   const userPlaylists = playlistService.getUserPlaylists(ownerId); // busca as playlists do usuário a partir do PlaylistService
   res.json(userPlaylists); // retorna as playlists como uma resposta JSON
+});
+
+app.get('/criar_playlist/:name', (req, res) => {
+  const name = req.params.name;
+  const result = playlistService.verificarNomePlaylistExistente(name);
+  res.json(result);
 });
 
 // ROTAS DE CATEGORIAS

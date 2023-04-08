@@ -5,7 +5,7 @@ export class PlaylistService {
   
   playlists: Playlist[] = [
     <Playlist>{
-      "id" : 0,
+      "id" : 7,
       "name": "Minha playlist",
       "categories": [1],
       "musics": [],
@@ -30,6 +30,39 @@ export class PlaylistService {
       "id" : 32,
       "name" : "antigas",
       "categories" : [2],
+      "musics" : [],
+      "image" : "https://upload.wikimedia.org/wikipedia/en/1/1b/NF_-_The_Search.png",
+      "link" : "",
+      "owner" : "",
+      "followers" : [],
+      "availability" : "private"
+    },
+    <Playlist>{
+      "id" : 45,
+      "name" : "boas",
+      "categories" : [4],
+      "musics" : [],
+      "image" : "https://upload.wikimedia.org/wikipedia/en/1/1b/NF_-_The_Search.png",
+      "link" : "",
+      "owner" : "",
+      "followers" : [],
+      "availability" : "private"
+    },
+    <Playlist>{
+      "id" : 52,
+      "name" : "as melhores",
+      "categories" : [2,4],
+      "musics" : [],
+      "image" : "https://upload.wikimedia.org/wikipedia/en/1/1b/NF_-_The_Search.png",
+      "link" : "",
+      "owner" : "",
+      "followers" : [],
+      "availability" : "private"
+    },
+    <Playlist>{
+      "id" : 61,
+      "name" : "fim de semana",
+      "categories" : [3,5],
       "musics" : [],
       "image" : "https://upload.wikimedia.org/wikipedia/en/1/1b/NF_-_The_Search.png",
       "link" : "",

@@ -79,8 +79,9 @@ defineSupportCode(function({Given, When, Then}) {
     const optionsIcon = playlistCard.element(by.name('options-button'));
     const shareIcon = playlistCard.element(by.name('Share'));
     await browser.actions().mouseMove(optionsIcon).perform();
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    await browser.actions().mouseMove(shareIcon).click().perform();
+    await browser.actions().mouseMove(shareIcon).perform();
+    await browser.executeScript(
+      'arguments[0].click()', shareIcon.getWebElement());
   })
 
   Then(/^I'm on the playlist page "([^\"]*)"$/, async (name) => {
@@ -104,11 +105,10 @@ defineSupportCode(function({Given, When, Then}) {
       });
 
   Then(
-      /^I have copied the link to the playlist "([^\"]*)"$/,
+      /^the system shows a confirmation message that the link to the playlist "([^\"]*)" has been copied$/,
       async (name) => {
-
-        const clipboardText = await clipboard.readSync();
-        expect(clipboardText).to.equal("localhost:4200/playlist/4");
-
+        const playlistCard = await getPlaylistCardByName(name);
+        const confirmationMessage = await playlistCard.element(by.name('share-message'));
+        expect(await confirmationMessage.isDisplayed()).to.be.true;
       });
 })

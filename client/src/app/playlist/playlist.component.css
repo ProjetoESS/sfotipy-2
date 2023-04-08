@@ -59,8 +59,9 @@ i {
   color: white;
 }
 
-.margin-top {
+.margins {
   margin-top: 150px;
+  margin-bottom: 200px;
 }
 
 h1 {

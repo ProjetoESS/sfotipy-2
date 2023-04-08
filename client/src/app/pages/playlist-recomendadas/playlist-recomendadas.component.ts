@@ -1,28 +1,34 @@
-import { Component } from '@angular/core';
-import { OnInit } from '@angular/core';
-import { Playlist } from '../../../../../common/playlist';
-import { Music } from '../../../../../common/music';
+import {Component} from '@angular/core';
+import {OnInit} from '@angular/core';
 import {PlaylistService} from 'src/app/playlist.service';
-import { Category } from '../../../../../common/category';
+
+import {Category} from '../../../../../common/category';
+import {Music} from '../../../../../common/music';
+import {Playlist} from '../../../../../common/playlist';
+
 @Component({
   selector: 'app-playlist-recomendadas',
   templateUrl: './playlist-recomendadas.component.html',
   styleUrls: ['./playlist-recomendadas.component.scss']
 })
 export class PlaylistRecomendadasComponent implements OnInit {
-
   constructor(private playlistService: PlaylistService) {}
 
-  playlists:Playlist[] = [];
+  playlists: Playlist[] = [];
+  playlistsRecomendadas: Playlist[] = [];
+
 
   ngOnInit(): void {
-
-    this.playlistService.getPlaylists()
-      .subscribe(
-        as => { this.playlists = as; },
-        msg => { alert(msg.message); }
-      );
-  };
+    this.playlistService.getPlaylists().subscribe(
+        (as) => {
+          this.playlists = as;
+          this.playlistsRecomendadas =
+              this.playlists.filter((playlist) => playlist.id <= 4);
+        },
+        (msg) => {
+          alert(msg.message);
+        });
+  }
 
   selectedPlaylist: any;
 
@@ -33,8 +39,7 @@ export class PlaylistRecomendadasComponent implements OnInit {
     }
     if (this.selectedPlaylist == playlist) {
       this.selectedPlaylist.isPlaying = false;
-    }
-    else {
+    } else {
       // Set the new selected playlist and start playing
       this.selectedPlaylist = playlist;
       this.selectedPlaylist.isPlaying = true;

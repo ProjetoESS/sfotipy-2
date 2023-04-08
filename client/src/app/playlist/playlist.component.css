@@ -40,6 +40,14 @@ i {
   background-color: #FFE5B4;
 }
 
+.manage-category{
+  display: inline-block;
+  padding: 8px;
+  color: black;
+  background-color: #FFE5B4;
+  cursor: pointer;
+}
+
 .add_new_category {
   cursor: pointer;
   background-color: #FFE5B4;

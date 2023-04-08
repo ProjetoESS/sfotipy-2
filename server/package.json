@@ -19,7 +19,8 @@
     "express": "^4.18.2",
     "fs": "^0.0.1-security",
     "nodemailer": "^6.1.1",
-    "request": "^2.34"
+    "request": "^2.34",
+    "rxjs": "^7.8.0"
   },
   "devDependencies": {
     "@types/jasmine": "^2.8.9",

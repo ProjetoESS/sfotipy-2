@@ -11,7 +11,8 @@
             "dom"
         ],
         "noImplicitAny": true,
-        "outDir": "typeScript"
+        "outDir": "typeScript",
+        
     },
     "compileOnSave": true,
 }

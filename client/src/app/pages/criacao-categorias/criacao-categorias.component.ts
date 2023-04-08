@@ -18,25 +18,55 @@ export class CriacaoCategoriasComponent {
 
   constructor(private playlistService : PlaylistService, private route: ActivatedRoute, private router: Router) {};
 
-  getPlaylistCategories() {
-    this.playlistCategories = this.playlistService.getCategories(this.playlistId);
-  }
-
-  getAllCategories() {
-    this.allCategories = this.playlistService.getAllCategories()
-  }
-
   addNewCategory(category: Category) {
-    this.playlistService.addNewCategory(this.playlistId, category);
+    this.playlistService.addNewCategory(this.playlistId, category)
+    .subscribe(
+      ar => {
+        if (ar) {
+          //this.playlistCategories.push(category);
+          var idx = this.playlistCategories.findIndex(ar => ar.name == category.name);
+          if(idx == -1) {
+            this.playlistCategories.push(category);
+          }
+        }
+      }
+    )
   }
 
   deleteCategory(category: Category) {
-    this.playlistService.deleteCategory(this.playlistId, category);
+    this.playlistService.deleteCategory(this.playlistId, category)
+    .subscribe(
+      ar => {
+        if (ar) {
+          console.log(ar.name);
+          var idx = this.playlistCategories.findIndex(ar => ar.name == category.name);
+          if(idx != -1) {
+            this.playlistCategories.splice(idx, 1);
+          }
+        }
+      }
+    )
   }
 
-  ngOnInit() {
+  ngOnInit() : void {
     const id = this.route.snapshot.params["id"];
     this.playlistId = id;
+
+
+    this.playlistService.getAllCategories()
+      .subscribe(
+        as => {this.allCategories = as},
+        msg => { alert(msg.message) }
+      )
+
+    this.playlistService.getPlaylistCategories(this.playlistId)
+      .subscribe(
+        as => {this.playlistCategories = as},
+        msg => { alert(msg.message) }
+      )
+
+    //this.getPlaylistCategories(this.playlistId);
+    //this.getAllCategories();
   }
   
 }

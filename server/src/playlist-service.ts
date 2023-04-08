@@ -2,6 +2,7 @@ import { Category } from '../../common/category';
 import { Playlist } from '../../common/playlist'
 
 export class PlaylistService {
+
   playlists: Playlist[] = [
     new Playlist(<Playlist>{
       "id": 0,
@@ -77,6 +78,7 @@ export class PlaylistService {
   ];
 
   idCount: number = 6;
+  
   categories: Category[] = [];
 
   get(): Playlist[] {
@@ -117,20 +119,28 @@ export class PlaylistService {
   addNewCategory(playlistId: number, category: number): Playlist | null {
     const playlist = this.getById(playlistId);
     if (!playlist) return null;
-    if (playlist.categories.length > 2) {
+    if (playlist.categories.length >= 2) {
       return null;
     }
-    playlist.categories.push(category);
+    // playlist.categories.push(category);
+    var idx = playlist.categories.findIndex(ar => ar == category);
+    if(idx == -1) {
+      playlist.categories.push(category);
+    }
     return playlist;
   }
 
   deleteCategory(playlistId: number, category: number): Playlist | null {
     const playlist = this.getById(playlistId);
-    if (playlist.categories.includes(category)) {
-      playlist.categories.splice(playlistId, 1);
+    if (playlist?.categories.includes(category)) {
+      var idx = playlist.categories.findIndex(ar => ar == category);
+      if(idx != -1) {
+        playlist.categories.splice(idx, 1);
+      }
     } else {
       return null;
     }
     return playlist;
   }
+
 }

@@ -60,9 +60,12 @@ export class PlaylistComponent implements OnInit {
               } },
             msg => { alert(msg.message); }
           );
+          this.playlistService.getPlaylistCategories(parseInt(id))
+          .subscribe(
+            ar => {this.playlistCategories = ar},
+            msg => {alert(msg.message)}
+          )
         }
-        // this.playlistCategories = this.categories.filter(
-        //     cat => this.selectedPlaylist.categories.includes(cat));
       }
     });
   }

@@ -1,17 +1,17 @@
-import { Category } from '../../common/Category';
-import { Playlist } from '../../common/playlist'
-import { of, Observable } from 'rxjs';
-
-
+import {Category} from '../../common/category';
+import {Playlist} from '../../common/playlist'
 
 export class PlaylistService {
   playlists: Playlist[] = [];
-  categories: string[] = [];
-  idCount: number = 6
-  playlistEA: Playlist[] = [];
-  playlistPB: Playlist[] = [];
-  playlistRC: Playlist[] = [];
-  playlistMN: Playlist[] = [];
+  idCount: number = 10;
+  categories: Category[] = [];
+
+  add(playlist: Playlist): Playlist {
+    const newPlaylist = new Playlist(<Playlist>{ ...playlist, id: this.idCount });
+    this.playlists.push(newPlaylist);
+    this.idCount++;
+    return newPlaylist;
+  }
 
   addPlaylist(playlist: Playlist): Playlist[] {
     playlist.id = this.idCount;
@@ -49,49 +49,48 @@ export class PlaylistService {
     return this.playlists;
   }
 
-  getEA(): Playlist[] {
-    return this.playlistEA;
+  getById(playlistId: number): Playlist|undefined {
+    return this.playlists.find(({id}) => id == playlistId);
   }
 
-  getPB(): Playlist[] {
-    return this.playlistPB;
-  }
-  
-  getRC(): Playlist[] {
-    return this.playlistRC;
+
+  update(playlist: Playlist): Playlist | null {
+    const result = this.playlists.find(c => c.id == playlist.id);
+    if (result instanceof Playlist) {
+      result.update(<Playlist>playlist);
+      return result;
+    } else {
+      return null;
+    }
   }
 
-  getMN(): Playlist[] {
-    return this.playlistMN;
+  delete(id: number): boolean {
+    const index = this.playlists.findIndex(c => c.id === id);
+    if (index >= 0) {
+      this.playlists.splice(index, 1);
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  getById(playlistId: number): Playlist {
-    return this.playlists.find(({ id }) => id == playlistId);
-  }
-
-  addNewCategory(playlistId: number, category: string): Playlist {
+  addNewCategory(playlistId: number, category: number): Playlist|null {
     const playlist = this.getById(playlistId);
+    if (!playlist) return null;
     if (playlist.categories.length > 2) {
       return null;
     }
-    /*playlist.categories.push(category);*/
+    playlist.categories.push(category);
     return playlist;
   }
 
-  deleteCategory(playlistId: number, category: string): Playlist {
+  deleteCategory(playlistId: number, category: number): Playlist|null {
     const playlist = this.getById(playlistId);
-    /*if (playlist.categories.includes(category)) {
-      playlist.categories.splice(playlistId, 1);
+    if (playlist?.categories.includes(category)) {
+      playlist?.categories.splice(playlistId, 1);
     } else {
       return null;
-    }*/
+    }
     return playlist;
   }
-
-  getAllCategories(): string[] {
-    return this.categories;
-  }
-
 }
-
-

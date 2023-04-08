@@ -6,6 +6,7 @@ import { retry, map } from 'rxjs/operators';
 
 import { Playlist } from '../../../common/playlist';
 import { Observable } from 'rxjs';
+import { Category } from '../../../common/category';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,8 @@ import { Observable } from 'rxjs';
 export class PlaylistService {
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
   private appURL = 'http://localhost:3000';
-  private playlistCategories: string[] = [];
-  private allCategories: string[] = [];
+  private playlistCategories: Category[] = [];
+  private allCategories: Category[] = [];
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -65,7 +66,7 @@ export class PlaylistService {
       .pipe(
         map((res: any) => res)
       ).subscribe(
-        (res: string[]) => {
+        (res: Category[]) => {
           this.playlistCategories = res;
         }
       );
@@ -77,52 +78,32 @@ export class PlaylistService {
       .pipe(
         map((res: any) => res.categories)
       ).subscribe(
-        (categories: string[]) => {
+        (categories: Category[]) => {
           this.allCategories = categories;
         })
     return this.allCategories;
   }
 
-  addNewCategory(id: number, category: string) {
+  addNewCategory(id: number, category: Category) {
     return this.http.post(this.appURL + "playlist/category/" + id, category, this.httpOptions)
       .pipe(retry(2));
   }
 
-  deleteCategory(id: number, category: string) {
-
-    const data = {
-      params: {
-        category: category
-      }
-    };
-
-    return this.http.delete(this.appURL + "playlist/category" + id, data)
+  deleteCategory(id: number, category: Category) {
+    const data = JSON.stringify(category);
+    return this.http.delete(this.appURL + "playlist/category" + id, { body: data })
       .pipe(retry(2));
   }
 
-  getPlaylistEA(): Observable<Playlist[]> {
-    return this.http.get<Playlist[]>(this.appURL + "/playlist-em-alta")
+  getPlaylists(): Observable<Playlist[]> {
+    return this.http.get<Playlist[]>(this.appURL + "/playlists")
       .pipe(
         retry(2)
       );
   }
 
-  getPlaylistPB(): Observable<Playlist[]> {
-    return this.http.get<Playlist[]>(this.appURL + "/playlist-publica")
-      .pipe(
-        retry(2)
-      );
-  }
-
-  getPlaylistRC(): Observable<Playlist[]> {
-    return this.http.get<Playlist[]>(this.appURL + "/playlist-recomendada")
-      .pipe(
-        retry(2)
-      );
-  }
-
-  getPlaylistMP(): Observable<Playlist[]> {
-    return this.http.get<Playlist[]>(this.appURL + "/playlist-minha")
+  getPlaylistById(id: number): Observable<Playlist> {
+    return this.http.get<Playlist>(this.appURL + "/playlist/" + id)
       .pipe(
         retry(2)
       );

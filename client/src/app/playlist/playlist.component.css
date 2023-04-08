@@ -1,5 +1,7 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Iceland&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Iceland&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Iceland&display=swap');
+@import '~@fortawesome/fontawesome-free/css/all.css'; */
+
 
 :host,
 * {
@@ -33,6 +35,10 @@ svg {
   overflow: visible;
 }
 
+i {
+  color: white;
+  cursor: pointer;
+}
 
 :host {
   position: absolute;
@@ -51,7 +57,7 @@ svg {
   border-radius: 15px;
   left: 5%;
   position: fixed;
-  top: 10%;
+  top: 15%;
   height: 30vh;
   background-color:#6E7C88;
   width: 90%;
@@ -86,10 +92,14 @@ svg {
   margin-top: 1vh;
 }
 
+.playlist_owner {
+  margin-top: 1vh;
+}
+
 .campo2 {
   left: 5%;
   position: fixed;
-  top: 45%;
+  top: 55%;
   height: 42%;
   width: 90%;
   display: flex;
@@ -138,3 +148,27 @@ svg {
   width: 100%;
 }
 
+.categories {
+  list-style: none;
+  padding: 0;
+  margin-top: 12%;
+  margin-left: -19%;
+}
+
+.category {
+  display: inline-block;
+  padding: 8px;
+  color: black;
+  background-color: #FFE5B4;
+}
+
+.add_new_category {
+  cursor: pointer;
+  background-color: #FFE5B4;
+  text-decoration: none;
+  color: black;
+}
+
+.share_playlist {
+  color: white;
+}

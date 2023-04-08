@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Music } from '../../../../common/music';
 
 @Component({
   selector: 'app-music-card',
@@ -10,5 +11,6 @@ export class MusicCardComponent {
   @Input() author!: string;
 
   @Input() id!: number;
+  @Input() music!: Music;
 
 }

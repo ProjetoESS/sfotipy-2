@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PlaylistRecomendadasComponent } from './playlist-recomendadas/playlist-recomendadas.component';
+import { PlaylistRecomendadasComponent } from './pages/playlist-recomendadas/playlist-recomendadas.component';
 
 import { CriarPlaylistComponent } from './criar-playlist/criar_playlist.component';
 import { UserPlaylistsComponent } from './user-playlists/user_playlists.component';

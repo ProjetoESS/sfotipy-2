@@ -12,7 +12,7 @@
   </div>
   <ul class="categories">
     <li class="category" *ngFor="let category of playlistCategories" id="selected-{{category.name}}">{{ category.name }}</li>
-    <li class="category">
+    <li class="manage-category">
       <a class="add_new_category" href="/categorias/{{selectedPlaylist.id}}">+</a>
     </li>
   </ul>

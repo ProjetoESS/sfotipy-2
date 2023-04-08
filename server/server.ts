@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/criar_playlist', (req: express.Request, res: express.Response) => {
   const newPlaylist = <Playlist>req.body;
-  
+
   try {
     const result = playlistService.addPlaylist(newPlaylist);
     if (result) {
@@ -159,7 +159,7 @@ app.put('/playlist', function (req: express.Request, res: express.Response) {
 
 app.post('/criar_playlist', (req: express.Request, res: express.Response) => {
   const newPlaylist = <Playlist>req.body;
-  
+
   try {
     const result = playlistService.addPlaylist(newPlaylist);
     if (result) {
@@ -184,13 +184,7 @@ app.get('/minhas_playlists', (req, res) => {
 
 app.get('/category/:id', function (req: express.Request, res: express.Response) {
   const playlistId: number = Number(req.params.id);
-  const playlist = playlistService.getById(playlistId);
-  const playlistCategories = playlist.categories;
-
-  var categories : Category[] = [];
-  playlistCategories.forEach(categoryId => {
-    categories.push(categoryService.getById(categoryId));
-  });
+  const categories: Category[] = playlistService.getPlaylistCategory(playlistId);
 
   if (categories) {
     res.send(categories);
@@ -223,10 +217,10 @@ app.delete('/category/:id', function (req: express.Request, res: express.Respons
   const id: number = Number(req.params.id);
   const category: number = req.body.category.id;
   const result = playlistService.deleteCategory(id, category);
-  if(result) {
-    res.send({"success": "The category was deleted"});
-  }else{
-    res.send({"failure": "The category was not deleted"});
+  if (result) {
+    res.send({ "success": "The category was deleted" });
+  } else {
+    res.send({ "failure": "The category was not deleted" });
   }
 });
 

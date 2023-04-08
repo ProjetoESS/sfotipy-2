@@ -41,7 +41,7 @@ export class PlaylistService {
     return this.http.get<any[]>(url).pipe(
       map(response => {
         console.log('response:', response); // adicione esta linha
-        return response.map(item => new Playlist(item.id, item.name, item.ownerId, item.musics, item.isPublic, item.categories, item.image));
+        return response.map(item => new Playlist(<Playlist>{...item}));
       }),
       map(playlists => {
         console.log('playlists:', playlists.filter(playlist => playlist.ownerId === ownerId)); // adicione esta linha

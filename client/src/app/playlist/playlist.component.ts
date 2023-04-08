@@ -86,9 +86,34 @@ export class PlaylistComponent implements OnInit {
     });
   }
 
-  removeCategory(category: Category): void {
+  removeCategory(category: Category) {
+    this.playlistService.deleteCategory(this.playlistId, category)
+      .subscribe(
+        ar => {
+          if (ar) {
+            console.log(ar.name);
+            var idx = this.playlistCategories.findIndex(ar => ar.name == category.name);
+            if (idx != -1) {
+              this.playlistCategories.splice(idx, 1);
+            }
+          }
+        }
+      )
   }
 
-  selectCategory(category: Category): void {
+  selectCategory(category: Category) {
+    this.playlistService.addNewCategory(this.playlistId, category)
+      .subscribe(
+        ar => {
+          if (ar) {
+            this.playlistCategories.push(category);
+            var idx = this.playlistCategories.findIndex(ar => ar.name == category.name);
+            if (idx == -1) {
+              this.playlistCategories.push(category);
+            }
+          }
+        }
+      )
   }
+
 }

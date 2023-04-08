@@ -37,5 +37,5 @@ export class Music {
             this.category = music.category;
         }
     }
-    
+
 }

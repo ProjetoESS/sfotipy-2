@@ -5,6 +5,7 @@ export class Playlist {
     id: number;
     ownerId: number;
     name: string;
+    ownerId : number;
     categories: number[];
     musics: number[];
     image: string;
@@ -17,6 +18,7 @@ export class Playlist {
         this.id = playlist.id;
         this.ownerId = playlist.ownerId;
         this.name = playlist.name;
+        this.ownerId = playlist.ownerId;
         this.categories = playlist.categories;
         this.musics = playlist.musics;
         this.image = playlist.image;

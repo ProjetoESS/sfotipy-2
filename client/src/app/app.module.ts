@@ -24,6 +24,9 @@ import { PlaylistsFilterPipe } from './playlists-filter.pipe';
 import { PlaylistEmAltaComponent } from './playlist-em-alta/playlist-em-alta.component';
 import { MusicasEmAltaComponent } from './musicas-em-alta/musicas-em-alta.component';
 import { ArtistasEmAltaComponent } from './artistas-em-alta/artistas-em-alta.component';
+import { PlaylistComponent } from './playlist/playlist.component';
+import { CompartilhamentoComponent } from './compartilhamento/compartilhamento.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -46,7 +49,10 @@ import { ArtistasEmAltaComponent } from './artistas-em-alta/artistas-em-alta.com
     ProfilepageComponent,
     PlaylistEmAltaComponent,
     MusicasEmAltaComponent,
-    ArtistasEmAltaComponent
+    ArtistasEmAltaComponent,
+    PlaylistComponent,
+    CompartilhamentoComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +75,7 @@ import { ArtistasEmAltaComponent } from './artistas-em-alta/artistas-em-alta.com
       },
       {
         path: 'categorias/:id',
-        component : CriacaoCategoriasComponent
+        component: CriacaoCategoriasComponent
       }
     ])
   ],

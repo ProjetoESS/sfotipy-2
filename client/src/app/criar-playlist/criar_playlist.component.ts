@@ -30,10 +30,14 @@ export class CriarPlaylistComponent implements OnInit {
     }
 
     if (!this.nome_playlist) {
-      alert('Preencha o nome da playlist');
+      alert('Preencha o nome da playlist.');
       return;
     }
 
+    if (this.nome_playlist.length > 35) {
+      alert('Nome da playlist não pode ser maior que 35 caracteres.')
+      return
+    }
 
     this.playlistService.verificarNomePlaylistExistente(this.nome_playlist).subscribe(result => {
       if (result) {

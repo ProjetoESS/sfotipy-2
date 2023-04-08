@@ -109,7 +109,6 @@ export class PlaylistService {
   verificarNomePlaylistExistente(nomePlaylist: string): boolean {
     const playlists = this.getUserPlaylists(this.idCount)
     for (let playlist of this.playlists) {
-      console.log(playlist.name, nomePlaylist)
       if (playlist.name === nomePlaylist) {
         return true;
       } 

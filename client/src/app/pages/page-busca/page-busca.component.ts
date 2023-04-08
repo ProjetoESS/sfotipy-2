@@ -66,6 +66,10 @@ export class PageBuscaComponent {
     return this.categories.filter(c => !this.selectedCategories.includes(c));
   }
 
+  getCategoriesId(): number[] {
+    return this.selectedCategories.map(c => c.id);
+  }
+
   selectCategory(category: Category): void {
     this.selectedCategories.push(category);
   }

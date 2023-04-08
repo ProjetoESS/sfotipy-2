@@ -24,12 +24,12 @@
             </div>
         </div>
         <div id="section-musicas" name="content-section" *ngIf="musicIsActive">
-            <div class="empty-search-message" *ngIf="!(musics | musicsFilter: filterText)?.length">
+            <div class="empty-search-message" *ngIf="!(musics | musicsFilter: filterText: getCategoriesId())?.length">
                 <p>Nenhum resultado encontrado.</p>
             </div>
             <div class="musicaslista">
                 <app-music-card
-                    *ngFor="let m of musics | musicsFilter: filterText | slice:0:(showAllMusic ? undefined : 6)"
+                    *ngFor="let m of musics | musicsFilter: filterText: getCategoriesId()| slice:0:(showAllMusic ? undefined : 6)"
                     [id]="m.id" [name]="m.name" [author]="m.author" [music]="m"></app-music-card>
             </div>
             <div class="see-more-message" (click)="showAllMusic = !showAllMusic">

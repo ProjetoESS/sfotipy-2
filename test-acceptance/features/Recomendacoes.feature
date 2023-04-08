@@ -19,7 +19,7 @@ Feature: Recomendações
     Scenario: Get link to recommended playlist
         Given I'm on the page "Playlists Recomendadas"
         And a playlist "Para Dormir" appears as recommended
-        When I try to share the playlist “Brasil”
+        When I try to share the playlist "Para Dormir"
         Then I have copied the link to the playlist "Para Dormir"
 
 

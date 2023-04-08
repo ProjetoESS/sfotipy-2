@@ -20,6 +20,4 @@ Feature: Recomendações
         Given I'm on the page "Playlists Recomendadas"
         And a playlist "Para Dormir" appears as recommended
         When I try to share the playlist "Para Dormir"
-        Then I have copied the link to the playlist "Para Dormir"
-
-
+        Then the system shows a confirmation message that the link to the playlist "Para Dormir" has been copied

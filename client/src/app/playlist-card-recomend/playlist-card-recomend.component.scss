@@ -127,20 +127,20 @@
   background-color: #0D2538;
 }
 
-.message {
-  //position: absolute;
-  //bottom: 50%;
-  // left: 50%;
-  //transform: translate(-50%, 50%);
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  padding: 8px;
-  border-radius: 4px;
+.share-message {
+  position: absolute;
+  left: 4.5rem;
+  bottom: 7.5rem;
+  background-color: #177cbc;
+  color: white;
   font-size: 14px;
-  opacity: 0;
-  transition: opacity 0.15s;
+  padding: 5px;
+  border-radius: 5px;
+  //transform: translate(50%, -50%);
+  z-index: 2;
 }
 
-.message.show {
-  opacity: 1;
-}
+
+
+
+

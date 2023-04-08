@@ -19,6 +19,7 @@ export class PlaylistRecomendadasComponent implements OnInit {
   playlistsRecomendadas: Playlist[] = [];
 
 
+
   ngOnInit(): void {
     this.titleService.setTitle("Explorar")
     this.playlistService.getPlaylists().subscribe(

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Music } from '../../../../common/music';
+import { CategoryService } from '../category.service';
 
 @Component({
   selector: 'app-music-card',
@@ -13,4 +14,13 @@ export class MusicCardComponent {
   @Input() id!: number;
   @Input() music!: Music;
 
+  category: string;
+
+  constructor(private categoryService: CategoryService) {
+    this.category = "";
+  }
+
+  ngOnInit() {
+    this.category = this.categoryService.getCategorybyId(this.music.category)?.name || "";
+  }
 }

@@ -1,5 +1,6 @@
 .bound {
     margin-top: 150px;
+    margin-bottom: 150px;
 }
 
 .row {
@@ -25,6 +26,14 @@
     margin-left: 0;
     cursor: pointer;
     background-color: transparent;
+    font-family: 'Iceland';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 21px;
+    text-transform: uppercase;
+
+    color: #0D2538;
 }
 
 .tag.active {
@@ -86,6 +95,7 @@ details>summary {
     border-radius: 8px;
     color: #0D2538;
     cursor: pointer;
+    line-height: 32px;
 }
 
 details[open]>summary {

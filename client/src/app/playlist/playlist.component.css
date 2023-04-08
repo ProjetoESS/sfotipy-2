@@ -2,37 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Iceland&display=swap');
 @import '~@fortawesome/fontawesome-free/css/all.css'; */
 
-
-:host,
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  background: none;
-  border: none;
-  flex-shrink: 0;
-  text-decoration: none;
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
-ul,
-ol {
-  text-indent: 0;
-  padding-inline-start: 1.5em;
-}
-
-p:empty::before {
-  content: '';
-  display: inline-block;
-}
-
 img {
-  object-fit: contain;
-}
-
-svg {
-  overflow: visible;
+  width: 256px;
+  height: 256px;
+  border-radius: 12px;
 }
 
 i {
@@ -40,119 +13,24 @@ i {
   cursor: pointer;
 }
 
-:host {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #0d2538;
-  align-items: flex-start;
-}
-
 .campo1 {
   border-radius: 15px;
-  left: 5%;
-  position: fixed;
-  top: 15%;
   height: 30vh;
-  background-color:#6E7C88;
-  width: 90%;
+  background-color: #6E7C88;
   display: flex;
   flex-direction: row;
 }
 
-.img {
-  border-radius: 15px;
-  height: 100%;
-  width: 18%;
-  background-color: #FFFFFF80;
-}
-
-.textsdiv {
-  margin-top: 2%;
-  margin-left: 2%;
-  font-family: Inter;
-  color: #C5C5C5;
-}
-
-.playlist_name {
-  font-size: 5vh;
-  color: white;
-}
-
-.playlist_owner {
-  margin-top: 1vh;
-}
-
-.playlist_followers {
-  margin-top: 1vh;
-}
-
-.playlist_owner {
-  margin-top: 1vh;
-}
-
-.campo2 {
-  left: 5%;
-  position: fixed;
-  top: 55%;
-  height: 42%;
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  font-family: Inter;
-}
-
-.song {
-  display: flex;
-  width: calc(25% - 10px);
-  align-items: center;
-  margin-bottom: 1.75%;
-}
-
-.song_info {
-  margin-left: 1%;
-  height: 100%;
-}
-
-.music_button {
-  border-radius: 8px;
-  height: 8vh;
-  width: 8vh;
-  background-color: #6E7C88;
-}
-
-.song_name {
-  font-size: 3.5vh;
-  color: white;
-  margin-bottom: 5%;
-}
-
-.song_artist {
-  font-size: 2.5vh;
-  color:#C5C5C5;
-}
-
-
-.playbar {
-  background-color: #6E7C88;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  height: 8vh;
-  width: 100%;
+.musicslist {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+  grid-gap: 35px;
+  margin: 15px 0;
 }
 
 .categories {
   list-style: none;
   padding: 0;
-  margin-top: 12%;
-  margin-left: -19%;
 }
 
 .category {
@@ -171,4 +49,50 @@ i {
 
 .share_playlist {
   color: white;
+}
+
+.margin-top {
+  margin-top: 150px;
+}
+
+h1 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 34px;
+  margin-bottom: 0;
+}
+
+.header {
+  border-radius: 15px;
+  min-height: 30vh;
+  background-color: #6E7C88;
+  display: flex;
+}
+
+.content {
+  padding: 30px 50px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.content span {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  color: #C5C5C5;
+}
+
+.content i {
+  position: absolute;
+  align-self: center;
+  justify-self: end;
+}
+
+.player {
+  position: absolute;
+  margin-bottom: -50px;
+  align-self: end;
+  right: max(calc((100vw - 1300px))/2, 1em);
 }

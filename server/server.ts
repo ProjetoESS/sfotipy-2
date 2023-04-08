@@ -202,17 +202,18 @@ app.get('/category', function (req: express.Request, res: express.Response) {
   }
 });
 
-/*app.post('/category/:id', function (req: express.Request, res: express.Response) {
+app.post('/category/:id', function (req: express.Request, res: express.Response) {
   const id: number = Number(req.params.id);
   const newCategory: Category = req.body.category;
   const result = playlistService.addNewCategory(id, newCategory.id);
-  if(result) {
-    res.send({"success" : "The new category was registered"});
-  }else{
-    res.send({"failure" : "The category was not registered"});
+  if (result) {
+    res.send({ "success": "The new category was registered" });
+  } else {
+    res.send({ "failure": "The category was not registered" });
   }
 });
-*/
+
+
 app.delete('/category/:id', function (req: express.Request, res: express.Response) {
   const id: number = Number(req.params.id);
   const category: number = req.body.category.id;

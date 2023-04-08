@@ -14,9 +14,8 @@
         <span *ngFor="let cat of playlistCategories" class="badge"
           id="selected-cat-{{cat.name.toUpperCase()}}">{{cat.name}}<button class="close-button"
             (click)="removeCategory(cat)">x</button></span>
-
-        <details>
-          <summary id="selector-cat"></summary>
+        <details *ngIf="playlistCategories.length < 2">
+          <summary (click)="getCategories()" id="selector-cat"></summary>
           <div class="categories-content">
             <span *ngFor="let cat of getCategories()" id="select-cat-{{cat.name.toUpperCase()}}"
               (click)="selectCategory(cat)" class="badge">{{cat.name}}

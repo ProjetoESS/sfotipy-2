@@ -26,15 +26,8 @@ export class PlaylistComponent implements OnInit {
   showLink: boolean = false;
   playlistId: number = 0;
 
+  playlistCategories: Category[] = [];
   categories: Category[] = [];
-
-  // show_followers(id: number) {
-  //   const playlist = this.playlists.find(
-  //       p => p.id === id);  // Procura a playlist correspondente ao id na
-  //       lista
-  //                           // de playlists
-  //   if (playlist) window.alert(playlist.followers)
-  // }
 
   redirectaddmusic() {
     console.log('musica')
@@ -47,14 +40,7 @@ export class PlaylistComponent implements OnInit {
     this.showLink = !this.showLink;
   }
 
-  playlistCategories: any[] = [];
-
-  getCategories(): Category[] {
-    return this.categories.filter(c => !this.playlistCategories.includes(c));
-  }
-
   ngOnInit(): void {
-    this.categories = this.categoryService.getCategories();
     this.route.paramMap.subscribe(params => {
       if (params && params.get('id')) {
         const id = params?.get('id');
@@ -74,16 +60,27 @@ export class PlaylistComponent implements OnInit {
                 }
                 this.playlistService.getPlaylistCategories(parseInt(id))
                   .subscribe(
-                    ar => { this.playlistCategories = ar },
+                    ar => {
+                      this.playlistCategories = ar;
+                      this.categoryService.getAllCategories().subscribe(
+                        as => {
+                          this.categories = as.filter(c => !ar.includes(c));
+                        },
+                        msg => { alert(msg.message); }
+                      );
+                    },
                     msg => { alert(msg.message) }
                   )
               },
               msg => { alert(msg.message); }
             );
-
         }
       }
     });
+  }
+
+  getCategories(): Category[] {
+    return this.categories.filter(c => !this.playlistCategories.includes(c));
   }
 
   removeCategory(category: Category) {
@@ -91,7 +88,6 @@ export class PlaylistComponent implements OnInit {
       .subscribe(
         ar => {
           if (ar) {
-            console.log(ar.name);
             var idx = this.playlistCategories.findIndex(ar => ar.name == category.name);
             if (idx != -1) {
               this.playlistCategories.splice(idx, 1);

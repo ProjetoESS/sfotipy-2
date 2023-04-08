@@ -5,6 +5,7 @@ import {PlaylistService} from 'src/app/playlist.service';
 import {Category} from '../../../../../common/category';
 import {Music} from '../../../../../common/music';
 import {Playlist} from '../../../../../common/playlist';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-playlist-recomendadas',
@@ -12,13 +13,14 @@ import {Playlist} from '../../../../../common/playlist';
   styleUrls: ['./playlist-recomendadas.component.scss']
 })
 export class PlaylistRecomendadasComponent implements OnInit {
-  constructor(private playlistService: PlaylistService) {}
+  constructor(private playlistService: PlaylistService, private titleService:Title) {}
 
   playlists: Playlist[] = [];
   playlistsRecomendadas: Playlist[] = [];
 
 
   ngOnInit(): void {
+    this.titleService.setTitle("Explorar")
     this.playlistService.getPlaylists().subscribe(
         (as) => {
           this.playlists = as;

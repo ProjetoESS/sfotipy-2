@@ -56,7 +56,7 @@ And eu posso ver a sessão de conteúdo "musicas"
 Scenario: Busca com Filtro por trecho do nome
 Given eu estou na página "busca"
 And todas as músicas estão visíveis
-And há 2 músicas que contém "Paradise" em seu nome na lista de músicas
+And as músicas "Paradise", "Another Day in Paradise", "Yellow" e "Viva la Vida" aparecem na lista de músicas
 When eu preencher o campo de busca por texto com "Paradise"
 Then eu posso ver as músicas "Paradise" e "Another Day in Paradise" na lista de músicas
 And todas as músicas da lista de músicas contém "Paradise" em seu nome

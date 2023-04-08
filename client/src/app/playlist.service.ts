@@ -110,8 +110,10 @@ export class PlaylistService {
   }
 
   recommendPlaylists(userPlaylists: Playlist[], allPlaylists: Playlist[]): Observable<Playlist[]> {
+    const otherPlaylists = allPlaylists.filter(p => !userPlaylists.includes(p));
+
     const categoriesMine = new Set(userPlaylists.flatMap(p => p.categories));
-    let sortPlaylist = (allPlaylists.sort((p1, p2) => {
+    let sortPlaylist = (otherPlaylists.sort((p1, p2) => {
       const categoriesP1 = new Set(p1.categories);
       const categoriesP2 = new Set(p2.categories);
       const similarityP1 = this.getSimilarityScore(categoriesMine, categoriesP1);

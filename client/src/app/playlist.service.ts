@@ -31,9 +31,9 @@ export class PlaylistService {
     return this.http.get<boolean>(url);
   }
 
-  getUserPlaylists(ownerId: any): Observable<Playlist[]> {
-    console.log('ownerId:', ownerId); // adicione esta linha
-    const url = `${this.appURL}/minhas_playlists`;
+  getUserPlaylists(ownerId: any): Observable<Playlist[]>  {
+    //console.log('ownerId:', ownerId); // adicione esta linha
+    const url = `${this.appURL}/minhas_playlists/${ownerId}`;
     return this.http.get<any[]>(url).pipe(
       map(response => {
         console.log('response:', response); // adicione esta linha
@@ -110,8 +110,10 @@ export class PlaylistService {
   }
 
   recommendPlaylists(userPlaylists: Playlist[], allPlaylists: Playlist[]): Observable<Playlist[]> {
+    const otherPlaylists = allPlaylists.filter(p => !userPlaylists.includes(p));
+
     const categoriesMine = new Set(userPlaylists.flatMap(p => p.categories));
-    let sortPlaylist = (allPlaylists.sort((p1, p2) => {
+    let sortPlaylist = (otherPlaylists.sort((p1, p2) => {
       const categoriesP1 = new Set(p1.categories);
       const categoriesP2 = new Set(p2.categories);
       const similarityP1 = this.getSimilarityScore(categoriesMine, categoriesP1);

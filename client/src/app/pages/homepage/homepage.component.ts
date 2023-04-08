@@ -33,6 +33,12 @@ export class HomepageComponent {
 
     this.playlistService.getPlaylists().subscribe(
       as => { this.playlists = as;
+        
+              this.userService.getUserId().subscribe(
+                as => { this.userId = as; },
+                msg => { alert(msg.message); }
+              );
+
               this.playlistsPublic = this.playlists.filter((playlist) => playlist.availability === "public"); 
               this.playlistsUser = this.playlists.filter(playlist => playlist.ownerId == this.userId);
               this.playlistsTrending = this.playlists.sort((a, b) => b.followers.length - a.followers.length);
@@ -45,10 +51,5 @@ export class HomepageComponent {
             },
       msg => { alert(msg.message); }
     );
-
-    this.userService.getUserId().subscribe(
-      as => { this.userId = as; },
-      msg => { alert(msg.message); }
-    )
   }
 }

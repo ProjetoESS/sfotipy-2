@@ -1,6 +1,6 @@
 .footer-container {
     position: fixed;
-    width: 100%;
+    width: 100vw;
     height: 104px;
     background: #6E7C88;
     bottom: 0;
@@ -12,17 +12,22 @@
 }
 
 .app-player {
-    margin-top: -35%;
+    margin-top: -115px;
     margin-left: 25px;
     margin-right: 25px;
 }
 
 .player-controls {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
 }
 
 .player-content {
-    margin-top: 15px
+    height: 20%;
+    padding-top: 5px;
+    padding-bottom: 10px;
 }
 
 .progress-bar {

@@ -31,14 +31,15 @@ export class MusicService {
   idCount: number = this.musics.length;
 
   add(music: Music): Music {
-    const newMusic = new Music(<Music>{ id: this.idCount, ...music });
+    music.id = this.idCount;
+    const newMusic = new Music(<Music>{ ...music });
     this.musics.push(newMusic);
     this.idCount++;
     return newMusic;
   }
 
-  update(music: Music): Music {
-    const result: Music = this.musics.find(c => c.id == music.id);
+  update(music: Music): Music | null {
+    const result = this.musics.find(c => c.id == music.id);
     if (result instanceof Music) {
       result.update(<Music>music);
       return result;
@@ -61,7 +62,7 @@ export class MusicService {
     return this.musics;
   }
 
-  getById(musicId: number): Music {
+  getById(musicId: number): Music | undefined {
     return this.musics.find(({ id }) => id == musicId);
   }
 }

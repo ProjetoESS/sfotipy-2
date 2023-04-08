@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {MusicService} from '../../../../server/src/music-service';
+import { MusicService } from '../../../../server/src/music-service';
 import { Music } from '../../../../common/music';
 @Component({
   selector: 'app-musicas-em-alta',
@@ -9,9 +9,11 @@ import { Music } from '../../../../common/music';
 export class MusicasEmAltaComponent {
   mostAccessedMusics: Music[] = [];
 
-  constructor(private musicService: MusicService) {}
+  music: Music = new Music(<Music>{ 'id': 0, 'name': "Hymn for the Weekend", 'author': "Coldplay", 'image': "https://upload.wikimedia.org/wikipedia/pt/6/61/Coldplay_Hymn_for_the_Weekend.jpg", 'link': "", 'duration': 500, 'category': 3 });
+
+  constructor(private musicService: MusicService) { }
 
   ngOnInit() {
-    this.mostAccessedMusics = this.musicService.getMostAccessed();
+    //this.mostAccessedMusics = this.musicService.getMostAccessed();
   }
 }

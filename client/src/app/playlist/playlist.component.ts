@@ -54,23 +54,17 @@ export class PlaylistComponent implements OnInit {
                     .subscribe(
                       as => {
                         this.playlistSongs.push(as);
+                        this.categoryService.getAllCategories().subscribe(
+                          as => {
+                            this.categories = as;
+                            this.playlistCategories = this.categories.filter(c => this.selectedPlaylist.categories.includes(c.id));
+                          },
+                          msg => { alert(msg.message); }
+                        );
                       },
                       msg => { alert(msg.message); }
                     );
                 }
-                this.playlistService.getPlaylistCategories(parseInt(id))
-                  .subscribe(
-                    ar => {
-                      this.playlistCategories = ar;
-                      this.categoryService.getAllCategories().subscribe(
-                        as => {
-                          this.categories = as.filter(c => !ar.includes(c));
-                        },
-                        msg => { alert(msg.message); }
-                      );
-                    },
-                    msg => { alert(msg.message) }
-                  )
               },
               msg => { alert(msg.message); }
             );

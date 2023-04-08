@@ -1,4 +1,4 @@
-.card-container {
+.playlist-card-container {
     width: 256px;
     height: 256px;
     border-radius: 12px;
@@ -9,7 +9,7 @@
     background-position: center center;
 }
 
-.card-container:hover .card-details {
+.playlist-card-container:hover .card-details {
     display: flex;
 }
 

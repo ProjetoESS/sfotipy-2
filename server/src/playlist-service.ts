@@ -2,17 +2,51 @@ import { Category } from '../../common/category';
 import { Playlist } from '../../common/playlist'
 
 export class PlaylistService {
-  playlists: Playlist[] = [new Playlist(<Playlist>{
-    "id": 0,
-    "name": "Mix de Coldplay",
-    "categories": [],
-    "musics": [0, 1, 2, 3, 4, 5, 6, 7, 8],
-    "image": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2f679c136425765.61f96b4f03c85.jpg",
-    "link": "",
-    "owner": "",
-    "followers": [],
-    "availability": "public"
-  })];
+  playlists: Playlist[] = [
+    new Playlist(<Playlist>{
+      "id": 0,
+      "name": "Mix de Coldplay",
+      "categories": [],
+      "musics": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+      "image": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2f679c136425765.61f96b4f03c85.jpg",
+      "link": "",
+      "owner": "",
+      "followers": [],
+      "availability": "public"}),
+    new Playlist(<Playlist>{
+      "id": 1,
+      "name": "Rocking with Imagine Dragons",
+      "categories": [],
+      "musics": [10, 11, 12, 13, 14],
+      "image": "https://i.pinimg.com/736x/98/e6/d8/98e6d8ab4d4414eef0e90bb1382bfb86.jpg",
+      "link": "",
+      "owner": "",
+      "followers": [],
+      "availability": "public"
+    }),
+    new Playlist(<Playlist>{
+      "id": 2,
+      "name": "Eminem's Greatest Hits",
+      "categories": [],
+      "musics": [15, 16, 17],
+      "image": "https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/eminem-miracle-studio.jpg",
+      "link": "",
+      "owner": "",
+      "followers": [],
+      "availability": "public"
+    }),
+    new Playlist(<Playlist>{
+      "id": 3,
+      "name": "League of Legends Mix",
+      "categories": [],
+      "musics": [18, 19, 20],
+      "image": "https://cdns-images.dzcdn.net/images/artist/21e53b8e8285f84f60601d895c39c900/500x500.jpg",
+      "link": "",
+      "owner": "",
+      "followers": [],
+      "availability": "public"
+  })
+  ];
   idCount: number = 0;
   categories: Category[] = [];
 

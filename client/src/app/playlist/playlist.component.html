@@ -23,13 +23,6 @@
             </span>
           </div>
         </details>
-
-        <ul class="categories">
-          <li class="category" *ngFor="let category of playlistCategories">{{ category.name }}</li>
-          <li class="category">
-            <a class="add_new_category" href="/categorias/{{selectedPlaylist.id}}">+</a>
-          </li>
-        </ul>
       </div>
       <div class="icons">
         <i *ngIf="selectedPlaylist.availability === 'public'" (click)="showShareLink()" class="fas fa-share">

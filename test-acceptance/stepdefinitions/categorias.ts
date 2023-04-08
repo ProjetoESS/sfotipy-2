@@ -11,7 +11,17 @@ async function goTo(page:string) {
     await browser.driver.get(`http://localhost:4200/${page}`);
 }
 
-let sameCategory = ((elem, category) => elem.element(by.css(".category")).getText().then(text => text == category));
+async function checkPlaylistName(playlistName:string) {
+    const EC = protractor.ExpectedConditions;
+    const playlist = await element(by.css(".playlist_name"));
+    await browser.wait(EC.visibilityOf(playlist), 5000, "Element not visible");
+    expect(await playlist.getText()).to.equal(playlistName);
+}
+
+async function comeBackFromCategoryPage() {
+    const goBackToPlaylist = await element(by.css(".back"));
+    await goBackToPlaylist.click();
+}
 
 defineSupportCode(function({Given, When, Then}) {
 
@@ -21,12 +31,7 @@ defineSupportCode(function({Given, When, Then}) {
 
     Given(/^estou na página da playlist "([^\"]*)" com id "(\d*)"$/, async (playlistName, id) => {
         goTo("playlist/" + id);
-        const EC = protractor.ExpectedConditions;
-        const playlist = await element(by.css(".playlist_name"));
-        await browser.wait(EC.visibilityOf(playlist), 10000, "Element not visible");
-
-        const playlist_name = await playlist.getText();
-        expect(playlist_name).to.equal(playlistName);
+        await checkPlaylistName(playlistName.toString());
     });
 
     Given(/^tenho permissão para gerenciar "([^\"]*)"$/, async(playlistName) => {
@@ -48,13 +53,8 @@ defineSupportCode(function({Given, When, Then}) {
     });
 
     Then(/^"([^\"]*)" é uma nova categoria da playlist "([^\"]*)"$/, async (category, playlistName) => {
-        const goBackToPlaylist = await element(by.css(".back"));
-        await goBackToPlaylist.click();
-
-        const EC = protractor.ExpectedConditions;
-        const playlist = await element(by.css(".playlist_name"));
-        await browser.wait(EC.visibilityOf(playlist), 5000, "Element not visible");
-        expect(await playlist.getText()).to.equal(playlistName);
+        comeBackFromCategoryPage();
+        await checkPlaylistName(playlistName.toString());
         expect((await element.all(by.id(`selected-${category}`))).length).to.equal(1);
     });
 
@@ -76,73 +76,42 @@ defineSupportCode(function({Given, When, Then}) {
     });
 
     Then(/^"([^\"]*)" é uma categoria de "([^\"]*)” e "([^\"]*)" não.$/, async (categoryPresent, playlistName, categoryNotPresent) => {
-        const goBackToPlaylist = await element(by.css(".back"));
-        await goBackToPlaylist.click();
+        comeBackFromCategoryPage();
         expect((await element.all(by.id(`selected-${categoryPresent}`))).length).to.equal(1);
         expect((await element.all(by.id(`selected-${categoryNotPresent}`))).length).to.equal(0);
-        const EC = protractor.ExpectedConditions;
-        const playlist = await element(by.css(".playlist_name"));
-        await browser.wait(EC.visibilityOf(playlist), 5000, "Element not visible");
-        const playlist_name = await playlist.getText();
-        expect(playlist_name).to.equal(playlistName);
+        await checkPlaylistName(playlistName.toString());
 
     });
 
     // Scenario : remover uma categoria.
 
     Then(/^"([^\"]*)" não possui mais "([^\"]*)" como uma categoria da playlist$/, async(playlistName, category) => {
-        const goBackToPlaylist = await element(by.css(".back"));
-        await goBackToPlaylist.click();
-
-        const EC = protractor.ExpectedConditions;
-        const playlist = await element(by.css(".playlist_name"));
-        await browser.wait(EC.visibilityOf(playlist), 5000, "Element not visible");
-        const playlist_name = await playlist.getText();
-        expect(playlist_name).to.equal(playlistName);
-        
+        comeBackFromCategoryPage();
+        await checkPlaylistName(playlistName.toString());
         expect((await element.all(by.id(`selected-${category}`))).length).to.equal(0);
     });
 
     // Scenario : adicionando categoria já existente na playlist
 
     Then(/^"([^\"]*)" continua tendo somente uma categoria, que é "([^\"]*)"$/, async(playlistName, category) => {
-        const goBackToPlaylist = await element(by.css(".back"));
-        await goBackToPlaylist.click();
-
+        comeBackFromCategoryPage();
         expect((await element.all(by.id(`selected-${category}`))).length).to.equal(1);
-        const EC = protractor.ExpectedConditions;
-        const playlist = await element(by.css(".playlist_name"));
-        await browser.wait(EC.visibilityOf(playlist), 5000, "Element not visible");
-        const playlist_name = await playlist.getText();
-        expect(playlist_name).to.equal(playlistName);
+        await checkPlaylistName(playlistName.toString());
     });
 
     // Scenario: mais de duas categorias para playlist
 
     Then(/^"([^\"]*)" não é uma categoria de "([^\"]*)"$/, async (category, playlistName) => {
-
-        const goBackToPlaylist = await element(by.css(".back"));
-        await goBackToPlaylist.click();
-
+        comeBackFromCategoryPage();
         expect((await element.all(by.id(`selected-${category}`))).length).to.equal(0);
-        const EC = protractor.ExpectedConditions;
-        const playlist = await element(by.css(".playlist_name"));
-        await browser.wait(EC.visibilityOf(playlist), 5000, "Element not visible");
-        const playlist_name = await playlist.getText();
-        expect(playlist_name).to.equal(playlistName);
+        await checkPlaylistName(playlistName.toString());
     });
 
     // Scenario: removendo todas as categorias de uma playlist
 
     Then(/^"([^\"]*)" não possui nenhuma categoria$/, async (playlistName) => {
-        const goBackToPlaylist = await element(by.css(".back"));
-        await goBackToPlaylist.click();
-
-        const EC = protractor.ExpectedConditions;
-        const playlist = await element(by.css(".playlist_name"));
-        await browser.wait(EC.visibilityOf(playlist), 5000, "Element not visible");
-        const playlist_name = await playlist.getText();
-        expect(playlist_name).to.equal(playlistName);
+        comeBackFromCategoryPage();
+        await checkPlaylistName(playlistName.toString());
         expect((await element.all(by.className("category"))).length).to.equal(0);
     });
 

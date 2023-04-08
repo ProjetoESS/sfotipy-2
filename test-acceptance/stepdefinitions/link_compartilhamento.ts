@@ -14,8 +14,6 @@ async function goTo(page:string) {
 }
 
 defineSupportCode(function({Given, When, Then, setDefaultTimeout}) {
-    
-    setDefaultTimeout(10 * 1000);
 
     Given(/^eu sou um usuário com login "([^\"]*)" e senha "(\d*)"$/, async(login, senha) => {
         // FALTA FAZER LOGIN

@@ -28,7 +28,7 @@ async function assertMusicsWithSameName(n, name) {
 defineSupportCode(function ({ Given, When, Then }) {
     Given(/^eu estou na página "([^\"]*)"$/, async (name) => {
         await browser.get("http://localhost:4200/busca");
-        await expect(browser.getTitle()).to.eventually.equal('Sfotipy');
+        await expect(browser.getTitle()).to.eventually.equal(name);
     })
 
     Given(/^as músicas "([^\"]*)", "([^\"]*)", "([^\"]*)" e "([^\"]*)" aparecem na lista de músicas$/,

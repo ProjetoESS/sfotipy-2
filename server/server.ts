@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/criar_playlist', (req: express.Request, res: express.Response) => {
   const newPlaylist = <Playlist>req.body;
-  
+
   try {
     const result = playlistService.addPlaylist(newPlaylist);
     if (result) {
@@ -159,7 +159,7 @@ app.put('/playlist', function (req: express.Request, res: express.Response) {
 
 app.post('/criar_playlist', (req: express.Request, res: express.Response) => {
   const newPlaylist = <Playlist>req.body;
-  
+
   try {
     const result = playlistService.addPlaylist(newPlaylist);
     if (result) {
@@ -172,10 +172,11 @@ app.post('/criar_playlist', (req: express.Request, res: express.Response) => {
 });
 
 
-app.get('/minhas_playlists', (req, res) => {
-  //const ownerId = parseInt(req.query.ownerId as string);
-  const ownerId = 1
-  console.log(ownerId) // busca o ownerId a partir dos parâmetros da requisição
+app.get('/minhas_playlists/:id', (req, res) => {
+  const ownerId = parseInt(req.params.id);
+  //console.log(ownerId) // busca o ownerId a partir dos parâmetros da requisição;
+  
+  //const ownerId = 1
   const userPlaylists = playlistService.getUserPlaylists(ownerId); // busca as playlists do usuário a partir do PlaylistService
   res.json(userPlaylists); // retorna as playlists como uma resposta JSON
 });
@@ -184,13 +185,7 @@ app.get('/minhas_playlists', (req, res) => {
 
 app.get('/category/:id', function (req: express.Request, res: express.Response) {
   const playlistId: number = Number(req.params.id);
-  const playlist = playlistService.getById(playlistId);
-  const playlistCategories = playlist.categories;
-
-  var categories : Category[] = [];
-  playlistCategories.forEach(categoryId => {
-    categories.push(categoryService.getById(categoryId));
-  });
+  const categories: Category[] = playlistService.getPlaylistCategory(playlistId);
 
   if (categories) {
     res.send(categories);
@@ -208,25 +203,26 @@ app.get('/category', function (req: express.Request, res: express.Response) {
   }
 });
 
-/*app.post('/category/:id', function (req: express.Request, res: express.Response) {
+app.post('/category/:id', function (req: express.Request, res: express.Response) {
   const id: number = Number(req.params.id);
   const newCategory: Category = req.body.category;
   const result = playlistService.addNewCategory(id, newCategory.id);
-  if(result) {
-    res.send({"success" : "The new category was registered"});
-  }else{
-    res.send({"failure" : "The category was not registered"});
+  if (result) {
+    res.send({ "success": "The new category was registered" });
+  } else {
+    res.send({ "failure": "The category was not registered" });
   }
 });
-*/
+
+
 app.delete('/category/:id', function (req: express.Request, res: express.Response) {
   const id: number = Number(req.params.id);
   const category: number = req.body.category.id;
   const result = playlistService.deleteCategory(id, category);
-  if(result) {
-    res.send({"success": "The category was deleted"});
-  }else{
-    res.send({"failure": "The category was not deleted"});
+  if (result) {
+    res.send({ "success": "The category was deleted" });
+  } else {
+    res.send({ "failure": "The category was not deleted" });
   }
 });
 

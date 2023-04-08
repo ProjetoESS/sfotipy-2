@@ -13,7 +13,7 @@ export class PlaylistCardRecomendComponent {
   constructor(private clipboard: Clipboard, private router: Router) {};
 
   @Input() playlist: any;
-  showCopyMessage = false;
+  showShareMessage = false;
 
   @Output() play = new EventEmitter<any>();
 
@@ -34,10 +34,11 @@ export class PlaylistCardRecomendComponent {
     event.stopPropagation();
     const str: string = 'localhost:4200/playlist/' + playlist.id;
     this.clipboard.copy(str);
-    this.showCopyMessage = true;
+
+    this.showShareMessage = true;
     setTimeout(() => {
-      this.showCopyMessage = false;
-    }, 1500);
+      this.showShareMessage = false;
+    }, 1000);
   }
 
   savePlaylist(event: Event) {

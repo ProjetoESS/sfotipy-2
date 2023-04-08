@@ -3,6 +3,7 @@ import { OnInit } from '@angular/core';
 import { Playlist } from '../../../../common/playlist';
 import { PlaylistService } from '../playlist.service';
 import { Router, NavigationExtras } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +11,13 @@ import { Router, NavigationExtras } from '@angular/router';
   styleUrls: ['./criar_playlist.component.css']
 })
 export class CriarPlaylistComponent implements OnInit {
-  user_id: number = 1
+  user_id: number = 0;
   id: number = 6
   successMessage: string = '';
   nome_playlist: string = ''
   imagem_playlist: string = ''
   publicavel: string = ''
-  constructor(private playlistService: PlaylistService, private router: Router) { }
+  constructor(private playlistService: PlaylistService, private router: Router, private userService: UserService) { }
 
   criarPlaylist(event: Event) {
     event.preventDefault();
@@ -44,7 +45,7 @@ export class CriarPlaylistComponent implements OnInit {
       "ownerId": this.user_id,
       "name": this.nome_playlist,
       "categories": [],
-      "musics": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+      "musics": [],
       "image": this.imagem_playlist,
       "link": "",
       "owner": "",
@@ -57,8 +58,6 @@ export class CriarPlaylistComponent implements OnInit {
       alert('Playlist criada com sucesso')
       this.router.navigate(['/minhas_playlists']);
     });
-
-
   }
 
   ngOnInit(): void {
@@ -84,6 +83,12 @@ export class CriarPlaylistComponent implements OnInit {
           reader.readAsDataURL(file);
         }
       })
-    }
+    };
+
+    this.userService.getUserId().subscribe(userId => {
+      this.user_id = userId
+      //console.log(this.user_id);
+      
+    });
   }
 }

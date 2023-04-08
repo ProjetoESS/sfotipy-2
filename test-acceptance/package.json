@@ -22,8 +22,10 @@
     "typescript": "^2.9.2"
   },
   "dependencies": {
+    "clipboardy": "^3.0.0",
     "cucumber-html-reporter": "^4.0.5",
     "protractor": "^5.1.2",
     "ts-node": "^3.1.0"
   }
+  
 }

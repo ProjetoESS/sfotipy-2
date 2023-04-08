@@ -7,6 +7,7 @@ import { Music } from '../../../../../common/music';
 import { Playlist } from '../../../../../common/playlist';
 import { Category } from '../../../../../common/category';
 import { CategoryService } from 'src/app/category.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-page-busca',
@@ -34,9 +35,11 @@ export class PageBuscaComponent {
   constructor(
     private musicasService: MusicasService,
     private playlistService: PlaylistService,
-    private categoryService: CategoryService) { }
+    private categoryService: CategoryService,
+    private titleService: Title) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Busca")
     this.musicasService.getMusics()
       .subscribe(
         as => { this.musics = as; },

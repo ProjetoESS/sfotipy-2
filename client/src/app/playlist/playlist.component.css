@@ -40,7 +40,7 @@ i {
   background-color: #FFE5B4;
 }
 
-.manage-category{
+.manage-category {
   display: inline-block;
   padding: 8px;
   color: black;
@@ -85,7 +85,7 @@ h1 {
   width: 100%;
 }
 
-.content span {
+.content .description {
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -103,4 +103,56 @@ h1 {
   margin-bottom: -50px;
   align-self: end;
   right: max(calc((100vw - 1300px))/2, 1em);
+}
+
+.badge {
+  background-color: #FFE5B4;
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-family: 'Iceland';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 21px;
+  text-transform: uppercase;
+
+  color: #000000;
+  margin-right: 15px;
+}
+
+details>summary {
+  list-style-type: '+';
+  text-align: center;
+  background-color: #FFE5B4;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  color: #0D2538;
+  cursor: pointer;
+  line-height: 32px;
+}
+
+details[open]>summary {
+  list-style-type: '-';
+}
+
+details {
+  display: inline;
+}
+
+details .categories-content {
+  position: absolute;
+}
+
+details span {
+  display: block;
+  margin: 5px 0;
+  cursor: pointer;
+}
+
+.close-button {
+  border: none;
+  background-color: transparent;
+  color: #0D2538;
+  cursor: pointer;
 }

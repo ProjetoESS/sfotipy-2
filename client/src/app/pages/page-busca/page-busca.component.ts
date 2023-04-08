@@ -33,6 +33,8 @@ export class PageBuscaComponent {
     new Category(<Category>{ 'id': 6, 'name': 'Indie' })
   ];
 
+  selectedCategories: Category[] = [];
+
   selectedOptions: string[] = [];
 
   constructor(
@@ -58,5 +60,18 @@ export class PageBuscaComponent {
 
   activatePlaylists() {
     this.playlistIsActive = !this.playlistIsActive;
+  }
+
+  getCategories(): Category[] {
+    return this.categories.filter(c => !this.selectedCategories.includes(c));
+  }
+
+  selectCategory(category: Category): void {
+    this.selectedCategories.push(category);
+  }
+
+  removeCategory(category: Category): void {
+    let index = this.selectedCategories.findIndex(c => c.id === category.id);
+    this.selectedCategories.splice(index, 1);
   }
 }

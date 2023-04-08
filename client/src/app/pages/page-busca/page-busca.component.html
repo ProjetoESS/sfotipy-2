@@ -9,6 +9,18 @@
                     for="musicas" (click)="activateMusicas()">Músicas</button>
                 <button id="option-playlists" name="type-option" class="tag" [ngClass]="{active: playlistIsActive}"
                     for="playlists" (click)="activatePlaylists()">Playlists</button>
+                <br>
+                <span *ngFor="let cat of selectedCategories" class="badge">{{cat.name}} <button class="close-button"
+                        (click)="removeCategory(cat)">x</button></span>
+                <details>
+                    <summary></summary>
+                    <div class="content">
+                        <span class="badge" *ngFor="let cat of getCategories()"
+                            (click)="selectCategory(cat)">{{cat.name}}
+                        </span>
+                    </div>
+                </details>
+
             </div>
         </div>
         <div id="section-musicas" name="content-section" *ngIf="musicIsActive">

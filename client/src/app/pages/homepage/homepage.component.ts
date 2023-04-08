@@ -23,7 +23,7 @@ export class HomepageComponent {
   userId: number = 0;
 
   constructor(private playlistService: PlaylistService, private loginService: LoginService, private userService: UserService) { }
-
+  
   ngOnInit(): void {
     this.loginService.getLoginStatus().subscribe(newStatus => {
       this.isLogged = newStatus;
@@ -33,9 +33,9 @@ export class HomepageComponent {
       as => { this.playlists = as;
               this.playlistsPublic = this.playlists.filter((playlist) => playlist.availability === "public"); 
               this.playlistsUser = this.playlists.filter(playlist => playlist.ownerId == this.userId)
-              //this.playlistsRecommended = this.playlistsPublic.sort((a, b) => b.followers.length - a.followers.length).slice(0, 3);
               this.playlistsTrending = this.playlists.sort((a, b) => b.followers.length - a.followers.length);
 
+              //this.playlistsRecommended = this.playlistsPublic.sort((a, b) => b.followers.length - a.followers.length).slice(0, 3);
               this.playlistService.recommendPlaylists(this.playlistsUser, this.playlists).subscribe(
                 as => { this.playlistsRecommended = as; },
                 msg => { alert(msg.message); }

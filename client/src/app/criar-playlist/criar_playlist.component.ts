@@ -87,6 +87,8 @@ export class CriarPlaylistComponent implements OnInit {
 
     this.userService.getUserId().subscribe(userId => {
       this.user_id = userId
+      //console.log(this.user_id);
+      
     });
   }
 }

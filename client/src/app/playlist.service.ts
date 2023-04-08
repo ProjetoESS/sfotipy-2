@@ -32,8 +32,8 @@ export class PlaylistService {
   }
 
   getUserPlaylists(ownerId: any): Observable<Playlist[]>  {
-    console.log('ownerId:', ownerId); // adicione esta linha
-    const url = `${this.appURL}/minhas_playlists`;
+    //console.log('ownerId:', ownerId); // adicione esta linha
+    const url = `${this.appURL}/minhas_playlists/${ownerId}`;
     return this.http.get<any[]>(url).pipe(
       map(response => {
         console.log('response:', response); // adicione esta linha

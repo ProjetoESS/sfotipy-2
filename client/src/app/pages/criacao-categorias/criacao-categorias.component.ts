@@ -23,7 +23,11 @@ export class CriacaoCategoriasComponent {
     .subscribe(
       ar => {
         if (ar) {
-          this.playlistCategories.push(category);
+          //this.playlistCategories.push(category);
+          var idx = this.playlistCategories.findIndex(ar => ar.name == category.name);
+          if(idx == -1) {
+            this.playlistCategories.push(category);
+          }
         }
       }
     )

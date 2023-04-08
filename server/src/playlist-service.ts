@@ -16,10 +16,21 @@ export class PlaylistService {
       "availability": "public"
     },
     <Playlist>{
-      "id" : 1,
+      "id" : 13,
       "name" : "Outra playlist",
-      "categories" : [0],
-      "musics" : [1, 2],
+      "categories" : [3],
+      "musics" : [],
+      "image" : "https://upload.wikimedia.org/wikipedia/en/1/1b/NF_-_The_Search.png",
+      "link" : "",
+      "owner" : "",
+      "followers" : [],
+      "availability" : "private"
+    },
+    <Playlist>{
+      "id" : 32,
+      "name" : "antigas",
+      "categories" : [2],
+      "musics" : [],
       "image" : "https://upload.wikimedia.org/wikipedia/en/1/1b/NF_-_The_Search.png",
       "link" : "",
       "owner" : "",
@@ -71,7 +82,11 @@ export class PlaylistService {
     if (playlist.categories.length >= 2) {
       return null;
     }
-    playlist.categories.push(category);
+    // playlist.categories.push(category);
+    var idx = playlist.categories.findIndex(ar => ar == category);
+    if(idx == -1) {
+      playlist.categories.push(category);
+    }
     return playlist;
   }
 

@@ -39,6 +39,13 @@ defineSupportCode(function ({ Given, When, Then }) {
             await assertMusicsWithSameName(1, music4);
         });
 
+    Given(/^todas as músicas estão visíveis$/, async () => {
+        await browser.refresh();
+        var isCollapsed = element(by.css('.see-more-music'));
+        await isCollapsed.click();
+        await assertIncludesInName(isCollapsed, "menos");
+    })
+
     Given(/^há (\d+) músicas que contém "([^\"]*)" em seu nome na lista de músicas$/,
         async (amount, music) => {
             var allmusics: ElementArrayFinder = element.all(by.name("music-container"));
@@ -60,7 +67,7 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     Then(/^todas as músicas da lista de músicas contém "([^\"]*)" em seu nome$/,
         async (name) => {
-            await element.all(by.css('.name')).then(async items => {
+            await element.all(by.css(`[name='music-card'] .name`)).then(async items => {
                 for (let index = 0; index < items.length; index++) {
                     const element = items[index];
                     await assertIncludesInName(items[index], name);
@@ -125,4 +132,22 @@ defineSupportCode(function ({ Given, When, Then }) {
             var hasName = allmusics.filter(elem => hasInName(elem, music));
             await assertTamanhoEqual(hasName, amount);
         });
+
+    When(/^eu selecionar a categoria “([^\"]*)” no filtro de busca por categorias$/,
+        async (category) => {
+            await element(by.id(`selector-cat`)).click();
+            await element(by.id(`select-cat-${category}`)).click();
+            var selectedCategories: ElementArrayFinder = element.all(by.id(`selected-cat-${category}`));
+            await assertTamanhoEqual(selectedCategories, 1);
+        });
+
+    Then(/^só serão mostradas músicas da categoria “([^\"]*)”$/,
+        async (category) => {
+            await element.all(by.css(`[name='music-card'] .category`)).then(async items => {
+                for (let index = 0; index < items.length; index++) {
+                    const element = items[index];
+                    await assertIncludesInName(items[index], category);
+                }
+            });
+        })
 })

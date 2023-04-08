@@ -9,18 +9,31 @@
                     for="musicas" (click)="activateMusicas()">Músicas</button>
                 <button id="option-playlists" name="type-option" class="tag" [ngClass]="{active: playlistIsActive}"
                     for="playlists" (click)="activatePlaylists()">Playlists</button>
+                <br>
+                <span *ngFor="let cat of selectedCategories" class="badge"
+                    id="selected-cat-{{cat.name.toUpperCase()}}">{{cat.name}}
+                    <button class="close-button" (click)="removeCategory(cat)">x</button></span>
+                <details>
+                    <summary id="selector-cat"></summary>
+                    <div class="content">
+                        <span *ngFor="let cat of getCategories()" id="select-cat-{{cat.name.toUpperCase()}}"
+                            class="badge" (click)="selectCategory(cat)">{{cat.name}}
+                        </span>
+                    </div>
+                </details>
+
             </div>
         </div>
         <div id="section-musicas" name="content-section" *ngIf="musicIsActive">
-            <div class="empty-search-message" *ngIf="!(musics | musicsFilter: filterText)?.length">
+            <div class="empty-search-message" *ngIf="!(musics | musicsFilter: filterText: getCategoriesId())?.length">
                 <p>Nenhum resultado encontrado.</p>
             </div>
             <div class="musicaslista">
                 <app-music-card
-                    *ngFor="let m of musics | musicsFilter: filterText | slice:0:(showAllMusic ? undefined : 6)"
+                    *ngFor="let m of musics | musicsFilter: filterText: getCategoriesId()| slice:0:(showAllMusic ? undefined : 4)"
                     [id]="m.id" [name]="m.name" [author]="m.author" [music]="m"></app-music-card>
             </div>
-            <div class="see-more-message" (click)="showAllMusic = !showAllMusic">
+            <div class="see-more-music" (click)="showAllMusic = !showAllMusic">
                 {{ showAllMusic ? 'Ver menos músicas' : 'Ver mais músicas' }}
             </div>
         </div>

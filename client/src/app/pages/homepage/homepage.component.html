@@ -56,7 +56,7 @@
         <h1>Minhas Playlists</h1>
 
         <div class="plsts-mp-lst">
-            <div class="" *ngFor="let plst of playlists | slice:0:5">
+            <div class="" *ngFor="let plst of playlistsUser | slice:0:5">
                 <app-playlist-card-recomend [playlist]="plst"></app-playlist-card-recomend>
             </div>
         </div>

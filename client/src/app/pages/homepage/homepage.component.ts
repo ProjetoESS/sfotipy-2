@@ -15,8 +15,8 @@ import { UserService } from 'src/app/user.service';
 })
 export class HomepageComponent {
   playlists: Playlist[] = [];
-  playlistsPublic: Playlist[] = [];
   playlistsTrending: Playlist[] = [];
+  playlistsPublic: Playlist[] = [];
   playlistsUser: Playlist[] = [];
   isLogged: boolean = false;
   userId: number = 0;
@@ -29,7 +29,10 @@ export class HomepageComponent {
     });
 
     this.playlistService.getPlaylists().subscribe(
-      as => { this.playlists = as; },
+      as => { this.playlists = as;
+              this.playlistsPublic = this.playlists.filter((playlist) => playlist.availability === "public"); 
+              this.playlistsTrending = this.playlists.sort((a, b) => b.followers.length - a.followers.length);
+              this.playlistsUser = this.playlists.filter(playlist => playlist.ownerId == this.userId) },
       msg => { alert(msg.message); }
     );
 
@@ -37,11 +40,5 @@ export class HomepageComponent {
       as => { this.userId = as; },
       msg => { alert(msg.message); }
     )
-
-    this.playlistsPublic = this.playlists.filter(playlist => playlist.availability === 'public');
-
-    this.playlistsTrending = this.playlists.sort((a, b) => b.followers.length - a.followers.length);
-
-    this.playlistsUser = this.playlists.filter(playlist => playlist.ownerId === this.userId)
   }
 }

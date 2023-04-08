@@ -28,6 +28,12 @@ export class PlaylistRecomendadasComponent implements OnInit {
     this.playlistService.getPlaylists().subscribe(
         (as) => {
           this.playlists = as;
+          
+          this.userService.getUserId().subscribe(
+            as => { this.userId = as; },
+            msg => { alert(msg.message); }
+          )
+
           this.playlistsUser = this.playlists.filter(playlist => playlist.ownerId == this.userId);
           this.playlistService.recommendPlaylists(this.playlistsUser, this.playlists).subscribe(
             as => { this.playlistsRecomendadas = as; },
@@ -37,11 +43,6 @@ export class PlaylistRecomendadasComponent implements OnInit {
         (msg) => {
           alert(msg.message);
         });
-
-    this.userService.getUserId().subscribe(
-      as => { this.userId = as; },
-      msg => { alert(msg.message); }
-    )
   }
 
   selectedPlaylist: any;

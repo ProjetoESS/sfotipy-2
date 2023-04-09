@@ -21,9 +21,12 @@ export class MusicPlayerService {
 
   isPlaying: boolean = false;
 
-  musicTime = { 'minutes': Math.floor(this.currentMusic.duration / 60), 'seconds': this.currentMusic.duration - Math.floor(this.currentMusic.duration / 60) * 60 }
+  musicTime = {
+    'minutes': Math.floor(this.currentMusic.duration / 60).toString().padStart(2, '0'),
+    'seconds': Math.floor(this.currentMusic.duration % 60).toString().padStart(2, '0')
+  };
 
-  currentTime = { 'minutes': 0, 'seconds': 0 }
+  currentTime = { 'minutes': '00', 'seconds': '00' }
 
   updateInterval: any;
 
@@ -52,8 +55,14 @@ export class MusicPlayerService {
   }
 
   updateMusicInfo() {
-    this.currentTime = { 'minutes': Math.floor(this.audio.currentTime / 60), 'seconds': Math.floor(this.audio.currentTime - Math.floor(this.audio.currentTime / 60) * 60) }
-    this.musicTime = { 'minutes': Math.floor(this.audio.duration / 60), 'seconds': Math.floor(this.audio.duration - Math.floor(this.audio.duration / 60) * 60) }
+    this.currentTime = {
+      'minutes': Math.floor(this.audio.currentTime / 60).toString().padStart(2, '0'),
+      'seconds': Math.floor(this.audio.currentTime % 60).toString().padStart(2, '0')
+    }
+    this.musicTime = {
+      'minutes': Math.floor(this.audio.duration / 60).toString().padStart(2, '0'),
+      'seconds': Math.floor(this.audio.duration % 60).toString().padStart(2, '0')
+    };
     this.getCurrentProgress();
   }
 
@@ -62,8 +71,11 @@ export class MusicPlayerService {
     this.currentMusic = music;
     this.audio.pause();
     this.audio.src = 'assets/musics/' + this.currentMusic.id + '/audio.mp3';
-    this.musicTime = { 'minutes': Math.floor(this.currentMusic.duration / 60), 'seconds': this.currentMusic.duration - Math.floor(this.currentMusic.duration / 60) * 60 }
-    this.currentTime = { 'minutes': 0, 'seconds': 0 }
+    this.musicTime = {
+      'minutes': Math.floor(this.audio.duration / 60).toString().padStart(2, '0'),
+      'seconds': Math.floor(this.audio.duration % 60).toString().padStart(2, '0')
+    };
+    this.currentTime = { 'minutes': '00', 'seconds': '00' }
     this.play();
   }
 

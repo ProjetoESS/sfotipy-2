@@ -12,9 +12,11 @@ export class PlaylistService {
       "musics": [0, 1, 2, 3, 4, 5, 6, 7, 8],
       "image": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2f679c136425765.61f96b4f03c85.jpg",
       "link": "",
-      "owner": "",
-      "followers": [0, 1],
-      "availability": "public"
+      "owner": "João",
+      "followers": ['a', 'b'],
+      "availability": "public",
+      "accessPlaylits": 4,
+      "ownerId": 1
     }),
     new Playlist(<Playlist><unknown>{
       'id': 1,
@@ -67,8 +69,10 @@ export class PlaylistService {
         'https://thumbs.dreamstime.com/b/listen-to-sleep-music-color-line-icon-autonomous-sensory-meridian-response-sound-waves-as-symbol-enjoying-sounds-editable-211152511.jpg',
       'link': '',
       'owner': 'sfotipy',
-      'followers': [1, 2],
-      'availability': 'public'
+      'followers': ['a', 'b', 'c'],
+      'availability': 'public',
+      "accessPlaylits": 5,
+      "ownerId": 2
     }),
     new Playlist(<Playlist><unknown>{
       'id': 5,
@@ -91,9 +95,11 @@ export class PlaylistService {
       "musics": [10, 11, 12, 13, 14],
       "image": "https://i.pinimg.com/736x/98/e6/d8/98e6d8ab4d4414eef0e90bb1382bfb86.jpg",
       "link": "",
-      "owner": "",
-      "followers": [1, 2, 3, 4],
-      "availability": "public"
+      "owner": "Maria",
+      "followers": ['a', 'b', 'c', 'd'],
+      "availability": "public",
+      "accessPlaylits": 7,
+      "ownerId": 3
     }),
     new Playlist(<Playlist><unknown>{
       "id": 7,
@@ -115,9 +121,11 @@ export class PlaylistService {
       "musics": [18, 19, 20],
       "image": "https://cdns-images.dzcdn.net/images/artist/21e53b8e8285f84f60601d895c39c900/500x500.jpg",
       "link": "",
-      "owner": "",
-      "followers": [1, 2, 3, 4],
-      "availability": "public"
+      "owner": "Mario",
+      "followers": ['a', 'b'],
+      "availability": "public",
+      "accessPlaylits": 9,
+      "ownerId": 5
     }),
     new Playlist(<Playlist><unknown>{
       "id": 9,
@@ -255,8 +263,12 @@ export class PlaylistService {
 
     const playlistCategories = playlist.categories;
     var categories: Category[] = [];
-    playlistCategories.forEach(categoryId => {
-      categories.push(this.categoryService.getById(categoryId));
+
+    playlistCategories.forEach((categoryId: number) => {
+      const category = this.categoryService.getById(categoryId);
+      if (category) {
+        categories.push(category);
+      }
     });
 
     return categories;

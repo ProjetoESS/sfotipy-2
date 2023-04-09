@@ -1,14 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Playlist } from '../../../../common/playlist';
 import { PlaylistService } from '../playlist.service';
+import { MusicasService } from '../musicas.service';
 import { Router, NavigationExtras } from '@angular/router';
+import { CriarPlaylistModule } from './criar_playlist.module';
 
 @Component({
   selector: 'app-root',
   templateUrl: './criar_playlist.component.html',
   styleUrls: ['./criar_playlist.component.css']
 })
+
+
 export class CriarPlaylistComponent implements OnInit {
   user_id: number = 1
   id: number = 6
@@ -16,7 +20,42 @@ export class CriarPlaylistComponent implements OnInit {
   nome_playlist: string = ''
   imagem_playlist: string = ''
   publicavel: string = ''
-  constructor(private playlistService: PlaylistService, private router: Router) { }
+  musicas_add: string[] = []
+  musicasFiltradas: string[] = [];
+  exibirPopup: boolean = false;
+
+  @HostListener('document:click', ['$event'])
+  fecharPopup(event: MouseEvent) {
+    const addMusicaElement = (event.target as Element)?.closest('.addMusica');
+    if (!addMusicaElement) {
+      this.exibirPopup = false;
+    }
+  }
+
+  constructor(private playlistService: PlaylistService, private musicservice: MusicasService, private router: Router) { }
+
+  musicas = this.musicservice.getMusics()
+
+  adicionarMusica(musica: string) {
+    this.musicas_add.push(musica)
+  }
+
+  exibirOpcoesMusicas() {
+    // exibe o pop-up de opções de músicas
+    this.exibirPopup = true;
+
+  }
+
+  filtrarMusicas(event: KeyboardEvent) {
+    // filtra as músicas com base no texto de pesquisa e atualiza a lista de músicas filtradas
+    const textoPesquisa = (event.target as HTMLInputElement).value.toLocaleLowerCase()
+    this.musicas.subscribe(musicas => {
+      this.musicasFiltradas = musicas.filter(musica =>
+        musica.name.toLowerCase().startsWith(textoPesquisa)
+      ).map(musica => musica.name);
+    });
+
+  }
 
   criarPlaylist(event: Event) {
     event.preventDefault();
@@ -42,14 +81,27 @@ export class CriarPlaylistComponent implements OnInit {
     this.playlistService.verificarNomePlaylistExistente(this.nome_playlist).subscribe(result => {
       if (result) {
         alert('Já existe uma playlist com esse nome');
-       return
+        return
       } else {
+        this.musicservice.getMusics().subscribe(musics => {
+          const musicIdsToAdd = [];
+
+          // Iterate over the songs in musicas_add and search for their IDs
+          for (const musica of this.musicas_add) {
+            const matchingMusic = musics.find(m => m.name.toLowerCase() === musica.toLowerCase());
+            if (matchingMusic) {
+              musicIdsToAdd.push(matchingMusic.id);
+            }
+          }
+          console.log(musics)
+        })
+
         const playlist = new Playlist(<Playlist><unknown>{
           "id": 0,
           "ownerId": this.user_id,
           "name": this.nome_playlist,
           "categories": [],
-          "musics": [],
+          "musics": this.musicas_add,
           "image": this.imagem_playlist,
           "link": "",
           "owner": "",
@@ -58,19 +110,21 @@ export class CriarPlaylistComponent implements OnInit {
         })
 
         const novaPlaylist = this.playlistService.addPlaylist(playlist).subscribe(newPlaylists => {
-          //console.log(newPlaylists)
+
           alert('Playlist criada com sucesso')
           this.router.navigate(['/minhas_playlists']);
         });
       }
     })
 
-
-
-
   }
 
   ngOnInit(): void {
+    this.musicas.subscribe(musicas => {
+      this.musicasFiltradas = musicas.map(musica => musica.name);
+
+    });
+
     const input_pic: HTMLElement | null = document.querySelector('.picture_input');
     const pictureImage = document.querySelector('.picture_image')
     if (input_pic && pictureImage) {

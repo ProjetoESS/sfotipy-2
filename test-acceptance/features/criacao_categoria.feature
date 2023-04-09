@@ -5,73 +5,66 @@ Feature: Criação de Categorias
 
     Scenario: adicionando nova categoria a uma playlist
         Given possuo login "jsa2" e senha "123"
-        And estou na página da playlist "Minha playlist" com id "7"
-        And tenho permissão para gerenciar "Minha playlist"
-        And "Minha playlist" tem a categoria "Pop"
+        And estou na página da playlist "Melhores Pop" com id "1"
+        And tenho permissão para gerenciar "Melhores Pop"
+        And "Melhores Pop" tem a categoria "POP"
         When seleciono a opção de adicionar uma nova categoria
-        And seleciono "Rock" como uma nova categoria
-        Then "Rock" é uma nova categoria da playlist "Minha playlist"
+        And seleciono "ROCK" como uma nova categoria
+        Then "ROCK" é uma nova categoria da playlist "Melhores Pop"
 
     Scenario: mudança de categoria de playlist
         Given possuo o login "jsa2" e senha "123"
-        And estou na página da playlist "Outra playlist" com id "13"
-        And tenho permissão para gerenciar "Outra playlist"
-        And "Indie" não é uma categoria da playlist "Outra playlist"
-        And "Electronic" é uma categoria da playlist "Outra playlist"
+        And estou na página da playlist "Melhores Indie" com id "2"
+        And tenho permissão para gerenciar "Melhores Indie"
+        And "INDIE" não é uma categoria da playlist "Melhores Indie"
+        And "ELECTRONIC" é uma categoria da playlist "Melhores Indie"
         When seleciono a opção de adicionar uma nova categoria
-        And seleciono "Electronic" para o remover das categorias
-        And seleciono "Indie" como uma nova categoria
-        Then "Indie" é uma categoria de "Outra playlist” e "Electronic" não.
+        And seleciono "ELECTRONIC" para o remover das categorias
+        And seleciono "INDIE" como uma nova categoria
+        Then "INDIE" é uma categoria de "Melhores Indie” e "ELECTRONIC" não.
     
     Scenario: remover uma categoria de uma playlist
         Given possuo o login "jsa2" e senha "123"
-        And estou na página da playlist "antigas" com id "32"
-        And tenho permissão para gerenciar "antigas"
-        And "Rock" é uma categoria da playlist "antigas"
+        And estou na página da playlist "Para Você" com id "3"
+        And tenho permissão para gerenciar "Para Você"
+        And "ROCK" é uma categoria da playlist "Para Você"
         When seleciono a opção de adicionar uma nova categoria
-        And seleciono "Rock" para o remover das categorias
-        Then "antigas" não possui mais "Rock" como uma categoria da playlist
+        And seleciono "ROCK" para o remover das categorias
+        Then "Para Você" não possui mais "ROCK" como uma categoria da playlist
 
-    Scenario: adicionando categoria já existente na playlist
+    Scenario: tentando adicionando categoria já existente na playlist
         Given possuo o login "jsa2" e senha "123"
-        And estou na página da playlist "boas" com id "45"
-        And tenho permissão para gerenciar "boas"
-        And "Hip-Hop" é uma categoria da playlist "boas"
+        And estou na página da playlist "Para Dormir" com id "4"
+        And tenho permissão para gerenciar "Para Dormir"
+        And "HIP-HOP" é uma categoria da playlist "Para Dormir"
         When seleciono a opção de adicionar uma nova categoria
-        And seleciono "Hip-Hop" como uma nova categoria
-        Then "boas" continua tendo somente uma categoria, que é "Hip-Hop"
+        Then não consigo ver "HIP-HOP" como uma categoria para ser selecionada
+        And "Para Dormir" continua tendo somente uma categoria, que é "HIP-HOP"
 
     Scenario: mais de duas categorias para playlist
         Given possuo o login "jsa2" e senha "123"
-        And estou na página da playlist "as melhores" com id "52"
-        And tenho permissão para gerenciar "as melhores"
-        And "Rock" é uma categoria da playlist "as melhores"
-        And "Hip-Hop" é uma categoria da playlist "as melhores"
-        When seleciono a opção de adicionar uma nova categoria
-        And seleciono "Electronic" como uma nova categoria
-        Then "Electronic" não é uma categoria de "as melhores"
-        And "Rock" é uma categoria da playlist "as melhores"
-        And "Hip-Hop" é uma categoria da playlist "as melhores"
-    
+        And estou na página da playlist "Melhores Rock" com id "5"
+        And "ROCK" é uma categoria da playlist "Melhores Rock"
+        And "HIP-HOP" é uma categoria da playlist "Melhores Rock"
+        When não consigo encontrar a opção de adicionar uma nova categoria
+        Then "ROCK" é uma categoria da playlist "Melhores Rock"
+        And "HIP-HOP" é uma categoria da playlist "Melhores Rock"
+
     Scenario: removendo todas as categorias de uma playlist
         Given possuo o login "jsa2" e senha "123"
-        And estou na página da playlist "fim de semana" com id "61"
-        And tenho permissão para gerenciar "fim de semana"
-        And "KPop" é uma categoria da playlist "fim de semana"
-        And "Electronic" é uma categoria da playlist "fim de semana"
-        When seleciono a opção de adicionar uma nova categoria
-        And seleciono "Electronic" para o remover das categorias
-        And seleciono "KPop" para o remover das categorias
-        Then "fim de semana" não possui nenhuma categoria
+        And estou na página da playlist "Rocking with Imagine Dragons" com id "6"
+        And "KPOP" é uma categoria da playlist "Rocking with Imagine Dragons"
+        And "ELECTRONIC" é uma categoria da playlist "Rocking with Imagine Dragons"
+        When seleciono "ELECTRONIC" para o remover das categorias
+        And seleciono "KPOP" para o remover das categorias
+        Then "Rocking with Imagine Dragons" não possui nenhuma categoria
     
     Scenario: adicionando duas categorias para a playlist
         Given possuo o login "jsa2" e senha "123"
-        And estou na página da playlist "fim de semana" com id "61"
-        And tenho permissão para gerenciar "fim de semana"
-        And "fim de semana" não possui nenhuma categoria cadastrada
+        And estou na página da playlist "Rocking with Imagine Dragons" com id "6"
+        And "Rocking with Imagine Dragons" não possui nenhuma categoria cadastrada
         When seleciono a opção de adicionar uma nova categoria
-        And seleciono "Electronic" como uma nova categoria
-        And seleciono "KPop" como uma nova categoria
-        Then "Electronic" é uma categoria da playlist "fim de semana"
-        And "KPop" é uma categoria da playlist "fim de semana"
-
+        And seleciono "ELECTRONIC" como uma nova categoria
+        And seleciono "KPOP" como uma nova categoria
+        Then "ELECTRONIC" é uma categoria da playlist "Rocking with Imagine Dragons"
+        And "KPOP" é uma categoria da playlist "Rocking with Imagine Dragons"

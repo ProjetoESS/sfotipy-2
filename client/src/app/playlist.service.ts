@@ -130,4 +130,19 @@ export class PlaylistService {
     const union = new Set([...setA, ...setB]);
     return intersection.size / union.size;
   }
+
+  addFollower(idPlaylist: number, idUser: number): void {
+    this.getPlaylistById(idPlaylist).subscribe(
+      (playlist: Playlist) => {
+        if (!playlist.followers.includes(idUser)) {
+          playlist.followers.push(idUser);
+          this.http.put<Playlist>(`${this.appURL}/playlist/`, playlist)
+            .subscribe();
+        }
+      },
+      (error: any) => {
+        console.error(`Erro ao buscar playlist: ${error}`);
+      }
+    );
+  }
 }

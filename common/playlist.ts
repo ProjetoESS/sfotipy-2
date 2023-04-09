@@ -12,6 +12,7 @@ export class Playlist {
     owner: string;
     followers: string[];
     availability: string;
+    accessPlaylits: number;
 
     constructor(playlist: Playlist) {
         this.id = playlist.id;
@@ -24,6 +25,7 @@ export class Playlist {
         this.owner = playlist.owner;
         this.followers = playlist.followers;
         this.availability = playlist.availability;
+        this.accessPlaylits = playlist.accessPlaylits;
     }
 
     update(playlist: Playlist): void {

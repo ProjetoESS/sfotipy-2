@@ -10,8 +10,9 @@ export class Playlist {
     image: string;
     link: string;
     owner: string;
-    followers: string[];
+    followers: number[];
     availability: string;
+    
 
     constructor(playlist: Playlist) {
         this.id = playlist.id;

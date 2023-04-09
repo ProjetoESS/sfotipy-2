@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 
 import { Playlist } from '../../../../common/playlist';
 import { PlaylistService } from '../playlist.service';
+import { UserService } from '../user.service';
 import { Category } from '../../../../common/category';
+
 
 @Component({
   selector: 'app-playlist-card-recomend',
@@ -12,7 +14,7 @@ import { Category } from '../../../../common/category';
   styleUrls: ['./playlist-card-recomend.component.scss']
 })
 export class PlaylistCardRecomendComponent {
-  constructor(private clipboard: Clipboard, private router: Router, private playlistService: PlaylistService) { };
+  constructor(private clipboard: Clipboard, private router: Router, private playlistService: PlaylistService, private userService: UserService) { };
 
   @Input() playlist: any;
   showShareMessage = false;
@@ -20,8 +22,13 @@ export class PlaylistCardRecomendComponent {
   @Output() play = new EventEmitter<any>();
 
   categorias: Category[] = [];
+  userId: number = 0;
 
   ngOnInit() {
+    this.userService.getUserId().subscribe(
+      as => {this.userId = as; },
+      msg => {alert(msg.message);}
+    )
     this.playlistService.getPlaylistCategories(this.playlist.id).subscribe(
       as => { this.categorias = as; },
       msg => { alert(msg.message); }
@@ -37,8 +44,9 @@ export class PlaylistCardRecomendComponent {
     this.play.emit(this.playlist);
   }
 
-  likePlaylist(event: Event) {
+  likePlaylist(event: Event, playlist: Playlist) {
     event.stopPropagation();
+    this.playlistService.addFollower(playlist.id, 0);
   }
 
   sharePlaylist(event: Event, playlist: Playlist) {

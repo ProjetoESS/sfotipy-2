@@ -21,7 +21,7 @@
     <div class="options">
       <i class="fas fa-ellipsis-v" name="options-button" (click)="executeAction($event)"></i>
       <div class="options-menu">
-        <div class="option" name="Like" (click)="likePlaylist($event)">
+        <div class="option" name="Like" (click)="likePlaylist($event, playlist)">
           <i class="fas fa-heart"></i>
         </div>
         <div class="option" name="Share" (click)="sharePlaylist($event, playlist)">

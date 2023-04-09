@@ -13,14 +13,14 @@ export class PlaylistService {
       "image": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2f679c136425765.61f96b4f03c85.jpg",
       "link": "",
       "owner": "",
-      "followers": ['a', 'b'],
+      "followers": [0, 1],
       "availability": "public"
     }),
     new Playlist(<Playlist>{
       'id': 1,
       'name': 'Melhores Pop',
       'categories': [1],
-      'musics': [0, 1],
+      'musics': [1],
       'image':
         'https://cdn.ibispaint.com/movie/190/771/190771621/image190771621l.png',
       'link': '',
@@ -61,7 +61,7 @@ export class PlaylistService {
         'https://thumbs.dreamstime.com/b/listen-to-sleep-music-color-line-icon-autonomous-sensory-meridian-response-sound-waves-as-symbol-enjoying-sounds-editable-211152511.jpg',
       'link': '',
       'owner': 'sfotipy',
-      'followers': ['a', 'b', 'c'],
+      'followers': [1,2],
       'availability': 'public'
     }),
     new Playlist(<Playlist>{
@@ -84,7 +84,7 @@ export class PlaylistService {
       "image": "https://i.pinimg.com/736x/98/e6/d8/98e6d8ab4d4414eef0e90bb1382bfb86.jpg",
       "link": "",
       "owner": "",
-      "followers": ['a', 'b', 'c', 'd'],
+      "followers": [1,2,3,4],
       "availability": "public"
     }),
     new Playlist(<Playlist>{
@@ -106,7 +106,7 @@ export class PlaylistService {
       "image": "https://cdns-images.dzcdn.net/images/artist/21e53b8e8285f84f60601d895c39c900/500x500.jpg",
       "link": "",
       "owner": "",
-      "followers": ['a', 'b'],
+      "followers": [1,2,3,4],
       "availability": "public"
     }),
     new Playlist(<Playlist>{
@@ -156,7 +156,6 @@ export class PlaylistService {
         }
       }
     }
-
     return false;
   }
 
@@ -234,4 +233,8 @@ export class PlaylistService {
     return categories;
   }
 
+  addFollower(idPlaylist: number, idUser: number): void {
+    if(!this.playlists[idPlaylist].followers.includes(idUser))
+      this.playlists[idPlaylist].followers.push(idUser);
+  }
 }

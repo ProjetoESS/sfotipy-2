@@ -130,14 +130,25 @@
 
 .share-message {
   position: absolute;
-  left: 4.5rem;
-  bottom: 7.5rem;
+  left: 190px;
+  bottom: 120px;
   background-color: #177cbc;
   color: white;
   font-size: 14px;
   padding: 5px;
   border-radius: 5px;
-  //transform: translate(50%, -50%);
+  z-index: 2;
+}
+
+.liked-message {
+  position: absolute;
+  left: 175px;
+  bottom: 167px;
+  background-color: #177cbc;
+  color: white;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 5px;
   z-index: 2;
 }
 

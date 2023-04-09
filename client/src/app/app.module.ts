@@ -27,6 +27,7 @@ import { ArtistasEmAltaComponent } from './artistas-em-alta/artistas-em-alta.com
 import { PlaylistComponent } from './playlist/playlist.component';
 import { CompartilhamentoComponent } from './compartilhamento/compartilhamento.component';
 import { FooterComponent } from './footer/footer.component';
+import { UserPlaylistsComponent } from './user-playlists/user_playlists.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { FooterComponent } from './footer/footer.component';
     ArtistasEmAltaComponent,
     PlaylistComponent,
     CompartilhamentoComponent,
-    FooterComponent
+    FooterComponent,
+    UserPlaylistsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { Category } from '../../common/category';
-import { Playlist } from '../../common/playlist';
+import { Playlist } from '../../common/playlist'
 import { CategoryService } from './category-service';
 
 export class PlaylistService {
@@ -13,14 +13,14 @@ export class PlaylistService {
       "image": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2f679c136425765.61f96b4f03c85.jpg",
       "link": "",
       "owner": "",
-      "followers": ['a', 'b'],
+      "followers": [0, 1],
       "availability": "public"
     }),
     new Playlist(<Playlist>{
       'id': 1,
       'name': 'Melhores Pop',
       'categories': [1],
-      'musics': [0, 1],
+      'musics': [1],
       'image':
         'https://cdn.ibispaint.com/movie/190/771/190771621/image190771621l.png',
       'link': '',
@@ -61,7 +61,7 @@ export class PlaylistService {
         'https://thumbs.dreamstime.com/b/listen-to-sleep-music-color-line-icon-autonomous-sensory-meridian-response-sound-waves-as-symbol-enjoying-sounds-editable-211152511.jpg',
       'link': '',
       'owner': 'sfotipy',
-      'followers': ['a', 'b', 'c'],
+      'followers': [1,2],
       'availability': 'public'
     }),
     new Playlist(<Playlist>{
@@ -84,7 +84,7 @@ export class PlaylistService {
       "image": "https://i.pinimg.com/736x/98/e6/d8/98e6d8ab4d4414eef0e90bb1382bfb86.jpg",
       "link": "",
       "owner": "",
-      "followers": ['a', 'b', 'c', 'd'],
+      "followers": [1,2,3,4],
       "availability": "public"
     }),
     new Playlist(<Playlist>{
@@ -106,7 +106,7 @@ export class PlaylistService {
       "image": "https://cdns-images.dzcdn.net/images/artist/21e53b8e8285f84f60601d895c39c900/500x500.jpg",
       "link": "",
       "owner": "",
-      "followers": ['a', 'b'],
+      "followers": [1,2,3,4],
       "availability": "public"
     }),
     new Playlist(<Playlist>{
@@ -123,14 +123,12 @@ export class PlaylistService {
   ];
 
   idCount: number = 10;
-  accessCountPlaylist: number = 0 ;
 
   categories: Category[] = [];
 
   categoryService: CategoryService = new CategoryService;
 
   addPlaylist(playlist: Playlist): Playlist[] {
-    playlist.accessPlaylits = this.accessCountPlaylist;
     playlist.id = this.idCount;
     this.playlists.push(playlist);
     this.idCount++
@@ -157,7 +155,6 @@ export class PlaylistService {
         }
       }
     }
-
     return false;
   }
 
@@ -166,7 +163,6 @@ export class PlaylistService {
   }
 
   getById(playlistId: number): Playlist | undefined {
-    this.accessCountPlaylist++;
     return this.playlists.find(({ id }) => id == playlistId);
   }
 
@@ -198,7 +194,7 @@ export class PlaylistService {
       return null;
     }
     // playlist.categories.push(category);
-    var idx = playlist.categories.findIndex((ar: number) => ar == category);
+    var idx = playlist.categories.findIndex(ar => ar == category);
     if (idx == -1) {
       playlist.categories.push(category);
     }
@@ -208,7 +204,7 @@ export class PlaylistService {
   deleteCategory(playlistId: number, category: number): Playlist | null {
     const playlist = this.getById(playlistId);
     if (playlist?.categories.includes(category)) {
-      var idx = playlist.categories.findIndex((ar: number) => ar == category);
+      var idx = playlist.categories.findIndex(ar => ar == category);
       if (idx != -1) {
         playlist.categories.splice(idx, 1);
       }
@@ -223,14 +219,15 @@ export class PlaylistService {
     const playlistCategories = playlist.categories;
 
     var categories: Category[] = [];
-    playlistCategories.forEach((categoryId: number) => {
+    playlistCategories.forEach(categoryId => {
       categories.push(this.categoryService.getById(categoryId));
     });
 
     return categories;
   }
-  getMostAccessedPlaylist(): Playlist[] {
-    return this.playlists.sort((a, b) => b.accessPlaylits - a.accessPlaylits).slice(0, 4);
-  }
 
+  addFollower(idPlaylist: number, idUser: number): void {
+    if(!this.playlists[idPlaylist].followers.includes(idUser))
+      this.playlists[idPlaylist].followers.push(idUser);
+  }
 }

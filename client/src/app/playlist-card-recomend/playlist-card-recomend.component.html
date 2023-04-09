@@ -19,10 +19,10 @@
       <i class="fa" [ngClass]="{'fa-play': !playlist.isPlaying, 'fa-pause': playlist.isPlaying}"></i>
     </div>
 
-    <div class="options">
+    <div class="options" name = "options">
       <i class="fas fa-ellipsis-v" name="options-button" (click)="executeAction($event)"></i>
       <div class="options-menu">
-        <div class="option" name="Like" (click)="likePlaylist($event)">
+        <div class="option" name="Like" (click)="likePlaylist($event, playlist)">
           <i class="fas fa-heart"></i>
         </div>
         <div class="option" name="Share" (click)="sharePlaylist($event, playlist)">
@@ -34,6 +34,7 @@
       </div>
     </div>
 
-    <div class="share-message" name="share-message" *ngIf="showShareMessage">Link copiado</div>
+    <div class="share-message" name="share-message" *ngIf="showShareMessage">Link copiado!</div>
+    <div class="liked-message" name="liked-message" *ngIf="showLikedMessage">Playlist curtida!</div>
   </div>
 </div>

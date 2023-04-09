@@ -65,8 +65,6 @@ export class PlaylistComponent implements OnInit {
     this.showLink = !this.showLink;
   }
 
-  playlistCategories: any[] = [];
-
   showPopup() {
     this.exibirPopup = true
   }
@@ -94,7 +92,7 @@ export class PlaylistComponent implements OnInit {
     playlist.musics = musics_id
 
     const update = this.playlistService.updatePlaylistMusics(playlist).subscribe()
-    if(update) {
+    if (update) {
       alert('Músicas atualizadas com sucesso!')
       window.location.reload();
     }

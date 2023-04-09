@@ -90,12 +90,12 @@ export class CriarPlaylistComponent implements OnInit {
         alert('Já existe uma playlist com esse nome');
         return
       } else {
-          const musicIdsToAdd: number[] = []
-          for (const music of this.musicas_add.getValue()) {
-            if (musicIdsToAdd.findIndex(musica => musica === music.id) === -1) {
-              musicIdsToAdd.push(music.id);
-            }
+        const musicIdsToAdd: number[] = []
+        for (const music of this.musicas_add.getValue()) {
+          if (musicIdsToAdd.findIndex(musica => musica === music.id) === -1) {
+            musicIdsToAdd.push(music.id);
           }
+        }
 
 
         const playlist = new Playlist(<Playlist><unknown>{
@@ -118,9 +118,11 @@ export class CriarPlaylistComponent implements OnInit {
         });
       }
     })
-    
+  }
 
-  ngOnInit(): void {
+
+  ngOnInit() {
+
     this.musicas.subscribe(musicas => {
       this.musicasFiltradas = musicas.map(musica => musica.name);
 
@@ -153,7 +155,7 @@ export class CriarPlaylistComponent implements OnInit {
     this.userService.getUserId().subscribe(userId => {
       this.user_id = userId
       //console.log(this.user_id);
-      
+
     });
   }
 }

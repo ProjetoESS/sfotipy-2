@@ -36,23 +36,24 @@ export class UserPlaylistsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.playlistService.getUserPlaylists(this.user_id).subscribe(playlists => {
-        this.playlists = playlists;
-        this.numPlaylists = this.playlists.length;
-    this.titleService.setTitle("Minhas Playlists");
-    this.playlistService.getPlaylists().subscribe(
-      as => {
-        this.playlists = as;
+    this.playlistService.getUserPlaylists(this.userId).subscribe(playlists => {
+      this.playlists = playlists;
+      this.numPlaylists = this.playlists.length;
+      this.titleService.setTitle("Minhas Playlists");
+      this.playlistService.getPlaylists().subscribe(
+        as => {
+          this.playlists = as;
 
-        this.userService.getUserId().subscribe(
-          as => { this.userId = as; },
-          msg => { alert(msg.message); }
-        );
-        this.playlistsUser = this.playlists.filter(playlist => playlist.ownerId == this.userId);
-        this.likedPlaylists = this.playlists.filter(playlists => playlists.followers.includes(this.userId));
-        this.numPlaylists = this.playlistsUser.length
-      },
-      msg => { alert(msg.message); }
-    );
+          this.userService.getUserId().subscribe(
+            as => { this.userId = as; },
+            msg => { alert(msg.message); }
+          );
+          this.playlistsUser = this.playlists.filter(playlist => playlist.ownerId == this.userId);
+          this.likedPlaylists = this.playlists.filter(playlists => playlists.followers.includes(this.userId));
+          this.numPlaylists = this.playlistsUser.length
+        },
+        msg => { alert(msg.message); }
+      );
+    });
   }
 }

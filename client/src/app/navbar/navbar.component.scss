@@ -1,0 +1,78 @@
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+}
+
+.profile{
+    position: absolute;
+    left: 60px;
+    top: 60px;
+    transform: translate(-50%, -50%);
+
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+
+    background-color: #0D2538;
+    cursor: pointer;
+}
+
+.register{
+    position: absolute;
+    left: 70px;
+    top: 60px;
+    transform: translate(-50%, -50%);
+
+    height: 50px;
+    width: 80px;
+    border-radius: 12px;
+
+    font-weight: bold;
+
+    color: #ffffff;
+    background-color: #0D2538;
+    cursor: pointer;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFE5B4;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    height: 120px;
+
+    z-index: 100;
+}
+
+a {
+    font-family: 'Iceland';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 35px;
+    color: #000000;
+    text-decoration: none;
+
+    transition: 0.25s;
+}
+
+a:hover {
+    color: #164f7a;
+}
+
+app-profilepage{
+    position: fixed;
+    top: 150px;
+    left: 50px;
+
+    height: 630px;
+    width: 600px;
+}

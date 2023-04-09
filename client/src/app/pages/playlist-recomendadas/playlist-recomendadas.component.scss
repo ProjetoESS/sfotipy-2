@@ -1,0 +1,27 @@
+.playlists-recomendadas {
+    height: 100vh;
+    background-color: #0D2538;
+    color: #fff; 
+    padding: 100px;
+    padding-top: 120px;
+}
+
+.header {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    margin: 0px;
+    align-self: flex-start;
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.cards {
+    overflow: hidden;
+    margin: 10px;
+    position: relative;
+}

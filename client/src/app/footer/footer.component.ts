@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MusicPlayerService } from '../services/music-player.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
 
+  constructor(private musicPlayerService: MusicPlayerService) { }
+
+  getMusicTime() {
+    return this.musicPlayerService.getCurrentMusicTime();
+  }
+
+  getCurrentTime() {
+    return this.musicPlayerService.getCurrentTime();
+  }
 }

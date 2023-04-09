@@ -4,9 +4,14 @@
         <app-player class="app-player"></app-player>
         <i class="fas fa-2xl fa-solid fa-forward" style=" color: #0D2538"></i>
     </div>
-    <div class="player-content">
-        <div class="progress-bar">
-            <span style="width: 80%;">Progress: 80%</span>
+
+    <div class="time-content">
+        <p>{{getCurrentTime()}}</p>
+        <div class="player-content">
+            <div class="progress-bar">
+                <span style="width: 80%;">Progress: 80%</span>
+            </div>
         </div>
+        <p>{{getMusicTime()}}</p>
     </div>
 </div>

@@ -7,25 +7,25 @@ import { User } from '../../../../../common/user';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-profilepage',
-  templateUrl: './profilepage.component.html',
-  styleUrls: ['./profilepage.component.scss']
+	selector: 'app-profilepage',
+	templateUrl: './profilepage.component.html',
+	styleUrls: ['./profilepage.component.scss']
 })
 export class ProfilepageComponent {
-	userId : number = 0;
-	user : User = new User;
-	isLogged : boolean = false;
+	userId: number = 0;
+	user: User = new User;
+	isLogged: boolean = false;
 
 	@Output() logOutEvent = new EventEmitter<boolean>();
 
-	constructor(private userService : UserService, private loginService : LoginService){ }
+	constructor(private userService: UserService, private loginService: LoginService) { }
 
-	logOut(){
+	logOut() {
 		this.loginService.updateLoginStatus(false);
 		this.logOutEvent.emit(false);
 	}
 
-	ngOnInit() : void{
+	ngOnInit(): void {
 		this.loginService.getLoginStatus().subscribe(newStatus => {
 			this.isLogged = newStatus;
 		});
@@ -36,7 +36,7 @@ export class ProfilepageComponent {
 
 		this.userService.getUserById(this.userId).subscribe(
 			as => { this.user = as; },
-      		msg => { alert(msg.message); }
+			msg => { alert(msg.message); }
 		)
 	}
 }

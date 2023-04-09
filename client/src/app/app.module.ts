@@ -30,7 +30,8 @@ import { ArtistasEmAltaComponent } from './artistas-em-alta/artistas-em-alta.com
 import { PlaylistComponent } from './playlist/playlist.component';
 import { CompartilhamentoComponent } from './compartilhamento/compartilhamento.component';
 import { FooterComponent } from './footer/footer.component';
-
+import { UserPlaylistsComponent } from './user-playlists/user_playlists.component';
+import { CriarPlaylistComponent } from './criar-playlist/criar_playlist.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,8 @@ import { FooterComponent } from './footer/footer.component';
     PlaylistComponent,
     CompartilhamentoComponent,
     FooterComponent,
+    UserPlaylistsComponent,
+    CriarPlaylistComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +81,10 @@ import { FooterComponent } from './footer/footer.component';
       {
         path: 'explorar',
         component: PlaylistRecomendadasComponent
+      },
+      {
+        path: 'em-alta',
+        component: PlaylistEmAltaComponent
       },
       {
         path: 'categorias/:id',

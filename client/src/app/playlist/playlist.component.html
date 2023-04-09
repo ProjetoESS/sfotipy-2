@@ -40,6 +40,7 @@
   <div class="addmusic">
     <button type="button" class="addmusicbutton" (click)="showPopup()">+</button>
   </div>
+
   <div class="popUp" [hidden]="!exibirPopup">
     <div class="music_input" [hidden]="!exibirPopup">
       <input type="search" class="input_musica" placeholder="Música" (keyup)="filtrarMusicas($event)">
@@ -54,5 +55,5 @@
       <li *ngFor="let musica of musicas_add.getValue()">{{ musica.name }}</li>
     </div>
   </div>
-  <button *ngIf="musicas_add.getValue().length > 0" type="button" class="addMusicButton" (click)="updateMusicas()">Adicionar musicas</button>
-
+  <button *ngIf="musicas_add.getValue().length > 0" type="button" class="addMusicButton"
+    (click)="updateMusicas()">Adicionar musicas</button>

@@ -107,17 +107,19 @@ h1 {
 }
 
 .addmusic {
-  position: absolute;
-  bottom: 20%;
-  right: 10%;
+  position: fixed;
+  bottom: 150px;
+  right: max(calc((100vw - 1200px))/2, 1em);
 }
 
 .addmusicbutton {
-  background-color: aqua;
-  border-radius: 35px;
-  width: 3.5vw;
+  background-color: #FFE5B4;
+  border-radius: 50%;
   font-size: 5vh;
   cursor: pointer;
+  border: #0D2538 6px solid;
+  height: 75px;
+  width: 75px;
 }
 
 .popUp {
@@ -185,4 +187,3 @@ details span {
   color: #0D2538;
   cursor: pointer;
 }
-

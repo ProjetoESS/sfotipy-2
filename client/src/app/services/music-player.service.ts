@@ -48,7 +48,7 @@ export class MusicPlayerService {
 
   next() {
     if (this.currentIndex < this.musicList.length - 1) {
-      this.playMusic(this.musicList[this.currentIndex + 1]);
+      this.playMusic(this.musicList[this.musicList.indexOf(this.currentMusic) + 1]);
     } else {
       this.playMusic(this.musicList[0]);
     }
@@ -56,7 +56,9 @@ export class MusicPlayerService {
 
   back() {
     if (this.currentIndex > 0) {
-      this.playMusic(this.musicList[this.currentIndex - 1]);
+      this.playMusic(this.musicList[this.musicList.indexOf(this.currentMusic) - 1]);
+    } else {
+      this.playMusic(this.musicList[this.musicList.length - 1]);
     }
   }
 
@@ -83,6 +85,33 @@ export class MusicPlayerService {
     };
     this.currentTime = { 'minutes': '00', 'seconds': '00' }
     this.play();
+  }
+
+  playPlaylist(playlist: Playlist) {
+    this.playlist = playlist;
+    this.musicList = [];
+    this.musicService.getMusicsById(this.playlist.musics[0])
+      .subscribe(
+        firstMusic => {
+          this.musicList.push(firstMusic);
+          for (let i = 1; i < this.playlist.musics.length; i++) {
+            this.musicService.getMusicsById(this.playlist.musics[i]).subscribe(
+              nextMusic => {
+                this.musicList.push(nextMusic);
+                if (i === this.playlist.musics.length - 1) {
+                  this.playMusic(this.musicList[0]);
+                }
+              },
+              error => {
+                console.error(error);
+              }
+            );
+          }
+        },
+        error => {
+          console.error(error);
+        }
+      );
   }
 
   play() {

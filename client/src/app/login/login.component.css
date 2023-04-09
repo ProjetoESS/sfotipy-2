@@ -143,14 +143,22 @@ body {
 
 }
 
-.imagem-logo {
-    margin-top: 2rem;
+.titulo-login {
+    font-family: 'Iceland', sans-serif;
+    font-size: 72px;
+    margin-top: 1rem;
     margin-bottom: 1rem;
 }
 
+.titulo-login h1 {
+    color: #0D2538;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: rgba(0, 0, 0, 0.25);
+}
+
 .tela-login {
-    width: 680px;
-    height: 680px;
+    width: 640px;
+    height: 620px;
     display: flex;
     flex-direction: column;
     background: #86929B;
@@ -222,6 +230,7 @@ input::placeholder {
     font-family: 'Iceland', sans-serif;
     font-weight: 400;
     font-size: 32px;
+    color: #000000;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: rgba(0, 0, 0, 0.25);
     flex-wrap: wrap;
@@ -281,6 +290,11 @@ input::placeholder {
     align-items: center;
 }
 
+.container-cadastro p {
+    color: rgba(13, 37, 56, 1);
+    font-family: 'Inter', sans-serif;
+}
+
 .p-cadastro {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
@@ -309,8 +323,8 @@ input::placeholder {
 }
 
 .validation-error .div-fantastica img {
-    width: 2rem;
-    height: 2rem;
+    width: 1.8rem;
+    height: 1.8rem;
     padding-right: 0.5rem;
     padding-left: 0.2rem;
 }
@@ -318,13 +332,9 @@ input::placeholder {
 .validation-error .div-fantastica p {
     font-family: 'Aldrich', sans-serif;
     font-style: normal;
-    color: #FF3737;
+    color: rgba(255, 55, 55, 1);
     font-weight: 400;
     font-size: 20px;
-}
-
-.validation-error {
-    border-color: #FF3737;
 }
 
 .menssage-confirmacao {

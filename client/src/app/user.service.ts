@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { retry, map } from 'rxjs/operators';
-import { User } from '../../../common/User';
+import { User } from '../../../common/user';
 import { Usera } from '../../../common/usera'
 import { Observable, BehaviorSubject } from 'rxjs';
 

@@ -143,18 +143,28 @@ body {
     flex-direction: column;
 }
 
-.imagem-logo {
-    margin-bottom: 1rem;
+.titulo-cadastro {
+    font-family: 'Iceland', sans-serif;
+    font-size: 64px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.2rem;
+
+}
+
+.titulo-cadastro h1 {
+    color: #0D2538;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: rgba(0, 0, 0, 0.25);
 }
 
 .tela-login {
-    width: 680px;
-    height: 700px;
+    width: 640px;
+    height: 600px;
     display: flex;
     flex-direction: column;
     background: #86929B;
-    border-top-left-radius: 32px;
     border-top-right-radius: 32px;
+    border-top-left-radius: 32px;
     align-items: center;
 }
 
@@ -202,6 +212,7 @@ input::placeholder {
     font-family: 'Iceland', sans-serif;
     font-weight: 400;
     font-size: 28px;
+    color: #000000;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: rgba(0, 0, 0, 0.25);
 }
@@ -259,8 +270,8 @@ input::placeholder {
 }
 
 .validation-error div img {
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
     padding-right: 0.5rem;
     padding-left: 0.2rem;
 }
@@ -268,14 +279,14 @@ input::placeholder {
 .validation-error div p {
     font-family: 'Aldrich', sans-serif;
     font-style: normal;
-    color: #FF3737;
+    color: rgba(255, 55, 55, 1);
     font-weight: 400;
     font-size: 20px;
 }
 
 .tela-redirec {
-    background-color: #E1E1E1;
-    width: 680px;
+    background: #86929B;
+    width: 640px;
     height: 3.5rem;
     border-bottom-left-radius: 32px;
     border-bottom-right-radius: 32px;
@@ -287,28 +298,26 @@ input::placeholder {
     justify-content: flex-end;
     align-items: center;
     margin-right: 2rem;
-    margin-top: 0.7rem;
-}
-
-.tela-redirec div p {
-    font-family: 'Itim', sans-serif;
-    font-size: 22px;
 }
 
 .tela-redirec div a {
     font-family: 'Iceland', sans-serif;
     text-decoration: none;
-    color: rgb(29, 162, 193);
-    border: 1px solid darkcyan;
+    color: white;
+    border: 1px solid #1A7FC1;
+    background-color: #1A7FC1;
     width: 200px;
-    height: 30px;
-    border-radius: 8px;
+    height: 50px;
+    border-radius: 16px;
     font-size: 22px;
+}
+
+.tela-redirec div a:hover {
+    background-color: rgba(26, 127, 193, 0.7);
 }
 
 .login {
     text-align: center;
-
     margin-left: 1rem;
 }
 

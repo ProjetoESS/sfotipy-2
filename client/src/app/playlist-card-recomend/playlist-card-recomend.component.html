@@ -2,7 +2,7 @@
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css" />
 </head>
 
-<div class="playlist-card" name="playlist-card" (click)="openPlaylistOnClick($event, playlist)">
+<div class="playlist-card" name="playlist-card">
   <div class="categories-container" name="playlist-category-list">
     <span *ngFor="let cat of categorias" name="playlist-category" class="badge"
       id="playlist-cat-{{cat.name.toUpperCase()}}">{{cat.name}}</span>
@@ -11,12 +11,15 @@
   <div class="card-body">
     <h5 name="nome" class="card-title">{{ playlist.name }}</h5>
   </div>
-  <div class="overlay" name="overlay">
 
-
-    <div class="play-button" name="play-button" [ngClass]="{'playing': playlist.isPlaying}"
-      (click)="startPlayingOnClick($event)">
-      <i class="fa" [ngClass]="{'fa-play': !playlist.isPlaying, 'fa-pause': playlist.isPlaying}"></i>
+  <div class="overlay" name="overlay" (click)="openPlaylistOnClick($event, playlist)">
+    <div class="player-outer">
+      <div class="player-inner">
+        <button *ngIf="musicPlayerService.getCurrentState()" (click)="musicPlayerService.pause()"><img
+            src="/assets/pause.svg" alt=""></button>
+        <button *ngIf="!musicPlayerService.getCurrentState()" (click)="musicPlayerService.play()"><img
+            src="/assets/play.svg" alt=""></button>
+      </div>
     </div>
 
     <div class="options">

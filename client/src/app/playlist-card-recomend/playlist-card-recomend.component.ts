@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Playlist } from '../../../../common/playlist';
 import { PlaylistService } from '../playlist.service';
 import { Category } from '../../../../common/category';
+import { MusicPlayerService } from '../services/music-player.service';
 
 @Component({
   selector: 'app-playlist-card-recomend',
@@ -12,7 +13,7 @@ import { Category } from '../../../../common/category';
   styleUrls: ['./playlist-card-recomend.component.scss']
 })
 export class PlaylistCardRecomendComponent {
-  constructor(private clipboard: Clipboard, private router: Router, private playlistService: PlaylistService) { };
+  constructor(public musicPlayerService: MusicPlayerService, private clipboard: Clipboard, private router: Router, private playlistService: PlaylistService) { };
 
   @Input() playlist: any;
   showShareMessage = false;

@@ -160,3 +160,32 @@
   color: #000000;
   margin: 5px;
 }
+
+.player-outer {
+  background-color: #0D2538;
+  padding: 6px;
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+}
+
+.player-inner {
+  background-color: #FFE5B4;
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  background: none;
+  border: none;
+  height: 100%;
+  cursor: pointer;
+}
+
+button img {
+  height: 50%;
+}

@@ -1,5 +1,5 @@
 import { Category } from '../../common/category';
-import { Playlist } from '../../common/playlist'
+import { Playlist } from '../../common/playlist';
 import { CategoryService } from './category-service';
 
 export class PlaylistService {
@@ -123,12 +123,14 @@ export class PlaylistService {
   ];
 
   idCount: number = 10;
+  accessCountPlaylist: number = 0 ;
 
   categories: Category[] = [];
 
   categoryService: CategoryService = new CategoryService;
 
   addPlaylist(playlist: Playlist): Playlist[] {
+    playlist.accessPlaylits = this.accessCountPlaylist;
     playlist.id = this.idCount;
     this.playlists.push(playlist);
     this.idCount++
@@ -164,6 +166,7 @@ export class PlaylistService {
   }
 
   getById(playlistId: number): Playlist | undefined {
+    this.accessCountPlaylist++;
     return this.playlists.find(({ id }) => id == playlistId);
   }
 
@@ -195,7 +198,7 @@ export class PlaylistService {
       return null;
     }
     // playlist.categories.push(category);
-    var idx = playlist.categories.findIndex(ar => ar == category);
+    var idx = playlist.categories.findIndex((ar: number) => ar == category);
     if (idx == -1) {
       playlist.categories.push(category);
     }
@@ -205,7 +208,7 @@ export class PlaylistService {
   deleteCategory(playlistId: number, category: number): Playlist | null {
     const playlist = this.getById(playlistId);
     if (playlist?.categories.includes(category)) {
-      var idx = playlist.categories.findIndex(ar => ar == category);
+      var idx = playlist.categories.findIndex((ar: number) => ar == category);
       if (idx != -1) {
         playlist.categories.splice(idx, 1);
       }
@@ -220,11 +223,14 @@ export class PlaylistService {
     const playlistCategories = playlist.categories;
 
     var categories: Category[] = [];
-    playlistCategories.forEach(categoryId => {
+    playlistCategories.forEach((categoryId: number) => {
       categories.push(this.categoryService.getById(categoryId));
     });
 
     return categories;
+  }
+  getMostAccessedPlaylist(): Playlist[] {
+    return this.playlists.sort((a, b) => b.accessPlaylits - a.accessPlaylits).slice(0, 4);
   }
 
 }

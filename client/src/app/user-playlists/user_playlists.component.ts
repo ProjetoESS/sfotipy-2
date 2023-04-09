@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { PlaylistService } from '../playlist.service';
 import { Playlist } from '../../../../common/playlist';
-import { UserPlaylistsModule } from './user_playlists.module';
 import { UserService } from '../user.service';
 import { Title } from '@angular/platform-browser';
 
@@ -19,9 +18,9 @@ export class UserPlaylistsComponent implements OnInit {
   userId: number = 0;
 
   constructor(
-      private router: Router, private playlistService: PlaylistService,
-      private userService: UserService,
-      private titleService: Title) {}
+    private router: Router, private playlistService: PlaylistService,
+    private userService: UserService,
+    private titleService: Title) { }
 
   numPlaylists: number = 0;  // Número de playlists cadastradas
   playlistsUser: Playlist[] = [];
@@ -39,16 +38,17 @@ export class UserPlaylistsComponent implements OnInit {
   ngOnInit(): void {
     this.titleService.setTitle("Minhas Playlists");
     this.playlistService.getPlaylists().subscribe(
-      as => { this.playlists = as;
-        
-              this.userService.getUserId().subscribe(
-                as => { this.userId = as; },
-                msg => { alert(msg.message); }
-              );
-              this.playlistsUser = this.playlists.filter(playlist => playlist.ownerId == this.userId);
-              this.likedPlaylists = this.playlists.filter(playlists => playlists.followers.includes(this.userId));
-              this.numPlaylists = this.playlistsUser.length
-            },
+      as => {
+        this.playlists = as;
+
+        this.userService.getUserId().subscribe(
+          as => { this.userId = as; },
+          msg => { alert(msg.message); }
+        );
+        this.playlistsUser = this.playlists.filter(playlist => playlist.ownerId == this.userId);
+        this.likedPlaylists = this.playlists.filter(playlists => playlists.followers.includes(this.userId));
+        this.numPlaylists = this.playlistsUser.length
+      },
       msg => { alert(msg.message); }
     );
   }

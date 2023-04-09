@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { PlaylistService } from '../playlist.service';
 import { Playlist } from '../../../../common/playlist';
-import { UserPlaylistsModule } from './user_playlists.module';
 import { UserService } from '../user.service';
 import { Title } from '@angular/platform-browser';
 

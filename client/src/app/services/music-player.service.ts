@@ -35,6 +35,8 @@ export class MusicPlayerService {
       this.updateMusicInfo();
     }, 1000);
 
+    this.audio.id = 'audio-player';
+
     this.audio.addEventListener('ended', () => {
       this.next();
     });

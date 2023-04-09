@@ -14,11 +14,25 @@ export class ArtistasEmAltaComponent {
   ngOnInit() {
     this.mostAccessedArtists = this.musicService.getMostAccessed();
 
-    // const newList: Music[] = [];
-
-    // for (let i = 0; i < this.mostAccessedArtists.length; i++) {
-    //   newList.push(this.mostAccessedArtists[i]);
-    // }
-
   }
+
+  getFirstArtistImage(): string {
+    return this.mostAccessedArtists[0].image;
+  }
+  getSecondArtistImage(): string {
+    return this.mostAccessedArtists[1].image;
+  }
+  getThirdArtistImage(): string {
+    return this.mostAccessedArtists[2].image
+  }
+  getFourthArtistImage(): string {
+    return this.mostAccessedArtists[3].image;
+  }
+  getFifthArtistImage(): string {
+    return this.mostAccessedArtists[4].image;
+  }
+  getsixthArtistImage(): string {
+    return this.mostAccessedArtists[5].image;
+  }
+
 }

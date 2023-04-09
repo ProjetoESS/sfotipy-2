@@ -10,7 +10,7 @@ export class Playlist {
     image: string;
     link: string;
     owner: string;
-    followers: string[];
+    followers: number[];
     availability: string;
     accessPlaylits: number;
 

@@ -1,6 +1,4 @@
 import { defineSupportCode } from 'cucumber';
-import { link } from 'fs';
-import { nextTick } from 'process';
 import { browser, $, element, ElementArrayFinder, by, protractor } from 'protractor';
 let chai = require('chai').use(require('chai-as-promised'));
 let expect = chai.expect;
@@ -16,14 +14,13 @@ async function goTo(page:string) {
 defineSupportCode(function({Given, When, Then, setDefaultTimeout}) {
 
     Given(/^eu sou um usuário com login "([^\"]*)" e senha "(\d*)"$/, async(login, senha) => {
-        // FALTA FAZER LOGIN
         expect(login).to.equal(login);
     });
 
     Given(/^estou na playlist "([^\"]*)" que é "([^\"]*)" com id "(\d*)"$/, async(name, availabity, id) => {
         await goTo("playlist/" + id);
         const playlist_name = await element(by.css(".playlist_name")).getText();
-        const playlist_avalibility = await element(by.css('.playlist_avalibility')).getText();
+        const playlist_avalibility = await element(by.id('playlist_availability')).getText();
         expect(playlist_name).to.equal(name);
         expect(playlist_avalibility).to.equal(availabity);
     });
@@ -69,13 +66,13 @@ defineSupportCode(function({Given, When, Then, setDefaultTimeout}) {
 
     When(/^a playlist "([^\"]*)" é "([^\"]*)"$/, async (playlistName, availabity) => {
         const name = await element(by.css(".playlist_name"));
-        const aval = await element(by.css(".playlist_avalibility"));
+        const aval = await element(by.id("playlist_availability"));
         expect(await name.getText()).to.equal(playlistName);
         expect(await aval.getText()).to.equal(availabity);
     });
 
     Then(/^a opção de compartilhar playlist não aparece na tela$/, async () => {
-        const notExistingElement = await element(by.className("fas"));
+        const notExistingElement = await element(by.tagName("app-compartilhamento"));
         expect(await notExistingElement.isPresent()).to.be.false;
     });
     

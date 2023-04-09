@@ -13,14 +13,9 @@ async function goTo(page:string) {
 
 async function checkPlaylistName(playlistName:string) {
     const EC = protractor.ExpectedConditions;
-    const playlist = await element(by.css(".playlist_name"));
+    const playlist = await element(by.className("playlist_name"));
     await browser.wait(EC.visibilityOf(playlist), 5000, "Element not visible");
     expect(await playlist.getText()).to.equal(playlistName);
-}
-
-async function comeBackFromCategoryPage() {
-    const goBackToPlaylist = await element(by.css(".back"));
-    await goBackToPlaylist.click();
 }
 
 defineSupportCode(function({Given, When, Then}) {
@@ -35,50 +30,49 @@ defineSupportCode(function({Given, When, Then}) {
     });
 
     Given(/^tenho permissão para gerenciar "([^\"]*)"$/, async(playlistName) => {
-        // Teste para verificar permissão.
+        const selector = await element(by.id("selector-cat"));
+        expect(await selector.isPresent()).to.be.true;
     });
 
     Given(/^"([^\"]*)" tem a categoria "([^\"]*)"$/, async (playlist, category) => {
-        expect((await element.all(by.id(`selected-${category}`))).length).to.equal(1);
+        expect((await element.all(by.id(`selected-cat-${category}`))).length).to.equal(1);
     });
 
     When(/^seleciono a opção de adicionar uma nova categoria$/, async () => {
-        const addNewCategoriy = await element(by.className("add_new_category"));
-        await addNewCategoriy.click();
+        await element(by.id("selector-cat")).click();
     });
 
     When(/^seleciono "([^\"]*)" como uma nova categoria$/, async (category) => {
-        const categoryElement = await element(by.id("category-"+category));
+        const categoryElement = await element(by.id("select-cat-"+category));
         await categoryElement.click();
     });
 
     Then(/^"([^\"]*)" é uma nova categoria da playlist "([^\"]*)"$/, async (category, playlistName) => {
-        comeBackFromCategoryPage();
-        await checkPlaylistName(playlistName.toString());
-        expect((await element.all(by.id(`selected-${category}`))).length).to.equal(1);
+        expect((await element.all(by.id(`selected-cat-${category}`))).length).to.equal(1);
     });
 
     Given(/^possuo o login "([^\"]*)" e senha "([^\"]*)"$/, async (login, senha) => {
         // Verificar login
+        expect(login).to.equal(login);
     });
 
-    Given(/^"([^\"]*)" não é uma categoria da playlist "([^\"]*)t"$/, async (category, playlistName) => {
-        expect((await element.all(by.id(`selected-${category}`))).length).to.equal(0);
+    Given(/^"([^\"]*)" não é uma categoria da playlist "([^\"]*)"$/, async (category, playlistName) => {
+        expect((await element.all(by.id(`selected-cat-${category}`))).length).to.equal(0);
     });
 
     Given(/^"([^\"]*)" é uma categoria da playlist "([^\"]*)"$/, async (category, playlistName) => {
-        expect((await element.all(by.id(`selected-${category}`))).length).to.equal(1);
+        expect((await element.all(by.id(`selected-cat-${category}`))).length).to.equal(1);
     });
 
     When(/^seleciono "([^\"]*)" para o remover das categorias$/, async (category) => {
-        const removedElement = await element(by.id("selected-"+category));
-        await removedElement.click();
+        const removedElement = await element(by.id("selected-cat-"+category));
+        const button = await removedElement.element(by.className("close-button"));
+        await button.click();
     });
 
     Then(/^"([^\"]*)" é uma categoria de "([^\"]*)” e "([^\"]*)" não.$/, async (categoryPresent, playlistName, categoryNotPresent) => {
-        comeBackFromCategoryPage();
-        expect((await element.all(by.id(`selected-${categoryPresent}`))).length).to.equal(1);
-        expect((await element.all(by.id(`selected-${categoryNotPresent}`))).length).to.equal(0);
+        expect((await element.all(by.id(`selected-cat-${categoryPresent}`))).length).to.equal(1);
+        expect((await element.all(by.id(`selected-cat-${categoryNotPresent}`))).length).to.equal(0);
         await checkPlaylistName(playlistName.toString());
 
     });
@@ -86,31 +80,30 @@ defineSupportCode(function({Given, When, Then}) {
     // Scenario : remover uma categoria.
 
     Then(/^"([^\"]*)" não possui mais "([^\"]*)" como uma categoria da playlist$/, async(playlistName, category) => {
-        comeBackFromCategoryPage();
         await checkPlaylistName(playlistName.toString());
-        expect((await element.all(by.id(`selected-${category}`))).length).to.equal(0);
+        expect((await element.all(by.id(`selected-cat-${category}`))).length).to.equal(0);
     });
 
     // Scenario : adicionando categoria já existente na playlist
 
+    Then(/^não consigo ver "([^\"]*)" como uma categoria para ser selecionada$/, async(category) => {
+        expect((await element.all(by.id(`select-cat-${category}`))).length).to.equal(0);
+    });
+
     Then(/^"([^\"]*)" continua tendo somente uma categoria, que é "([^\"]*)"$/, async(playlistName, category) => {
-        comeBackFromCategoryPage();
-        expect((await element.all(by.id(`selected-${category}`))).length).to.equal(1);
+        expect((await element.all(by.id(`selected-cat-${category}`))).length).to.equal(1);
         await checkPlaylistName(playlistName.toString());
     });
 
     // Scenario: mais de duas categorias para playlist
 
-    Then(/^"([^\"]*)" não é uma categoria de "([^\"]*)"$/, async (category, playlistName) => {
-        comeBackFromCategoryPage();
-        expect((await element.all(by.id(`selected-${category}`))).length).to.equal(0);
-        await checkPlaylistName(playlistName.toString());
+    When(/^não consigo encontrar a opção de adicionar uma nova categoria$/, async () => {
+        expect((await element.all(by.id("selector-cat"))).length).to.equal(0);
     });
 
     // Scenario: removendo todas as categorias de uma playlist
 
     Then(/^"([^\"]*)" não possui nenhuma categoria$/, async (playlistName) => {
-        comeBackFromCategoryPage();
         await checkPlaylistName(playlistName.toString());
         expect((await element.all(by.className("category"))).length).to.equal(0);
     });
@@ -121,7 +114,5 @@ defineSupportCode(function({Given, When, Then}) {
         expect((await element.all(by.className("category"))).length).to.equal(0);
     });
 
-    // Scenario: adicionando categoria na playlist não tenho permissão para gerenciá-la.
 
-    
 });

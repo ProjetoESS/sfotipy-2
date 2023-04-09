@@ -45,8 +45,8 @@ describe('PlaylistService', () => {
         console.log("\n");
     });
 
-    function addPlaylist(playlist: Playlist) : void {
-        playlistService.add(playlist);
+    function add(playlist: Playlist) : void {
+        playlistService.addPlaylist(playlist);
     }
 
     function deletePlaylist(id: number) : void {
@@ -58,7 +58,7 @@ describe('PlaylistService', () => {
     });
 
     it("deve cadastrar uma nova playlist", () => {
-        addPlaylist(newPlaylist);
+        add(newPlaylist);
 
         expect(playlistService.playlists.length).toBe(7);
         expect(playlistService.playlists[6].id).toBe(6);
@@ -69,7 +69,7 @@ describe('PlaylistService', () => {
     });
 
     it("deve retornar as playlists de um usuário", () => {
-        addPlaylist(newPlaylist);
+        add(newPlaylist);
 
         let playlists = playlistService.getUserPlaylists(newUser.name);
         expect(playlists.length).toBe(1);
@@ -94,7 +94,7 @@ describe('PlaylistService', () => {
     });
 
     it("deve retornar uma playlist pelo id", () => {
-        addPlaylist(newPlaylist);
+        add(newPlaylist);
 
         let playlist = playlistService.getById(6);
         expect(playlist.id).toBe(6);
@@ -110,7 +110,7 @@ describe('PlaylistService', () => {
     });
 
     it("deve atualizar uma playlist", () => {
-        addPlaylist(newPlaylist);
+        add(newPlaylist);
 
         let playlist = playlistService.getById(6);
         playlist.name = 'Rock';
@@ -123,7 +123,7 @@ describe('PlaylistService', () => {
     });
 
     it("deve deletar uma playlist", () => {
-        addPlaylist(newPlaylist);
+        add(newPlaylist);
 
         expect(playlistService.playlists.length).toBe(7);
         expect(playlistService.playlists[6].id).toBe(6);
@@ -136,7 +136,7 @@ describe('PlaylistService', () => {
     });
 
     it("deve adicionar uma categoria a uma playlist", () => {
-        addPlaylist(newPlaylist);
+        add(newPlaylist);
         let playlist = playlistService.addNewCategory(6, 3);
         expect(playlist.id).toBe(6);
         expect(playlist.name).toBe('Piores Rock');
@@ -146,7 +146,7 @@ describe('PlaylistService', () => {
     });
 
     it("deve deletar uma categoria de uma playlist", () => {
-        addPlaylist(newPlaylist);
+        add(newPlaylist);
         let playlist = playlistService.deleteCategory(6, 2);
         expect(playlist.id).toBe(6);
         expect(playlist.name).toBe('Piores Rock');

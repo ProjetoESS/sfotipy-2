@@ -8,7 +8,7 @@
             <a routerLink="/"><img src="../../assets/logo.png" alt="" srcset=""></a>
             <a routerLink="/em-alta">Em alta</a>
             <a routerLink="/minhas_playlists" *ngIf="isLogged">Playlists</a>
-            <a routerLink="/cadastro" *ngIf="!isLogged">Playlists</a>
+            <a name="playlists" routerLink="/cadastro" *ngIf="!isLogged">Playlists</a>
         </div>
     </div>
     <app-profilepage id="pp" *ngIf="show" (logOutEvent)="showProfile($event)"></app-profilepage>

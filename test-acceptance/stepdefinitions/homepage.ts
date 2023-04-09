@@ -27,7 +27,9 @@ async function assertMusicsWithSameName(n, name) {
 
 defineSupportCode(function ({ Given, When, Then }) {
     //Scenario: Voltar à página inicial
-    //Given que eu esteja logado com o usuário usuário “vgc3” e a senha “abc1234”
+    Given(/^eu esteja logado com o usuário usuário "([^\"]*)" e a senha "([^\"]*)"$/, async (user, passw) => {
+
+    });
 
     Given(/^eu esteja na página "([^\"]*)"$/, async (name) => {
         await browser.get("http://localhost:4200/busca");
@@ -37,8 +39,6 @@ defineSupportCode(function ({ Given, When, Then }) {
     When(/^eu cliclo no botão "([^\"]*)"$/, async (home) => {
         await element(by.name(home.toString())).click();
     });
-
-    //Then qualquer definição não salva feita em outra página será perdida
 
     Then(/^eu estou vou para a página "([^\"]*)"$/, async (name) => {
         await browser.get("http://localhost:4200/");
@@ -52,7 +52,9 @@ defineSupportCode(function ({ Given, When, Then }) {
         await expect(browser.getTitle()).to.eventually.equal(name);
     });
 
-    //And logado com o usuário “vgc3” e a senha “abc1234”
+    Given(/^eu esteja logado com o usuário usuário "([^\"]*)" e a senha "([^\"]*)"$/, async (user, passw) => {
+
+    });
 
     When('eu percorro a página', async () => {
         // No action needed, as we are just navigating through the page
@@ -76,7 +78,9 @@ defineSupportCode(function ({ Given, When, Then }) {
         await expect(browser.getTitle()).to.eventually.equal(name);
     });
 
-    //And logado com o usuário “vgc3” e a senha “abc1234”
+    Given(/^eu esteja logado com o usuário usuário "([^\"]*)" e a senha "([^\"]*)"$/, async (user, passw) => {
+
+    });
 
     When(/^eu cliclo no botão "([^\"]*)"$/, async (sair) => {
         await element(by.name("profile")).click();
@@ -88,7 +92,9 @@ defineSupportCode(function ({ Given, When, Then }) {
         await expect(browser.getTitle()).to.eventually.equal(login);
     });
 
-    //And minhas credenciais serão pedidas novamente
+    Then(/^minhas credenciais serão pedidas novamente$/, async () => {
+
+    });
 
     //////////////////////////////////////////////////////////////////////////
     //Scenario: Visualizar informações para usuário não logado
@@ -97,16 +103,51 @@ defineSupportCode(function ({ Given, When, Then }) {
         await expect(browser.getTitle()).to.eventually.equal(name);
     });
 
-    //And tenha optado por não fazer login (entrado como guest)
-
-    When(/^eu cliclo no botão "([^\"]*)"$/, async (sair) => {
-        await element(by.name(sair.toString())).click();
+    Given(/^eutenha optado por não fazer login$/, async () => {
+        // No action needed, as we are not logged in as default
     });
 
-    Then(/^eu sou levado para a seção "([^\"]*)"$/, async (login) => { 
+    When('eu percorro a página', async () => {
+        // No action needed, as we are just navigating through the page
+    });
+
+    Then(/^eu consigo ver "([^\"]*)", "([^\"]*)", "([^\"]*)" e "([^\"]*)"$/, async (em_alta, publicas) => {
+        const pub = await element(by.name("plsts-publicas"));
+        const ema = await element(by.name("plsts-em-alta"));
+        expect(await pub.getText()).to.equal(publicas);
+        expect(await ema.getText()).to.equal(em_alta);
+    });
+
+    //////////////////////////////////////////////////////////////////////////
+    //Scenario: Minhas Playlists de usuário não logado
+    //Scenario: Criar playlists como usuário não logado UNIR COM O DE CIMA
+    Given(/^eu estou na página "([^\"]*)"$/, async (name) => {
+        await browser.get("http://localhost:4200");
+        await expect(browser.getTitle()).to.eventually.equal(name);
+    });
+
+    Given(/^eutenha optado por não fazer login$/, async () => {
+        // No action needed, as we are not logged in as default
+    });
+
+    When(/^eu cliclo no botão "([^\"]*)"$/, async (sair) => {
+        await element(by.name("playlists")).click();
+    });
+
+    Then(/^eu sou levado para a pagina de "([^\"]*)"$/, async (login) => {
         await browser.get("http://localhost:4200/login");
         await expect(browser.getTitle()).to.eventually.equal(login);
     });
 
-    //And aparece a mensagem "Você precisa estar logado para acessar playlists próprias"
+    //Não fiz ainda
+    Then(/^aparece a mensagem "([^\"]*)"$/, async (msg) => {
+        const message = await element(by.name("msg"));
+        expect(await message.getText()).to.equal(msg);
+    });
+
+    //////////////////////////////////////////////////////////////////////////
+    //Scenario: Acessar perfil do usuário
+
+    //////////////////////////////////////////////////////////////////////////
+    //Scenario: Minhas Playlists de usuário logado
 });

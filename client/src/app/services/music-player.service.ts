@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Music } from '../../../../common/music';
+import { Playlist } from '../../../../common/playlist';
+import { MusicasService } from '../musicas.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MusicPlayerService {
 
-  playlist: Music[] = [
+  playlist: Playlist = new Playlist(<Playlist><unknown>{ 'id': 0, 'ownerId': 0, 'name': "Coldplay", 'categories': [1, 2, 3], 'musics': [0, 1, 2, 3], 'image': "https://upload.wikimedia.org/wikipedia/pt/6/61/Coldplay_Hymn_for_the_Weekend.jpg", 'link': "", 'owner': "Coldplay", 'followers': [], 'availability': "public" });
+
+  musicList: Music[] = [
     new Music(<Music>{ 'id': 0, 'name': "Hymn for the Weekend", 'author': "Coldplay", 'image': "https://upload.wikimedia.org/wikipedia/pt/6/61/Coldplay_Hymn_for_the_Weekend.jpg", 'link': "", 'duration': 500, 'category': 3 }),
     new Music(<Music>{ 'id': 1, 'name': "Viva la Vida", 'author': "Coldplay", 'image': "https://upload.wikimedia.org/wikipedia/pt/d/d7/Vivalavida.jpg", 'link': "", 'duration': 500, 'category': 2 }),
     new Music(<Music>{ 'id': 2, 'name': "Yellow", 'author': "Coldplay", 'image': "https://i.pinimg.com/originals/f7/30/23/f7302371fb79c2d0cd817e9c28baaf62.jpg", 'link': "", 'duration': 500, 'category': 3 }),
@@ -15,7 +19,7 @@ export class MusicPlayerService {
 
   currentIndex: number = 0;
 
-  currentMusic: Music = this.playlist[this.currentIndex];
+  currentMusic: Music = this.musicList[this.currentIndex];
 
   audio: HTMLAudioElement = new Audio('assets/musics/' + this.currentMusic.id + '/audio.mp3');
 
@@ -30,7 +34,7 @@ export class MusicPlayerService {
 
   updateInterval: any;
 
-  constructor() {
+  constructor(private musicService: MusicasService) {
     this.updateInterval = setInterval(() => {
       this.updateMusicInfo();
     }, 1000);
@@ -43,16 +47,16 @@ export class MusicPlayerService {
   }
 
   next() {
-    if (this.currentIndex < this.playlist.length - 1) {
-      this.playMusic(this.playlist[this.currentIndex + 1]);
+    if (this.currentIndex < this.musicList.length - 1) {
+      this.playMusic(this.musicList[this.currentIndex + 1]);
     } else {
-      this.playMusic(this.playlist[0]);
+      this.playMusic(this.musicList[0]);
     }
   }
 
   back() {
     if (this.currentIndex > 0) {
-      this.playMusic(this.playlist[this.currentIndex - 1]);
+      this.playMusic(this.musicList[this.currentIndex - 1]);
     }
   }
 
@@ -69,7 +73,7 @@ export class MusicPlayerService {
   }
 
   playMusic(music: Music) {
-    this.currentIndex = this.playlist.indexOf(music);
+    this.currentIndex = this.musicList.indexOf(music);
     this.currentMusic = music;
     this.audio.pause();
     this.audio.src = 'assets/musics/' + this.currentMusic.id + '/audio.mp3';

@@ -69,6 +69,10 @@ export class PlaylistComponent implements OnInit {
     this.exibirPopup = true
   }
 
+  hidePopup() {
+    this.exibirPopup = false
+  }
+
   adicionarMusica(musica: string) {
     this.musicas.pipe(take(1)).subscribe((musicasArray: Music[]) => {
       const musicaEncontrada = musicasArray.find(m => m.name === musica);

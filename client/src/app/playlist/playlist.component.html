@@ -38,21 +38,24 @@
   </div>
 
   <div class="addmusic">
-    <button type="button" class="addmusicbutton" (click)="showPopup()">+</button>
+    <button [hidden]="exibirPopup" type="button" class="addmusicbutton" (click)="showPopup()">+</button>
   </div>
-  <div class="popUp" [hidden]="!exibirPopup">
-    <div class="music_input" [hidden]="!exibirPopup">
-      <input type="search" class="input_musica" placeholder="Música" (keyup)="filtrarMusicas($event)">
-      <i class="fas fa-search" aria-hidden="true"></i>
-      <ul class="opcoes_musica">
-        <li *ngFor="let musica of musicasFiltradas" (click)="adicionarMusica(musica)">{{musica}}</li>
-      </ul>
+
+  <div class="popUp" *ngIf="exibirPopup">
+
+    <div class="music_input" *ngIf="exibirPopup">
+      <div class="input-header">
+        <input type="search" class="input_musica" placeholder="Música" (keyup)="filtrarMusicas($event)">
+        <button type="button" class="closePopUp" (click)="hidePopup()">X</button>
+      </div>
+      <div class="opcoes_musica">
+        <p *ngFor="let musica of musicasFiltradas" (click)="adicionarMusica(musica)">{{musica}}</p>
+      </div>
     </div>
-
-
+    <h4 class="popUp-text" *ngIf="musicas_add.getValue().length > 0">Músicas Selecionadas</h4>
     <div class="musicas_adicionadas">
       <li *ngFor="let musica of musicas_add.getValue()">{{ musica.name }}</li>
     </div>
+    <button *ngIf="musicas_add.getValue().length > 0" type="button" class="enterButton"
+      (click)="updateMusicas()">Adicionar</button>
   </div>
-  <button *ngIf="musicas_add.getValue().length > 0" type="button" class="addMusicButton" (click)="updateMusicas()">Adicionar musicas</button>
-

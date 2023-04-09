@@ -9,7 +9,7 @@ import { PlaylistService } from '../playlist.service';
 import { Music } from './../../../../common/music';
 import { Playlist } from './../../../../common/playlist';
 import { BehaviorSubject, take } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -20,7 +20,7 @@ import { map } from 'rxjs/operators';
 export class PlaylistComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, private playlistService: PlaylistService,
-    private musicService: MusicasService) { }
+    private musicService: MusicasService, private location: Location) { }
 
   musicasFiltradas: string[] = [];
   musicas = this.musicService.getMusics()
@@ -85,7 +85,11 @@ export class PlaylistComponent implements OnInit {
     const playlist: Playlist = this.selectedPlaylist
     playlist.musics = musics_id
 
-    this.playlistService.updatePlaylistMusics(playlist).subscribe()
+    const update = this.playlistService.updatePlaylistMusics(playlist).subscribe()
+    if(update) {
+      alert('Músicas atualizadas com sucesso!')
+      window.location.reload();
+    }
   }
 
   filtrarMusicas(event: KeyboardEvent) {

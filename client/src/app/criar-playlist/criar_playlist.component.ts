@@ -97,16 +97,7 @@ export class CriarPlaylistComponent implements OnInit {
               musicIdsToAdd.push(music.id);
             }
           }
-          // Iterate over the songs in musicas_add and search for their IDs
-         /* for (const musica of this.musicas_add.getValue()) {
-            const matchingMusic = musics.find(m => m.name.toLowerCase() === musica.toLowerCase());
-            if (matchingMusic) {
-              musicIdsToAdd.push(matchingMusic.id);
-            }
-          }
-          console.log(musics)*/
 
-        console.log(musicIdsToAdd);
 
         const playlist = new Playlist(<Playlist><unknown>{
           "id": 0,

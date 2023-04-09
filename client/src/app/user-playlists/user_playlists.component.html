@@ -11,7 +11,7 @@
 
 <div class="campo2">
   <p class="minhas_playlists">Playlists que sigo</p>
-  <div class="playlistsDIV">
+  <div class="playlistsDIV" name = "likedPlaylistsDiv">
     <div *ngFor="let playlist of likedPlaylists">
       <app-playlist-card-recomend [playlist]="playlist"></app-playlist-card-recomend>
     </div>

@@ -18,6 +18,7 @@ export class PlaylistCardRecomendComponent {
 
   @Input() playlist: any;
   showShareMessage = false;
+  showLikedMessage = false;
 
   @Output() play = new EventEmitter<any>();
 
@@ -47,6 +48,11 @@ export class PlaylistCardRecomendComponent {
   likePlaylist(event: Event, playlist: Playlist) {
     event.stopPropagation();
     this.playlistService.addFollower(playlist.id, 0);
+
+    this.showLikedMessage = true;
+    setTimeout(() => {
+      this.showLikedMessage = false;
+    }, 1000);
   }
 
   sharePlaylist(event: Event, playlist: Playlist) {

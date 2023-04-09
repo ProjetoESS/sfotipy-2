@@ -140,6 +140,18 @@
   z-index: 2;
 }
 
+.liked-message {
+  position: absolute;
+  left: 175px;
+  bottom: 167px;
+  background-color: #177cbc;
+  color: white;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 2;
+}
+
 .categories-container {
   padding: 15px;
 }

@@ -104,3 +104,31 @@ h1 {
   align-self: end;
   right: max(calc((100vw - 1300px))/2, 1em);
 }
+
+.addmusic {
+  position: absolute;
+  bottom: 20%;
+  right: 10%;
+}
+
+.addmusicbutton {
+  background-color: aqua;
+  border-radius: 35px;
+  width: 3.5vw;
+  font-size: 5vh;
+  cursor: pointer;
+}
+
+.popUp {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 20%;
+  right: 20%;
+}
+
+.opcoes_musica {
+  max-height: 150px;
+  max-width: 150px;
+  overflow-y: auto;
+}

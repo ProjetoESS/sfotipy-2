@@ -136,6 +136,16 @@ export class PlaylistService {
     }
   }
 
+  updatePlaylist(playlist: Playlist): Playlist|null {
+    const result = this.playlists.find(c => c.id == playlist.id);
+    if (result) {
+      this.playlists[this.playlists.indexOf(result)] = playlist;
+      return result;
+    } else {
+      return null;
+    }
+  }
+
   delete(id: number): boolean {
     const index = this.playlists.findIndex(c => c.id === id);
     if (index >= 0) {

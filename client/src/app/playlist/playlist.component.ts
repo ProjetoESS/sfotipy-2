@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -8,6 +8,9 @@ import { PlaylistService } from '../playlist.service';
 
 import { Music } from './../../../../common/music';
 import { Playlist } from './../../../../common/playlist';
+import { BehaviorSubject, take } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-root',
@@ -19,8 +22,21 @@ export class PlaylistComponent implements OnInit {
     private route: ActivatedRoute, private playlistService: PlaylistService,
     private musicService: MusicasService) { }
 
+  musicasFiltradas: string[] = [];
+  musicas = this.musicService.getMusics()
+  musicas_add: BehaviorSubject<Music[]> = new BehaviorSubject<Music[]>([]);
+  exibirPopup: boolean = false;
   showLink: boolean = false;
   playlistId: number = 0;
+
+
+  /*@HostListener('document:click', ['$event'])
+  fecharPopup(event: MouseEvent) {
+    const addMusicaElement = (event.target as Element)?.closest('.addmusic');
+    if (!addMusicaElement) {
+      this.exibirPopup = false;
+    }
+  }*/
 
   // show_followers(id: number) {
   //   const playlist = this.playlists.find(
@@ -43,11 +59,59 @@ export class PlaylistComponent implements OnInit {
 
   playlistCategories: any[] = [];
 
+  showPopup() {
+    this.exibirPopup = true
+  }
+
+  adicionarMusica(musica: string) {
+    this.musicas.pipe(take(1)).subscribe((musicasArray: Music[]) => {
+      const musicaEncontrada = musicasArray.find(m => m.name === musica);
+
+      if (musicaEncontrada) {
+        this.musicas_add.next([...this.musicas_add.value, musicaEncontrada]);
+      }
+    })
+
+  }
+
+  updateMusicas() {
+    const musics_id: number[] = this.selectedPlaylist.musics
+    for (const music of this.musicas_add.getValue()) {
+      if (musics_id.findIndex(musica => musica === music.id) === -1) {
+        musics_id.push(music.id);
+      }
+    }
+
+    const playlist: Playlist = this.selectedPlaylist
+    playlist.musics = musics_id
+
+    this.playlistService.updatePlaylistMusics(playlist).subscribe()
+  }
+
+  filtrarMusicas(event: KeyboardEvent) {
+    // filtra as músicas com base no texto de pesquisa e atualiza a lista de músicas filtradas
+    const textoPesquisa = (event.target as HTMLInputElement).value.toLocaleLowerCase()
+    console.log(textoPesquisa)
+    this.musicas.subscribe(musicas => {
+      this.musicasFiltradas = musicas.filter(musica =>
+        musica.name.toLowerCase().startsWith(textoPesquisa)
+      ).map(musica => musica.name);
+    });
+    ;
+
+  }
+
   ngOnInit(): void {
+    this.musicas.subscribe(musicas => {
+      this.musicasFiltradas = musicas.map(musica => musica.name);
+
+    });
+
     this.route.paramMap.subscribe(params => {
       if (params && params.get('id')) {
         const id = params?.get('id');
         if (id) {
+          this.playlistId = Number(id)
           this.playlistService.getPlaylistById(parseInt(id))
           .subscribe(
             as => { this.selectedPlaylist = as;

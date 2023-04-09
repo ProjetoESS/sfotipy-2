@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { retry, map } from 'rxjs/operators';
 
 import { Playlist } from '../../../common/playlist';
+import { Music } from '../../../common/music';
 import { Observable } from 'rxjs';
 import { Category } from '../../../common/category';
 
@@ -35,6 +36,11 @@ export class PlaylistService {
         return result;
       })
     );
+  }
+
+  updatePlaylistMusics(playlist : Playlist) {
+    return this.http.put(`${this.appURL}/playlist`, playlist, this.httpOptions)
+      .pipe(retry(2))
   }
 
   getUserPlaylists(ownerId: any): Observable<Playlist[]>  {

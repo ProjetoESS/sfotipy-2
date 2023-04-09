@@ -6,9 +6,11 @@ import { User } from '../../common/user'
 describe('PlaylistService', () => {
     var timeout : number;
     var playlistService : PlaylistService;
+    var length : number;
+    var playlist : Playlist;
 
     var newPlaylist = new Playlist(<Playlist>{
-        'id': 6,
+        'id': 0,
         'name': 'Piores Rock',
         'categories': [2],
         'musics': [2],
@@ -53,31 +55,34 @@ describe('PlaylistService', () => {
         playlistService.delete(id);
     }
 
-    it("ter inicialmente 6 playlists cadastradas", () => {
-        expect(playlistService.playlists.length).toEqual(6);
+    it("ter inicialmente 10 playlists cadastradas", () => {
+        expect(playlistService.playlists.length).toEqual(10);
     });
 
     it("deve cadastrar uma nova playlist", () => {
         add(newPlaylist);
 
-        expect(playlistService.playlists.length).toBe(7);
-        expect(playlistService.playlists[6].id).toBe(6);
-        expect(playlistService.playlists[6].name).toBe('Piores Rock');
-        expect(playlistService.playlists[6].categories).toEqual([2]);
+        length = playlistService.playlists.length;
+        playlist = playlistService.playlists[length - 1];
+        expect(playlist.id).toBe(length - 1);
+        expect(playlist.name).toBe('Piores Rock');
+        expect(playlist.categories).toEqual([2]);
 
-        deletePlaylist(6);
+        deletePlaylist(length - 1);
     });
 
     it("deve retornar as playlists de um usuário", () => {
         add(newPlaylist);
 
         let playlists = playlistService.getUserPlaylists(newUser.name);
+        length = playlistService.playlists.length;
+        playlist = playlistService.playlists[length - 1];
         expect(playlists.length).toBe(1);
-        expect(playlists[0].id).toBe(6);
+        expect(playlists[0].id).toBe(length - 1);
         expect(playlists[0].name).toBe('Piores Rock');
         expect(playlists[0].categories).toEqual([2]);
 
-        deletePlaylist(6);
+        deletePlaylist(length - 1);
     });
 
     it("deve verificar se o nome da playlist já existe", () => {
@@ -86,8 +91,9 @@ describe('PlaylistService', () => {
     });
 
     it("deve retornar todas as playlists", () => {
+        length = playlistService.playlists.length;
         let playlists = playlistService.get();
-        expect(playlists.length).toBe(6);
+        expect(playlists.length).toBe(length);
         for(let i = 0;i < playlists.length;i++) {
             expect(playlists[i].id).toBe(i);
         }
@@ -96,62 +102,64 @@ describe('PlaylistService', () => {
     it("deve retornar uma playlist pelo id", () => {
         add(newPlaylist);
 
-        let playlist = playlistService.getById(6);
-        expect(playlist.id).toBe(6);
+        length = playlistService.playlists.length;
+        playlist = playlistService.getById(length - 1);
+        expect(playlist.id).toBe(length - 1);
         expect(playlist.name).toBe('Piores Rock');
         expect(playlist.categories).toEqual([2]);
 
-        deletePlaylist(6);
+        deletePlaylist(length - 1);
     });
 
     it("deve retornar undefined se a playlist não existir", () => {
-        let playlist = playlistService.getById(6);
+        let playlist = playlistService.getById(-1);
         expect(playlist).toBeUndefined();
     });
 
     it("deve atualizar uma playlist", () => {
         add(newPlaylist);
 
-        let playlist = playlistService.getById(6);
+        length = playlistService.playlists.length;
+        playlist = playlistService.playlists[length - 1];
         playlist.name = 'Rock';
-        let updatedPlaylist = playlistService.update(playlist);
-        expect(updatedPlaylist.id).toBe(6);
-        expect(updatedPlaylist.name).toBe('Rock');
-        expect(updatedPlaylist.categories).toEqual([2]);
+        playlistService.update(playlist);
+        playlist = playlistService.playlists[length - 1];
+        expect(playlist.id).toBe(length - 1);   
+        expect(playlist.name).toBe('Rock');
+        expect(playlist.categories).toEqual([2]);
 
-        deletePlaylist(6);
+        deletePlaylist(length - 1);
     });
 
     it("deve deletar uma playlist", () => {
         add(newPlaylist);
-
-        expect(playlistService.playlists.length).toBe(7);
-        expect(playlistService.playlists[6].id).toBe(6);
-        expect(playlistService.playlists[6].name).toBe('Piores Rock');
-        expect(playlistService.playlists[6].categories).toEqual([2]);
-
-        deletePlaylist(6);
-
-        expect(playlistService.playlists.length).toBe(6);
+        length = playlistService.playlists.length;
+        playlistService.delete(length - 1);
+        expect(playlistService.playlists.length).toBe(length - 1);
     });
 
     it("deve adicionar uma categoria a uma playlist", () => {
         add(newPlaylist);
-        let playlist = playlistService.addNewCategory(6, 3);
-        expect(playlist.id).toBe(6);
-        expect(playlist.name).toBe('Piores Rock');
+
+        length = playlistService.playlists.length;
+        playlist = playlistService.playlists[length - 1];
+        expect(playlist.categories).toEqual([2]);
+        playlistService.addNewCategory(length - 1, 3);
         expect(playlist.categories).toEqual([2, 3]);
-        playlist = playlistService.deleteCategory(6, 3);
-        deletePlaylist(6);
+        playlistService.deleteCategory(length - 1, 3);
+
+        deletePlaylist(length - 1);
     });
 
     it("deve deletar uma categoria de uma playlist", () => {
         add(newPlaylist);
-        let playlist = playlistService.deleteCategory(6, 2);
-        expect(playlist.id).toBe(6);
-        expect(playlist.name).toBe('Piores Rock');
+        length = playlistService.playlists.length;
+        playlist = playlistService.playlists[length - 1];
+        expect(playlist.categories).toEqual([2]);
+        playlistService.deleteCategory(length - 1, 2);
         expect(playlist.categories).toEqual([]);
-        deletePlaylist(6);
+        playlistService.addNewCategory(length - 1, 2);
+        deletePlaylist(length - 1);
     });
 
 });

@@ -32,6 +32,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //ROTAS DE MUSICAS
 
+
 app.post('/criar_playlist', (req: express.Request, res: express.Response) => {
   const newPlaylist = <Playlist>req.body;
 
@@ -44,15 +45,6 @@ app.post('/criar_playlist', (req: express.Request, res: express.Response) => {
   } catch (error) {
     return res.status(500).send({ message: 'Erro interno do servidor.' });
   }
-});
-
-
-app.get('/minhas_playlists', (req, res) => {
-  //const ownerId = parseInt(req.query.ownerId as string);
-  const ownerId = 1
-  console.log(ownerId) // busca o ownerId a partir dos parâmetros da requisição
-  const userPlaylists = playlistService.getUserPlaylists(ownerId); // busca as playlists do usuário a partir do PlaylistService
-  res.json(userPlaylists); // retorna as playlists como uma resposta JSON
 });
 
 app.get('/musics', function (req, res) {
@@ -149,7 +141,8 @@ app.post('/playlist', function (req: express.Request, res: express.Response) {
 
 app.put('/playlist', function (req: express.Request, res: express.Response) {
   const playlist: Playlist = <Playlist>req.body;
-  const result = playlistService.update(playlist);
+  console.log(playlist)
+  const result = playlistService.updatePlaylist(playlist);
   if (result) {
     res.send(result);
   } else {
@@ -171,7 +164,6 @@ app.post('/criar_playlist', (req: express.Request, res: express.Response) => {
   }
 });
 
-
 app.get('/minhas_playlists/:id', (req, res) => {
   const ownerId = parseInt(req.params.id);
   //console.log(ownerId) // busca o ownerId a partir dos parâmetros da requisição;
@@ -179,6 +171,12 @@ app.get('/minhas_playlists/:id', (req, res) => {
   //const ownerId = 1
   const userPlaylists = playlistService.getUserPlaylists(ownerId); // busca as playlists do usuário a partir do PlaylistService
   res.json(userPlaylists); // retorna as playlists como uma resposta JSON
+});
+
+app.get('/criar_playlist/:name', (req, res) => {
+  const name = req.params.name;
+  const result = playlistService.verificarNomePlaylistExistente(name);
+  res.json(result);
 });
 
 // ROTAS DE CATEGORIAS

@@ -37,6 +37,9 @@ export class UserPlaylistsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.playlistService.getUserPlaylists(this.user_id).subscribe(playlists => {
+        this.playlists = playlists;
+        this.numPlaylists = this.playlists.length;
     this.titleService.setTitle("Minhas Playlists");
     this.playlistService.getPlaylists().subscribe(
       as => { this.playlists = as;

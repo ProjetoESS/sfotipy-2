@@ -123,7 +123,6 @@ export class PlaylistService {
   ];
 
   idCount: number = 10;
-
   categories: Category[] = [];
 
   categoryService: CategoryService = new CategoryService;
@@ -138,7 +137,12 @@ export class PlaylistService {
   getUserPlaylists(ownerName: any): Playlist[] {
     const playlistsReturn: Playlist[] = []
     for (const playlist of this.playlists) {
-     if (playlist.owner == ownerName) {
+
+     // console.log(ownerId, playlist.ownerId)
+     if (playlist.ownerId == ownerId) {
+
+     //if (playlist.owner == ownerName) {
+
       playlistsReturn.push(playlist)
      }
     }
@@ -146,14 +150,11 @@ export class PlaylistService {
   }
 
   verificarNomePlaylistExistente(nomePlaylist: string): boolean {
-    if (this.playlists.length === 0) {
-      return false
-    } else {
-      for (let playlist of this.playlists) {
-        if (playlist.name === nomePlaylist) {
-          return true;
-        }
-      }
+    const playlists = this.getUserPlaylists(this.idCount)
+    for (let playlist of this.playlists) {
+      if (playlist.name === nomePlaylist) {
+        return true;
+      } 
     }
     return false;
   }
@@ -171,6 +172,16 @@ export class PlaylistService {
     const result = this.playlists.find(c => c.id == playlist.id);
     if (result instanceof Playlist) {
       result.update(<Playlist>playlist);
+      return result;
+    } else {
+      return null;
+    }
+  }
+
+  updatePlaylist(playlist: Playlist): Playlist|null {
+    const result = this.playlists.find(c => c.id == playlist.id);
+    if (result) {
+      this.playlists[this.playlists.indexOf(result)] = playlist;
       return result;
     } else {
       return null;

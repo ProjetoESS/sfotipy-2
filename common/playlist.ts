@@ -54,5 +54,6 @@ export class Playlist {
         if (playlist.availability) {
             this.availability = playlist.availability;
         }
+        
     }
 }

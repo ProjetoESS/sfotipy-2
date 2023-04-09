@@ -3,16 +3,18 @@
 </head>
 
 <div class="playlist-card" name="playlist-card">
-  <div class="categories-container" name="playlist-category-list">
-    <span *ngFor="let cat of categorias" name="playlist-category" class="badge"
-      id="playlist-cat-{{cat.name.toUpperCase()}}">{{cat.name}}</span>
-  </div>
-  <img class="playlist-image" [src]="playlist.image" alt="Playlist cover">
-  <div class="card-body">
-    <h5 name="nome" class="card-title">{{ playlist.name }}</h5>
+  <div (click)="openPlaylistOnClick($event, playlist)">
+    <div class="categories-container" name="playlist-category-list">
+      <span *ngFor="let cat of categorias" name="playlist-category" class="badge"
+        id="playlist-cat-{{cat.name.toUpperCase()}}">{{cat.name}}</span>
+    </div>
+    <img class="playlist-image" [src]="playlist.image" alt="Playlist cover">
+    <div class="card-body">
+      <h5 name="nome" class="card-title">{{ playlist.name }}</h5>
+    </div>
   </div>
 
-  <div class="overlay" name="overlay" (click)="openPlaylistOnClick($event, playlist)">
+  <div class="overlay" name="overlay">
     <div class="player-outer">
       <div class="player-inner">
         <button *ngIf="musicPlayerService.getCurrentState()" (click)="musicPlayerService.pause()"><img

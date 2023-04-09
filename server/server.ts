@@ -141,7 +141,6 @@ app.post('/playlist', function (req: express.Request, res: express.Response) {
 
 app.put('/playlist', function (req: express.Request, res: express.Response) {
   const playlist: Playlist = <Playlist>req.body;
-  console.log(playlist)
   const result = playlistService.updatePlaylist(playlist);
   if (result) {
     res.send(result);

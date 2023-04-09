@@ -1,63 +1,41 @@
-import { Music } from "./music";
-import { Category } from "./category";
-
-export class Playlist {
+export class Music {
     id: number;
-    ownerId: number;
     name: string;
-    categories: number[];
-    musics: number[];
+    author: string;
     image: string;
     link: string;
-    owner: string;
-    followers: number[];
-    availability: string;
-    accessPlaylits: number;
+    duration: number;
+    category: number;
 
-    constructor(playlist: Playlist) {
-        this.id = playlist.id;
-        this.ownerId = playlist.ownerId;
-        this.name = playlist.name;
-        this.categories = playlist.categories;
-        this.musics = playlist.musics;
-        this.image = playlist.image;
-        this.link = playlist.link;
-        this.owner = playlist.owner;
-        this.followers = playlist.followers;
-        this.availability = playlist.availability;
-        this.accessPlaylits = playlist.accessPlaylits;
+    constructor(music: Music) {
+        this.id = music.id;
+        this.name = music.name;
+        this.author = music.author;
+        this.image = music.image;
+        this.link = music.link;
+        this.duration = music.duration;
+        this.category = music.category;
     }
 
-    update(playlist: Playlist): void {
-        if (playlist.name) {
-            this.name = playlist.name;
+    update(music: Music): void {
+        if (music.name) {
+            this.name = music.name;
         }
-        if (playlist.categories) {
-            this.categories = playlist.categories;
+        if (music.author) {
+            this.author = music.author;
         }
-        if (playlist.musics) {
-            this.musics = playlist.musics;
+        if (music.image) {
+            this.image = music.image;
         }
-        if (playlist.image) {
-            this.image = playlist.image;
+        if (music.link) {
+            this.link = music.link;
         }
-        if (playlist.link) {
-            this.link = playlist.link;
+        if (music.duration) {
+            this.duration = music.duration;
         }
-        if (playlist.owner) {
-            this.owner = playlist.owner;
-        }
-        if (playlist.ownerId) {
-            this.ownerId = playlist.ownerId;
-        }
-        if (playlist.followers) {
-            this.followers = playlist.followers;
-        }
-        if (playlist.availability) {
-            this.availability = playlist.availability;
-        }
-        if (playlist.accessPlaylits) {
-            this.accessPlaylits = playlist.accessPlaylits;
+        if (music.category) {
+            this.category = music.category;
         }
     }
+
 }

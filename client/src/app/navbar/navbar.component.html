@@ -7,7 +7,7 @@
             <a routerLink="/busca">Busca</a>
             <a name="home" routerLink="/"><img src="../../assets/logo.png" alt="" srcset=""></a>
             <a routerLink="/em-alta">Em alta</a>
-            <a routerLink="/minhas_playlists" *ngIf="isLogged">Playlists</a>
+            <a name="playlists" routerLink="/minhas_playlists" *ngIf="isLogged">Playlists</a>
             <a name="playlists" routerLink="/cadastro" *ngIf="!isLogged">Playlists</a>
         </div>
     </div>

@@ -27,7 +27,7 @@ async function assertMusicsWithSameName(n, name) {
 
 defineSupportCode(function ({ Given, When, Then }) {
     //Scenario: Voltar à página inicial
-    Given(/^que eu esteja logado com o usuário usuário "([^\"]*)" e a senha "([^\"]*)"$/, async (user, passw) => {
+    Given(/^eu esteja logado com o usuário "([^\"]*)" e a senha "([^\"]*)"$/, async (user, passw) => {
 
     });
 
@@ -36,7 +36,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         await expect(browser.getTitle()).to.eventually.equal(name.toString());
     });
 
-    When(/^eu cliclo no botão "([^\"]*)" uma vez$/, async (home) => {
+    When(/^eu clico no botão "([^\"]*)" uma vez$/, async (home) => {
         await element(by.name(home.toString())).click();
     });
 
@@ -47,20 +47,18 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     //////////////////////////////////////////////////////////////////////////
     //Scenario: Visualizar informações públicas e do usuário
-    Given(/^que eu esteja na página inicial "([^\"]*)"$/, async (name) => {
-        await browser.get("http://localhost:4200/busca");
+    Given(/^eu esteja na página inicial "([^\"]*)"$/, async (name) => {
+        await browser.get("http://localhost:4200/");
         await expect(browser.getTitle()).to.eventually.equal(name);
     });
 
-    Given(/^eu esteja logado com o usuário usuário "([^\"]*)" e a senha "([^\"]*)"$/, async (user, passw) => {
-
-    });
+    //And eu esteja logado com o usuário "vgc3" e a senha "abc1234"
 
     When('eu percorro a página', async () => {
         // No action needed, as we are just navigating through the page
     });
 
-    Then(/^eu consigo ver "([^\"]*)", "([^\"]*)", "([^\"]*)" e "([^\"]*)"$/, async (recomendacoes, publicas, em_alta, minhas) => {
+    Then(/^eu consigo ver "([^\"]*)", "([^\"]*)", "([^\"]*)" e as "([^\"]*)"$/, async (recomendacoes, publicas, em_alta, minhas) => {
         const rec = await element(by.name("recomendacoes"));
         const pub = await element(by.name("plsts-publicas"));
         const ema = await element(by.name("plsts-em-alta"));
@@ -73,15 +71,15 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     //////////////////////////////////////////////////////////////////////////
     //Scenario: Sair do serviço
-    //Given que eu esteja na página inicial "Sfotipy"
+    //Given eu esteja na página inicial "Sfotipy"
     //eu esteja logado com o usuário "vgc3" e a senha "abc1234"
 
-    When(/^eu cliclo no ícone de "([^\"]*)"$/, async (sair) => {
-        await element(by.name("profile")).click();
+    When(/^eu clico no ícone de "([^\"]*)" no "([^\"]*)"$/, async (sair, profile) => {
+        await element(by.name(profile.toString())).click();
         await element(by.name(sair.toString())).click();
     });
 
-    Then(/^eu sou direcionado novamente para a seção de "([^\"]*)"$/, async (login) => {
+    Then(/^eu sou levado para a pagina de "([^\"]*)"$/, async (login) => {
         await browser.get("http://localhost:4200/login");
         await expect(browser.getTitle()).to.eventually.equal(login);
     });
@@ -92,15 +90,13 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     //////////////////////////////////////////////////////////////////////////
     //Scenario: Visualizar informações para usuário não logado
-    //Given que eu esteja na página inicial
+    //Given eu esteja na página inicial "Sfotipy"
 
-    Given(/^eu tenha optado por não fazer login (entrado como guest)$/, async () => {
+    Given(/^eu tenha optado por não fazer login$/, async () => {
         // No action needed, as we are not logged in as default
     });
 
-    When('eu percorro a página', async () => {
-        // No action needed, as we are just navigating through the page
-    });
+    //When eu percorro a página
 
     Then(/^eu consigo ver apenas as "([^\"]*)" e as "([^\"]*)"$/, async (em_alta, publicas) => {
         const pub = await element(by.name("plsts-publicas"));
@@ -111,24 +107,14 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     //////////////////////////////////////////////////////////////////////////
     //Scenario: Minhas Playlists de usuário não logado
-    //Scenario: Criar playlists como usuário não logado UNIR COM O DE CIMA
-    Given(/^eu estou na página inicial "([^\"]*)"$/, async (name) => {
-        await browser.get("http://localhost:4200");
-        await expect(browser.getTitle()).to.eventually.equal(name);
+    //Given eu esteja na página inicial "Sfotipy"
+    //And eu tenha optado por não fazer login
+
+    When(/^eu clico no botão "([^\"]*)"$/, async (button) => {
+        await element(by.name(button.toString())).click();
     });
 
-    Given(/^eu não tenha feito login (seja um guest)$/, async () => {
-        // No action needed, as we are not logged in as default
-    });
-
-    When(/^eu cliclo no botão "([^\"]*)"$/, async (playlists) => {
-        await element(by.name(playlists.toString())).click();
-    });
-
-    Then(/^eu sou levado para a pagina de "([^\"]*)"$/, async (login) => {
-        await browser.get("http://localhost:4200/login");
-        await expect(browser.getTitle()).to.eventually.equal(login);
-    });
+    //Then eu sou levado para a pagina de "Login"
 
     //Não fiz ainda
     //And aparece o botão de "Registrar" OU
@@ -137,22 +123,17 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     //////////////////////////////////////////////////////////////////////////
     //Scenario: Acessar perfil do usuário
-    Given(/^eu estou na página inicial$/, async () => {
-        await browser.get("http://localhost:4200");
-        await expect(browser.getTitle()).to.eventually.equal('Sfotify');
-    });
+    //Given eu esteja na página inicial "Sfotipy"
 
     //And eu esteja logado com o usuário "vgc3" e a senha "abc1234"
 
-    When(/^eu cliclo no ícone "([^\"]*)"$/, async (perfil) => {
-        await element(by.name(perfil.toString())).click();
-    });
+    //When eu clico no botão "perfil"
 
-    Then(/^eu posso ver meus dados ("([^\"]*)", "([^\"]*)")$/, async (name, followers) => {
+    Then(/^eu posso ver meu dados "([^\"]*)" e "([^\"]*)")$/, async (name, followers) => {
         const nm = await element(by.name("name"));
         const fl = await element(by.name("followers"));
-        expect(await nm.getText()).to.equal('Olá, ' + name);
-        expect(await fl.getText()).to.equal(followers);
+        expect(await nm.getText()).to.eventually.equal(name);
+        expect(await fl.getText()).to.eventually.equal(followers);
     });
 
     //////////////////////////////////////////////////////////////////////////
@@ -166,10 +147,7 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     //When eu clico no botão "Playlists"
 
-    Then(/^eu sou levado para a pagina de "([^\"]*)"$/, async (playlists) => {
-        await browser.get("http://localhost:4200/minhas_playlists");
-        await expect(browser.getTitle()).to.eventually.equal(playlists);
-    });
+    //Then eu sou levado para a pagina de "Login"
 
     Then(/^eu posso ver uma lista com as minhas playlists "([^\"]*)", "([^\"]*)", "([^\"]*)"$/, async (playlist1, playlist2, playlist3) => {
         const pl1 = await element(by.name("playlist1"));

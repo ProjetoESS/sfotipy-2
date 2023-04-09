@@ -135,7 +135,7 @@ app.delete('/playlist/:id', function (req, res) {
 app.post('/playlist', function (req: express.Request, res: express.Response) {
   const playlist: Playlist = <Playlist>req.body;
   try {
-    const result = playlistService.add(playlist);
+    const result = playlistService.addPlaylist(playlist);
     if (result) {
       res.status(201).send(result);
     } else {

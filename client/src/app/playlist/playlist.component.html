@@ -1,4 +1,4 @@
-<div class="container margin-top">
+<div class="container margins">
 
 
   <div class="header">
@@ -6,15 +6,22 @@
     <div class="content">
       <div class="text">
         <h1 class="playlist_name" name="playlist-name">{{selectedPlaylist.name}}</h1>
-        <span>{{selectedPlaylist.availability}}</span>
+        <span id="playlist_availability" class="description">{{selectedPlaylist.availability}}</span>
         <br>
-        <span>{{selectedPlaylist.followers.length}} seguidores</span>
-        <ul class="categories">
-          <li class="category" *ngFor="let category of playlistCategories">{{ category.name }}</li>
-          <li class="category">
-            <a class="add_new_category" href="/categorias/{{selectedPlaylist.id}}">+</a>
-          </li>
-        </ul>
+        <span class="description">{{selectedPlaylist.followers.length}} seguidores</span>
+        <br>
+        <br>
+        <span *ngFor="let cat of playlistCategories" class="badge"
+          id="selected-cat-{{cat.name.toUpperCase()}}">{{cat.name}}<button class="close-button"
+            (click)="removeCategory(cat)">x</button></span>
+        <details *ngIf="playlistCategories.length < 2">
+          <summary (click)="getCategories()" id="selector-cat"></summary>
+          <div class="categories-content">
+            <span *ngFor="let cat of getCategories()" id="select-cat-{{cat.name.toUpperCase()}}"
+              (click)="selectCategory(cat)" class="badge">{{cat.name}}
+            </span>
+          </div>
+        </details>
       </div>
       <div class="icons">
         <i *ngIf="selectedPlaylist.availability === 'public'" (click)="showShareLink()" class="fas fa-share">

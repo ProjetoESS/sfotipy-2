@@ -5,6 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import { PlaylistService } from '../playlist.service';
 import { Playlist } from '../../../../common/playlist';
 import { UserPlaylistsModule } from './user_playlists.module';
+import { UserService } from '../user.service';
+import { Title } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-root',
@@ -13,28 +16,43 @@ import { UserPlaylistsModule } from './user_playlists.module';
 })
 
 export class UserPlaylistsComponent implements OnInit {
-  user_id: number = 1
+  userId: number = 0;
 
-    constructor(private router: Router, private playlistService : PlaylistService) {}
+  constructor(
+      private router: Router, private playlistService: PlaylistService,
+      private userService: UserService,
+      private titleService: Title) {}
 
-    numPlaylists: number = 2; // Número de playlists cadastradas
-    playlists: Playlist[] = []
+  numPlaylists: number = 0;  // Número de playlists cadastradas
+  playlistsUser: Playlist[] = [];
+  likedPlaylists: Playlist[] = [];
+  playlists: Playlist[] = [];
 
-    redirectplaylist(id: number) {
-      this.router.navigate(['/playlist/', id])
-    }
+  redirectplaylist(id: number) {
+    this.router.navigate(['/playlist/', id]);
+  }
 
-    redirecionarParaCriarPlaylist() {
-      this.router.navigate(['/criar_playlist']);
-    }
+  redirecionarParaCriarPlaylist() {
+    this.router.navigate(['/criar_playlist']);
+  }
 
-    ngOnInit(): void {
-
-        this.playlistService.getUserPlaylists(this.user_id).subscribe(playlists => {
+  ngOnInit(): void {
+    this.playlistService.getUserPlaylists(this.user_id).subscribe(playlists => {
         this.playlists = playlists;
         this.numPlaylists = this.playlists.length;
-
-
-    })
+    this.titleService.setTitle("Minhas Playlists");
+    this.playlistService.getPlaylists().subscribe(
+      as => { this.playlists = as;
+        
+              this.userService.getUserId().subscribe(
+                as => { this.userId = as; },
+                msg => { alert(msg.message); }
+              );
+              this.playlistsUser = this.playlists.filter(playlist => playlist.ownerId == this.userId);
+              this.likedPlaylists = this.playlists.filter(playlists => playlists.followers.includes(this.userId));
+              this.numPlaylists = this.playlistsUser.length
+            },
+      msg => { alert(msg.message); }
+    );
   }
 }

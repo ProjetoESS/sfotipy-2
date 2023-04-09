@@ -6,7 +6,7 @@ import { PlaylistService } from '../playlist.service';
 import { MusicasService } from '../musicas.service';
 import { Router, NavigationExtras } from '@angular/router';
 import { BehaviorSubject, take } from 'rxjs';
-import { CriarPlaylistModule } from './criar_playlist.module';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ import { CriarPlaylistModule } from './criar_playlist.module';
 
 
 export class CriarPlaylistComponent implements OnInit {
-  user_id: number = 1
+  user_id: number = 0;
   id: number = 6
   successMessage: string = '';
   nome_playlist: string = ''
@@ -34,7 +34,7 @@ export class CriarPlaylistComponent implements OnInit {
     }
   }
 
-  constructor(private playlistService: PlaylistService, private musicservice: MusicasService, private router: Router) { }
+  constructor(private playlistService: PlaylistService, private musicservice: MusicasService, private router: Router, private userService: UserService) { }
 
   musicas = this.musicservice.getMusics()
 
@@ -85,7 +85,6 @@ export class CriarPlaylistComponent implements OnInit {
       alert('Nome da playlist não pode ser maior que 35 caracteres.')
       return
     }
-
     this.playlistService.verificarNomePlaylistExistente(this.nome_playlist).subscribe(result => {
       if (result) {
         alert('Já existe uma playlist com esse nome');
@@ -119,8 +118,7 @@ export class CriarPlaylistComponent implements OnInit {
         });
       }
     })
-
-  }
+    
 
   ngOnInit(): void {
     this.musicas.subscribe(musicas => {
@@ -150,6 +148,12 @@ export class CriarPlaylistComponent implements OnInit {
           reader.readAsDataURL(file);
         }
       })
-    }
+    };
+
+    this.userService.getUserId().subscribe(userId => {
+      this.user_id = userId
+      //console.log(this.user_id);
+      
+    });
   }
 }

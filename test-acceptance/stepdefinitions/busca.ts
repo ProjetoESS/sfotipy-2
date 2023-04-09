@@ -153,7 +153,7 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     Then(/^só serão mostradas playlists da categoria “([^\"]*)”$/,
         async (category: any) => {
-            await element.all(by.css("[name='playlist-category']")).map(function (elm) {
+            await element.all(by.name("playlist-category-list")).map(function (elm) {
                 return elm.getText();
             }).then(texts => {
                 texts.forEach((e: any) => expect(e.toLowerCase()).to.includes(category.toLowerCase()));

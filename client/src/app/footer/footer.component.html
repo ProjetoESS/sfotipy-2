@@ -8,7 +8,7 @@
     <div class="time-content">
         <p>{{musicPlayerService.getCurrentTime()}}</p>
         <div class="player-content">
-            <div class="progress-bar">
+            <div class="progress-bar" (click)="seek($event)">
                 <span [ngStyle]="{'width': musicPlayerService.getCurrentProgress() + '%'}">Progress: 80%</span>
             </div>
         </div>

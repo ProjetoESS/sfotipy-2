@@ -9,8 +9,8 @@
   </div>
   <div class="overlay" name="overlay">
     <div class="categories-container">
-      <span *ngFor="let cat of categorias" class="badge"
-        id="selected-cat-{{cat.name.toUpperCase()}}">{{cat.name}}</span>
+      <span *ngFor="let cat of categorias" name="playlist-category" class="badge"
+        id="playlist-cat-{{cat.name.toUpperCase()}}">{{cat.name}}</span>
     </div>
 
     <div class="play-button" name="play-button" [ngClass]="{'playing': playlist.isPlaying}"

@@ -30,7 +30,14 @@ export class MusicPlayerService {
     this.getCurrentProgress();
   }
 
-  playMusic(music: Music) { }
+  playMusic(music: Music) {
+    this.currentMusic = music;
+    this.audio.pause();
+    this.audio.src = 'assets/musics/' + this.currentMusic.id + '/audio.mp3';
+    this.musicTime = { 'minutes': Math.floor(this.currentMusic.duration / 60), 'seconds': this.currentMusic.duration - Math.floor(this.currentMusic.duration / 60) * 60 }
+    this.currentTime = { 'minutes': 0, 'seconds': 0 }
+    this.play();
+  }
 
   play() {
     this.audio.play();

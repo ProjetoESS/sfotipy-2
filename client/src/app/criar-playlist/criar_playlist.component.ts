@@ -1,9 +1,11 @@
 import { Component, HostListener } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { Music } from './../../../../common/music';
 import { Playlist } from '../../../../common/playlist';
 import { PlaylistService } from '../playlist.service';
 import { MusicasService } from '../musicas.service';
 import { Router, NavigationExtras } from '@angular/router';
+import { BehaviorSubject, take } from 'rxjs';
 import { CriarPlaylistModule } from './criar_playlist.module';
 
 @Component({
@@ -20,7 +22,7 @@ export class CriarPlaylistComponent implements OnInit {
   nome_playlist: string = ''
   imagem_playlist: string = ''
   publicavel: string = ''
-  musicas_add: string[] = []
+  musicas_add: BehaviorSubject<Music[]> = new BehaviorSubject<Music[]>([]);
   musicasFiltradas: string[] = [];
   exibirPopup: boolean = false;
 
@@ -37,7 +39,13 @@ export class CriarPlaylistComponent implements OnInit {
   musicas = this.musicservice.getMusics()
 
   adicionarMusica(musica: string) {
-    this.musicas_add.push(musica)
+    this.musicas.pipe(take(1)).subscribe((musicasArray: Music[]) => {
+      const musicaEncontrada = musicasArray.find(m => m.name === musica);
+
+      if (musicaEncontrada) {
+        this.musicas_add.next([...this.musicas_add.value, musicaEncontrada]);
+      }
+    })
   }
 
   exibirOpcoesMusicas() {
@@ -83,25 +91,29 @@ export class CriarPlaylistComponent implements OnInit {
         alert('Já existe uma playlist com esse nome');
         return
       } else {
-        this.musicservice.getMusics().subscribe(musics => {
-          const musicIdsToAdd = [];
-
+          const musicIdsToAdd: number[] = []
+          for (const music of this.musicas_add.getValue()) {
+            if (musicIdsToAdd.findIndex(musica => musica === music.id) === -1) {
+              musicIdsToAdd.push(music.id);
+            }
+          }
           // Iterate over the songs in musicas_add and search for their IDs
-          for (const musica of this.musicas_add) {
+         /* for (const musica of this.musicas_add.getValue()) {
             const matchingMusic = musics.find(m => m.name.toLowerCase() === musica.toLowerCase());
             if (matchingMusic) {
               musicIdsToAdd.push(matchingMusic.id);
             }
           }
-          console.log(musics)
-        })
+          console.log(musics)*/
+
+        console.log(musicIdsToAdd);
 
         const playlist = new Playlist(<Playlist><unknown>{
           "id": 0,
           "ownerId": this.user_id,
           "name": this.nome_playlist,
           "categories": [],
-          "musics": this.musicas_add,
+          "musics": musicIdsToAdd,
           "image": this.imagem_playlist,
           "link": "",
           "owner": "",

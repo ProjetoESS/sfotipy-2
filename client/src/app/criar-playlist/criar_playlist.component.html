@@ -25,7 +25,7 @@
     </div>
 
     <div class="musicas_adicionadas">
-      <li *ngFor="let musica of musicas_add">{{ musica }}</li>
+      <li *ngFor="let musica of musicas_add.getValue()">{{ musica.name }}</li>
     </div>
 
 

@@ -4,20 +4,20 @@ Feature: Pagina Inicial
     So that eu possa ter informaçoes e conteúdos relevantes organizados e expostos para mim
 
     Scenario: Voltar à página inicial
-        Given que eu esteja logado como um usuário comum no serviço (usuário “vgc3” e a senha “abc1234”)
-        And eu esteja em qualquer sub-página do serviço
+        Given que eu esteja logado com o usuário usuário “vgc3” e a senha “abc1234”
+        And eu esteja na página "Busca"
         When eu clico no botão “Home” uma vez
         Then qualquer definição não salva feita em outra página será perdida
         And eu vou diretamente para a página principal do serviço
 
     Scenario: Visualizar informações públicas e do usuário
-        Given que eu esteja na página inicial
+        Given que eu esteja na página inicial "Sfotipy"
         And logado com o usuário “vgc3” e a senha “abc1234”
         When eu percorro a página
-        Then eu consigo ver “recomendações”, “musicas em alta” e as “minhas playlists”
+        Then eu consigo ver “recomendações”, "Playlists Públicas", “musicas em alta” e as “minhas playlists”
 
     Scenario: Sair do serviço
-        Given que eu esteja na página inicial
+        Given que eu esteja na página inicial "Sfotipy"
         And logado com o usuário “vgc3” e a senha “abc1234”
         When eu clico no ícone de “sair”
         Then eu sou direcionado novamente para a seção de login

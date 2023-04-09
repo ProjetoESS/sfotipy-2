@@ -26,9 +26,10 @@ async function assertMusicsWithSameName(n, name) {
 }
 
 defineSupportCode(function ({ Given, When, Then }) {
-    //Given que eu esteja logado como um usuário comum no serviço (usuário “vgc3” e a senha “abc1234”)
-    
-    Given(/^eu estou na página "([^\"]*)"$/, async (name) => {
+    //Scenario: Voltar à página inicial
+    //Given que eu esteja logado com o usuário usuário “vgc3” e a senha “abc1234”
+
+    Given(/^eu esteja na página "([^\"]*)"$/, async (name) => {
         await browser.get("http://localhost:4200/busca");
         await expect(browser.getTitle()).to.eventually.equal(name);
     });
@@ -45,30 +46,40 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     //////////////////////////////////////////////////////////////////////////
-
-    Given(/^eu estou na página "([^\"]*)"$/, async (name) => {
+    //Scenario: Visualizar informações públicas e do usuário
+    Given(/^eu estou na página inicial "([^\"]*)"$/, async (name) => {
         await browser.get("http://localhost:4200/busca");
         await expect(browser.getTitle()).to.eventually.equal(name);
     });
 
     //And logado com o usuário “vgc3” e a senha “abc1234”
 
-    When('eu percorro a página', function () {
-        // Navigate through the page
+    When('eu percorro a página', async () => {
+        // No action needed, as we are just navigating through the page
     });
 
-    //Then eu consigo ver “recomendações”, “musicas em alta” e as “minhas playlists”
+    Then(/^eu consigo ver "([^\"]*)", "([^\"]*)", "([^\"]*)" e "([^\"]*)"$/, async (recomendacoes, publicas, em_alta, minhas) => {
+        const rec = await element(by.name("recomendacoes"));
+        const pub = await element(by.name("plsts-publicas"));
+        const ema = await element(by.name("plsts-em-alta"));
+        const min = await element(by.name("minhas-plsts"));
+        expect(await rec.getText()).to.equal(recomendacoes);
+        expect(await pub.getText()).to.equal(publicas);
+        expect(await ema.getText()).to.equal(em_alta);
+        expect(await min.getText()).to.equal(minhas);
+    });
 
     //////////////////////////////////////////////////////////////////////////
-
+    //Scenario: Sair do serviço
     Given(/^eu estou na página "([^\"]*)"$/, async (name) => {
-        await browser.get("http://localhost:4200/busca");
+        await browser.get("http://localhost:4200");
         await expect(browser.getTitle()).to.eventually.equal(name);
     });
 
     //And logado com o usuário “vgc3” e a senha “abc1234”
 
     When(/^eu cliclo no botão "([^\"]*)"$/, async (sair) => {
+        await element(by.name("profile")).click();
         await element(by.name(sair.toString())).click();
     });
 
@@ -80,7 +91,7 @@ defineSupportCode(function ({ Given, When, Then }) {
     //And minhas credenciais serão pedidas novamente
 
     //////////////////////////////////////////////////////////////////////////
-
+    //Scenario: Visualizar informações para usuário não logado
     Given(/^eu estou na página "([^\"]*)"$/, async (name) => {
         await browser.get("http://localhost:4200/busca");
         await expect(browser.getTitle()).to.eventually.equal(name);

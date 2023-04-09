@@ -6,6 +6,7 @@ import { PlaylistService } from '../playlist.service';
 import { Playlist } from '../../../../common/playlist';
 import { UserPlaylistsModule } from './user_playlists.module';
 import { UserService } from '../user.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,7 @@ import { UserService } from '../user.service';
 export class UserPlaylistsComponent implements OnInit {
   user_id: number = 0;
 
-    constructor(private router: Router, private playlistService : PlaylistService, private userService: UserService) {}
+    constructor(private router: Router, private playlistService : PlaylistService, private userService: UserService, private titleService: Title) {}
 
     numPlaylists: number = 0; // Número de playlists cadastradas
     playlists: Playlist[] = []
@@ -30,7 +31,7 @@ export class UserPlaylistsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
+      this.titleService.setTitle("Minhas Playlists");
         //console.log(this.playlistService.getUserPlaylists(this.user_id).subscribe(playlists => {
         //  this.playlists = playlists;
         //  this.numPlaylists = this.playlists.length;

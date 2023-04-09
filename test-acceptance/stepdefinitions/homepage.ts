@@ -130,8 +130,8 @@ defineSupportCode(function ({ Given, When, Then }) {
         // No action needed, as we are not logged in as default
     });
 
-    When(/^eu cliclo no botão "([^\"]*)"$/, async (sair) => {
-        await element(by.name("playlists")).click();
+    When(/^eu cliclo no botão "([^\"]*)"$/, async (playlists) => {
+        await element(by.name(playlists.toString())).click();
     });
 
     Then(/^eu sou levado para a pagina de "([^\"]*)"$/, async (login) => {
@@ -147,7 +147,52 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     //////////////////////////////////////////////////////////////////////////
     //Scenario: Acessar perfil do usuário
+    Given(/^eu estou na página "([^\"]*)"$/, async (name) => {
+        await browser.get("http://localhost:4200");
+        await expect(browser.getTitle()).to.eventually.equal(name);
+    });
+
+    Given(/^eu esteja logado com o usuário usuário "([^\"]*)" e a senha "([^\"]*)"$/, async (user, passw) => {
+    
+    });
+
+    When(/^eu cliclo no ícone "([^\"]*)"$/, async (perfil) => {
+        await element(by.name(perfil.toString())).click();
+    });
+
+    Then(/^eu posso ver meus dados ("([^\"]*)", "([^\"]*)")$/, async (name, followers) => {
+        const nm = await element(by.name("name"));
+        const fl = await element(by.name("followers"));
+        expect(await nm.getText()).to.equal('Olá, ' + name);
+        expect(await fl.getText()).to.equal(followers);
+    });
 
     //////////////////////////////////////////////////////////////////////////
     //Scenario: Minhas Playlists de usuário logado
+    Given(/^eu estou na página "([^\"]*)"$/, async (name) => {
+        await browser.get("http://localhost:4200");
+        await expect(browser.getTitle()).to.eventually.equal(name);
+    });
+
+    Given(/^eu esteja logado com o usuário usuário "([^\"]*)" e a senha "([^\"]*)"$/, async (user, passw) => {
+    
+    });
+
+    When(/^eu cliclo no botão "([^\"]*)"$/, async (playlists) => {
+        await element(by.name(playlists.toString())).click();
+    });
+
+    Then(/^eu sou levado para a pagina de "([^\"]*)"$/, async (playlists) => {
+        await browser.get("http://localhost:4200/minhas_playlists");
+        await expect(browser.getTitle()).to.eventually.equal(playlists);
+    });
+
+    Then(/^eu posso ver uma lista com as minhas playlists "([^\"]*)", "([^\"]*)", "([^\"]*)"$/, async (playlist1, playlist2, playlist3) => {
+        const pl1 = await element(by.name("playlist1"));
+        const pl2 = await element(by.name("playlist2"));
+        const pl3 = await element(by.name("playlist3"));
+        expect(await pl1.getText()).to.equal(playlist1);
+        expect(await pl2.getText()).to.equal(playlist2);
+        expect(await pl3.getText()).to.equal(playlist3);
+    });
 });

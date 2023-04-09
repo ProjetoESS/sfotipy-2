@@ -60,4 +60,8 @@ export class PlaylistCardRecomendComponent {
   executeAction(event: Event) {
     event.stopPropagation();
   }
+
+  isPausable(): boolean {
+    return this.musicPlayerService.isPlaying && this.musicPlayerService.playlist.id == this.playlist.id;
+  }
 }

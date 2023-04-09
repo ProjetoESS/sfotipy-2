@@ -73,14 +73,8 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     //////////////////////////////////////////////////////////////////////////
     //Scenario: Sair do serviço
-    Given(/^que eu esteja na página inicial "([^\"]*)"$/, async (name) => {
-        await browser.get("http://localhost:4200");
-        await expect(browser.getTitle()).to.eventually.equal(name);
-    });
-
-    Given(/^eu esteja logado com o usuário usuário "([^\"]*)" e a senha "([^\"]*)"$/, async (user, passw) => {
-
-    });
+    //Given que eu esteja na página inicial "Sfotipy"
+    //eu esteja logado com o usuário "vgc3" e a senha "abc1234"
 
     When(/^eu cliclo no ícone de "([^\"]*)"$/, async (sair) => {
         await element(by.name("profile")).click();
@@ -98,10 +92,7 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     //////////////////////////////////////////////////////////////////////////
     //Scenario: Visualizar informações para usuário não logado
-    Given(/^que eu esteja na página inicial$/, async () => {
-        await browser.get("http://localhost:4200/");
-        await expect(browser.getTitle()).to.eventually.equal('Sfotipy');
-    });
+    //Given que eu esteja na página inicial
 
     Given(/^eu tenha optado por não fazer login (entrado como guest)$/, async () => {
         // No action needed, as we are not logged in as default
@@ -151,9 +142,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         await expect(browser.getTitle()).to.eventually.equal('Sfotify');
     });
 
-    Given(/^eu esteja logado com o usuário usuário "([^\"]*)" e a senha "([^\"]*)"$/, async (user, passw) => {
-    
-    });
+    //And eu esteja logado com o usuário "vgc3" e a senha "abc1234"
 
     When(/^eu cliclo no ícone "([^\"]*)"$/, async (perfil) => {
         await element(by.name(perfil.toString())).click();
@@ -173,13 +162,9 @@ defineSupportCode(function ({ Given, When, Then }) {
         await expect(browser.getTitle()).to.eventually.equal('Sfotify');
     });
 
-    Given(/^eu esteja logado com o usuário usuário "([^\"]*)" e a senha "([^\"]*)"$/, async (user, passw) => {
-    
-    });
+    //And eu esteja logado com o usuário "vgc3" e a senha "abc1234"
 
-    When(/^eu cliclo no botão "([^\"]*)"$/, async (playlists) => {
-        await element(by.name(playlists.toString())).click();
-    });
+    //When eu clico no botão "Playlists"
 
     Then(/^eu sou levado para a pagina de "([^\"]*)"$/, async (playlists) => {
         await browser.get("http://localhost:4200/minhas_playlists");

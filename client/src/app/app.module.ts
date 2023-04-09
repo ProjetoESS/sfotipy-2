@@ -78,6 +78,10 @@ import { CriarPlaylistComponent } from './criar-playlist/criar_playlist.componen
         component: PlaylistRecomendadasComponent
       },
       {
+        path: 'em-alta',
+        component: PlaylistEmAltaComponent
+      },
+      {
         path: 'categorias/:id',
         component: CriacaoCategoriasComponent
       }

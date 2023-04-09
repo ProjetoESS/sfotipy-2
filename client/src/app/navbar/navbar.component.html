@@ -1,6 +1,6 @@
 <nav>
     <button class="profile" name="profile" (click)="showProfile()" *ngIf="isLogged"></button>
-    <button class="register" routerLink="/cadastro" *ngIf="!isLogged">Registrar</button>
+    <button class="login" routerLink="/login" *ngIf="!isLogged">Entrar</button>
     <div class="container">
         <div class="row">
             <a routerLink="/explorar">Explorar</a>

@@ -1,75 +1,13 @@
 <div class="container">
-    <div class="title">Músicas em Alta na Semana</div>
+    <div class="title" *ngFor="let music of mostAccessedMusics">Músicas em Alta na Semana</div>
     <div class="biggerBox">
         <div class="smallBox">
-            <div class="imagem">{{getFirstMostAccessedMusicImage()}}</div>
+            <div class="imagem">{{music.image}}</div>
             <div class="textContainer">
-                <div class="textOne">{{getFirstMostAccessedMusicName()}}</div>
-                <div class="textTwo">{{getFirstMostAccessedMusicAuthor()}}</div>
+                <div class="textOne">{{music.name}}</div>
+                <div class="textTwo">{{music.author}}</div>
             </div>
         </div>
     </div>
-    <div class="biggerBox">
-        <div class="smallBox">
-            <div class="imagem">{{getSecondMostAccessedMusicImage()}}</div>
-            <div class="textContainer">
-                <div class="textOne">{{getSecondMostAccessedMusicName()}}</div>
-                <div class="textTwo">{{getSecondMostAccessedMusicAuthor()}}</div>
-            </div>
-        </div>
-    </div>
-    <div class="biggerBox">
-        <div class="smallBox">
-            <div class="imagem">{{getThirdMostAccessedMusicImage()}}</div>
-            <div class="textContainer">
-                <div class="textOne">{{getThirdMostAccessedMusicName()}}</div>
-                <div class="textTwo">{{getThirdMostAccessedMusicAuthor()}}</div>
-            </div>
-        </div>
-    </div>
-    <div class="biggerBox">
-        <div class="smallBox">
-            <div class="imagem">{{getFourthMostAccessedMusicImage()}}</div>
-            <div class="textContainer">
-                <div class="textOne">{{getFourthMostAccessedMusicName()}}</div>
-                <div class="textTwo">{{getFourthMostAccessedMusicAuthor()}}</div>
-            </div>
-        </div>
-    </div>
-    <div class="biggerBox">
-        <div class="smallBox">
-            <div class="imagem">{{getFifthMostAccessedMusicImage()}}</div>
-            <div class="textContainer">
-                <div class="textOne">{{getFifthMostAccessedMusicName()}}</div>
-                <div class="textTwo">{{getFifthMostAccessedMusicAuthor()}}</div>
-            </div>
-        </div>
-    </div>
-    <div class="biggerBox">
-        <div class="smallBox">
-            <div class="imagem">{{getSixthMostAccessedMusicImage()}}</div>
-            <div class="textContainer">
-                <div class="textOne">{{getSixthMostAccessedMusicName()}}</div>
-                <div class="textTwo">{{getSixthMostAccessedMusicAuthor()}}</div>
-            </div>
-        </div>
-    </div>
-    <div class="biggerBox">
-        <div class="smallBox">
-            <div class="imagem">{{getSeventhMostAccessedMusicImage()}}</div>
-            <div class="textContainer">
-                <div class="textOne">{{getSeventhMostAccessedMusicName()}}</div>
-                <div class="textTwo">{{getSeventhMostAccessedMusicAuthor()}}</div>
-            </div>
-        </div>
-    </div>
-    <div class="biggerBox">
-        <div class="smallBox">
-            <div class="imagem">{{getEighthMostAccessedMusicImage()}}</div>
-            <div class="textContainer">
-                <div class="textOne">{{getEighthMostAccessedMusicName()}}</div>
-                <div class="textTwo">{{getEighthMostAccessedMusicAuthor()}}</div>
-            </div>
-        </div>
-    </div>
+
 </div>

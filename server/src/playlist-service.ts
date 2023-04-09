@@ -139,9 +139,9 @@ export class PlaylistService {
     for (const playlist of this.playlists) {
 
      // console.log(ownerId, playlist.ownerId)
-     if (playlist.ownerId == ownerId) {
+     //if (playlist.ownerId == ownerId) {
 
-     //if (playlist.owner == ownerName) {
+     if (playlist.owner == ownerName) {
 
       playlistsReturn.push(playlist)
      }

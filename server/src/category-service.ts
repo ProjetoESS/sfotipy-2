@@ -14,7 +14,14 @@ export class CategoryService {
     return this.categories;
   }
 
-  getById(categoryId: number): Category {
-    return this.categories.find(({ id }) => id == categoryId);
+  getById(categoryId: number): Category | null{
+    const testeCategories = this.categories.find(({ id }) => id == categoryId);
+    if(testeCategories == undefined){
+      return null
+    }
+    else{
+      return testeCategories;
+    }
+
   }
 }

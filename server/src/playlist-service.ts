@@ -12,9 +12,11 @@ export class PlaylistService {
       "musics": [0, 1, 2, 3, 4, 5, 6, 7, 8],
       "image": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2f679c136425765.61f96b4f03c85.jpg",
       "link": "",
-      "owner": "",
+      "owner": "João",
       "followers": ['a', 'b'],
-      "availability": "public"
+      "availability": "public",
+      "accessPlaylits": 4,
+      "ownerId":1
     }),
     new Playlist(<Playlist>{
       'id': 1,
@@ -25,8 +27,10 @@ export class PlaylistService {
         'https://cdn.ibispaint.com/movie/190/771/190771621/image190771621l.png',
       'link': '',
       'owner': 'sfotipy',
-      'followers': [],
-      'availability': 'public'
+      'followers': ['a'],
+      'availability': 'public',
+      'accessPlaylits':2,
+      'ownerId': 2
     }),
     new Playlist(<Playlist>{
       'id': 2,
@@ -37,7 +41,9 @@ export class PlaylistService {
         'https://i.pinimg.com/originals/5c/0b/34/5c0b34be1d361293b0bd2eb124967cd9.png',
       'link': '',
       'owner': 'sfotipy',
-      'followers': [],
+      'followers': ['b'],
+      'ownerId': 2,
+      'accessPlaylits': 3,
       'availability': 'public'
     }),
     new Playlist(<Playlist>{
@@ -49,8 +55,10 @@ export class PlaylistService {
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVzSe2QANTVbnbNBQX3qMXejQHPLRBtAMDgA&usqp=CAU',
       'link': '',
       'owner': 'sfotipy',
-      'followers': [],
-      'availability': 'private'
+      'followers': ['c'],
+      'availability': 'private',
+      "accessPlaylits": 4,
+      "ownerId": 2
     }),
     new Playlist(<Playlist>{
       'id': 4,
@@ -62,7 +70,9 @@ export class PlaylistService {
       'link': '',
       'owner': 'sfotipy',
       'followers': ['a', 'b', 'c'],
-      'availability': 'public'
+      'availability': 'public',
+      "accessPlaylits": 5,
+      "ownerId": 2
     }),
     new Playlist(<Playlist>{
       'id': 5,
@@ -73,8 +83,10 @@ export class PlaylistService {
         'https://assets.dragoart.com/images/140589_502/how-to-draw-strange-music-logo-strange-music-step-5_5e4cb46a6013c9.70891777_74088_5_3.gif',
       'link': '',
       'owner': 'sfotipy',
-      'followers': [],
-      'availability': 'public'
+      'followers': ['b','c'],
+      'availability': 'public',
+      "accessPlaylits": 6,
+      "ownerId": 2
     }),
     new Playlist(<Playlist>{
       "id": 6,
@@ -83,9 +95,11 @@ export class PlaylistService {
       "musics": [10, 11, 12, 13, 14],
       "image": "https://i.pinimg.com/736x/98/e6/d8/98e6d8ab4d4414eef0e90bb1382bfb86.jpg",
       "link": "",
-      "owner": "",
+      "owner": "Maria",
       "followers": ['a', 'b', 'c', 'd'],
-      "availability": "public"
+      "availability": "public",
+      "accessPlaylits": 7,
+      "ownerId": 3
     }),
     new Playlist(<Playlist>{
       "id": 7,
@@ -94,9 +108,11 @@ export class PlaylistService {
       "musics": [15, 16, 17],
       "image": "https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/eminem-miracle-studio.jpg",
       "link": "",
-      "owner": "",
-      "followers": [],
-      "availability": "public"
+      "owner": "Julia",
+      "followers": ['a','d'],
+      "availability": "public",
+      "accessPlaylits": 8,
+      "ownerId": 4
     }),
     new Playlist(<Playlist>{
       "id": 8,
@@ -105,9 +121,11 @@ export class PlaylistService {
       "musics": [18, 19, 20],
       "image": "https://cdns-images.dzcdn.net/images/artist/21e53b8e8285f84f60601d895c39c900/500x500.jpg",
       "link": "",
-      "owner": "",
+      "owner": "Mario",
       "followers": ['a', 'b'],
-      "availability": "public"
+      "availability": "public",
+      "accessPlaylits": 9,
+      "ownerId": 5
     }),
     new Playlist(<Playlist>{
       "id": 9,
@@ -116,9 +134,11 @@ export class PlaylistService {
       "musics": [21, 22, 23, 24],
       "image": "https://i.pinimg.com/564x/78/35/fb/7835fb0bef03a3332c89c681f020da87--music-bands-.jpg",
       "link": "",
-      "owner": "",
-      "followers": [],
-      "availability": "public"
+      "owner": "Luigi",
+      "followers": ['a','b','d'],
+      "availability": "public",
+      "accessPlaylits": 10,
+      "ownerId": 6
     })
   ];
 
@@ -220,15 +240,24 @@ export class PlaylistService {
 
   getPlaylistCategory(playlistId: number): Category[] {
     const playlist = this.getById(playlistId);
-    const playlistCategories = playlist.categories;
 
+    if (!playlist) {
+      return [];
+    }
+
+    const playlistCategories = playlist.categories;
     var categories: Category[] = [];
+
     playlistCategories.forEach((categoryId: number) => {
-      categories.push(this.categoryService.getById(categoryId));
+      const category = this.categoryService.getById(categoryId);
+      if (category) {
+        categories.push(category);
+      }
     });
 
     return categories;
   }
+
   getMostAccessedPlaylist(): Playlist[] {
     return this.playlists.sort((a, b) => b.accessPlaylits - a.accessPlaylits).slice(0, 4);
   }

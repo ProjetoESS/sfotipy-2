@@ -31,11 +31,19 @@ export class MusicPlayerService {
   }
 
   getCurrentTime(): string {
+    this.currentTime = { 'minutes': Math.floor(this.audio.currentTime / 60), 'seconds': Math.floor(this.audio.currentTime - Math.floor(this.audio.currentTime / 60) * 60) }
+
     return this.currentTime.minutes + ":" + this.currentTime.seconds;
   }
 
   getCurrentMusicTime(): string {
+    this.musicTime = { 'minutes': Math.floor(this.audio.duration / 60), 'seconds': Math.floor(this.audio.duration - Math.floor(this.audio.duration / 60) * 60) }
+
     return this.musicTime.minutes + ":" + this.musicTime.seconds;
+  }
+
+  getCurrentProgress(): number {
+    return this.audio.currentTime / this.audio.duration * 100;
   }
 
   getCurrentMusic(): Music {

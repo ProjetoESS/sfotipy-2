@@ -8,13 +8,6 @@ import { MusicPlayerService } from '../services/music-player.service';
 })
 export class FooterComponent {
 
-  constructor(private musicPlayerService: MusicPlayerService) { }
+  constructor(public musicPlayerService: MusicPlayerService) { }
 
-  getMusicTime() {
-    return this.musicPlayerService.getCurrentMusicTime();
-  }
-
-  getCurrentTime() {
-    return this.musicPlayerService.getCurrentTime();
-  }
 }

@@ -4,7 +4,7 @@
         <app-player class="app-player"></app-player>
         <i (click)="musicPlayerService.next()" class="fas fa-2xl fa-solid fa-forward" style=" color: #0D2538"></i>
     </div>
-
+    <p class="music-name">{{musicPlayerService.getCurrentMusicName()}}</p>
     <div class="time-content">
         <p>{{musicPlayerService.getCurrentTime()}}</p>
         <div class="player-content">

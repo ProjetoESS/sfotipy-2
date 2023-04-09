@@ -96,4 +96,8 @@ export class MusicPlayerService {
   getCurrentState(): boolean {
     return this.isPlaying;
   }
+
+  getCurrentMusicName(): string {
+    return this.currentMusic.name;
+  }
 }

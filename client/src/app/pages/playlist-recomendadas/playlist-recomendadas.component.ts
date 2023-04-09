@@ -1,11 +1,13 @@
 import {Component} from '@angular/core';
 import {OnInit} from '@angular/core';
 import {PlaylistService} from 'src/app/playlist.service';
+import { UserService } from 'src/app/user.service';
 
 import {Category} from '../../../../../common/category';
 import {Music} from '../../../../../common/music';
 import {Playlist} from '../../../../../common/playlist';
 import { Title } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-playlist-recomendadas',
@@ -13,11 +15,12 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./playlist-recomendadas.component.scss']
 })
 export class PlaylistRecomendadasComponent implements OnInit {
-  constructor(private playlistService: PlaylistService, private titleService:Title) {}
+  constructor(private playlistService: PlaylistService, private titleService:Title, private userService : UserService) {}
 
   playlists: Playlist[] = [];
   playlistsRecomendadas: Playlist[] = [];
-
+  playlistsUser: Playlist[] = [];
+  userId: number = 0;
 
 
   ngOnInit(): void {
@@ -25,8 +28,17 @@ export class PlaylistRecomendadasComponent implements OnInit {
     this.playlistService.getPlaylists().subscribe(
         (as) => {
           this.playlists = as;
-          this.playlistsRecomendadas =
-              this.playlists.filter((playlist) => playlist.id <= 4);
+          
+          this.userService.getUserId().subscribe(
+            as => { this.userId = as; },
+            msg => { alert(msg.message); }
+          )
+
+          this.playlistsUser = this.playlists.filter(playlist => playlist.ownerId == this.userId);
+          this.playlistService.recommendPlaylists(this.playlistsUser, this.playlists).subscribe(
+            as => { this.playlistsRecomendadas = as; },
+            msg => { alert(msg.message); }
+          );
         },
         (msg) => {
           alert(msg.message);

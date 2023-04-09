@@ -1,6 +1,6 @@
 <div class="container">
-    <div class="title" *ngFor="let music of mostAccessedMusics">Músicas em Alta na Semana</div>
-    <div class="biggerBox">
+    <div class="title">Músicas em Alta na Semana</div>
+    <div *ngFor="let music of mostAccessedMusics" class="biggerBox">
         <div class="smallBox">
             <div class="imagem">{{music.image}}</div>
             <div class="textContainer">
@@ -9,5 +9,4 @@
             </div>
         </div>
     </div>
-
 </div>

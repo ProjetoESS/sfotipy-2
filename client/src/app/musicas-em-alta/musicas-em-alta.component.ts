@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {MusicService} from '../../../../server/src/music-service';
+import { MusicService } from '../../../../server/src/music-service';
 import { Music } from '../../../../common/music';
+
 @Component({
   selector: 'app-musicas-em-alta',
   templateUrl: './musicas-em-alta.component.html',
@@ -8,8 +9,7 @@ import { Music } from '../../../../common/music';
 })
 export class MusicasEmAltaComponent {
   mostAccessedMusics: Music[] = [];
-
-  constructor(private musicService: MusicService) {}
+  constructor(private musicService: MusicService) { }
 
   ngOnInit() {
     this.mostAccessedMusics = this.musicService.getMostAccessed();

@@ -39,3 +39,10 @@ Feature: Pagina Inicial
         And eu esteja logado com o usuário "vgc3" e a senha "abc1234"
         When eu clico no botão "perfil"
         Then eu posso ver meu dados "Victor" e "0"
+
+    Scenario: Minhas Playlists de usuário logado
+        Given que eu esteja na pagina inicial
+        And eu esteja logado com o usuário "vgc3" e a senha "abc1234"
+        When eu clico no botão "Playlists"
+        Then eu sou levado para a pagina de "Minhas Playlists"
+        And eu posso ver uma lista com as mihas playlists "Pop Mix", "Electric Vibe" e "Study lofi"

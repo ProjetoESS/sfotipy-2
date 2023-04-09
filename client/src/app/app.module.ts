@@ -28,6 +28,7 @@ import { PlaylistComponent } from './playlist/playlist.component';
 import { CompartilhamentoComponent } from './compartilhamento/compartilhamento.component';
 import { FooterComponent } from './footer/footer.component';
 import { UserPlaylistsComponent } from './user-playlists/user_playlists.component';
+import { CriarPlaylistComponent } from './criar-playlist/criar_playlist.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { UserPlaylistsComponent } from './user-playlists/user_playlists.componen
     PlaylistComponent,
     CompartilhamentoComponent,
     FooterComponent,
-    UserPlaylistsComponent
+    UserPlaylistsComponent,
+    CriarPlaylistComponent
   ],
   imports: [
     BrowserModule,

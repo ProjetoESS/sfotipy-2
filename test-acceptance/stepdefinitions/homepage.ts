@@ -32,8 +32,8 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     Given(/^eu esteja na página "([^\"]*)"$/, async (name) => {
-        await browser.get("http://localhost:4200/busca");
-        await expect(browser.getTitle()).to.eventually.equal(name);
+        await browser.get('http://localhost:4200/' + name.toString().toLowerCase());
+        await expect(browser.getTitle()).to.eventually.equal(name.toString());
     });
 
     When(/^eu cliclo no botão "([^\"]*)" uma vez$/, async (home) => {

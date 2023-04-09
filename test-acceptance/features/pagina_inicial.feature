@@ -6,7 +6,7 @@ Feature: Pagina Inicial
     Scenario: Voltar à página inicial
         Given que eu esteja logado com o usuário usuário "vgc3" e a senha "abc1234"
         And eu esteja na página "Busca"
-        When eu clico no botão "Home" uma vez
+        When eu clico no botão "home" uma vez
         Then eu vou diretamente para a página inicial do serviço
 
     Scenario: Visualizar informações públicas e do usuário
@@ -17,7 +17,7 @@ Feature: Pagina Inicial
 
     Scenario: Sair do serviço
         Given que eu esteja na página inicial "Sfotipy"
-        And logado com o usuário "vgc3" e a senha "abc1234"
+        And eu esteja logado com o usuário "vgc3" e a senha "abc1234"
         When eu clico no ícone de "sair"
         Then eu sou direcionado novamente para a seção de "Login"
         And minhas credenciais serão pedidas novamente

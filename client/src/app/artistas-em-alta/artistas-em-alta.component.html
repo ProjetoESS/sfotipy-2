@@ -2,11 +2,9 @@
 <div class="container">
     <div class="artista">Artistas em alta</div>
     <div class="lista">
-        <div class="circulo"></div>
-        <div class="circulo"></div>
-        <div class="circulo"></div>
-        <div class="circulo"></div>
-        <div class="circulo"></div>
+        <ng-container *ngFor="let music of mostAccessedArtists">
+            <div class="circulo">{{music.image}}</div>
+        </ng-container>
     </div>
 </div>
 

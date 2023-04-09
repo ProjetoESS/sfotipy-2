@@ -1,5 +1,6 @@
 import { Playlist } from "./playlist";
-export class User {
+
+export class Usera {
     id?: number;
     name?: string;
     picture?: string;
@@ -9,7 +10,7 @@ export class User {
     artist?: boolean;
     playlists?: Playlist[];
 
-    constructor(user: Partial<User> = {}) {
+    constructor(user: Partial<Usera> = {}) {
         this.id = user.id;
         this.name = user.name || '';
         this.picture = user.picture || '';

@@ -1,7 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { retry, map } from 'rxjs/operators';
-import { User } from '../../../common/Usera';
+import { User } from '../../../common/User';
+import { Usera } from '../../../common/usera'
 import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -33,6 +34,13 @@ export class UserService implements OnInit {
         this.userId.next(id);
     }
 
+    getUserById(userId: number): Observable<User> {
+        return this.http.get<User>(this.appURL + "/users/" + userId.toString())
+            .pipe(
+                retry(2)
+            );
+    }
+
     ngOnInit() {
         this.getTamanho().subscribe(tamanho => {
             this.lastId = tamanho;
@@ -45,16 +53,9 @@ export class UserService implements OnInit {
         );
     }
 
-    getUserById(userId: number): Observable<User> {
-        return this.http.get<User>(this.appURL + "/users/" + userId.toString())
-            .pipe(
-                retry(2)
-            );
-    }
-
-    addUser(user: User) {
+    addUser(user: Usera) {
         user.id = this.lastId + 1;
-        return this.http.post<User>(this.appURL + "/users", user);
+        return this.http.post<Usera>(this.appURL + "/users", user);
     }
 
     emailExists(email: string): Observable<boolean> {

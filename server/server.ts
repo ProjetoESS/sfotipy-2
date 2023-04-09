@@ -8,7 +8,7 @@ import fs = require('fs');
 import { Music } from '../common/music';
 import { Playlist } from '../common/playlist';
 import { Category } from '../common/category';
-import { User } from '../common/usera';
+import { Usera } from '../common/usera';
 
 const app = express();
 const cors = require('cors');
@@ -79,7 +79,7 @@ app.post('/login', (req, res) => { // Login
   const usersData = fs.readFileSync('usuarios/user.json', 'utf8');
   const users = JSON.parse(usersData);
   // Verificar se o usuário (email e senha) existe no banco de dados
-  const user = users.find((u: User) => u.email === email && u.password === password);
+  const user = users.find((u: Usera) => u.email === email && u.password === password);
 
   if (user) {
     res.json({ success: true, id: user.id }); // Retorna uma mensagem de sucesso e o id do usuário logado

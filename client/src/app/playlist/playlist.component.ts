@@ -41,6 +41,8 @@ export class PlaylistComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const playId = this.route.snapshot.params["id"];
+    this.playlistId = playId;
     this.route.paramMap.subscribe(params => {
       if (params && params.get('id')) {
         const id = params?.get('id');
@@ -83,6 +85,7 @@ export class PlaylistComponent implements OnInit {
         ar => {
           if (ar) {
             var idx = this.playlistCategories.findIndex(ar => ar.name == category.name);
+            console.log(idx);
             if (idx != -1) {
               this.playlistCategories.splice(idx, 1);
             }

@@ -6,6 +6,7 @@ export class Music {
     link: string;
     duration: number;
     category: number;
+    accessSong: number;
 
     constructor(music: Music) {
         this.id = music.id;
@@ -15,6 +16,7 @@ export class Music {
         this.link = music.link;
         this.duration = music.duration;
         this.category = music.category;
+        this.accessSong = music.accessSong;
     }
 
     update(music: Music): void {
@@ -35,6 +37,9 @@ export class Music {
         }
         if (music.category) {
             this.category = music.category;
+        }
+        if (music.accessSong){
+            this.category = music.accessSong;
         }
     }
 

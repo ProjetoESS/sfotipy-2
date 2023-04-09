@@ -16,7 +16,19 @@ export class MusicPlayerService {
 
   currentTime = { 'minutes': 0, 'seconds': 0 }
 
-  constructor() { }
+  updateInterval: any;
+
+  constructor() {
+    this.updateInterval = setInterval(() => {
+      this.updateMusicInfo();
+    }, 1000);
+  }
+
+  updateMusicInfo() {
+    this.currentTime = { 'minutes': Math.floor(this.audio.currentTime / 60), 'seconds': Math.floor(this.audio.currentTime - Math.floor(this.audio.currentTime / 60) * 60) }
+    this.musicTime = { 'minutes': Math.floor(this.audio.duration / 60), 'seconds': Math.floor(this.audio.duration - Math.floor(this.audio.duration / 60) * 60) }
+    this.getCurrentProgress();
+  }
 
   playMusic(music: Music) { }
 
@@ -31,14 +43,10 @@ export class MusicPlayerService {
   }
 
   getCurrentTime(): string {
-    this.currentTime = { 'minutes': Math.floor(this.audio.currentTime / 60), 'seconds': Math.floor(this.audio.currentTime - Math.floor(this.audio.currentTime / 60) * 60) }
-
     return this.currentTime.minutes + ":" + this.currentTime.seconds;
   }
 
   getCurrentMusicTime(): string {
-    this.musicTime = { 'minutes': Math.floor(this.audio.duration / 60), 'seconds': Math.floor(this.audio.duration - Math.floor(this.audio.duration / 60) * 60) }
-
     return this.musicTime.minutes + ":" + this.musicTime.seconds;
   }
 

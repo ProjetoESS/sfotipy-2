@@ -4,9 +4,6 @@ Feature: Recomendações
     I want to get playlist recommendations based on what I have been listening to
     so that I can listen to new songs close to what I like
 
-    Scenario: To fail xd
-        Given I'm on the page "Explorar"
-
     Scenario: Access the explorer page
         Given I'm on the page "Explorar"
         Then I see at least "5" recommended playlists

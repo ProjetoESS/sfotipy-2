@@ -19,13 +19,25 @@ async function getPlaylistCardByName(name) {
 }
 
 async function changeButton(name) {
+  const button = await getPlayButton(name);
+  await browser.actions().mouseMove(button).perform();
+  await browser.executeScript('arguments[0].click()', button.getWebElement());
+}
+
+async function getPlayButton(name) {
   const playlistCard = await getPlaylistCardByName(name);
   await browser.actions().mouseMove(playlistCard).perform();
   const overlay = await playlistCard.element(by.name('overlay'));
   await browser.actions().mouseMove(overlay).perform();
-  const button = overlay.element(by.name('play-button'));
-  await browser.actions().mouseMove(button).perform();
-  await browser.executeScript('arguments[0].click()', button.getWebElement());
+  const playButton = playlistCard.element(by.name('play-button'));
+  return playButton;
+}
+
+async function buttonIsPlaying(name) {
+  const playButton = await getPlayButton(name);
+  const classList = await playButton.getAttribute('class');
+  const playing = await classList.includes('playing');
+  return playing;
 }
 
 
@@ -45,17 +57,9 @@ defineSupportCode(function({Given, When, Then}) {
   Given(
       /^the play-button of playlist "([^\"]*)" is a play button$/,
       async (name) => {
-        const playlistCard = await getPlaylistCardByName(name);
-        await browser.actions().mouseMove(playlistCard).perform();
-        const overlay = await playlistCard.element(by.name('overlay'));
-        await browser.actions().mouseMove(overlay).perform();
-        const playButton = playlistCard.element(by.name('play-button'));
-        const classListBeforeClick = await playButton.getAttribute('class');
-        const playingBeforeClick =
-            await classListBeforeClick.includes('playing');
+        const playingBeforeClick = await buttonIsPlaying(name);
         if (!playingBeforeClick) await changeButton(name);
-        const classAfterClick = await playButton.getAttribute('class');
-        const playingAfterClick = await classAfterClick.includes('playing');
+        const playingAfterClick = await buttonIsPlaying(name);
         await expect(playingAfterClick).to.be.true;
       });
 
@@ -63,17 +67,9 @@ defineSupportCode(function({Given, When, Then}) {
   Given(
       /^the play-button of playlist "([^\"]*)" is a pause button$/,
       async (name) => {
-        const playlistCard = await getPlaylistCardByName(name);
-        await browser.actions().mouseMove(playlistCard).perform();
-        const overlay = await playlistCard.element(by.name('overlay'));
-        await browser.actions().mouseMove(overlay).perform();
-        const playButton = playlistCard.element(by.name('play-button'));
-        const classListBeforeClick = await playButton.getAttribute('class');
-        const playingBeforeClick =
-            await classListBeforeClick.includes('playing');
+        const playingBeforeClick = await buttonIsPlaying(name);
         if (playingBeforeClick) await changeButton(name);
-        const classAfterClick = await playButton.getAttribute('class');
-        const playingAfterClick = await classAfterClick.includes('playing');
+        const playingAfterClick = await buttonIsPlaying(name);
         await expect(playingAfterClick).to.be.false;
       })
 
@@ -203,26 +199,18 @@ defineSupportCode(function({Given, When, Then}) {
   Then(
       /^I see that the play-button of playlist "([^\"]*)" is a pause button$/,
       async (name) => {
-        const playlistCard = await getPlaylistCardByName(name);
-        await browser.actions().mouseMove(playlistCard).perform();
-        const overlay = await playlistCard.element(by.name('overlay'));
-        await browser.actions().mouseMove(overlay).perform();
-        const playButton = playlistCard.element(by.name('play-button'));
+        const playButton = await getPlayButton(name);
         const classListBeforeClick = await playButton.getAttribute('class');
-        const playingBeforeClick = classListBeforeClick.includes('playing');
+        const playingBeforeClick = await classListBeforeClick.includes('playing');
         await expect(playingBeforeClick).to.be.false;
       });
 
   Then(
       /^I see that the play-button of playlist "([^\"]*)" is a play button$/,
       async (name) => {
-        const playlistCard = await getPlaylistCardByName(name);
-        await browser.actions().mouseMove(playlistCard).perform();
-        const overlay = await playlistCard.element(by.name('overlay'));
-        await browser.actions().mouseMove(overlay).perform();
-        const playButton = playlistCard.element(by.name('play-button'));
+        const playButton = await getPlayButton(name);
         const classListBeforeClick = await playButton.getAttribute('class');
-        const playingBeforeClick = classListBeforeClick.includes('playing');
+        const playingBeforeClick = await classListBeforeClick.includes('playing');
         await expect(playingBeforeClick).to.be.true;
       });
 

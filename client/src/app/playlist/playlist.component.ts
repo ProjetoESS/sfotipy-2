@@ -9,6 +9,7 @@ import { PlaylistService } from '../playlist.service';
 import { Music } from './../../../../common/music';
 import { Playlist } from './../../../../common/playlist';
 import { CategoryService } from '../category.service';
+import { MusicPlayerService } from '../services/music-player.service';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ export class PlaylistComponent implements OnInit {
     private route: ActivatedRoute,
     private playlistService: PlaylistService,
     private musicService: MusicasService,
-    private categoryService: CategoryService) { }
+    private categoryService: CategoryService,
+    public musicPlayerService: MusicPlayerService) { }
 
   showLink: boolean = false;
   playlistId: number = 0;
@@ -107,6 +109,10 @@ export class PlaylistComponent implements OnInit {
           }
         }
       )
+  }
+
+  isPausable(): boolean {
+    return this.musicPlayerService.isPlaying && this.musicPlayerService.playlist.id == this.playlistId;
   }
 
 }

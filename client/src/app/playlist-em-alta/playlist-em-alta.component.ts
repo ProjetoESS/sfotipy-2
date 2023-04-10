@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {PlaylistService} from '../../../../server/src/playlist-service';
+import { PlaylistService } from '../playlist.service';
 import { Playlist } from '../../../../common/playlist';
 
 @Component({
@@ -8,35 +8,37 @@ import { Playlist } from '../../../../common/playlist';
   styleUrls: ['./playlist-em-alta.component.scss']
 })
 export class PlaylistEmAltaComponent {
-  mostAccessedPlaylists: Playlist[] = [];
+  mostAccessedPlaylist : Playlist[]= [];
 
-  constructor(private playlistService: PlaylistService){}
-  ngOnInit(){
-    this.mostAccessedPlaylists = this.playlistService.getMostAccessedPlaylist();
+  constructor(private playlistService: PlaylistService) { }
+  ngOnInit() {
+    this.playlistService.getPlaylists().subscribe(as => {
+      this.mostAccessedPlaylist = as
+      this.mostAccessedPlaylist.sort((a, b) => b.accessPlaylits - a.accessPlaylits).slice(0, 4)
+    });
   }
   getFirstPlaylistTitle(): string {
-    return this.mostAccessedPlaylists[0].image;
+    return this.mostAccessedPlaylist[0].image;
   }
   getSecondPlaylistTitle(): string {
-    return this.mostAccessedPlaylists[1].image;
+    return this.mostAccessedPlaylist[1].image;
   }
   getThirdPlaylistTitle(): string {
-    return this.mostAccessedPlaylists[2].image;
+    return this.mostAccessedPlaylist[2].image;
   }
   getFourthPlaylistTitle(): string {
-    return this.mostAccessedPlaylists[3].image;
+    return this.mostAccessedPlaylist[3].image;
   }
   getFirstPlaylistLink(): string {
-    return this.mostAccessedPlaylists[0].link;
+    return this.mostAccessedPlaylist[0].link;
   }
   getSecondPlaylistLink(): string {
-    return this.mostAccessedPlaylists[1].link;
+    return this.mostAccessedPlaylist[1].link;
   }
   getThirdPlaylistLink(): string {
-    return this.mostAccessedPlaylists[2].link;
+    return this.mostAccessedPlaylist[2].link;
   }
   getFourthPlaylistLink(): string {
-    return this.mostAccessedPlaylists[3].link;
+    return this.mostAccessedPlaylist[3].link;
   }
-
 }

@@ -26,8 +26,8 @@ export class MusicPlayerService {
   isPlaying: boolean = false;
 
   musicTime = {
-    'minutes': Math.floor(this.currentMusic.duration / 60).toString().padStart(2, '0'),
-    'seconds': Math.floor(this.currentMusic.duration % 60).toString().padStart(2, '0')
+    'minutes': (Math.floor(this.currentMusic.duration / 60) || 0).toString().padStart(2, '0'),
+    'seconds': (Math.floor(this.currentMusic.duration % 60) || 0).toString().padStart(2, '0')
   };
 
   currentTime = { 'minutes': '00', 'seconds': '00' }
@@ -64,12 +64,12 @@ export class MusicPlayerService {
 
   updateMusicInfo() {
     this.currentTime = {
-      'minutes': Math.floor(this.audio.currentTime / 60).toString().padStart(2, '0'),
-      'seconds': Math.floor(this.audio.currentTime % 60).toString().padStart(2, '0')
+      'minutes': (Math.floor(this.audio.currentTime / 60) || 0).toString().padStart(2, '0'),
+      'seconds': (Math.floor(this.audio.currentTime % 60) || 0).toString().padStart(2, '0')
     }
     this.musicTime = {
-      'minutes': Math.floor(this.audio.duration / 60).toString().padStart(2, '0'),
-      'seconds': Math.floor(this.audio.duration % 60).toString().padStart(2, '0')
+      'minutes': (Math.floor(this.audio.duration / 60) || 0).toString().padStart(2, '0'),
+      'seconds': (Math.floor(this.audio.duration % 60) || 0).toString().padStart(2, '0')
     };
     this.getCurrentProgress();
   }
@@ -80,8 +80,8 @@ export class MusicPlayerService {
     this.audio.pause();
     this.audio.src = 'assets/musics/' + this.currentMusic.id + '/audio.mp3';
     this.musicTime = {
-      'minutes': Math.floor(this.audio.duration / 60).toString().padStart(2, '0'),
-      'seconds': Math.floor(this.audio.duration % 60).toString().padStart(2, '0')
+      'minutes': (Math.floor(this.audio.duration / 60) || 0).toString().padStart(2, '0'),
+      'seconds': (Math.floor(this.audio.duration % 60) || 0).toString().padStart(2, '0')
     };
     this.currentTime = { 'minutes': '00', 'seconds': '00' }
     this.play();

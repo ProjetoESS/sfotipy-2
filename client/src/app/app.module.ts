@@ -13,7 +13,6 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './cadastro/cadastro.component';
 
 import { NavbarComponent } from './navbar/navbar.component';
-import { PlaylistCardComponent } from './playlist-card/playlist-card.component';
 import { MusicCardComponent } from './music-card/music-card.component';
 import { PageBuscaComponent } from './pages/page-busca/page-busca.component';
 import { PlayerComponent } from './player/player.component';
@@ -41,7 +40,6 @@ import { CriarPlaylistComponent } from './criar-playlist/criar_playlist.componen
     CriacaoCategoriasComponent,
     NavbarComponent,
     PlayerComponent,
-    PlaylistCardComponent,
     MusicCardComponent,
     PageBuscaComponent,
     PlayerComponent,

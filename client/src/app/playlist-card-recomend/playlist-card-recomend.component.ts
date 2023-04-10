@@ -51,6 +51,7 @@ export class PlaylistCardRecomendComponent {
     event.stopPropagation();
     this.playlistService.addFollower(playlist.id, 0);
 
+    this.showShareMessage = false;
     this.showLikedMessage = true;
     setTimeout(() => {
       this.showLikedMessage = false;
@@ -62,6 +63,7 @@ export class PlaylistCardRecomendComponent {
     const str: string = 'localhost:4200/playlist/' + playlist.id;
     this.clipboard.copy(str);
 
+    this.showLikedMessage = false;
     this.showShareMessage = true;
     setTimeout(() => {
       this.showShareMessage = false;

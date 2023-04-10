@@ -16,7 +16,7 @@ export class ArtistasEmAltaComponent {
   ngOnInit(){
     this.MusicasService.getMusics().subscribe(as => {
       this.mostAccessedSongs = as
-      this.mostAccessedSongs.sort((a, b) => b.accessSong - a.accessSong).slice(0, 8)});
+      this.mostAccessedSongs.sort((a, b) => b.accessSong - a.accessSong).slice(0, 5)});
   }
   getFirstMusicAuthor(): string {
     return this.mostAccessedSongs[0].image;

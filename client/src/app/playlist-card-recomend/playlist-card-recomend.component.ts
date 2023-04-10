@@ -21,8 +21,7 @@ export class PlaylistCardRecomendComponent {
   @Input() playlist: any;
   showShareMessage = false;
   showLikedMessage = false;
-
-  @Output() play = new EventEmitter<any>();
+  src = "/assets/play.svg";
 
   categorias: Category[] = [];
   userId: number = 0;
@@ -42,9 +41,16 @@ export class PlaylistCardRecomendComponent {
     this.router.navigate(['/playlist/', playlist.id])
   }
 
-  startPlayingOnClick(event: Event) {
+  playOrPauseOnClick(event: Event) {
     event.stopPropagation();
-    this.play.emit(this.playlist);
+    if(this.isPausable()){
+      this.src = "/assets/play.svg";
+      this.musicPlayerService.pause();
+    }
+    else{
+      this.src = "/assets/pause.svg";
+      this.musicPlayerService.playPlaylist(this.playlist);
+    }
   }
 
   likePlaylist(event: Event, playlist: Playlist) {

@@ -8,7 +8,7 @@ import fs = require('fs');
 import { Music } from '../common/music';
 import { Playlist } from '../common/playlist';
 import { Category } from '../common/category';
-import { Usera } from '../common/usera';
+import { Usera } from '../common/Usera'
 
 const app = express();
 const cors = require('cors');

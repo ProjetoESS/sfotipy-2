@@ -74,6 +74,10 @@ import { FooterComponent } from './footer/footer.component';
         component: PlaylistRecomendadasComponent
       },
       {
+        path: 'em-alta',
+        component: PlaylistEmAltaComponent
+      },
+      {
         path: 'categorias/:id',
         component: CriacaoCategoriasComponent
       }

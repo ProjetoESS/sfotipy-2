@@ -10,11 +10,13 @@ import { Playlist } from '../../../../common/playlist';
 export class PlaylistEmAltaComponent {
   mostAccessedPlaylist : Playlist[]= [];
 
+
   constructor(private playlistService: PlaylistService) { }
+
   ngOnInit() {
     this.playlistService.getPlaylists().subscribe(as => {
       this.mostAccessedPlaylist = as
-      this.mostAccessedPlaylist.sort((a, b) => b.accessPlaylits - a.accessPlaylits).slice(0, 4)
+      this.mostAccessedPlaylist.sort((a, b) => b.accessPlaylits - a.accessPlaylits).slice(0, 4);
     });
   }
   getFirstPlaylistTitle(): string {

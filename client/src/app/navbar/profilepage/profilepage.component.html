@@ -7,7 +7,7 @@
             Olá, <br> {{user.name}}
         </div>
     </div>
-        
+
     <div class="profile-info" *ngIf="isLogged">
         <p name="followers">Seguidores: {{user.followers}}</p>
         <div class="profile-options">
@@ -16,7 +16,7 @@
             <button class="prf-btns" (click)="logOut()">Sair</button>
         </div>
     </div>
-    
+
     <div class="profile-info" *ngIf="!isLogged">
         <p>Para acessar segidores, criar playlists e receber recomendações, faça login</p>
         <button class="prf-btng">Criar conta</button>

@@ -153,7 +153,7 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     Given(/^eu esteja logado com o usuário usuário "([^\"]*)" e a senha "([^\"]*)"$/, async (user, passw) => {
-    
+
     });
 
     When(/^eu cliclo no ícone "([^\"]*)"$/, async (perfil) => {
@@ -175,7 +175,7 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     Given(/^eu esteja logado com o usuário usuário "([^\"]*)" e a senha "([^\"]*)"$/, async (user, passw) => {
-    
+
     });
 
     When(/^eu cliclo no botão "([^\"]*)"$/, async (playlists) => {

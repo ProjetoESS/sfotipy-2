@@ -36,12 +36,12 @@ export class PlaylistService {
     );
   }
 
-  updatePlaylistMusics(playlist : Playlist) {
+  updatePlaylistMusics(playlist: Playlist) {
     return this.http.put(`${this.appURL}/playlist`, playlist, this.httpOptions)
       .pipe(retry(2))
   }
 
-  getUserPlaylists(ownerId: any): Observable<Playlist[]>  {
+  getUserPlaylists(ownerId: any): Observable<Playlist[]> {
     const url = `${this.appURL}/minhas_playlists/${ownerId}`;
     return this.http.get<any[]>(url).pipe(
       map(response => {

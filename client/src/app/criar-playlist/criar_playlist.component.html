@@ -14,7 +14,8 @@
     </div>
 
     <div class="addMusica">
-      <input type="search" class="input_musica" placeholder="Música" (click)="exibirOpcoesMusicas()" (keyup)="filtrarMusicas($event)">
+      <input type="search" class="input_musica" placeholder="Música" (click)="exibirOpcoesMusicas()"
+        (keyup)="filtrarMusicas($event)">
       <i class="fas fa-search" aria-hidden="true"></i>
 
       <div class="popup" [hidden]="!exibirPopup">
@@ -39,6 +40,5 @@
 
     </div>
   </div>
+
 </form>
-
-

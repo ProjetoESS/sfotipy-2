@@ -127,6 +127,11 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     //And eu esteja logado com o usuário "vgc3" e a senha "abc1234"
 
+    Given(/^eu esteja logado com o usuário usuário "([^\"]*)" e a senha "([^\"]*)"$/, async (user, passw) => {
+
+    });
+
+
     //When eu clico no botão "perfil"
 
     Then(/^eu posso ver meu dados "([^\"]*)" e "([^\"]*)")$/, async (name, followers) => {
@@ -143,7 +148,12 @@ defineSupportCode(function ({ Given, When, Then }) {
         await expect(browser.getTitle()).to.eventually.equal('Sfotify');
     });
 
+
     //And eu esteja logado com o usuário "vgc3" e a senha "abc1234"
+
+    Given(/^eu esteja logado com o usuário usuário "([^\"]*)" e a senha "([^\"]*)"$/, async (user, passw) => {
+
+    });
 
     //When eu clico no botão "Playlists"
 

@@ -7,17 +7,17 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function goTo(page:string) {
+async function goTo(page: string) {
     await browser.driver.get(`http://localhost:4200/${page}`);
 }
 
-defineSupportCode(function({Given, When, Then, setDefaultTimeout}) {
+defineSupportCode(function ({ Given, When, Then, setDefaultTimeout }) {
 
-    Given(/^eu sou um usuário com login "([^\"]*)" e senha "(\d*)"$/, async(login, senha) => {
+    Given(/^eu sou um usuário com login "([^\"]*)" e senha "(\d*)"$/, async (login, senha) => {
         expect(login).to.equal(login);
     });
 
-    Given(/^estou na playlist "([^\"]*)" que é "([^\"]*)" com id "(\d*)"$/, async(name, availabity, id) => {
+    Given(/^estou na playlist "([^\"]*)" que é "([^\"]*)" com id "(\d*)"$/, async (name, availabity, id) => {
         await goTo("playlist/" + id);
         const playlist_name = await element(by.css(".playlist_name")).getText();
         const playlist_avalibility = await element(by.id('playlist_availability')).getText();
@@ -30,7 +30,7 @@ defineSupportCode(function({Given, When, Then, setDefaultTimeout}) {
         share.click();
     });
 
-    Then(/^o link "([^\"]*)" é gerado$/, async(lk) => {
+    Then(/^o link "([^\"]*)" é gerado$/, async (lk) => {
         const EC = protractor.ExpectedConditions;
         const shareLink = await element(by.tagName("app-compartilhamento"));
         await browser.wait(EC.visibilityOf(shareLink), 5000, "Element not visible");
@@ -75,5 +75,5 @@ defineSupportCode(function({Given, When, Then, setDefaultTimeout}) {
         const notExistingElement = await element(by.tagName("app-compartilhamento"));
         expect(await notExistingElement.isPresent()).to.be.false;
     });
-    
+
 });

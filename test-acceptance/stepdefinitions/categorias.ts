@@ -7,20 +7,20 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function goTo(page:string) {
+async function goTo(page: string) {
     await browser.driver.get(`http://localhost:4200/${page}`);
 }
 
-async function checkPlaylistName(playlistName:string) {
+async function checkPlaylistName(playlistName: string) {
     const EC = protractor.ExpectedConditions;
     const playlist = await element(by.className("playlist_name"));
     await browser.wait(EC.visibilityOf(playlist), 5000, "Element not visible");
     expect(await playlist.getText()).to.equal(playlistName);
 }
 
-defineSupportCode(function({Given, When, Then}) {
+defineSupportCode(function ({ Given, When, Then }) {
 
-    Given(/^possuo login "([^\"]*)" e senha "(\d*)"$/,  async (login, senha) => {
+    Given(/^possuo login "([^\"]*)" e senha "(\d*)"$/, async (login, senha) => {
         expect(login).to.equal(login);
     })
 
@@ -29,7 +29,7 @@ defineSupportCode(function({Given, When, Then}) {
         await checkPlaylistName(playlistName.toString());
     });
 
-    Given(/^tenho permissão para gerenciar "([^\"]*)"$/, async(playlistName) => {
+    Given(/^tenho permissão para gerenciar "([^\"]*)"$/, async (playlistName) => {
         const selector = await element(by.id("selector-cat"));
         expect(await selector.isPresent()).to.be.true;
     });
@@ -43,7 +43,7 @@ defineSupportCode(function({Given, When, Then}) {
     });
 
     When(/^seleciono "([^\"]*)" como uma nova categoria$/, async (category) => {
-        const categoryElement = await element(by.id("select-cat-"+category));
+        const categoryElement = await element(by.id("select-cat-" + category));
         await categoryElement.click();
     });
 
@@ -65,7 +65,7 @@ defineSupportCode(function({Given, When, Then}) {
     });
 
     When(/^seleciono "([^\"]*)" para o remover das categorias$/, async (category) => {
-        const removedElement = await element(by.id("selected-cat-"+category));
+        const removedElement = await element(by.id("selected-cat-" + category));
         const button = await removedElement.element(by.className("close-button"));
         await button.click();
     });
@@ -79,18 +79,18 @@ defineSupportCode(function({Given, When, Then}) {
 
     // Scenario : remover uma categoria.
 
-    Then(/^"([^\"]*)" não possui mais "([^\"]*)" como uma categoria da playlist$/, async(playlistName, category) => {
+    Then(/^"([^\"]*)" não possui mais "([^\"]*)" como uma categoria da playlist$/, async (playlistName, category) => {
         await checkPlaylistName(playlistName.toString());
         expect((await element.all(by.id(`selected-cat-${category}`))).length).to.equal(0);
     });
 
     // Scenario : adicionando categoria já existente na playlist
 
-    Then(/^não consigo ver "([^\"]*)" como uma categoria para ser selecionada$/, async(category) => {
+    Then(/^não consigo ver "([^\"]*)" como uma categoria para ser selecionada$/, async (category) => {
         expect((await element.all(by.id(`select-cat-${category}`))).length).to.equal(0);
     });
 
-    Then(/^"([^\"]*)" continua tendo somente uma categoria, que é "([^\"]*)"$/, async(playlistName, category) => {
+    Then(/^"([^\"]*)" continua tendo somente uma categoria, que é "([^\"]*)"$/, async (playlistName, category) => {
         expect((await element.all(by.id(`selected-cat-${category}`))).length).to.equal(1);
         await checkPlaylistName(playlistName.toString());
     });
@@ -110,7 +110,7 @@ defineSupportCode(function({Given, When, Then}) {
 
     // Scenario: adicionando duas categorias para a playlist
 
-    Given(/^"([^\"]*)" não possui nenhuma categoria cadastrada$/,  async(playlistName) => {
+    Given(/^"([^\"]*)" não possui nenhuma categoria cadastrada$/, async (playlistName) => {
         expect((await element.all(by.className("category"))).length).to.equal(0);
     });
 

@@ -1,11 +1,25 @@
 const { Given, When, Then } = require('cucumber');
-import { browser, $, element, ElementArrayFinder, by, protractor, ExpectedConditions, ElementFinder } from 'protractor';
+import { browser, $, element, ElementArrayFinder, by, protractor, ExpectedConditions, ElementFinder, By } from 'protractor';
 const { expect } = require('chai');
 import { isEmpty } from 'lodash';
 
-/*
-Given(/^I am at the "([^"]*)" page$/, async function (page) {
-  await browser.get(`http://localhost:4200/${page}`);
+Given(/^I am logged in with "([^"]*)" and "([^"]*)"$/, async (email, password) => {
+    await browser.get(`http://localhost:4200/`);
+    const login = element(by.css('.login'))
+    const user_input = element(by.css('.email_input'))
+    const password_input = element(by.css('.password_input'))
+    await login.click()
+    await ExpectedConditions.visibilityOf(user_input)
+    await user_input.click()
+    await user_input.sendKeys(email)
+    await password_input.click()
+    await password_input.sendKeys(password, '\n')
+})
+
+Given(/^I go to "([^"]*)" page$/, async function (page) {
+    const playlists = element(by.name('playlists'))
+    playlists.click()
+  //await browser.get(`http://localhost:4200/${page}`);
 });
 
 Given(/^I dont have any playlist registered as "([^"]*)"$/, async function (playlistName) {
@@ -57,10 +71,7 @@ Then(/^I can see the playlist registered as "([^"]*)"$/,async (playlistName) => 
     const playlists = element.all(by.className(playlistName));
     browser.wait(ExpectedConditions.visibilityOf(playlists.first()), 5000, 'Playlist not found')
 })
-
-Given(/^I am at the "([^"]*)" page$/, async function (page) {
-    await browser.get(`http://localhost:4200/${page}`);
-  });
+/*
   
 Given(/^I have a playlist registered as "([^"]*)"$/, async function (playlistName) {
     const playlists = element.all(by.className(playlistName));
@@ -197,7 +208,7 @@ Then(/^I can see an error message "([^"]*)"$/, async function (message) {
 Then(/^I return to the "([^"]*)" page$/, async function (page) {
     const alert = await browser.switchTo().alert();
     await alert.accept()
-})*/
+})
 
 Given(/^I am at the "([^"]*)" page$/, async function (page) {
     await browser.get(`http://localhost:4200/${page}`);

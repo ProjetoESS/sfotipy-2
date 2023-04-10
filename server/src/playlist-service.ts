@@ -139,10 +139,49 @@ export class PlaylistService {
       "availability": "public",
       "accessPlaylits": 10,
       "ownerId": 6
+    }),
+    new Playlist(<Playlist><unknown>{
+      "id": 10,
+      "name": "Pop Mix",
+      "categories": [2, 1],
+      "musics": [21, 22, 23, 24],
+      "image": "https://i.pinimg.com/564x/78/35/fb/7835fb0bef03a3332c89c681f020da87--music-bands-.jpg",
+      "link": "",
+      "owner": "VictorTst",
+      "followers": ['a', 'b', 'd'],
+      "availability": "public",
+      "accessPlaylits": 10,
+      "ownerId": 9
+    }),
+    new Playlist(<Playlist><unknown>{
+      "id": 11,
+      "name": "Electric Vibe",
+      "categories": [3, 1],
+      "musics": [21, 22, 23, 24],
+      "image": "https://i.pinimg.com/564x/78/35/fb/7835fb0bef03a3332c89c681f020da87--music-bands-.jpg",
+      "link": "",
+      "owner": "VictorTst",
+      "followers": ['a', 'b', 'd'],
+      "availability": "public",
+      "accessPlaylits": 10,
+      "ownerId": 9
+    }),
+    new Playlist(<Playlist><unknown>{
+      "id": 12,
+      "name": "Study lofi",
+      "categories": [6],
+      "musics": [],
+      "image": "https://i.pinimg.com/564x/78/35/fb/7835fb0bef03a3332c89c681f020da87--music-bands-.jpg",
+      "link": "",
+      "owner": "VictorTst",
+      "followers": ['a', 'b', 'd'],
+      "availability": "public",
+      "accessPlaylits": 10,
+      "ownerId": 9
     })
   ];
 
-  idCount: number = 10;
+  idCount: number = 13;
   categories: Category[] = [];
 
   categoryService: CategoryService = new CategoryService;

@@ -95,6 +95,9 @@ export class MusicPlayerService {
       .subscribe(
         firstMusic => {
           this.musicList.push(firstMusic);
+          if (this.playlist.musics.length === 1) {
+            this.playMusic(this.musicList[0]);
+          }
           for (let i = 1; i < this.playlist.musics.length; i++) {
             this.musicService.getMusicsById(this.playlist.musics[i]).subscribe(
               nextMusic => {
@@ -112,6 +115,7 @@ export class MusicPlayerService {
         error => {
           console.error(error);
         }
+
       );
   }
 

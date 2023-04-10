@@ -4,6 +4,9 @@ Feature: Recomendações
     I want to get playlist recommendations based on what I have been listening to
     so that I can listen to new songs close to what I like
 
+    Scenario: To fail xd
+        Given I'm on the page "Explorar"
+
     Scenario: Access the explorer page
         Given I'm on the page "Explorar"
         Then I see at least "5" recommended playlists
@@ -11,15 +14,15 @@ Feature: Recomendações
     
     Scenario: Access the recommended playlist
         Given I'm on the page "Explorar"
-        And a playlist "Melhores Pop" appears as recommended
-        When I try to enter the playlist page "Melhores Pop"
-        Then I'm on the playlist page "Melhores Pop"
+        And a playlist "Mix de Coldplay" appears as recommended
+        When I try to enter the playlist page "Mix de Coldplay"
+        Then I'm on the playlist page "Mix de Coldplay"
     
     Scenario: View recommended playlist options    
         Given I'm on the page "Explorar"
-        And a playlist "Melhores Pop" appears as recommended
-        When I try to see the options of the playlist "Melhores Pop"
-        Then I see next to the playlist "Melhores Pop" the options "Save", "Like", "Share"
+        And a playlist "Mix de Coldplay" appears as recommended
+        When I try to see the options of the playlist "Mix de Coldplay"
+        Then I see next to the playlist "Mix de Coldplay" the options "Save", "Like", "Share"
         And I'm still on the page "Explorar"
 
     Scenario: Get link to recommended playlist
@@ -62,9 +65,9 @@ Feature: Recomendações
     
     Scenario: Add a recommended playlist not saved to the user's liked playlists 
         Given I'm on the page "Explorar"
-        And a playlist "Melhores Pop" appears as recommended
-        And I don't have the playlist "Melhores Pop" saved in my liked playlists
-        When I try to like the playlist "Melhores Pop"
-        Then the system shows a confirmation message that the playlist "Melhores Pop" was liked
+        And a playlist "Mix de Coldplay" appears as recommended
+        And I don't have the playlist "Mix de Coldplay" saved in my liked playlists
+        When I try to like the playlist "Mix de Coldplay"
+        Then the system shows a confirmation message that the playlist "Mix de Coldplay" was liked
         And I'm still on the page "Explorar"
-        And the system has the playlist "Melhores Pop" saved in my liked playlists
+        And the system has the playlist "Mix de Coldplay" saved in my liked playlists

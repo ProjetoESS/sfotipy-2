@@ -4,7 +4,7 @@ import { retry, map } from 'rxjs/operators';
 import { User } from '../../../common/user';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
-import { Usera } from '../../../common/usera'
+import { Usera } from '../../../common/Usera'
 
 @Injectable({
     providedIn: 'root'

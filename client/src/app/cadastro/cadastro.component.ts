@@ -4,7 +4,7 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { CustomvalidationService } from './Validators_extras';
 
 import { Router } from '@angular/router';
-import { Usera } from '../../../../common/usera'
+import { Usera } from '../../../../common/Usera'
 
 import { UserService } from '../user.service';
 import { LoginService } from '../login.service';

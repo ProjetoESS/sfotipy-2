@@ -242,3 +242,32 @@ details span {
   width: 150px;
   align-self: flex-end;
 }
+
+.player-outer {
+  background-color: #0D2538;
+  padding: 12px;
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+}
+
+.player-inner {
+  background-color: #FFE5B4;
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player button {
+  background: none;
+  border: none;
+  height: 100%;
+  cursor: pointer;
+}
+
+.player button img {
+  height: 50%;
+}

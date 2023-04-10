@@ -6,6 +6,7 @@ import { Playlist } from '../../../../common/playlist';
 import { PlaylistService } from '../playlist.service';
 import { UserService } from '../user.service';
 import { Category } from '../../../../common/category';
+import { MusicPlayerService } from '../services/music-player.service';
 
 
 @Component({
@@ -14,7 +15,8 @@ import { Category } from '../../../../common/category';
   styleUrls: ['./playlist-card-recomend.component.scss']
 })
 export class PlaylistCardRecomendComponent {
-  constructor(private clipboard: Clipboard, private router: Router, private playlistService: PlaylistService, private userService: UserService) { };
+
+  constructor(public musicPlayerService: MusicPlayerService, private clipboard: Clipboard, private router: Router, private playlistService: PlaylistService, private userService: UserService) { };
 
   @Input() playlist: any;
   showShareMessage = false;
@@ -27,8 +29,8 @@ export class PlaylistCardRecomendComponent {
 
   ngOnInit() {
     this.userService.getUserId().subscribe(
-      as => {this.userId = as; },
-      msg => {alert(msg.message);}
+      as => { this.userId = as; },
+      msg => { alert(msg.message); }
     )
     this.playlistService.getPlaylistCategories(this.playlist.id).subscribe(
       as => { this.categorias = as; },
@@ -72,5 +74,9 @@ export class PlaylistCardRecomendComponent {
 
   executeAction(event: Event) {
     event.stopPropagation();
+  }
+
+  isPausable(): boolean {
+    return this.musicPlayerService.isPlaying && this.musicPlayerService.playlist.id == this.playlist.id;
   }
 }

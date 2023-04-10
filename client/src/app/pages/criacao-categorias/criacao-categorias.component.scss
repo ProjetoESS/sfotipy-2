@@ -1,5 +1,5 @@
 #manage-categories {
-    margin:10% auto;
+    margin: 10% auto;
     width: 30%;
     height: 150px;
     background-color: #BCBCBC;
@@ -9,10 +9,10 @@
 }
 
 h3 {
-    color:white;
+    color: white;
 }
 
-.back{
+.back {
     color: white;
 }
 
@@ -25,7 +25,7 @@ h3 {
     cursor: pointer;
 }
 
-#selected-categories{
+#selected-categories {
     display: flex;
     flex-direction: row;
     margin-bottom: 10px;
@@ -44,12 +44,12 @@ h3 {
     background-color: #FFE5B4;
     display: inline;
     border-radius: 4px;
-    border:none;
-    padding:3px;
+    border: none;
+    padding: 3px;
     margin-left: 150px;
 }
 
-#add-new-category{
+#add-new-category {
     cursor: pointer;
     background-color: #FFE5B4;
     display: inline;

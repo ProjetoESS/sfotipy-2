@@ -20,9 +20,12 @@ async function checkPlaylistName(playlistName: string) {
 
 defineSupportCode(function ({ Given, When, Then }) {
 
-    Given(/^possuo login "([^\"]*)" e senha "(\d*)"$/, async (login, senha) => {
-        expect(login).to.equal(login);
-    })
+    Given(/^possuo login "([^\"]*)" e senha "(\d*)"$/, async (email, senha) => {
+        goTo("login");
+        await element(by.name("email")).sendKeys(email.toString());
+        await element(by.name("password")).sendKeys(senha.toString());
+        await element(by.name("entrar")).click();
+    });
 
     Given(/^estou na página da playlist "([^\"]*)" com id "(\d*)"$/, async (playlistName, id) => {
         goTo("playlist/" + id);
@@ -49,11 +52,6 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     Then(/^"([^\"]*)" é uma nova categoria da playlist "([^\"]*)"$/, async (category, playlistName) => {
         expect((await element.all(by.id(`selected-cat-${category}`))).length).to.equal(1);
-    });
-
-    Given(/^possuo o login "([^\"]*)" e senha "([^\"]*)"$/, async (login, senha) => {
-        // Verificar login
-        expect(login).to.equal(login);
     });
 
     Given(/^"([^\"]*)" não é uma categoria da playlist "([^\"]*)"$/, async (category, playlistName) => {

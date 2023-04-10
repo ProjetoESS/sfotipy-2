@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlaylistEmAltaComponent } from './playlist-em-alta.component';
+import { PlaylistService } from '../playlist.service';
 
 describe('PlaylistEmAltaComponent', () => {
   let component: PlaylistEmAltaComponent;
@@ -8,9 +9,10 @@ describe('PlaylistEmAltaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PlaylistEmAltaComponent ]
+      declarations: [PlaylistEmAltaComponent],
+      providers: [PlaylistService]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(PlaylistEmAltaComponent);
     component = fixture.componentInstance;

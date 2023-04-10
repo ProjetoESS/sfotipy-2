@@ -31,7 +31,7 @@ export class PlaylistCardRecomendComponent {
       as => { this.userId = as; },
       msg => { alert(msg.message); }
     )
-    this.playlistService.getPlaylistCategories(this.playlist.id).subscribe(
+    this.playlistService.getPlaylistCategories(this.playlist?.id).subscribe(
       as => { this.categorias = as; },
       msg => { alert(msg.message); }
     )
@@ -43,11 +43,11 @@ export class PlaylistCardRecomendComponent {
 
   playOrPauseOnClick(event: Event) {
     event.stopPropagation();
-    if(this.isPausable()){
+    if (this.isPausable()) {
       this.src = "/assets/play.svg";
       this.musicPlayerService.pause();
     }
-    else{
+    else {
       this.src = "/assets/pause.svg";
       this.musicPlayerService.playPlaylist(this.playlist);
     }

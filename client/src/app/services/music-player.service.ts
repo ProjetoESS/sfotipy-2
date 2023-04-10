@@ -8,18 +8,13 @@ import { MusicasService } from '../musicas.service';
 })
 export class MusicPlayerService {
 
-  playlist: Playlist = new Playlist(<Playlist><unknown>{ 'id': 0, 'ownerId': 0, 'name': "Coldplay", 'categories': [1, 2, 3], 'musics': [0, 1, 2, 3], 'image': "https://upload.wikimedia.org/wikipedia/pt/6/61/Coldplay_Hymn_for_the_Weekend.jpg", 'link': "", 'owner': "Coldplay", 'followers': [], 'availability': "public" });
+  playlist: Playlist = new Playlist(<Playlist>{});
 
-  musicList: Music[] = [
-    new Music(<Music>{ 'id': 0, 'name': "Hymn for the Weekend", 'author': "Coldplay", 'image': "https://upload.wikimedia.org/wikipedia/pt/6/61/Coldplay_Hymn_for_the_Weekend.jpg", 'link': "", 'duration': 500, 'category': 3 }),
-    new Music(<Music>{ 'id': 1, 'name': "Viva la Vida", 'author': "Coldplay", 'image': "https://upload.wikimedia.org/wikipedia/pt/d/d7/Vivalavida.jpg", 'link': "", 'duration': 500, 'category': 2 }),
-    new Music(<Music>{ 'id': 2, 'name': "Yellow", 'author': "Coldplay", 'image': "https://i.pinimg.com/originals/f7/30/23/f7302371fb79c2d0cd817e9c28baaf62.jpg", 'link': "", 'duration': 500, 'category': 3 }),
-    new Music(<Music>{ 'id': 3, 'name': "Paradise", 'author': "Coldplay", 'image': "https://cdns-images.dzcdn.net/images/cover/e0dd8263dfed37c50a868abbf65fd7da/500x500.jpg", 'link': "", 'duration': 500, 'category': 1 })
-  ];
+  musicList: Music[] = [];
 
   currentIndex: number = 0;
 
-  currentMusic: Music = this.musicList[this.currentIndex];
+  currentMusic: Music = new Music(<Music>{});
 
   audio: HTMLAudioElement = new Audio('assets/musics/' + this.currentMusic.id + '/audio.mp3');
 
@@ -47,18 +42,22 @@ export class MusicPlayerService {
   }
 
   next() {
-    if (this.currentIndex < this.musicList.length - 1) {
-      this.playMusic(this.musicList[this.musicList.indexOf(this.currentMusic) + 1]);
-    } else {
-      this.playMusic(this.musicList[0]);
+    if (this.musicList.length > 0) {
+      if (this.currentIndex < this.musicList.length - 1) {
+        this.playMusic(this.musicList[this.musicList.indexOf(this.currentMusic) + 1]);
+      } else {
+        this.playMusic(this.musicList[0]);
+      }
     }
   }
 
   back() {
-    if (this.currentIndex > 0) {
-      this.playMusic(this.musicList[this.musicList.indexOf(this.currentMusic) - 1]);
-    } else {
-      this.playMusic(this.musicList[this.musicList.length - 1]);
+    if (this.musicList.length > 0) {
+      if (this.currentIndex > 0) {
+        this.playMusic(this.musicList[this.musicList.indexOf(this.currentMusic) - 1]);
+      } else {
+        this.playMusic(this.musicList[this.musicList.length - 1]);
+      }
     }
   }
 
@@ -145,6 +144,6 @@ export class MusicPlayerService {
   }
 
   getCurrentMusicName(): string {
-    return this.currentMusic.name;
+    return this.currentMusic.name || "";
   }
 }

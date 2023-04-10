@@ -91,7 +91,7 @@ app.post('/login', (req, res) => { // Login
   }
 });
 
-//ROTAS DE VERIFICAÇÕES
+//ROTAS DE BUSCAS E VERIFICAÇÕES
 
 app.get('/users', (req, res) => { // Usuarios aparecendo no localhost:3000/users
   const filePath = './usuarios/user.json';

@@ -29,7 +29,16 @@
         </i>
       </div>
     </div>
-    <app-player class="player"></app-player>
+    <div class="player">
+      <div class="player-outer">
+        <div class="player-inner">
+          <button *ngIf="isPausable()" (click)="musicPlayerService.pause()"><img src="/assets/pause.svg"
+              alt=""></button>
+          <button *ngIf="!isPausable()" (click)="musicPlayerService.playPlaylist(selectedPlaylist)"><img
+              src="/assets/play.svg" alt=""></button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="musicslist">

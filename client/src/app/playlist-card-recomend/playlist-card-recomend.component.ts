@@ -6,6 +6,7 @@ import { Playlist } from '../../../../common/playlist';
 import { PlaylistService } from '../playlist.service';
 import { UserService } from '../user.service';
 import { Category } from '../../../../common/category';
+import { MusicPlayerService } from '../services/music-player.service';
 
 
 @Component({
@@ -14,7 +15,8 @@ import { Category } from '../../../../common/category';
   styleUrls: ['./playlist-card-recomend.component.scss']
 })
 export class PlaylistCardRecomendComponent {
-  constructor(private clipboard: Clipboard, private router: Router, private playlistService: PlaylistService, private userService: UserService) { };
+
+  constructor(public musicPlayerService: MusicPlayerService, private clipboard: Clipboard, private router: Router, private playlistService: PlaylistService, private userService: UserService) { };
 
   @Input() playlist: any;
   showShareMessage = false;
@@ -49,6 +51,7 @@ export class PlaylistCardRecomendComponent {
     event.stopPropagation();
     this.playlistService.addFollower(playlist.id, 0);
 
+    this.showShareMessage = false;
     this.showLikedMessage = true;
     setTimeout(() => {
       this.showLikedMessage = false;
@@ -60,6 +63,7 @@ export class PlaylistCardRecomendComponent {
     const str: string = 'localhost:4200/playlist/' + playlist.id;
     this.clipboard.copy(str);
 
+    this.showLikedMessage = false;
     this.showShareMessage = true;
     setTimeout(() => {
       this.showShareMessage = false;
@@ -72,5 +76,9 @@ export class PlaylistCardRecomendComponent {
 
   executeAction(event: Event) {
     event.stopPropagation();
+  }
+
+  isPausable(): boolean {
+    return this.musicPlayerService.isPlaying && this.musicPlayerService.playlist.id == this.playlist.id;
   }
 }

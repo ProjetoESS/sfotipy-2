@@ -1,29 +1,26 @@
-import { defineSupportCode } from 'cucumber';
+import { StepDefinitionParam, defineSupportCode } from 'cucumber';
 import { browser, $, element, ElementArrayFinder, by } from 'protractor';
 let chai = require('chai').use(require('chai-as-promised'));
 let expect = chai.expect;
 
-function sleep(ms) {
+function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function assertTamanhoEqual(set, n) {
+async function assertTamanhoEqual(set: Promise<any>, n: any) {
     await set.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(n));
 }
 
-async function assertIncludesInName(set, name) {
-    expect(Promise.resolve(set.getText())).to.eventually.includes(name);
+async function getPlaylistCardByName(name: StepDefinitionParam) {
+    const playlistCard = await element.all(by.name('playlist-card'))
+      .filter(p => p.element(by.name('nome'))
+          .getText()
+          .then(text => text === name))
+      .first();
+    return playlistCard;
 }
 
 let sameName = ((elem, name) => elem.element(by.name('nome')).getText().then(text => text.toLowerCase() === name.toLowerCase()));
-
-let hasInName = (elem, name) => elem.element(by.name('nome')).getText().then(text => text.toLowerCase().includes(name.toLowerCase()));
-
-async function assertMusicsWithSameName(n, name) {
-    var allmusics: ElementArrayFinder = element.all(by.name("music-container"));
-    var samenames = allmusics.filter(elem => sameName(elem, name));
-    await assertTamanhoEqual(samenames, n);
-}
 
 defineSupportCode(function ({ Given, When, Then }) {
     //Scenario: Visualizar informações para usuário não logado
@@ -57,14 +54,20 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     Then(/^eu sou levado para a pagina de "([^\"]*)"$/, async (page) => {
-        await browser.get("http://localhost:4200/" + ((page.toString()).toLowerCase().replace(" ", "_")));
+        //await browser.get("http://localhost:4200/" + ((page.toString()).toLowerCase().replace(" ", "_")));
         await expect(browser.getTitle()).to.eventually.equal(page.toString());
     });
 
-    //Não fiz ainda
-    //And aparece o botão de "Registrar" OU
-    //And aparece o botão de "Continuar como convidado" OU
-    //And aparece a mensagem "Você precisa estar logado para acessar playlists próprias"
+    Then(/^eu vejo o formulário de cadastro$/, async () => {
+        await element(by.name("nome"));
+        await element(by.name("email"));
+        await element(by.name("senha"));
+        await element(by.name("ConfirmarSenha"));
+    });
+
+    Then(/^eu tembém tenho a opção de ir para o login$/, async () => {
+        await element(by.name("login"));
+    });
 
     //////////////////////////////////////////////////////////////////////////
     //Scenario: Voltar à página inicial
@@ -109,7 +112,7 @@ defineSupportCode(function ({ Given, When, Then }) {
     //////////////////////////////////////////////////////////////////////////
     //Scenario: Sair do serviço
     //Given eu esteja na página inicial "Sfotipy"
-    //eu esteja logado com o usuário "vgc3" e a senha "abc1234"
+    //And eu esteja logado com o usuário "vgc3" e a senha "abc1234"
 
     When(/^eu clico no ícone de "([^\"]*)" no "([^\"]*)"$/, async (sair, perfil) => {
         await element(by.name(perfil.toString())).click();
@@ -119,7 +122,8 @@ defineSupportCode(function ({ Given, When, Then }) {
     //Then eu sou levado para a pagina de "Login"
 
     Then(/^minhas credenciais serão pedidas novamente$/, async () => {
-
+        await element(by.name("email"));
+        await element(by.name("password"));
     });
 
     //////////////////////////////////////////////////////////////////////////
@@ -128,17 +132,11 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     //And eu esteja logado com o usuário "vgc3" e a senha "abc1234"
 
-    Given(/^eu esteja logado com o usuário usuário "([^\"]*)" e a senha "([^\"]*)"$/, async (user, passw) => {
-
-    });
-
     //When eu clico no botão "perfil"
 
     Then(/^eu posso ver meu dados "([^\"]*)" e "([^\"]*)"$/, async (name, followers) => {
         await element(by.name("nome"));
         await element(by.name("seguidores"));
-        //expect(await nm.getText()).to.eventually.equal('Olá,\n'+name);
-        //expect(await fl.getText()).to.eventually.equal(followers);
     });
 
     //////////////////////////////////////////////////////////////////////////
@@ -147,18 +145,14 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     //And eu esteja logado com o usuário "vgc3" e a senha "abc1234"
 
-    Given(/^eu esteja logado com o usuário usuário "([^\"]*)" e a senha "([^\"]*)"$/, async (user, passw) => {
-
-    });
-
     //When eu clico no botão "playlists"
 
     //Then eu sou levado para a pagina de "Minhas Playlists"
 
     Then(/^eu posso ver uma lista com as minhas playlists "([^\"]*)", "([^\"]*)" e "([^\"]*)"$/, async (playlist1, playlist2, playlist3) => {
-        const pl1 = await element(by.name("nome"));
-        const pl2 = await element(by.name("nome"));
-        const pl3 = await element(by.name("nome"));
+        const pl1 = await getPlaylistCardByName(playlist1);
+        const pl2 = await getPlaylistCardByName(playlist2);
+        const pl3 = await getPlaylistCardByName(playlist3);
         expect(await pl1.getText()).to.equal(playlist1);
         expect(await pl2.getText()).to.equal(playlist2);
         expect(await pl3.getText()).to.equal(playlist3);

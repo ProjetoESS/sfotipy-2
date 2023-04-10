@@ -12,7 +12,6 @@
         ],
         "noImplicitAny": true,
         "outDir": "typeScript",
-
     },
     "compileOnSave": true,
 }

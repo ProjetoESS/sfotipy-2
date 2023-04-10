@@ -4,10 +4,10 @@ import { Playlist } from '../../common/playlist'
 import { User } from '../../common/user'
 
 describe('PlaylistService', () => {
-    var timeout : number;
-    var playlistService : PlaylistService;
-    var length : number;
-    var playlist : Playlist;
+    var timeout: number;
+    var playlistService: PlaylistService;
+    var length: number;
+    var playlist: Playlist;
 
     var newPlaylist = new Playlist(<Playlist>{
         'id': 0,
@@ -47,11 +47,11 @@ describe('PlaylistService', () => {
         console.log("\n");
     });
 
-    function add(playlist: Playlist) : void {
+    function add(playlist: Playlist): void {
         playlistService.addPlaylist(playlist);
     }
 
-    function deletePlaylist(id: number) : void {
+    function deletePlaylist(id: number): void {
         playlistService.delete(id);
     }
 
@@ -94,7 +94,7 @@ describe('PlaylistService', () => {
         length = playlistService.playlists.length;
         let playlists = playlistService.get();
         expect(playlists.length).toBe(length);
-        for(let i = 0;i < playlists.length;i++) {
+        for (let i = 0; i < playlists.length; i++) {
             expect(playlists[i].id).toBe(i);
         }
     });
@@ -124,7 +124,7 @@ describe('PlaylistService', () => {
         playlist.name = 'Rock';
         playlistService.update(playlist);
         playlist = playlistService.playlists[length - 1];
-        expect(playlist.id).toBe(length - 1);   
+        expect(playlist.id).toBe(length - 1);
         expect(playlist.name).toBe('Rock');
         expect(playlist.categories).toEqual([2]);
 

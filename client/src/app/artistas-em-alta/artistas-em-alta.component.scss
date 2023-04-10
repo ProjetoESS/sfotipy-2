@@ -1,8 +1,9 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
-.artista{
+
+.artista {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
@@ -12,19 +13,22 @@
     color: #FFFFFF;
     padding-left: 64px;
 }
-.lista{
+
+.lista {
     display: flex;
     flex-wrap: wrap;
     gap: 48px;
     padding-left: 64px;
 }
-.circulo{
+
+.circulo {
     width: 100px;
     height: 100px;
-    background: #9B9B9B ;
+    background: #9B9B9B;
     border-radius: 50%;
 }
-.container{
+
+.container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;

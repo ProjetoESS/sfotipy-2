@@ -31,7 +31,6 @@ Feature: Criação de Categorias
         When seleciono a opção de adicionar uma nova categoria
         And seleciono "ROCK" para o remover das categorias
         Then "Para Você" não possui mais "ROCK" como uma categoria da playlist
-
     Scenario: tentando adicionando categoria já existente na playlist
         Given possuo o login "jsa2" e senha "123"
         And estou na página da playlist "Para Dormir" com id "4"
@@ -40,7 +39,6 @@ Feature: Criação de Categorias
         When seleciono a opção de adicionar uma nova categoria
         Then não consigo ver "HIP-HOP" como uma categoria para ser selecionada
         And "Para Dormir" continua tendo somente uma categoria, que é "HIP-HOP"
-
     Scenario: mais de duas categorias para playlist
         Given possuo o login "jsa2" e senha "123"
         And estou na página da playlist "Melhores Rock" com id "5"
@@ -49,7 +47,6 @@ Feature: Criação de Categorias
         When não consigo encontrar a opção de adicionar uma nova categoria
         Then "ROCK" é uma categoria da playlist "Melhores Rock"
         And "HIP-HOP" é uma categoria da playlist "Melhores Rock"
-
     Scenario: removendo todas as categorias de uma playlist
         Given possuo o login "jsa2" e senha "123"
         And estou na página da playlist "Rocking with Imagine Dragons" com id "6"

@@ -12,6 +12,7 @@ import { BehaviorSubject, take } from 'rxjs';
 import { Location } from '@angular/common';
 
 import { CategoryService } from '../category.service';
+import { MusicPlayerService } from '../services/music-player.service';
 
 
 @Component({
@@ -26,7 +27,9 @@ export class PlaylistComponent implements OnInit {
     private playlistService: PlaylistService,
     private musicService: MusicasService,
     private categoryService: CategoryService,
-    private location: Location) { }
+    private location: Location,
+    public musicPlayerService: MusicPlayerService) { }
+
 
   musicasFiltradas: string[] = [];
   musicas = this.musicService.getMusics()
@@ -67,6 +70,10 @@ export class PlaylistComponent implements OnInit {
 
   showPopup() {
     this.exibirPopup = true
+  }
+
+  hidePopup() {
+    this.exibirPopup = false
   }
 
   adicionarMusica(musica: string) {
@@ -184,6 +191,10 @@ export class PlaylistComponent implements OnInit {
           }
         }
       )
+  }
+
+  isPausable(): boolean {
+    return this.musicPlayerService.isPlaying && this.musicPlayerService.playlist.id == this.playlistId;
   }
 
 }

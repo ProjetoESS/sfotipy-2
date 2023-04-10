@@ -36,13 +36,11 @@
                 <app-playlist-card-recomend [playlist]="plst"></app-playlist-card-recomend>
             </div>
         </div>
-        
         <a class="ver-mais" routerLink="/explorar">ver mais</a>
     </div>
 
     <div class="recomendacoes" *ngIf="isLogged">
         <h1 name="recomendacoes">Recomendações para você</h1>
-        
         <div class="plsts-rc-lst">
             <div class="" *ngFor="let plst of playlistsRecommended | slice:0:5">
                 <app-playlist-card-recomend [playlist]="plst"></app-playlist-card-recomend>

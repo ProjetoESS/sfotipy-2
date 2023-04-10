@@ -18,7 +18,6 @@ export class RegisterComponent implements OnInit {
 
   RegisterForm!: FormGroup;
   submitted!: false;
-  userService: any;
 
   constructor(
     private fb: FormBuilder,
@@ -50,6 +49,13 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  checkToken() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.loginService.updateLoginStatus(true);
+    }
+  }
+
   get registerFormControl() {
     return this.RegisterForm.controls;
   }
@@ -72,7 +78,7 @@ export class RegisterComponent implements OnInit {
     let data = this.RegisterForm.value;
 
 
-    if (this.RegisterForm.valid) {
+    if (this.RegisterForm.valid) { // Cria o componente do user para enviar ao servidor
       data = new Usera({
         name: data.nome,
         email: String(data.email).toLowerCase(),
@@ -85,9 +91,12 @@ export class RegisterComponent implements OnInit {
             this.email.setErrors({ 'emailExists': true });
           } else {
             this.registerService.addUser(data).subscribe(
-              dataServer => {
-                this.userService.setUserId(dataServer.id);
-                console.log(dataServer.id);
+              ({ user, token }) => {
+                localStorage.setItem('token', token); // Armazenando o token no localStorage do navegador
+                if (user && user.id !== undefined) {
+                  const userId = user.id;
+                  this.registerService.setUserId(userId);
+                }
                 this.loginService.updateLoginStatus(true);
                 this.router.navigate(['']);
               }

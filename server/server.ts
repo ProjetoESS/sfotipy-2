@@ -67,7 +67,8 @@ app.post('/users', multipartMiddleware, (req, res) => { //Cadastro
         res.status(500).json({ error: 'Failed to save user data.' });
       } else {
         delete files.password;
-        res.json(files);
+        const token = jwt.sign({ id: files.id }, 'chave-secreta', { expiresIn: '1h' });
+        res.json({ files, token });
       }
     });
   });
@@ -84,7 +85,7 @@ app.post('/login', (req, res) => { // Login
   const user = users.find((u: Usera) => u.email === email && u.password === password);
 
   if (user) {
-    const token = jwt.sign({ id: user.id }, 'mysecretkey', { expiresIn: '1h' }); // Gera um token JWT com a ID do usuário
+    const token = jwt.sign({ id: user.id }, 'chave-secreta', { expiresIn: '1h' }); // Gera um token JWT com a ID do usuário
     res.json({ success: true, id: user.id, token: token }); // Retorna uma mensagem de sucesso, o ID do usuário logado e o token JWT
   } else {
     res.json({ success: false }); // Retorna uma mensagem de erro porque não achou o usuário no banco de dados

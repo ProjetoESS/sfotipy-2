@@ -53,9 +53,9 @@ export class UserService implements OnInit {
         );
     }
 
-    addUser(user: Usera) {
+    addUser(user: Usera): Observable<{ user: Usera, token: string }> {
         user.id = this.lastId + 1;
-        return this.http.post<Usera>(this.appURL + "/users", user);
+        return this.http.post<{ user: Usera, token: string }>(`${this.appURL}/users`, user);
     }
 
     emailExists(email: string): Observable<boolean> {

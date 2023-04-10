@@ -6,7 +6,7 @@ import { BehaviorSubject, map } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  private isLogged = new BehaviorSubject<boolean>(!!localStorage.getItem('currentUser'));
+  public isLogged = new BehaviorSubject<boolean>(!!localStorage.getItem('currentUser'));
   private appURL = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }

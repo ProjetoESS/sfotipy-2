@@ -45,7 +45,7 @@
       <input type="search" class="input_musica" placeholder="Música" (keyup)="filtrarMusicas($event)">
       <i class="fas fa-search" aria-hidden="true"></i>
       <ul class="opcoes_musica">
-        <li *ngFor="let musica of musicasFiltradas" (click)="adicionarMusica(musica)">{{musica}}</li>
+        <li *ngFor="let musica of musicasFiltradas" (click)="adicionarMusica(musica)" class="{{musica}}">{{musica}}</li>
       </ul>
     </div>
 

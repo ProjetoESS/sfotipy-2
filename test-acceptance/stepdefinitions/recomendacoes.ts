@@ -40,6 +40,15 @@ async function buttonIsPlaying(name) {
   return playing;
 }
 
+async function getIcon(name, iconName) {
+  const playlistCard = await getPlaylistCardByName(name);
+  await browser.actions().mouseMove(playlistCard).perform();
+  const optionsIcon = playlistCard.element(by.name('options-button'));
+  await browser.actions().mouseMove(optionsIcon).perform();
+  const icon = playlistCard.element(by.name(iconName));
+  await browser.actions().mouseMove(icon).perform();
+  return icon;
+}
 
 defineSupportCode(function({Given, When, Then}) {
   Given(/^I'm on the page "([^\"]*)"$/, async (name) => {
@@ -112,23 +121,13 @@ defineSupportCode(function({Given, When, Then}) {
   })
 
   When(/^I try to share the playlist "([^\"]*)"$/, async (name) => {
-    const playlistCard = await getPlaylistCardByName(name);
-    await browser.actions().mouseMove(playlistCard).perform();
-    const optionsIcon = playlistCard.element(by.name('options-button'));
-    const shareIcon = playlistCard.element(by.name('Share'));
-    await browser.actions().mouseMove(optionsIcon).perform();
-    await browser.actions().mouseMove(shareIcon).perform();
+    const shareIcon = await getIcon(name, 'Share');
     await browser.executeScript(
         'arguments[0].click()', shareIcon.getWebElement());
   })
 
   When(/^I try to like the playlist "([^\"]*)"$/, async (name) => {
-    const playlistCard = await getPlaylistCardByName(name);
-    await browser.actions().mouseMove(playlistCard).perform();
-    const optionsIcon = playlistCard.element(by.name('options-button'));
-    await browser.actions().mouseMove(optionsIcon).perform();
-    const likeIcon = playlistCard.element(by.name('Like'));
-    await browser.actions().mouseMove(likeIcon).perform();
+    const likeIcon = await getIcon(name, 'Like');
     await browser.executeScript(
         'arguments[0].click()', likeIcon.getWebElement());
   })
@@ -190,28 +189,22 @@ defineSupportCode(function({Given, When, Then}) {
   });
 
   Then(/^I see the play of the playlist "([^\"]*)"$/, async (name) => {
-    const playlistCard = await getPlaylistCardByName(name);
-    const overlay = await playlistCard.element(by.name('overlay'));
-    const button = await overlay.element(by.name('play-button'));
+    const button = await getPlayButton(name);
     await expect(await button.isDisplayed()).to.be.true;
   });
 
   Then(
       /^I see that the play-button of playlist "([^\"]*)" is a pause button$/,
       async (name) => {
-        const playButton = await getPlayButton(name);
-        const classListBeforeClick = await playButton.getAttribute('class');
-        const playingBeforeClick = await classListBeforeClick.includes('playing');
-        await expect(playingBeforeClick).to.be.false;
+        const playing = await buttonIsPlaying(name);
+        await expect(playing).to.be.false;
       });
 
   Then(
       /^I see that the play-button of playlist "([^\"]*)" is a play button$/,
       async (name) => {
-        const playButton = await getPlayButton(name);
-        const classListBeforeClick = await playButton.getAttribute('class');
-        const playingBeforeClick = await classListBeforeClick.includes('playing');
-        await expect(playingBeforeClick).to.be.true;
+        const playing = await buttonIsPlaying(name);
+        await expect(playing).to.be.true;
       });
 
   Then(

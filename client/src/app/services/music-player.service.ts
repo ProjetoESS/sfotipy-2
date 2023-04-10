@@ -39,6 +39,8 @@ export class MusicPlayerService {
     this.audio.addEventListener('ended', () => {
       this.next();
     });
+
+    document.body.appendChild(this.audio);
   }
 
   next() {

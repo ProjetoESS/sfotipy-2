@@ -8,9 +8,9 @@ describe('MusicasEmAltaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MusicasEmAltaComponent ]
+      declarations: [MusicasEmAltaComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(MusicasEmAltaComponent);
     component = fixture.componentInstance;

@@ -3,8 +3,8 @@ import { Category } from '../../common/category';
 import { CategoryService } from '../src/category-service';
 
 describe("O servico de categorias", () => {
-    var categoryService : CategoryService;
-    var timeout : number;
+    var categoryService: CategoryService;
+    var timeout: number;
 
     beforeEach(() => categoryService = new CategoryService())
 

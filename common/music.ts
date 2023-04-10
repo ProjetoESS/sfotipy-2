@@ -38,8 +38,8 @@ export class Music {
         if (music.category) {
             this.category = music.category;
         }
-        if (music.accessSong){
-            this.category = music.accessSong;
+        if (music.accessSong) {
+            this.accessSong = music.accessSong;
         }
     }
 

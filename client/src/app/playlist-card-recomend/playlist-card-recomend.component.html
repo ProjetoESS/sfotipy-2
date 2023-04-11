@@ -17,8 +17,8 @@
   <div class="overlay" name="overlay">
     <div class="player-outer">
       <div class="player-inner">
-        <button name="play-button" [ngClass]="{'playing': isPausable()}" (click)="playOrPauseOnClick($event)"><img
-            src={{src}} alt=""></button>
+        <button id="play-playlist-{{playlist?.name}}" name="play-button" [ngClass]="{'playing': isPausable()}"
+          (click)="playOrPauseOnClick($event)"><img src={{src}} alt=""></button>
       </div>
     </div>
 

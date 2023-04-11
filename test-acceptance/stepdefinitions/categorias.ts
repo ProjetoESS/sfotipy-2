@@ -11,7 +11,7 @@ async function goTo(page: string) {
     await browser.driver.get(`http://localhost:4200/${page}`);
 }
 
-async function checkPlaylistName(playlistName: string) {
+async function checkPlaylistName(playlistName: string) {    
     const EC = protractor.ExpectedConditions;
     const playlist = await element(by.className("playlist_name"));
     await browser.wait(EC.visibilityOf(playlist), 5000, "Element not visible");
@@ -83,7 +83,6 @@ defineSupportCode(function ({ Given, When, Then }) {
         const categoryElement = await element(by.id("select-cat-" + category));
         await browser.wait(EC.visibilityOf(categoryElement), 5000, "Element not visible");
         await categoryElement.click();
-        
     });
 
     // Scenario : adicionando categoria já existente na playlist
@@ -129,5 +128,13 @@ defineSupportCode(function ({ Given, When, Then }) {
         expect((await element.all(by.className("category"))).length).to.equal(0);
     });
 
+    Then(/^não estou mais logado com login "([^\"]*)" e senha "([^\"]*)"$/, async (login, passw) => {
+        const EC = protractor.ExpectedConditions;
+        // await element(by.name('perfil')).click();
+        const profile = await element(by.name('perfil'));
+        await browser.wait(EC.visibilityOf(profile), 5000, "Element not visible");
+        await profile.click();
+        await element(by.name('sair')).click();
+    });
 
 });

@@ -25,4 +25,12 @@ describe('MusicPlayerService', () => {
     expect(service.currentMusic).toEqual(music);
     expect(service.play).toHaveBeenCalled();
   });
+
+  it('should pause music', () => {
+    spyOn(service, 'pause');
+    service.pause();
+    expect(service.isPlaying).toBeFalse();
+    expect(service.pause).toHaveBeenCalled();
+  });
+
 });

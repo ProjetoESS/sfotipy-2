@@ -53,9 +53,15 @@ export class UserService implements OnInit {
         );
     }
 
-    addUser(user: Usera): Observable<{ user: Usera, token: string }> {
+    addUser(user: Usera): Observable<{ files: Usera, token: string }> {
         user.id = this.lastId + 1;
-        return this.http.post<{ user: Usera, token: string }>(`${this.appURL}/users`, user);
+        return this.http.post<{ files: any, token: string }>(`${this.appURL}/users`, user).pipe(map(response => {
+            if (response && response.token) {
+                localStorage.setItem('currentUser', JSON.stringify({ email: response.files.email, token: response.token, id: response.files.id }));
+            }
+            return response;
+        }));
+
     }
 
     emailExists(email: string): Observable<boolean> {

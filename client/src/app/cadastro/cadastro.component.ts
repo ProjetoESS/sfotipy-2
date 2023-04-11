@@ -91,10 +91,12 @@ export class RegisterComponent implements OnInit {
             this.email.setErrors({ 'emailExists': true });
           } else {
             this.registerService.addUser(data).subscribe(
-              ({ user, token }) => {
-                localStorage.setItem('token', token); // Armazenando o token no localStorage do navegador
-                if (user && user.id !== undefined) {
-                  const userId = user.id;
+              ({ files, token }) => {
+                console.log(files);
+                console.log(token);
+                localStorage.setItem('currentUser', JSON.stringify({ email: files.email, token: token, id: files.id }));; // Armazenando o token no localStorage do navegador
+                if (files && files.id !== undefined) {
+                  const userId = files.id;
                   this.registerService.setUserId(userId);
                 }
                 this.loginService.updateLoginStatus(true);

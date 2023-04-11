@@ -42,6 +42,7 @@ describe('MusicPlayerService', () => {
     spyOn(service, 'play');
     service.playMusic(music);
     expect(service.currentMusic).toEqual(music);
+    expect(service.audio.src).toContain(music.id.toString());
     expect(service.play).toHaveBeenCalled();
   });
 
@@ -58,6 +59,7 @@ describe('MusicPlayerService', () => {
     await new Promise(resolve => setTimeout(resolve, 1000))
     expect(service.playlist).toEqual(playlist);
     expect(service.currentMusic.id).toEqual(playlist.musics[0]);
+    expect(service.audio.src).toContain(playlist.musics[0].toString());
     expect(service.play).toHaveBeenCalled();
   });
 });

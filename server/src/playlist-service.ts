@@ -199,19 +199,17 @@ export class PlaylistService {
 
       // console.log(ownerId, playlist.ownerId)
       if (playlist.ownerId == ownerId) {
-
-        //if (playlist.owner == ownerName) {
-
+        //if (playlist.owner == ownerName) 
         playlistsReturn.push(playlist)
       }
     }
     return playlistsReturn;
   }
 
-  verificarNomePlaylistExistente(nomePlaylist: string): boolean {
-    const playlists = this.getUserPlaylists(this.idCount)
-    for (let playlist of this.playlists) {
-      if (playlist.name === nomePlaylist) {
+  verificarNomePlaylistExistente(nomePlaylist: string, ownerId: number): boolean {
+    const playlists = this.getUserPlaylists(ownerId)
+    for (let playlist of playlists) {
+      if (playlist.name === nomePlaylist && playlist.ownerId === ownerId) {
         return true;
       }
     }

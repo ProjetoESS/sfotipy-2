@@ -254,7 +254,6 @@ app.post('/playlist', function (req: express.Request, res: express.Response) {
 
 app.put('/playlist', function (req: express.Request, res: express.Response) {
   const playlist: Playlist = <Playlist>req.body;
-  console.log(playlist)
   const result = playlistService.updatePlaylist(playlist);
   if (result) {
     res.send(result);
@@ -285,9 +284,10 @@ app.get('/minhas_playlists/:id', (req, res) => {
   res.json(userPlaylists); // retorna as playlists como uma resposta JSON
 });
 
-app.get('/criar_playlist/:name', (req, res) => {
+app.get('/criar_playlist/:name/:id', (req, res) => {
   const name = req.params.name;
-  const result = playlistService.verificarNomePlaylistExistente(name);
+  const id = parseInt(req.params.id)
+  const result = playlistService.verificarNomePlaylistExistente(name, id);
   res.json(result);
 });
 

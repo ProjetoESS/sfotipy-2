@@ -186,6 +186,7 @@ export class PlaylistService {
 
   categoryService: CategoryService = new CategoryService;
 
+
   addPlaylist(playlist: Playlist): Playlist[] {
     playlist.id = this.idCount;
     this.playlists.push(playlist);
@@ -262,6 +263,21 @@ export class PlaylistService {
     } else {
       return false;
     }
+  }
+
+  deleteMusic(playlistId:number, musicId:number) {
+    const playlist = this.playlists.find(c => c.id == playlistId);
+    if (playlist){
+      const index = playlist.musics.findIndex(c => c === musicId);
+      if (index >= 0) {
+        playlist.musics.splice(index, 1)
+        return true
+      } else {
+        return false
+      }
+    } 
+    
+    return false
   }
 
   addNewCategory(playlistId: number, category: number): Playlist | null {

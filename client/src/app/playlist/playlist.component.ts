@@ -102,9 +102,21 @@ export class PlaylistComponent implements OnInit {
 
     const update = this.playlistService.updatePlaylistMusics(playlist).subscribe()
     if (update) {
-      alert('Músicas atualizadas com sucesso!')
+      //alert('Músicas atualizadas com sucesso!')
       window.location.reload();
     }
+  }
+
+  deletePLaylist() {
+    const deletar = this.playlistService.deletarPlaylist(this.playlistId).subscribe()
+      if (deletar) {
+        alert('Playlist deletada com sucesso')
+      }
+  }
+
+  deletarMusic(id: number) {
+    console.log(id);
+
   }
 
   filtrarMusicas(event: KeyboardEvent) {

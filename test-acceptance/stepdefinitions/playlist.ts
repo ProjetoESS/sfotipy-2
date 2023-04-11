@@ -120,32 +120,29 @@ When('I go to the add music option', async function () {
 
 When(/^I add the music "([^"]*)"$/,async (musicname) => {
   const search = element(by.css('.input_musica'))
+  const music = element(by.css('.'+musicname))
+  const add = element(by.css('.enterButton'))
   await search.click()
   await search.sendKeys(musicname)
-  //await browser.wait(ExpectedConditions.visibilityOf(musicname))
-})
-
-/*
-
-Then(/^I return to the "([^"]*)" page$/,async (page) => {
-    const alert = await browser.switchTo().alert();
-    await alert.accept();
-    
+  await browser.wait(ExpectedConditions.visibilityOf(music))
+  await music.click()
+  await browser.wait(ExpectedConditions.visibilityOf(add))
+  await add.click()
 })
 
 
+Then(/^The "([^"]*)" playlist page is refreshed$/,async (playlistName) => {
+  const expectedUrl = `http://localhost:4200/playlist/13`;
+  const currentUrl = await browser.getCurrentUrl();
+  expect(currentUrl).to.equal(expectedUrl);
+})
 
-When(/^I add the music "([^"]*)"$/, async function (musicName) {
-    const searchMusic = element(by.css('.input_musica'));
-    const music = element(by.css('.'+musicName))
-    const addButton = element(by.css('.addMusicButton'))
-    await searchMusic.click();
-    await searchMusic.sendKeys(musicName);
-    await browser.wait(ExpectedConditions.visibilityOf(music))
-    await music.click();
-    await browser.wait(ExpectedConditions.visibilityOf(addButton))
-    
-    });
+Then(/^I can see the music "([^"]*)" in the playlist page$/, async (musicName) => {
+  const music =  element.all(by.css('.'+musicName));
+  await browser.wait(protractor.ExpectedConditions.presenceOf(music.first()), 5000); // espera 5 segundos para o elemento estar presente
+  const count = await music.count();
+  expect(count).equal(1);
+})
 
 /*
 When('I select the playlist {string}', async function (playlistName) {

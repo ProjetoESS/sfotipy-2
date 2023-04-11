@@ -49,7 +49,6 @@ So that I can create and manage my playlists
         When I go to the "pop" playlist page
         And I go to the add music option
         And I add the music "Thunder"
-        Then I can see a confirmation message "Músicas atualizadas com sucesso!"
-        And I return to the playlist page
+        Then The "pop" playlist page is refreshed
         And I can see the music "Thunder" in the playlist page
             

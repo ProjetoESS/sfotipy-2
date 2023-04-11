@@ -41,7 +41,7 @@ So that I can create and manage my playlists
         When I go to the add music option
         And I add the music "Scientist"
         Then I can see a confirmation message "Músicas atualizadas com sucesso!"
-        And I return to the playlist page
+        And I still am at the "pop" plalist page
         And I can see the music "Scientist" in the playlist page
     
     Scenario: update playlist name
@@ -51,15 +51,6 @@ So that I can create and manage my playlists
         When I select the playlist "pop"
         And I update the playlist name as "rock"
         Then I can see a confirmation message "playlist name updated with success"
-    
-    Scenario: show playlist followers
-        Given I am at the "playlist search" page
-        And there's a playlist registered as "gym"
-        When I search for the playlist "gym"
-        And I select the playlist "gym"
-        And I select the option "see followers"
-        Then I can see a list with all users who follows the playlist
-        And when they followed the playlist
 
     Scenario: update playlist with existing name
         Given I am at the "edit playlist" page

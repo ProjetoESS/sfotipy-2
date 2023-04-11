@@ -22,6 +22,8 @@
             </span>
           </div>
         </details>
+        <br>
+        <button class="delete" (click)="deletePLaylist()">Deletar playlist</button>
       </div>
       <div class="icons">
         <i *ngIf="selectedPlaylist.availability === 'public'" (click)="showShareLink()" class="fas fa-share">

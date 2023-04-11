@@ -84,12 +84,16 @@ export class PlaylistComponent implements OnInit {
   adicionarMusica(musica: string) {
     this.musicas.pipe(take(1)).subscribe((musicasArray: Music[]) => {
       const musicaEncontrada = musicasArray.find(m => m.name === musica);
-
       if (musicaEncontrada) {
+        const musicaInArray = this.musicas_add.value.find(m => m.id === musicaEncontrada.id)
+        if (musicaInArray) {
+          alert('Música já adicionada')
+          return
+        }
+
         this.musicas_add.next([...this.musicas_add.value, musicaEncontrada]);
       }
     })
-
   }
 
   updateMusicas() {

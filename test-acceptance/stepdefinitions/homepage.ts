@@ -23,13 +23,11 @@ async function logOut() {
     await element(by.name('sair')).click();
 }
 
-async function getPlaylistCardByName(name: StepDefinitionParam) {
+async function getPlaylistName(name: StepDefinitionParam) : Promise<string>{
     const playlistCard = await element.all(by.name('playlist-card'))
-      .filter(p => p.element(by.css('card-title'))
-          .getText()
-          .then(text => text === name))
+      .filter(p => p.element(by.name('nome')).getText().then(text => text === name))
       .first();
-    return playlistCard;
+    return playlistCard.element(by.name('nome')).getText();
 }
 
 let sameName = ((elem, name) => elem.element(by.name('nome')).getText().then(text => text.toLowerCase() === name.toLowerCase()));
@@ -155,14 +153,17 @@ defineSupportCode(function ({ Given, When, Then }) {
     Then(/^eu posso ver uma lista com as minhas playlists "([^\"]*)", "([^\"]*)" e "([^\"]*)"$/, async (playlist1, playlist2, playlist3) => {
         const allplaylists: ElementArrayFinder = element.all(by.name('nome'));
 
-        const pl1 = await allplaylists.filter(p => p.getText().then(text => text === playlist1));
-        const pl2 = await allplaylists.filter(p => p.getText().then(text => text === playlist2));
-        const pl3 = await allplaylists.filter(p => p.getText().then(text => text === playlist3));
+        //const pl1 = await allplaylists.filter(p => p.getText().then(text => text === playlist1));
+        //const pl2 = await allplaylists.filter(p => p.getText().then(text => text === playlist2));
+        //const pl3 = await allplaylists.filter(p => p.getText().then(text => text === playlist3));
 
-        //expect(await playlist.length).to.equal(1);
-        //expect(pl1).to.equal(playlist1);
-        //expect(pl2).to.equal(playlist2);
-        //expect(pl3).to.equal(playlist3);
+        const pl1 = await getPlaylistName(playlist1);
+        const pl2 = await getPlaylistName(playlist2);
+        const pl3 = await getPlaylistName(playlist3);
+
+        expect(pl1).to.equal(playlist1);
+        expect(pl2).to.equal(playlist2);
+        expect(pl3).to.equal(playlist3);
 
         //logOut();
         await element(by.name('perfil')).click();

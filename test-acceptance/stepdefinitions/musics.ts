@@ -60,4 +60,33 @@ defineSupportCode(function ({ Given, When, Then }) {
             const currentPlaylistName = await element(by.id('current-playlist-name')).getText();
             expect(currentPlaylistName).to.equal(playlist);
         });
+
+    Given(/^eu estou na página da playlist "([^\"]*)" cujo id é (\d+)$/, async (playlist, id) => {
+        await browser.get("http://localhost:4200/playlist/" + id);
+        await sleep(500);
+        await expect(browser.getTitle()).to.eventually.equal(playlist);
+    });
+
+    Given(/^eu posso ver músicas na lista de músicas$/,
+        async () => {
+            expect((await element.all(by.name('music-container'))).length).to.be.above(0);
+        });
+
+    Given(/^a playlist "([^\"]*)" está tocando$/,
+        async (playlist) => {
+            await element(by.id(`play-playlist-${playlist}`)).click();
+        });
+
+    When(/^eu seleciono a opção de pausar a playlist "([^\"]*)"$/, async (playlist) => {
+        await element(by.id(`pause-playlist-${playlist}`)).click();
+    });
+
+    Then(/^a playlist "([^\"]*)" é pausada$/, async (playlist) => {
+        const audioPlayer = element(by.css('audio'));
+        await browser.wait(ExpectedConditions.presenceOf(audioPlayer), 5000, 'O elemento audio não está visível na página');
+
+        expect(await Promise.resolve(audioPlayer.getAttribute('paused'))).to.equal('true');
+        const currentPlaylistName = await element(by.id('current-playlist-name')).getText();
+        expect(currentPlaylistName).to.equal(playlist);
+    });
 })

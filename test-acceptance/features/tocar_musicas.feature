@@ -3,6 +3,19 @@ Feature: Tocar músicas
     I want to be able to play and pause songs
     so that I can enjoy the music that I like
 
+Scenario: Pausar playlist na página da playlist
+Given eu estou na página da playlist "Melhores Indie" cujo id é 2
+And eu posso ver músicas na lista de músicas
+And a playlist "Melhores Indie" está tocando
+When eu seleciono a opção de pausar a playlist "Melhores Indie"
+Then a playlist "Melhores Indie" é pausada
+
+Scenario: Tocar playlist da página da playlist
+Given eu estou na página da playlist "Melhores Indie" cujo id é 2
+And eu posso ver músicas na lista de músicas
+When eu seleciono a opção de tocar a playlist "Melhores Indie"
+Then a playlist "Melhores Indie" é definida como a playlist atual
+
 Scenario: Tocar playlist da lista de playlists
 Given eu estou na página de "Busca"
 And todo o conteúdo está visível

@@ -160,9 +160,7 @@ export class PlaylistService {
 
       // console.log(ownerId, playlist.ownerId)
       if (playlist.ownerId == ownerId) {
-        console.log(playlist.ownerId ,ownerId)
-        //if (playlist.owner == ownerName) {
-
+        //if (playlist.owner == ownerName) 
         playlistsReturn.push(playlist)
       }
     }

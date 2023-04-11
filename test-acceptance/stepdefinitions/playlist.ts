@@ -1,46 +1,38 @@
 const { Given, When, Then } = require('cucumber');
-import { browser, $, element, ElementArrayFinder, by, protractor, ExpectedConditions, ElementFinder, By } from 'protractor';
+import { browser, $, element, ElementArrayFinder, by, protractor, ExpectedConditions, ElementFinder, By, Key } from 'protractor';
 const { expect } = require('chai');
-import { isEmpty } from 'lodash';
+const {setDefaultTimeout} = require('cucumber');
+setDefaultTimeout(10000)
 
 Given(/^I am logged in with "([^"]*)" and "([^"]*)"$/, async (email, password) => {
-    await browser.get(`http://localhost:4200/`);
-    const login = element(by.css('.login'))
+    await browser.get(`http://localhost:4200/login`);
     const user_input = element(by.css('.email_input'))
     const password_input = element(by.css('.password_input'))
-    await login.click()
+    const login = element(by.css('.login_input_button'))
     await ExpectedConditions.visibilityOf(user_input)
     await user_input.click()
     await user_input.sendKeys(email)
     await password_input.click()
-    await password_input.sendKeys(password, '\n')
+    await password_input.sendKeys(password)
+    await login.click()
+    
 })
 
-Given(/^I go to "([^"]*)" page$/, async function (page) {
+Given(/^I am at the "([^"]*)" page$/, async function (page) {
     const playlists = element(by.name('playlists'))
-    playlists.click()
+    await playlists.click()
+    const addplaylist = element(by.css('.addPlaylist'))
+    await ExpectedConditions.visibilityOf(addplaylist)
+    await addplaylist.click()
   //await browser.get(`http://localhost:4200/${page}`);
 });
 
-Given(/^I dont have any playlist registered as "([^"]*)"$/, async function (playlistName) {
-    const playlists = element.all(by.className(playlistName));
-    const count = await playlists.count();
-    expect(count).equal(0);
-});
-
-When(/^I go to the "([^"]*)" page$/,async (page) => {
-    await browser.get(`http://localhost:4200/${page}`);
-})
-
-When(/^I insert the playlist name "([^"]*)"$/, async function (playlistName) {
+When(/^I insert the playlist name "([^"]*)" with the music "([^"]*)"$/, async function (playlistName,musicName) {
   const inputPlaylistName = element(by.css('.playlist_input_name'));
-  await browser.wait(ExpectedConditions.visibilityOf(inputPlaylistName));
-  await inputPlaylistName.sendKeys(playlistName);
-});
-
-When(/^I insert the music "([^"]*)"$/, async function (musicName) {
   const searchMusic = element(by.css('.input_musica'));
   const music = element(by.css('.'+musicName))
+  await browser.wait(ExpectedConditions.visibilityOf(inputPlaylistName));
+  await inputPlaylistName.sendKeys(playlistName);
   await searchMusic.click();
   await searchMusic.sendKeys(musicName);
   await browser.wait(ExpectedConditions.visibilityOf(music))
@@ -61,28 +53,26 @@ Then(/^I can see a confirmation message "([^"]*)"$/, async function (message) {
     expect(alertText).contain(message);
   });
 
-Then(/^I return to the "([^"]*)" page$/,async (page) => {
+Then(/^I am redirected to the "([^"]*)" page$/, async (page) => {
     const alert = await browser.switchTo().alert();
     await alert.accept();
     
 })
 
-Then(/^I can see the playlist registered as "([^"]*)"$/,async (playlistName) => {
-    const playlists = element.all(by.className(playlistName));
-    browser.wait(ExpectedConditions.visibilityOf(playlists.first()), 5000, 'Playlist not found')
+Then(/^I can see the "([^"]*)" playlist$/,async (playlistName) => {
+    const playlists = element.all(by.css('.'+playlistName+'DIV'));
+    const count = await playlists.count();
+    expect(count).equal(1);
 })
+
 /*
-  
 Given(/^I have a playlist registered as "([^"]*)"$/, async function (playlistName) {
     const playlists = element.all(by.className(playlistName));
     const count = await playlists.count();
     expect(count).equal(1);
 });
 
-When(/^I go to the "([^"]*)" page$/,async (page) => {
-    await browser.get(`http://localhost:4200/${page}`);
-})
-
+/*
 When(/^I insert the playlist name "([^"]*)"$/, async function (playlistName) {
 const inputPlaylistName = element(by.css('.playlist_input_name'));
 await browser.wait(ExpectedConditions.visibilityOf(inputPlaylistName));

@@ -62,4 +62,26 @@ describe('MusicPlayerService', () => {
     expect(service.audio.src).toContain(playlist.musics[0].toString());
     expect(service.play).toHaveBeenCalled();
   });
+
+  it('should play next music', async () => {
+    spyOn(service, 'play');
+    service.playPlaylist(playlist);
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    service.next();
+    expect(service.currentMusic.id).toEqual(playlist.musics[1]);
+    expect(service.audio.src).toContain(playlist.musics[1].toString());
+    expect(service.play).toHaveBeenCalled();
+  });
+
+  it('should play previous music', async () => {
+    spyOn(service, 'play');
+    service.playPlaylist(playlist);
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    service.next();
+    expect(service.currentMusic.id).toEqual(playlist.musics[1]);
+    service.back();
+    expect(service.currentMusic.id).toEqual(playlist.musics[0]);
+    expect(service.audio.src).toContain(playlist.musics[0].toString());
+    expect(service.play).toHaveBeenCalled();
+  });
 });

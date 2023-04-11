@@ -2,7 +2,7 @@
 
 
   <div class="header">
-    <img class="img" src="{{selectedPlaylist.image}}" alt="Capa da playlist" srcset="">
+    <img class="img" src="{{selectedPlaylist.image || '/assets/default.png'}}" alt="Capa da playlist" srcset="">
     <div class="content">
       <div class="text">
         <h1 class="playlist_name" name="playlist-name">{{selectedPlaylist.name}}</h1>

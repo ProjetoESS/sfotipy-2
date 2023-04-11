@@ -2,8 +2,8 @@
   <p class="minhas_playlists">Minhas Playlists</p>
   <button *ngIf="numPlaylists === 0" type="button" class="addPlaylist" (click)="redirecionarParaCriarPlaylist()">+</button>
   <div *ngIf="numPlaylists > 0" class="playlistsDIV">
-    <div *ngFor="let playlist of playlistsUser">
-      <app-playlist-card-recomend [playlist]="playlist"></app-playlist-card-recomend>
+    <div *ngFor="let playlist of playlistsUser" class="{{playlist.name}}DIV">
+      <app-playlist-card-recomend [playlist]="playlist" class="{{playlist.name}}"></app-playlist-card-recomend>
     </div>
     <button type="button" class="addPlaylist" (click)="redirecionarParaCriarPlaylist()">+</button>
   </div>
@@ -11,9 +11,9 @@
 
 <div class="campo2">
   <p class="minhas_playlists">Playlists que sigo</p>
-  <div class="playlistsDIV" name = "likedPlaylistsDiv">
+  <div class="likedPlaylistsDiv" name = "likedPlaylistsDiv">
     <div *ngFor="let playlist of likedPlaylists">
-      <app-playlist-card-recomend [playlist]="playlist"></app-playlist-card-recomend>
+      <app-playlist-card-recomend [playlist]="playlist" class="{{playlist.name}}"></app-playlist-card-recomend>
     </div>
   </div>
 </div>

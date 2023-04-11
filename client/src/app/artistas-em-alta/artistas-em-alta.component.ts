@@ -11,27 +11,28 @@ export class ArtistasEmAltaComponent {
 
   mostAccessedSongs: Music[] = [];
 
-  constructor( private MusicasService: MusicasService) {}
+  constructor(private MusicasService: MusicasService) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.MusicasService.getMusics().subscribe(as => {
       this.mostAccessedSongs = as
-      this.mostAccessedSongs.sort((a, b) => b.accessSong - a.accessSong).slice(0, 8)});
+      this.mostAccessedSongs.sort((a, b) => b.accessSong - a.accessSong).slice(0, 8)
+    });
   }
   getFirstMusicAuthor(): string {
-    return this.mostAccessedSongs[0].image;
+    return this.mostAccessedSongs[0]?.image;
   }
   getSecondMusicAuthor(): string {
-    return this.mostAccessedSongs[1].image;
+    return this.mostAccessedSongs[1]?.image;
   }
   getThirdMusicAuthor(): string {
-    return this.mostAccessedSongs[2].image;
+    return this.mostAccessedSongs[2]?.image;
   }
   getFourthMusicAuthor(): string {
-    return this.mostAccessedSongs[3].image;
+    return this.mostAccessedSongs[3]?.image;
   }
   getFifthMusicAuthor(): string {
-    return this.mostAccessedSongs[4].image;
+    return this.mostAccessedSongs[4]?.image;
   }
 
 }

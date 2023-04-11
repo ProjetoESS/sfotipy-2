@@ -105,3 +105,10 @@
   align-items: center;
   flex-wrap: wrap;
 }
+
+.playlistsDIV {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
+}

@@ -61,6 +61,7 @@ export class UserService implements OnInit {
             }
             return response;
         }));
+    }
 
     emailExists(email: string): Observable<boolean> {
         return this.http.get<any[]>(`${this.appURL}/users?email=${email}`).pipe(

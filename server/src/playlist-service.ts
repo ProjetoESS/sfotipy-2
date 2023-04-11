@@ -104,7 +104,7 @@ export class PlaylistService {
     new Playlist(<Playlist><unknown>{
       "id": 7,
       "name": "Eminem's Greatest Hits",
-      "categories": [1, 4],
+      "categories": [],
       "musics": [15, 16, 17],
       "image": "https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/eminem-miracle-studio.jpg",
       "link": "",

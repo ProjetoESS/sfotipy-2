@@ -50,6 +50,7 @@ export class MusicCardComponent {
     const deletarMusic = this.playlistService.deleteMusic(this.id, this.playlistId).subscribe()
     if (deletarMusic) {
       alert('Música deletada com sucesso')
+      window.location.reload();
     }
 
   }

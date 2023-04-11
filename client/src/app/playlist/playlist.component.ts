@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { Category } from '../../../../common/category';
 import { MusicasService } from '../musicas.service';
@@ -30,7 +31,9 @@ export class PlaylistComponent implements OnInit {
     private categoryService: CategoryService,
     private location: Location,
     public musicPlayerService: MusicPlayerService,
-    private titleService: Title) { }
+    private titleService: Title,
+    private router: Router) { }
+
 
 
   musicasFiltradas: string[] = [];
@@ -111,12 +114,8 @@ export class PlaylistComponent implements OnInit {
     const deletar = this.playlistService.deletarPlaylist(this.playlistId).subscribe()
       if (deletar) {
         alert('Playlist deletada com sucesso')
+        this.router.navigate(['/minhas_playlists']);
       }
-  }
-
-  deletarMusic(id: number) {
-    console.log(id);
-
   }
 
   filtrarMusicas(event: KeyboardEvent) {

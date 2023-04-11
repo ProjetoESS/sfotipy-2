@@ -13,6 +13,7 @@ import { Usera } from '../common/Usera'
 const app = express();
 const cors = require('cors');
 const multipart = require('connect-multiparty')
+const jwt = require('jsonwebtoken');
 
 var musicService: MusicService = new MusicService();
 var playlistService = new PlaylistService();
@@ -37,7 +38,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-// ROTAS DE LOGIN //
+//ROTAS DE LOGIN
 
 const multipartMiddleware = multipart({ uploadDir: './usuarios' });
 
@@ -66,7 +67,8 @@ app.post('/users', multipartMiddleware, (req, res) => { //Cadastro
         res.status(500).json({ error: 'Failed to save user data.' });
       } else {
         delete files.password;
-        res.json(files);
+        const token = jwt.sign({ id: files.id }, 'chave-secreta', { expiresIn: '1h' });
+        res.json({ files, token });
       }
     });
   });
@@ -83,11 +85,14 @@ app.post('/login', (req, res) => { // Login
   const user = users.find((u: Usera) => u.email === email && u.password === password);
 
   if (user) {
-    res.json({ success: true, id: user.id }); // Retorna uma mensagem de sucesso e o id do usuário logado
+    const token = jwt.sign({ id: user.id }, 'chave-secreta', { expiresIn: '1h' }); // Gera um token JWT com a ID do usuário
+    res.json({ success: true, id: user.id, token: token }); // Retorna uma mensagem de sucesso, o ID do usuário logado e o token JWT
   } else {
-    res.json({ success: false }); //Retorna uma mensagem de false porque não achou o usuário no banco de dados
+    res.json({ success: false }); // Retorna uma mensagem de erro porque não achou o usuário no banco de dados
   }
 });
+
+//ROTAS DE BUSCAS E VERIFICAÇÕES
 
 app.get('/users', (req, res) => { // Usuarios aparecendo no localhost:3000/users
   const filePath = './usuarios/user.json';

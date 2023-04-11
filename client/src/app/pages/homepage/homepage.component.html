@@ -25,14 +25,14 @@
             </a>
         </div>
 
-        <a class="ver-mais" routerLink="/em-alta">ver mais</a>
+        <!--<a class="ver-mais" routerLink="/em-alta">ver mais</a>-->
     </div>
 
     <div class="plsts-publicas">
         <h1 name="plsts-publicas">Playlists Públicas</h1>
 
         <div class="plsts-pb-lst">
-            <div class="" *ngFor="let plst of playlistsPublic | slice:0:5">
+            <div class="" *ngFor="let plst of playlistsPublic | slice:0:4">
                 <app-playlist-card-recomend [playlist]="plst"></app-playlist-card-recomend>
             </div>
         </div>
@@ -42,7 +42,7 @@
     <div class="recomendacoes" *ngIf="isLogged">
         <h1 name="recomendacoes">Recomendações para você</h1>
         <div class="plsts-rc-lst">
-            <div class="" *ngFor="let plst of playlistsRecommended | slice:0:5">
+            <div class="" *ngFor="let plst of playlistsRecommended | slice:0:4">
                 <app-playlist-card-recomend [playlist]="plst"></app-playlist-card-recomend>
             </div>
         </div>
@@ -54,7 +54,7 @@
         <h1 name="minhas-plsts">Minhas Playlists</h1>
 
         <div class="plsts-mp-lst">
-            <div class="" *ngFor="let plst of playlistsUser | slice:0:5">
+            <div class="" *ngFor="let plst of playlistsUser | slice:0:4">
                 <app-playlist-card-recomend [playlist]="plst"></app-playlist-card-recomend>
             </div>
         </div>

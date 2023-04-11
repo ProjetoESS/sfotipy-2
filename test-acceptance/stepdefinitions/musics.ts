@@ -89,4 +89,18 @@ defineSupportCode(function ({ Given, When, Then }) {
         const currentPlaylistName = await element(by.id('current-playlist-name')).getText();
         expect(currentPlaylistName).to.equal(playlist);
     });
+
+    Given(/^eu não posso ver músicas na lista de músicas$/,
+        async () => {
+            expect((await element.all(by.name('music-container'))).length).to.equal(0);
+        });
+
+    Then(/^a playlist "([^\"]*)" está pausada$/, async (playlist) => {
+        const audioPlayer = element(by.css('audio'));
+        await browser.wait(ExpectedConditions.presenceOf(audioPlayer), 5000, 'O elemento audio não está visível na página');
+
+        expect(await Promise.resolve(audioPlayer.getAttribute('paused'))).to.equal('true');
+        const currentPlaylistName = await element(by.id('current-playlist-name')).getText();
+        expect(currentPlaylistName).to.equal(playlist);
+    });
 })

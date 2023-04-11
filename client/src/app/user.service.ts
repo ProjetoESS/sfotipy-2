@@ -11,7 +11,7 @@ import { Usera } from '../../../common/Usera'
 })
 export class UserService implements OnInit {
     private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    private appURL = 'http://localhost:3000';
+    appURL = 'http://localhost:3000';
     private userId = new BehaviorSubject<number>(0);
     private lastId = 0;
 
@@ -54,7 +54,7 @@ export class UserService implements OnInit {
         );
     }
 
-    addUser(user: Usera) {
+    addUser(user: Usera): Observable<Usera> {
         user.id = this.lastId + 1;
         return this.http.post<Usera>(this.appURL + "/users", user);
     }

@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Music } from '../../../common/music';
-import { Playlist } from '../../../common/playlist';
+import { Music } from '../../../../common/music';
+import { Playlist } from '../../../../common/playlist';
 
 @Pipe({ name: 'musicsFilter' })
 export class MusicsFilterPipe implements PipeTransform {

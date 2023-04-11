@@ -152,4 +152,8 @@ export class MusicPlayerService {
   getCurrentMusicName(): string {
     return this.currentMusic.name || "";
   }
+
+  getCurrentPlaylistName(): string {
+    return this.playlist.name || "";
+  }
 }

@@ -11,11 +11,11 @@ export class PlaylistsFilterPipe implements PipeTransform {
       return [];
     }
     if (!filterText && !filterCategory.length) {
-      return playlists;
+      return playlists.filter((playlist) => playlist.availability === "public");
     }
 
     return playlists.filter(playlist => {
-      return this.playlistContainsFilterText(playlist, filterText, filterCategory);
+      return (this.playlistContainsFilterText(playlist, filterText, filterCategory)) && playlist.availability === "public";
     });
   }
 

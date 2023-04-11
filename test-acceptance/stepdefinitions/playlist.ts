@@ -60,39 +60,28 @@ Then(/^I am redirected to the "([^"]*)" page$/, async (page) => {
 })
 
 Then(/^I can see the "([^"]*)" playlist$/,async (playlistName) => {
-    const playlists = element.all(by.css('.'+playlistName+'DIV'));
-    const count = await playlists.count();
-    expect(count).equal(1);
+  const playlists =  element.all(by.css('.'+playlistName+'DIV'));
+  await browser.wait(protractor.ExpectedConditions.presenceOf(playlists.first()), 5000); // espera 5 segundos para o elemento estar presente
+  const count = await playlists.count();
+  expect(count).equal(1);
 })
 
-/*
-Given(/^I have a playlist registered as "([^"]*)"$/, async function (playlistName) {
-    const playlists = element.all(by.className(playlistName));
-    const count = await playlists.count();
-    expect(count).equal(1);
-});
-
-/*
 When(/^I insert the playlist name "([^"]*)"$/, async function (playlistName) {
-const inputPlaylistName = element(by.css('.playlist_input_name'));
-await browser.wait(ExpectedConditions.visibilityOf(inputPlaylistName));
-await inputPlaylistName.sendKeys(playlistName);
+  const inputPlaylistName = element(by.css('.playlist_input_name'));
+  await browser.wait(ExpectedConditions.visibilityOf(inputPlaylistName));
+  await inputPlaylistName.sendKeys(playlistName);
+})
+
+Then(/^I can see an error message "([^"]*)"$/, async function (message) {
+  const alertIsPresent = protractor.ExpectedConditions.alertIsPresent();
+  await browser.wait(alertIsPresent, 5000, "Alert was not found");
+
+  const alert = await browser.switchTo().alert();
+  const alertText = await alert.getText();
+  expect(alertText).contain(message);
 });
 
-When(/^I insert the music "([^"]*)"$/, async function (musicName) {
-const searchMusic = element(by.css('.input_musica'));
-const music = element(by.css('.'+musicName))
-await searchMusic.click();
-await searchMusic.sendKeys(musicName);
-await browser.wait(ExpectedConditions.visibilityOf(music))
-await music.click();
-});
-
-When('I create the playlist', async function () {
-const createButton = element(by.css('.submit'));
-await createButton.click();
-});
-
+/*
 Then(/^I can see an error message "([^"]*)"$/, async function (message) {
     const alertIsPresent = protractor.ExpectedConditions.alertIsPresent();
     await browser.wait(alertIsPresent, 5000, "Alert was not found");

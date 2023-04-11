@@ -13,7 +13,7 @@ async function assertTamanhoEqual(set: Promise<any>, n: any) {
 
 async function getPlaylistCardByName(name: StepDefinitionParam) {
     const playlistCard = await element.all(by.name('playlist-card'))
-      .filter(p => p.element(by.name('nome'))
+      .filter(p => p.element(by.css('card-title'))
           .getText()
           .then(text => text === name))
       .first();

@@ -13,16 +13,6 @@ async function goTo(page: string) {
 
 defineSupportCode(function ({ Given, When, Then, setDefaultTimeout }) {
 
-    Given(/^eu sou um usuário com login "([^\"]*)" e senha "(\d*)"$/, async (email, senha) => {
-        goTo("login");
-        const EC = protractor.ExpectedConditions;
-        const em = element(by.name("email"))
-        await browser.wait(EC.visibilityOf(em), 5000, "Element not visible");
-        await em.sendKeys(email.toString());
-        await element(by.name("password")).sendKeys(senha.toString());
-        await element(by.name("entrar")).click();
-    });
-
     Given(/^estou na playlist "([^\"]*)" que é "([^\"]*)" com id "(\d*)"$/, async (name, availabity, id) => {
         await goTo("playlist/" + id);
         const playlist_name = await element(by.css(".playlist_name")).getText();

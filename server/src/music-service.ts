@@ -63,6 +63,17 @@ export class MusicService {
   }
 
   getById(musicId: number): Music | undefined {
-    return this.musics.find(({ id }) => id === musicId);
+    var music = this.musics.find(({id}) => id === musicId);
+    if(!music){
+      return undefined
+    }
+    if(music?.accessSong){
+      music.accessSong++;
+    }
+    else{
+      music.accessSong = 1;
+    }
+    this.update(music);
+    return music;
   }
 }

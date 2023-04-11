@@ -14,6 +14,8 @@ Feature: Pagina Inicial
         And eu tenha optado por não fazer login
         When eu clico no botão "playlists"
         Then eu sou levado para a pagina de "Cadastro"
+        And eu vejo o formulário de cadastro
+        And eu tembém tenho a opção de ir para o login
 
     Scenario: Voltar à página inicial
         Given eu esteja na página "Busca"

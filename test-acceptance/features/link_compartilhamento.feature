@@ -3,7 +3,7 @@ Feature: Gerar link de compartilhamento
     I want to compartilhar o link de uma playlist pública
     So that o link é gerado e pode ser compartilhado
 
-    Scenario: geração de link de compartilhamento
+    Scenario: geração de link de compartilhamento 
         Given eu sou um usuário com login "jsa2" e senha "123"
         And estou na playlist "Melhores Pop" que é "public" com id "1"
         When seleciono a opção de compartilhar

@@ -1,6 +1,6 @@
 Feature: Criação de Categorias
     As um usuário com login e senha e tenho permissão para gerenciar a playlist
-    I want to criar e gerenciar categorias de uma playlist
+    I want to criar e gerenciar categorias de uma playlist 
     So that as categorias de uma playlist serão definidas
 
     Scenario: adicionando nova categoria a uma playlist
@@ -22,7 +22,7 @@ Feature: Criação de Categorias
         And seleciono "ELECTRONIC" para o remover das categorias
         And seleciono "INDIE" como uma nova categoria
         Then "INDIE" é uma categoria de "Melhores Indie” e "ELECTRONIC" não.
-
+    
     Scenario: remover uma categoria de uma playlist
         Given possuo o login "jsa2" e senha "123"
         And estou na página da playlist "Para Você" com id "3"
@@ -55,7 +55,7 @@ Feature: Criação de Categorias
         When seleciono "ELECTRONIC" para o remover das categorias
         And seleciono "KPOP" para o remover das categorias
         Then "Rocking with Imagine Dragons" não possui nenhuma categoria
-
+    
     Scenario: adicionando duas categorias para a playlist
         Given possuo o login "jsa2" e senha "123"
         And estou na página da playlist "Rocking with Imagine Dragons" com id "6"

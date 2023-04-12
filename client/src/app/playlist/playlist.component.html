@@ -22,6 +22,8 @@
             </span>
           </div>
         </details>
+        <br>
+        <button class="delete" (click)="deletePLaylist()">Deletar playlist</button>
       </div>
       <div class="icons">
         <i *ngIf="selectedPlaylist.availability === 'public'" (click)="showShareLink()" class="fas fa-share">
@@ -58,7 +60,7 @@
         <button type="button" class="closePopUp" (click)="hidePopup()">X</button>
       </div>
       <div class="opcoes_musica">
-        <p *ngFor="let musica of musicasFiltradas" (click)="adicionarMusica(musica)">{{musica}}</p>
+        <p *ngFor="let musica of musicasFiltradas" class="{{musica}}" (click)="adicionarMusica(musica)">{{musica}}</p>
       </div>
     </div>
     <h4 class="popUp-text" *ngIf="musicas_add.getValue().length > 0">Músicas Selecionadas</h4>

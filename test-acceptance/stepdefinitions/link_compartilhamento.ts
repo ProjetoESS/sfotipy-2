@@ -56,10 +56,6 @@ defineSupportCode(function ({ Given, When, Then }) {
         await alert.accept();
     });
 
-    Given(/^sou um usuário com login "([^\!]*)" e senha "(\d*)"$/, async (login, senha) => {
-        expect(login).to.equal(login);
-    });
-
     When(/^entro na página da playlist "([^\"]*)" com id "(\d*)"$/, async (playlistName, id) => {
         goTo("playlist/" + id);
         const EC = protractor.ExpectedConditions;
